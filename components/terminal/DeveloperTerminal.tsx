@@ -278,15 +278,17 @@ export default function DeveloperTerminal({ onOpenModalProject }: DeveloperTermi
 
         {/* Active Input Line */}
         {!isBooting && (
-          <form onSubmit={handleExecuteCommandForm} className="flex items-center gap-2 pt-1">
-            <span className="text-[#9E9EA8] font-medium shrink-0 text-[11px] sm:text-xs">sajal@portfolio ~ %</span>
+          <form onSubmit={handleExecuteCommandForm} className="flex items-center gap-1.5 sm:gap-2 pt-1">
+            <span className="text-[#9E9EA8] font-medium shrink-0 text-[11px] sm:text-xs">
+              <span className="hidden sm:inline">sajal@portfolio </span>~ %
+            </span>
             <input
               ref={inputRef}
               type="text"
               value={inputVal}
               onChange={(e) => setInputVal(e.target.value)}
               onKeyDown={handleKeyDown}
-              className="flex-1 bg-transparent text-[#F4F4F6] text-[16px] sm:text-xs outline-none font-mono caret-white"
+              className="flex-1 bg-transparent text-[#F4F4F6] text-[16px] sm:text-xs outline-none font-mono caret-white min-w-0"
               autoFocus
             />
           </form>

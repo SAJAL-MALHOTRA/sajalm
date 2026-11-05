@@ -113,11 +113,11 @@ export default function EditorialHero({
           </div>
 
           {/* Call-to-Action Bar */}
-          <div className="flex flex-wrap items-center gap-2.5 pt-3 font-mono text-xs">
+          <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2 pt-3 font-mono text-xs">
             <a
               href="#projects"
               onClick={playClick}
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-black hover:bg-neutral-800 text-white dark:bg-white dark:hover:bg-neutral-200 dark:text-black font-bold transition-all shadow-md active:scale-95 cursor-pointer"
+              className="col-span-2 sm:col-span-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-black hover:bg-neutral-800 text-white dark:bg-white dark:hover:bg-neutral-200 dark:text-black font-bold transition-all shadow-md active:scale-95 cursor-pointer text-center"
             >
               <span>Explore Projects</span>
               <ArrowDown size={14} />
@@ -126,9 +126,9 @@ export default function EditorialHero({
             <a
               href="#achievements"
               onClick={playClick}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-white hover:bg-[#F4F4F6] dark:bg-[#141417] dark:hover:bg-[#1E1E24] text-[#09090B] dark:text-[#EDEDED] border border-[#D1D5DB] dark:border-[#27272A] font-medium transition-all shadow-xs cursor-pointer"
+              className="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl bg-white hover:bg-[#F4F4F6] dark:bg-[#141417] dark:hover:bg-[#1E1E24] text-[#09090B] dark:text-[#EDEDED] border border-[#D1D5DB] dark:border-[#27272A] font-medium transition-all shadow-xs cursor-pointer text-center text-[11px] sm:text-xs"
             >
-              <span>View Achievements</span>
+              <span>Achievements</span>
             </a>
 
             <a
@@ -136,7 +136,7 @@ export default function EditorialHero({
               target="_blank"
               rel="noreferrer"
               onClick={playClick}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-white hover:bg-[#F4F4F6] dark:bg-[#141417] dark:hover:bg-[#1E1E24] text-[#09090B] dark:text-[#EDEDED] border border-[#D1D5DB] dark:border-[#27272A] font-medium transition-all shadow-xs cursor-pointer"
+              className="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl bg-white hover:bg-[#F4F4F6] dark:bg-[#141417] dark:hover:bg-[#1E1E24] text-[#09090B] dark:text-[#EDEDED] border border-[#D1D5DB] dark:border-[#27272A] font-medium transition-all shadow-xs cursor-pointer text-center text-[11px] sm:text-xs"
             >
               <FileText size={13} className="text-[#71717A] dark:text-[#A1A1AA]" />
               <span>Resume PDF</span>
@@ -147,11 +147,11 @@ export default function EditorialHero({
                 playClick();
                 onOpenTerminal();
               }}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-white hover:bg-[#F4F4F6] dark:bg-[#141417] dark:hover:bg-[#1E1E24] text-[#09090B] dark:text-[#EDEDED] border border-[#D1D5DB] dark:border-[#27272A] font-medium transition-all shadow-xs cursor-pointer"
+              className="col-span-2 sm:col-span-1 inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl bg-white hover:bg-[#F4F4F6] dark:bg-[#141417] dark:hover:bg-[#1E1E24] text-[#09090B] dark:text-[#EDEDED] border border-[#D1D5DB] dark:border-[#27272A] font-medium transition-all shadow-xs cursor-pointer text-center text-[11px] sm:text-xs"
               title="Open Terminal Shell (~)"
             >
               <Terminal size={13} className="text-[#71717A] dark:text-[#A1A1AA]" />
-              <span>CLI (~)</span>
+              <span>Developer CLI (~)</span>
             </button>
           </div>
 
@@ -264,19 +264,19 @@ export default function EditorialHero({
                           : 'bg-[#F9F9FB] hover:bg-[#F1F2F5] dark:bg-[#141519] dark:hover:bg-[#1B1D22] text-[#09090B] dark:text-[#EDEDED] border-[#E2E4E8] dark:border-[#22242B]'
                       }`}
                     >
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2 min-w-0">
-                          <span className={`font-mono text-[10px] font-bold shrink-0 ${
+                      <div className="flex items-start justify-between gap-1.5">
+                        <div className="flex items-start gap-2 min-w-0">
+                          <span className={`font-mono text-[10px] font-bold shrink-0 mt-0.5 ${
                             isSelected ? 'text-white/70 dark:text-black/70' : 'text-[#71717A] dark:text-[#A1A1AA]'
                           }`}>
                             [{trait.code || String(idx + 1).padStart(2, '0')}]
                           </span>
-                          {renderTraitIcon(trait.id)}
-                          <span className={`text-[11.5px] font-bold truncate ${isSelected ? 'text-white dark:text-black' : 'text-[#09090B] dark:text-white'}`}>
+                          <span className="mt-0.5 shrink-0">{renderTraitIcon(trait.id)}</span>
+                          <span className={`text-[11.5px] font-bold leading-snug break-words ${isSelected ? 'text-white dark:text-black' : 'text-[#09090B] dark:text-white'}`}>
                             {trait.title}
                           </span>
                         </div>
-                        <span className={`text-[9px] font-mono px-1.5 py-0.2 rounded uppercase shrink-0 ${
+                        <span className={`text-[8.5px] sm:text-[9px] font-mono px-1.5 py-0.2 rounded uppercase shrink-0 mt-0.5 ${
                           isSelected
                             ? 'bg-white/20 text-white dark:bg-black/20 dark:text-black font-bold'
                             : 'text-[#71717A] dark:text-[#A1A1AA]'

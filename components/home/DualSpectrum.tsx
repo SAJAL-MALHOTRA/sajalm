@@ -50,29 +50,29 @@ export default function DualSpectrum() {
         </div>
 
         {/* Tab Toggle */}
-        <div className="flex items-center gap-1 p-1 rounded-xl bg-[#ECEEF2] dark:bg-[#16171B] border border-[#D1D5DB] dark:border-[#27272A] text-xs font-mono self-start sm:self-auto">
+        <div className="w-full sm:w-auto grid grid-cols-2 sm:flex items-center gap-1 p-1 rounded-xl bg-[#ECEEF2] dark:bg-[#16171B] border border-[#D1D5DB] dark:border-[#27272A] text-xs font-mono">
           <button
             onClick={() => setActiveTab('tech')}
-            className={`flex items-center gap-1.5 px-3 py-1 rounded-lg transition-all cursor-pointer ${
+            className={`flex items-center justify-center gap-1.5 px-2.5 sm:px-3 py-1.5 sm:py-1 rounded-lg transition-all cursor-pointer text-center text-[11px] sm:text-xs ${
               activeTab === 'tech'
                 ? 'bg-black text-white dark:bg-white dark:text-black font-bold shadow-xs'
                 : 'text-[#52525B] dark:text-[#A1A1AA] hover:text-[#09090B] dark:hover:text-white'
             }`}
           >
-            <Cpu size={12} />
-            <span>Technical Arsenal ({skills.categories.length})</span>
+            <Cpu size={12} className="shrink-0" />
+            <span className="truncate">Technical ({skills.categories.length})</span>
           </button>
 
           <button
             onClick={() => setActiveTab('passions')}
-            className={`flex items-center gap-1.5 px-3 py-1 rounded-lg transition-all cursor-pointer ${
+            className={`flex items-center justify-center gap-1.5 px-2.5 sm:px-3 py-1.5 sm:py-1 rounded-lg transition-all cursor-pointer text-center text-[11px] sm:text-xs ${
               activeTab === 'passions'
                 ? 'bg-black text-white dark:bg-white dark:text-black font-bold shadow-xs'
                 : 'text-[#52525B] dark:text-[#A1A1AA] hover:text-[#09090B] dark:hover:text-white'
             }`}
           >
-            <Palette size={12} />
-            <span>Creative Passions ({aestheticPassions.length})</span>
+            <Palette size={12} className="shrink-0" />
+            <span className="truncate">Passions ({aestheticPassions.length})</span>
           </button>
         </div>
       </div>
