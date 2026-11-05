@@ -7,6 +7,8 @@ import DeveloperTerminal from '@/components/terminal/DeveloperTerminal';
 import KonamiEasterEgg from '@/components/ui/KonamiEasterEgg';
 import SajalsTastePlayer from '@/components/layout/SajalsTastePlayer';
 import ThemeToggle from '@/components/theme/ThemeToggle';
+import VisitorCounter from '@/components/ui/VisitorCounter';
+import { profile } from '@/data/profile';
 import { projects } from '@/data/projects';
 import { useSound } from '@/hooks/useSound';
 import { Terminal, X } from 'lucide-react';
@@ -65,6 +67,8 @@ export default function Home() {
           <span className="text-[9.5px] text-[#71717A] dark:text-[#52525B] hidden md:inline">
             PRESS &lsquo;1-5&rsquo; TO SWITCH MODULES
           </span>
+          <VisitorCounter />
+          <a href={profile.links.buyMeAChai || 'https://buymeacoffee.com/sajal'} target="_blank" rel="noreferrer" className="flex items-center gap-1 px-2 py-0.5 rounded bg-amber-500/10 hover:bg-amber-500/20 text-amber-800 dark:text-amber-300 border border-amber-500/30 transition-colors font-mono text-[10px] font-medium shadow-xs" title="Buy Me a Chai"><span>☕</span><span className="hidden sm:inline">CHAI</span></a>
           <ThemeToggle />
           <SajalsTastePlayer />
           <button

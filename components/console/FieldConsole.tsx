@@ -320,6 +320,7 @@ export default function FieldConsole({
               </div>
 
               <div className="flex items-center gap-1.5 font-mono text-[9px]">
+                <a href={profile.links.buyMeAChai || 'https://buymeacoffee.com/sajal'} target="_blank" rel="noreferrer" className="px-2 py-1 rounded bg-amber-500/10 hover:bg-amber-500/20 text-amber-800 dark:text-amber-300 border border-amber-500/30 transition-colors">☕ Chai ↗</a>
                 <a
                   href={profile.links.github}
                   target="_blank"
@@ -637,7 +638,7 @@ export default function FieldConsole({
                   </div>
 
                   {/* Direct Contact Cards */}
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
                     <button
                       onClick={() => handleCopy(profile.email, 'email')}
                       className="p-2.5 rounded-lg bg-white dark:bg-[#121316] hover:bg-[#F4F4F6] dark:hover:bg-[#18181B] border border-[#E2E4E8] dark:border-[#22242B] text-[#09090B] dark:text-white font-mono text-xs flex items-center justify-between transition-colors cursor-pointer text-left shadow-xs"

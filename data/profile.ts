@@ -58,6 +58,7 @@ export const profile = {
     instagram: "https://instagram.com/sajal",
     email: "malhotrasajal243@gmail.com",
     resume: getAssetPath("/resume.pdf"),
+    buyMeAChai: "https://buymeacoffee.com/sajal",
   },
   // Backward compatibility
   audioGreeting: "Hi, I'm DevDex.",

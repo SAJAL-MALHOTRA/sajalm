@@ -5,7 +5,6 @@ import { projects } from '@/data/projects';
 import { profile } from '@/data/profile';
 import { skills } from '@/data/skills';
 import { experiences } from '@/data/experience';
-import { fits } from '@/data/fits';
 import { Terminal as TerminalIcon } from 'lucide-react';
 import { useSound } from '@/hooks/useSound';
 
@@ -99,7 +98,7 @@ export default function DeveloperTerminal({ onOpenModalProject }: DeveloperTermi
 
     let responseNode: React.ReactNode = null;
 
-    if (lowerCmd === 'clear') {
+    if (lowerCmd === 'clear' || lowerCmd === 'cls') {
       setLogs([]);
       return;
     } else if (lowerCmd === 'projects' || lowerCmd === 'ls' || lowerCmd === 'cd /projects') {
@@ -147,12 +146,34 @@ export default function DeveloperTerminal({ onOpenModalProject }: DeveloperTermi
           <div className="text-[#F4F4F6] pt-1">{profile.description}</div>
         </div>
       );
-    } else if (lowerCmd === 'contact' || lowerCmd === 'email') {
+    } else if (lowerCmd === 'contact' || lowerCmd === 'email' || lowerCmd === 'reach') {
       responseNode = (
-        <div className="space-y-1 text-xs text-[#9E9EA8]">
-          <div>Email: {profile.links.email}</div>
-          <div>GitHub: {profile.links.github}</div>
-          <div>LinkedIn: {profile.links.linkedin}</div>
+        <div className="space-y-1.5 pt-1 font-mono text-xs text-[#9E9EA8]">
+          <div className="font-semibold text-white">Direct Relay &amp; Contact</div>
+          <div className="space-y-1">
+            <div>
+              <span className="text-[#62636C]">Email: </span>
+              <a href={`mailto:${profile.email}`} className="text-white hover:underline">
+                {profile.email}
+              </a>
+            </div>
+            <div>
+              <span className="text-[#62636C]">Phone: </span>
+              <span className="text-white">{profile.phone}</span>
+            </div>
+            <div>
+              <span className="text-[#62636C]">GitHub: </span>
+              <a href={profile.links.github} target="_blank" rel="noreferrer" className="text-[#38BDF8] hover:underline">
+                {profile.links.github}
+              </a>
+            </div>
+            <div>
+              <span className="text-[#62636C]">LinkedIn: </span>
+              <a href={profile.links.linkedin} target="_blank" rel="noreferrer" className="text-[#38BDF8] hover:underline">
+                {profile.links.linkedin}
+              </a>
+            </div>
+          </div>
         </div>
       );
     } else if (lowerCmd === 'skills' || lowerCmd === 'stack') {
@@ -182,25 +203,6 @@ export default function DeveloperTerminal({ onOpenModalProject }: DeveloperTermi
           ))}
         </div>
       );
-    } else if (lowerCmd === 'fits' || lowerCmd === 'lookbook') {
-      responseNode = (
-        <div className="space-y-2 pt-1 font-mono text-xs">
-          <div className="font-semibold text-white">Curated Lookbook Archive (SS26 / FW25)</div>
-          <div className="space-y-1">
-            {fits.map((f) => (
-              <div key={f.id} className="flex justify-between items-center text-[#9E9EA8]">
-                <span>
-                  <span className="text-white font-medium">{f.id}</span> {f.title}
-                </span>
-                <span className="text-amber-400 font-mono">{f.season}</span>
-              </div>
-            ))}
-          </div>
-          <div className="text-[#62636C] text-[11px] pt-1">
-            Scroll to Lookbook section to inspect complete garment breakdown.
-          </div>
-        </div>
-      );
     } else if (lowerCmd === 'rotation') {
       responseNode = (
         <div className="space-y-2 pt-1 font-mono text-xs">
@@ -215,15 +217,14 @@ export default function DeveloperTerminal({ onOpenModalProject }: DeveloperTermi
         <div className="space-y-1 text-xs text-[#9E9EA8]">
           <div className="text-white font-medium pb-1">Available commands:</div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1">
-            <div><span className="text-white">whoami</span> — Identity & bio</div>
+            <div><span className="text-white">whoami</span> — Identity &amp; bio</div>
             <div><span className="text-white">projects</span> — Shipped systems</div>
-            <div><span className="text-white">fits</span> — Curated wardrobe lookbook</div>
-            <div><span className="text-white">rotation</span> — Current active rotation</div>
             <div><span className="text-white">skills</span> — Tech stack</div>
             <div><span className="text-white">experience</span> — Career timeline</div>
+            <div><span className="text-white">contact</span> — Reach out &amp; relays</div>
+            <div><span className="text-white">clear</span> — Clear terminal screen</div>
             <div><span className="text-white">open [ID]</span> — Inspect project modal</div>
-            <div><span className="text-white">contact</span> — Reach out</div>
-            <div><span className="text-white">clear</span> — Clear screen</div>
+            <div><span className="text-white">help</span> — List commands</div>
           </div>
         </div>
       );
@@ -291,9 +292,9 @@ export default function DeveloperTerminal({ onOpenModalProject }: DeveloperTermi
 
       {/* Quick Run Chips */}
       <div className="absolute bottom-3 left-6 right-6 border-t border-white/[0.06] pt-3 bg-[#111216]">
-        <div className="flex items-center gap-2 text-xs">
+        <div className="flex items-center gap-1.5 sm:gap-2 text-xs flex-wrap">
           <span className="text-[#62636C] text-[11px]">Commands:</span>
-          {['whoami', 'projects', 'fits', 'rotation', 'skills', 'experience', 'help'].map((cmd) => (
+          {['whoami', 'projects', 'skills', 'experience', 'contact', 'clear', 'help'].map((cmd) => (
             <button
               key={cmd}
               onClick={(e) => {
