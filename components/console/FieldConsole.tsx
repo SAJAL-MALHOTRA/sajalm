@@ -679,6 +679,20 @@ export default function FieldConsole({
                       </div>
                       <Download size={11} className="text-[#71717A] dark:text-[#A1A1AA]" />
                     </a>
+
+                    <a
+                      href={profile.links.buyMeAChai || 'https://buymeachai.in/sajalmalhotra'}
+                      target="_blank"
+                      rel="noreferrer"
+                      onMouseEnter={playHover}
+                      className="p-2.5 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 text-amber-900 dark:text-amber-200 border border-amber-500/30 font-mono text-xs flex items-center justify-between transition-colors cursor-pointer shadow-xs"
+                    >
+                      <div>
+                        <div className="text-[8px] text-amber-700/80 dark:text-amber-400 font-semibold">SUPPORT</div>
+                        <div className="text-[11px] font-medium">BUY ME A CHAI</div>
+                      </div>
+                      <span className="text-sm">☕</span>
+                    </a>
                   </div>
 
                   {/* Direct Contact Form */}
