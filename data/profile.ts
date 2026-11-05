@@ -20,7 +20,7 @@ export const profile = {
   description:
     "Information Technology undergraduate at NIT Jalandhar (CGPA 8.13) specializing in ML reasoning engines, multi-agent systems, and full-stack real-time platforms. Core Member at Cybernauts and fashion & creative content creator (220K+ monthly views).",
   transcript:
-    "Sajal Malhotra is an Information Technology undergraduate at NIT Jalandhar with an 8.13 CGPA. He specializes in ML reasoning engines, multi-agent systems, and full-stack real-time platforms. Creator of ThinkFolio with R² 0.927 predictive accuracy, Pairfect with sub-50ms Groq Llama 3 inference, ScholarAI with a 5-node LangGraph pipeline, and a Computer Vision Illumination Classifier ranked in the top 7% nationally. He is a Core Member of Cybernauts and an active fashion & creative content creator with over 220,000 monthly views.",
+    "Sajal Malhotra is an Information Technology undergraduate at NIT Jalandhar with an 8.13 CGPA. He specializes in ML reasoning engines, multi-agent systems, and full-stack real-time platforms. Creator of DSA Lecture RAG with a 104-query benchmark, Cybernauts Arena for 16-team simultaneous esports tournaments, Pairfect with sub-50ms Groq Llama 3 inference, ThinkFolio with R² 0.927 accuracy, and a Computer Vision Illumination Classifier ranked in the national Top 7%. He is a Core Member of Cybernauts and an active fashion & creative content creator.",
   coursework: [
     "Data Structures & Algorithms",
     "Object-Oriented Programming",
@@ -67,7 +67,7 @@ export const profile = {
   issue: "ISSUE N° 01 // 2026",
   issn: "ISSN 2026-NITJ",
   rotation: {
-    building: "ThinkFolio (PyTorch/FinBERT) & Pairfect (Groq Llama 3)",
+    building: "DSA Lecture RAG (FastAPI/PyTorch) & Cybernauts Arena (Next.js/Express)",
     wearing: "Dark brown leather blouson, olive zip fleece, tailored gray pleated trousers",
     listening: "Frank Ocean, Travis Scott, Aphex Twin, Dijon",
   },

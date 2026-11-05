@@ -116,24 +116,29 @@ export default function DeveloperTerminal({ onOpenModalProject }: DeveloperTermi
             ))}
           </div>
           <div className="text-[#62636C] text-[11px] pt-1">
-            Type &apos;open OBJ-026&apos; to view case study.
+            Type &apos;open PRJ-01&apos; or &apos;open [name]&apos; to view architecture spec.
           </div>
         </div>
       );
     } else if (lowerCmd.startsWith('open ')) {
-      const targetId = cmdStr.split(' ')[1]?.toUpperCase();
-      const proj = projects.find((p) => p.id === targetId || p.name === targetId);
+      const targetQuery = cmdStr.split(' ').slice(1).join(' ').trim().toLowerCase();
+      const proj = projects.find(
+        (p) =>
+          p.id.toLowerCase() === targetQuery ||
+          p.name.toLowerCase() === targetQuery ||
+          p.name.toLowerCase().includes(targetQuery)
+      );
       if (proj) {
         if (onOpenModalProject) onOpenModalProject(proj.id);
         responseNode = (
           <div className="space-y-1 text-xs text-[#30A46C]">
-            <div>Opening case study: {proj.id} ({proj.name})</div>
+            <div>Opening architecture spec: {proj.id} ({proj.name})</div>
           </div>
         );
       } else {
         responseNode = (
           <div className="text-xs text-red-400">
-            Project &apos;{targetId}&apos; not found. Type &apos;projects&apos; for list.
+            Project &apos;{targetQuery}&apos; not found. Type &apos;projects&apos; for list.
           </div>
         );
       }

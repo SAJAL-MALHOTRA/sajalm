@@ -53,7 +53,7 @@ export default function FieldConsole({
   };
 
   const modules = [
-    { id: 'systems', num: '01', title: 'TECHNICAL PROJECTS', count: '04 BUILDS' },
+    { id: 'systems', num: '01', title: 'TECHNICAL PROJECTS', count: `${String(projects.length).padStart(2, '0')} BUILDS` },
     { id: 'skills', num: '02', title: 'TECHNICAL SKILLS', count: '5 STACKS' },
     { id: 'timeline', num: '03', title: 'EDUCATION & ACHIEVEMENTS', count: 'CGPA 8.13' },
     { id: 'cli', num: '04', title: 'DEVELOPER CLI // SHELL', count: 'INTERACTIVE' },
@@ -389,7 +389,7 @@ export default function FieldConsole({
                       </h2>
                     </div>
                     <span className="px-2 py-0.5 rounded bg-white dark:bg-[#18181B] border border-[#D1D5DB] dark:border-[#27272A] text-[#52525B] dark:text-[#A1A1AA] text-[9.5px] font-mono">
-                      4 PRODUCTION BUILDS
+                      {projects.length} PRODUCTION BUILDS
                     </span>
                   </div>
 
