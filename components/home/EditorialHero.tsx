@@ -87,11 +87,23 @@ export default function EditorialHero({
               <div className="text-[10px] text-[#71717A]">CGPA: 8.13</div>
             </div>
 
-            <div className="p-2.5 rounded-xl bg-white dark:bg-[#121316] border border-[#E2E4E8] dark:border-[#22242B] space-y-0.5 shadow-xs">
-              <div className="text-[9px] text-[#71717A] uppercase font-bold">PRODUCTION IMPACT</div>
-              <div className="font-bold text-[#09090B] dark:text-white text-[11px]">Pairfect App</div>
+            <a
+              href="https://pairfect.site"
+              target="_blank"
+              rel="noreferrer"
+              onClick={playClick}
+              className="p-2.5 rounded-xl bg-white dark:bg-[#121316] border border-[#E2E4E8] dark:border-[#22242B] hover:border-black/40 dark:hover:border-white/40 space-y-0.5 shadow-xs transition-colors group cursor-pointer block"
+              title="Open pairfect.site (Live Platform)"
+            >
+              <div className="flex items-center justify-between text-[9px] text-[#71717A] uppercase font-bold">
+                <span>PRODUCTION IMPACT</span>
+                <span className="text-[#A1A1AA] group-hover:text-black dark:group-hover:text-white transition-colors">↗</span>
+              </div>
+              <div className="font-bold text-[#09090B] dark:text-white text-[11px] group-hover:underline">
+                pairfect.site
+              </div>
               <div className="text-[10px] text-[#71717A]">200+ Active Users</div>
-            </div>
+            </a>
 
             <div className="p-2.5 rounded-xl bg-white dark:bg-[#121316] border border-[#E2E4E8] dark:border-[#22242B] space-y-0.5 shadow-xs col-span-2 sm:col-span-1">
               <div className="text-[9px] text-[#71717A] uppercase font-bold">COMPETITION RANK</div>

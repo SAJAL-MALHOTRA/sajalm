@@ -12,7 +12,6 @@ import {
   Check,
   ShieldCheck,
   ExternalLink,
-  Sparkles,
   Coffee,
 } from 'lucide-react';
 
@@ -54,9 +53,8 @@ export default function OpportunitiesSection() {
           <div className="text-[9.5px] font-mono text-[#71717A] uppercase tracking-widest">
             CAREER &amp; INVITATIONS // NIT JALANDHAR
           </div>
-          <h2 className="text-2xl sm:text-3xl font-black font-sans text-[#09090B] dark:text-white tracking-tight flex items-center gap-2">
-            <span>Internships, Roles &amp; Contact</span>
-            <Sparkles size={18} className="text-emerald-500" />
+          <h2 className="text-2xl sm:text-3xl font-black font-sans text-[#09090B] dark:text-white tracking-tight">
+            Internships, Roles &amp; Contact
           </h2>
         </div>
 
