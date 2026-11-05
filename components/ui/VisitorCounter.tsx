@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 
 const API_BASE = 'https://countapi.mileshilliard.com/api/v1';
-const KEY = 'sajal_malhotra_sajdex';
+const KEY = 'sajal_malhotra_sajalm';
 
 export default function VisitorCounter() {
   const [count, setCount] = useState<string | null>(null);
@@ -12,14 +12,17 @@ export default function VisitorCounter() {
     let isMounted = true;
 
     // Fast initial load from cache to eliminate flicker
-    const cached = typeof window !== 'undefined' ? localStorage.getItem('sajdex-visitor-count') : null;
+    const cached = typeof window !== 'undefined'
+      ? (localStorage.getItem('sajalm-visitor-count') || localStorage.getItem('sajdex-visitor-count'))
+      : null;
     if (cached) {
       setCount(cached);
     }
 
     async function syncCount(isInitial = false) {
       try {
-        const hasCountedSession = typeof window !== 'undefined' && sessionStorage.getItem('sajdex-session-hit');
+        const hasCountedSession = typeof window !== 'undefined' &&
+          (sessionStorage.getItem('sajalm-session-hit') || sessionStorage.getItem('sajdex-session-hit'));
         
         // If initial load and not counted in this session, increment (+1). Otherwise read latest value (/get).
         const endpoint = (isInitial && !hasCountedSession)
@@ -32,9 +35,9 @@ export default function VisitorCounter() {
           if (data && typeof data.value !== 'undefined' && isMounted) {
             const formatted = String(data.value);
             setCount(formatted);
-            localStorage.setItem('sajdex-visitor-count', formatted);
+            localStorage.setItem('sajalm-visitor-count', formatted);
             if (isInitial && !hasCountedSession) {
-              sessionStorage.setItem('sajdex-session-hit', '1');
+              sessionStorage.setItem('sajalm-session-hit', '1');
             }
             return;
           }

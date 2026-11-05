@@ -45,7 +45,7 @@ export const moves: Move[] = [
     name: "DESIGN",
     type: "FAIRY",
     description: "Turn complex technical ideas into intuitive, editorial user interfaces.",
-    usedIn: ["Pairfect Relationship UX", "SajDex OS"],
+    usedIn: ["Pairfect Relationship UX", "sajalm Platform"],
     stack: ["Tailwind CSS", "Framer Motion", "Inter Font"],
   },
   {

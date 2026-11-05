@@ -23,7 +23,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{
             __html: `
               try {
-                if (localStorage.getItem('sajdex-theme') === 'dark') {
+                const theme = localStorage.getItem('sajalm-theme') || localStorage.getItem('sajdex-theme');
+                if (theme === 'dark') {
                   document.documentElement.classList.add('dark');
                 } else {
                   document.documentElement.classList.remove('dark');

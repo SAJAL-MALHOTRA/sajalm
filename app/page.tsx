@@ -103,7 +103,7 @@ export default function Home() {
       {/* ── MINIMALIST EDITORIAL FOOTER ── */}
       <footer className="w-full max-w-5xl z-30 flex flex-col sm:flex-row items-center justify-between gap-2 font-mono text-[9px] text-[#71717A] dark:text-[#52525B] tracking-wider select-none py-6 px-4 border-t border-[#E4E4E7] dark:border-[#18181B] shrink-0 text-center sm:text-left mt-8">
         <div>
-          DEVDEX // MODEL DX-042 · SAJAL MALHOTRA · NIT JALANDHAR (2025–2029)
+          SAJALM // MODEL DX-042 · SAJAL MALHOTRA · NIT JALANDHAR (2025–2029)
         </div>
         <div className="flex items-center gap-3">
           <span>MACHINE LEARNING &times; DISTRIBUTED SYSTEMS &times; FASHION DIRECTION</span>

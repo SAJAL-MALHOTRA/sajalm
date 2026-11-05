@@ -22,7 +22,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     // Check saved theme; default is LIGHT if not set
-    const saved = localStorage.getItem('sajdex-theme') as Theme | null;
+    const saved = (localStorage.getItem('sajalm-theme') || localStorage.getItem('sajdex-theme')) as Theme | null;
     if (saved === 'dark') {
       setThemeState('dark');
       document.documentElement.classList.add('dark');
@@ -53,7 +53,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme);
-    localStorage.setItem('sajdex-theme', newTheme);
+    localStorage.setItem('sajalm-theme', newTheme);
 
     // Support View Transitions API if available (Chrome 111+, Edge, Safari 18+)
     if (typeof document !== 'undefined' && 'startViewTransition' in document) {

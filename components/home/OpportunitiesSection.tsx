@@ -17,6 +17,7 @@ import {
 
 export default function OpportunitiesSection() {
   const [copiedField, setCopiedField] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [dispatchSent, setDispatchSent] = useState(false);
   const [senderName, setSenderName] = useState('');
   const [senderEmail, setSenderEmail] = useState('');
@@ -31,17 +32,57 @@ export default function OpportunitiesSection() {
     setTimeout(() => setCopiedField(null), 2000);
   };
 
-  const handleDispatch = (e: React.FormEvent) => {
+  const handleDispatch = async (e: React.FormEvent) => {
     e.preventDefault();
     playClick();
     if (!dispatchMessage.trim()) return;
-    setDispatchSent(true);
-    setTimeout(() => {
-      setSenderName('');
-      setSenderEmail('');
-      setDispatchMessage('');
-      setDispatchSent(false);
-    }, 4500);
+
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/malhotrasajal243@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          name: senderName,
+          email: senderEmail,
+          message: dispatchMessage,
+          _subject: `[sajalm] New Contact Relay from ${senderName}`,
+          _template: 'box',
+        }),
+      });
+
+      if (response.ok) {
+        setDispatchSent(true);
+        setTimeout(() => {
+          setSenderName('');
+          setSenderEmail('');
+          setDispatchMessage('');
+          setDispatchSent(false);
+        }, 5000);
+      } else {
+        // Fallback to mailto if external endpoint is unavailable
+        window.location.href = `mailto:malhotrasajal243@gmail.com?subject=${encodeURIComponent(
+          `[sajalm] Relay from ${senderName}`
+        )}&body=${encodeURIComponent(
+          `Name: ${senderName}\nEmail: ${senderEmail}\n\nMessage:\n${dispatchMessage}`
+        )}`;
+        setDispatchSent(true);
+      }
+    } catch {
+      // Fallback for adblocker / offline
+      window.location.href = `mailto:malhotrasajal243@gmail.com?subject=${encodeURIComponent(
+        `[sajalm] Relay from ${senderName}`
+      )}&body=${encodeURIComponent(
+        `Name: ${senderName}\nEmail: ${senderEmail}\n\nMessage:\n${dispatchMessage}`
+      )}`;
+      setDispatchSent(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -191,10 +232,10 @@ export default function OpportunitiesSection() {
                   <Check size={16} />
                 </div>
                 <div className="text-sm font-bold text-[#09090B] dark:text-white font-sans">
-                  DISPATCH LOGGED SUCCESSFULLY
+                  DISPATCH TRANSMITTED TO INBOX
                 </div>
-                <p className="text-xs text-[#52525B] dark:text-[#A1A1AA] font-mono">
-                  Thank you! Your note has been queued to Sajal&apos;s direct priority inbox.
+                <p className="text-xs text-[#52525B] dark:text-[#A1A1AA] font-mono max-w-sm mx-auto">
+                  Your message was sent directly to <span className="font-bold text-[#09090B] dark:text-white">malhotrasajal243@gmail.com</span>. Sajal will get back to you shortly!
                 </p>
               </div>
             ) : (
@@ -245,11 +286,12 @@ export default function OpportunitiesSection() {
 
                 <button
                   type="submit"
+                  disabled={isSubmitting}
                   onMouseEnter={playHover}
-                  className="w-full py-3 rounded-xl bg-black hover:bg-neutral-800 text-white dark:bg-white dark:hover:bg-neutral-200 dark:text-black font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-md active:scale-98 cursor-pointer"
+                  className="w-full py-3 rounded-xl bg-black hover:bg-neutral-800 text-white dark:bg-white dark:hover:bg-neutral-200 dark:text-black font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-md active:scale-98 cursor-pointer disabled:opacity-60"
                 >
-                  <Send size={12} />
-                  <span>TRANSMIT DISPATCH →</span>
+                  <Send size={12} className={isSubmitting ? "animate-pulse" : ""} />
+                  <span>{isSubmitting ? "TRANSMITTING TO INBOX..." : "TRANSMIT DISPATCH →"}</span>
                 </button>
               </>
             )}

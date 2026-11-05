@@ -47,6 +47,6 @@ export const abilities: Ability[] = [
     name: "FULL-STACK ENGINEERING",
     category: "ENGINEERING",
     description: "Building scalable, responsive web platforms with modern Next.js and Supabase tooling.",
-    demonstratedIn: ["Pairfect Platform", "SajDex OS"],
+    demonstratedIn: ["Pairfect Platform", "sajalm Platform"],
   },
 ];
