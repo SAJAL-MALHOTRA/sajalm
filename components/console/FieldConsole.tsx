@@ -320,7 +320,7 @@ export default function FieldConsole({
               </div>
 
               <div className="flex items-center gap-1.5 font-mono text-[9px]">
-                <a href={profile.links.buyMeAChai || 'https://buymeacoffee.com/sajal'} target="_blank" rel="noreferrer" className="px-2 py-1 rounded bg-amber-500/10 hover:bg-amber-500/20 text-amber-800 dark:text-amber-300 border border-amber-500/30 transition-colors">☕ Chai ↗</a>
+                <a href={profile.links.buyMeAChai || 'https://buymeachai.in/sajalmalhotra'} target="_blank" rel="noreferrer" className="px-2 py-1 rounded bg-amber-500/10 hover:bg-amber-500/20 text-amber-800 dark:text-amber-300 border border-amber-500/30 transition-colors">☕ Chai ↗</a>
                 <a
                   href={profile.links.github}
                   target="_blank"
