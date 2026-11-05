@@ -52,10 +52,22 @@ export default function Home() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [playClick, terminalOpen, modalProjectId, photoZoomOpen]);
 
-  // Scroll listener for Back to Top button
+  // Scroll listener for Back to Top button (Throttled with state change guard)
   useEffect(() => {
+    let ticking = false;
+    let isShown = false;
     const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 400);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const shouldShow = window.scrollY > 400;
+          if (shouldShow !== isShown) {
+            isShown = shouldShow;
+            setShowScrollTop(shouldShow);
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
@@ -64,8 +76,8 @@ export default function Home() {
   return (
     <div className="min-h-screen w-full bg-[#F4F4F6] dark:bg-[#09090B] text-[#09090B] dark:text-[#EDEDED] font-mono antialiased selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black flex flex-col items-center relative overflow-x-hidden">
       
-      {/* ── TECHNICAL DOT GRID (LIGHT & DARK ADAPTIVE) ── */}
-      <div className="fixed inset-0 bg-[radial-gradient(#CBD0D8_1px,transparent_1px)] dark:bg-[radial-gradient(#27272A_1px,transparent_1px)] [background-size:20px_20px] opacity-45 dark:opacity-30 pointer-events-none" />
+      {/* ── TECHNICAL DOT GRID (GPU-ACCELERATED LAYER) ── */}
+      <div className="fixed inset-0 bg-[radial-gradient(#CBD0D8_1px,transparent_1px)] dark:bg-[radial-gradient(#27272A_1px,transparent_1px)] [background-size:20px_20px] opacity-45 dark:opacity-30 pointer-events-none -z-10" />
 
       {/* ── PERSISTENT TOP AMBIENT STATUS NAVIGATION ── */}
       <NavigationHeader onOpenTerminal={() => setTerminalOpen(true)} />

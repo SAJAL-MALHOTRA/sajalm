@@ -189,6 +189,9 @@ export default function EditorialHero({
                 <img
                   src={getAssetPath('/avatar.png')}
                   alt={profile.name}
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
                   className="w-full h-full object-cover object-top contrast-[1.03] group-hover:scale-105 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">

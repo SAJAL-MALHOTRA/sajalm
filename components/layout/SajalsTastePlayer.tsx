@@ -29,16 +29,7 @@ export default function SajalsTastePlayer() {
       audio.volume = isMuted ? 0 : volume;
     }
   }, [volume, isMuted]);
-
-  // Initial load of first track so metadata is primed
-  useEffect(() => {
-    const audio = audioRef.current;
-    const initialSrc = getAssetPath(playlist[0].audioUrl);
-    if (audio && (!audio.src || !audio.src.endsWith(initialSrc))) {
-      audio.src = initialSrc;
-      audio.load();
-    }
-  }, []);
+  // Audio is loaded on demand when play is initiated
 
   const playTrack = async (index: number) => {
     const audio = audioRef.current;
@@ -127,7 +118,7 @@ export default function SajalsTastePlayer() {
       {/* Declarative HTML5 Audio Engine */}
       <audio
         ref={audioRef}
-        preload="auto"
+        preload="none"
         onPlay={() => {
           setIsPlaying(true);
           setPlaybackError(false);

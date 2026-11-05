@@ -11,18 +11,21 @@ export default function VisitorCounter() {
   useEffect(() => {
     let isMounted = true;
 
-    // Fast initial load from cache to eliminate flicker
+    // Fast initial load from cache to eliminate flicker (ignore legacy fabricated counts > 10000)
     const cached = typeof window !== 'undefined'
-      ? (localStorage.getItem('sajalm-visitor-count') || localStorage.getItem('sajdex-visitor-count'))
+      ? localStorage.getItem('sajalm-visitor-count')
       : null;
     if (cached) {
-      setCount(cached);
+      const num = parseInt(cached, 10);
+      if (!isNaN(num) && num < 10000) {
+        setCount(num.toLocaleString());
+      }
     }
 
     async function syncCount(isInitial = false) {
       try {
         const hasCountedSession = typeof window !== 'undefined' &&
-          (sessionStorage.getItem('sajalm-session-hit') || sessionStorage.getItem('sajdex-session-hit'));
+          sessionStorage.getItem('sajalm-session-hit');
         
         // If initial load and not counted in this session, increment (+1). Otherwise read latest value (/get).
         const endpoint = (isInitial && !hasCountedSession)
@@ -33,7 +36,7 @@ export default function VisitorCounter() {
         if (res.ok) {
           const data = await res.json();
           if (data && typeof data.value !== 'undefined' && isMounted) {
-            const total = 14796 + Number(data.value);
+            const total = Number(data.value);
             const formatted = total.toLocaleString();
             setCount(formatted);
             localStorage.setItem('sajalm-visitor-count', String(total));

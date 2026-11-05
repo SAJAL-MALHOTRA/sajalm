@@ -54,45 +54,45 @@
 /* Smooth View Transitions for theme toggle (Chrome, Safari 18+, Edge) */
 ::view-transition-old(root),
 ::view-transition-new(root) {
-  animation-duration: 350ms;
-  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation-duration: 180ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Global smooth transition applied dynamically during theme switch */
-html.theme-transition,
-html.theme-transition *,
-html.theme-transition *::before,
-html.theme-transition *::after {
-  transition: background-color 350ms cubic-bezier(0.4, 0, 0.2, 1),
-              border-color 350ms cubic-bezier(0.4, 0, 0.2, 1),
-              color 350ms cubic-bezier(0.4, 0, 0.2, 1),
-              fill 350ms cubic-bezier(0.4, 0, 0.2, 1),
-              stroke 350ms cubic-bezier(0.4, 0, 0.2, 1),
-              box-shadow 350ms cubic-bezier(0.4, 0, 0.2, 1) !important;
-  transition-delay: 0s !important;
+/* Fast, smooth surface transitions without heavy universal * rules */
+html,
+body {
+  transition: background-color 180ms ease, color 180ms ease;
 }
 
-/* Continuous Flowing Marquees */
+
+
+/* Hardware-Accelerated Flowing Marquees */
 @keyframes marquee-left {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
+  0% { transform: translate3d(0%, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
 }
 
 @keyframes marquee-right {
-  0% { transform: translateX(-50%); }
-  100% { transform: translateX(0%); }
+  0% { transform: translate3d(-50%, 0, 0); }
+  100% { transform: translate3d(0%, 0, 0); }
 }
 
 .animate-marquee-left {
   display: flex;
   width: max-content;
   animation: marquee-left 34s linear infinite;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 
 .animate-marquee-right {
   display: flex;
   width: max-content;
   animation: marquee-right 38s linear infinite;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 
 .animate-marquee-left:hover,

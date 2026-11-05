@@ -17,24 +17,36 @@ export default function NavigationHeader({ onOpenTerminal }: NavigationHeaderPro
   const [activeSection, setActiveSection] = useState('intro');
 
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['intro', 'skills', 'achievements', 'projects', 'contact'];
-      const scrollY = window.scrollY + 120;
-      for (const sectionId of sections) {
-        const el = document.getElementById(sectionId);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollY >= top && scrollY < top + height) {
-            setActiveSection(sectionId);
-            break;
+    const sectionIds = ['intro', 'skills', 'achievements', 'projects', 'contact'];
+
+    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const intersecting = entries.filter((e) => e.isIntersecting);
+        if (intersecting.length > 0) {
+          const topVisible = intersecting.reduce((prev, curr) =>
+            curr.intersectionRatio > prev.intersectionRatio ? curr : prev
+          );
+          if (topVisible.target.id) {
+            setActiveSection(topVisible.target.id);
           }
         }
+      },
+      {
+        rootMargin: '-15% 0px -65% 0px',
+        threshold: [0, 0.2, 0.5],
       }
-    };
+    );
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   return (

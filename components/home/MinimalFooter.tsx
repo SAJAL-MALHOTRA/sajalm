@@ -5,30 +5,29 @@ import { useSound } from '@/hooks/useSound';
 
 const API_BASE = 'https://countapi.mileshilliard.com/api/v1';
 const KEY = 'sajal_malhotra_sajalm';
-const BASE_COUNT = 14796;
 
 export default function MinimalFooter() {
   const { playClick } = useSound();
-  const [visitorCount, setVisitorCount] = useState('14,797');
+  const [visitorCount, setVisitorCount] = useState<string | null>(null);
 
   useEffect(() => {
     let isMounted = true;
 
-    // Load cached value if available
+    // Load actual cached value if available (ignore legacy fabricated counts > 10000)
     const cached = typeof window !== 'undefined'
-      ? (localStorage.getItem('sajalm-visitor-count') || localStorage.getItem('sajdex-visitor-count'))
+      ? localStorage.getItem('sajalm-visitor-count')
       : null;
     if (cached) {
       const num = parseInt(cached, 10);
-      if (!isNaN(num)) {
-        setVisitorCount(num.toLocaleString());
+      if (!isNaN(num) && num < 10000) {
+        setVisitorCount(String(num));
       }
     }
 
     async function syncCount(isInitial = false) {
       try {
         const hasCountedSession = typeof window !== 'undefined' &&
-          (sessionStorage.getItem('sajalm-session-hit') || sessionStorage.getItem('sajdex-session-hit'));
+          sessionStorage.getItem('sajalm-session-hit');
 
         const endpoint = (isInitial && !hasCountedSession)
           ? `${API_BASE}/hit/${KEY}`
@@ -38,17 +37,16 @@ export default function MinimalFooter() {
         if (res.ok) {
           const data = await res.json();
           if (data && typeof data.value !== 'undefined' && isMounted) {
-            const total = BASE_COUNT + Number(data.value);
-            const formatted = total.toLocaleString();
-            setVisitorCount(formatted);
-            localStorage.setItem('sajalm-visitor-count', String(total));
+            const realVal = String(data.value);
+            setVisitorCount(realVal);
+            localStorage.setItem('sajalm-visitor-count', realVal);
             if (isInitial && !hasCountedSession) {
               sessionStorage.setItem('sajalm-session-hit', '1');
             }
           }
         }
       } catch {
-        // Fallback to default
+        // Offline / network failure
       }
     }
 
@@ -76,7 +74,11 @@ export default function MinimalFooter() {
           className="flex items-center gap-1 hover:text-[#09090B] dark:hover:text-white transition-colors cursor-pointer"
           title="Scroll to Top"
         >
-          <span>{visitorCount} visitors</span>
+          {visitorCount ? (
+            <span>{visitorCount} visitors</span>
+          ) : (
+            <span>Top</span>
+          )}
           <span className="text-xs">↗</span>
         </a>
       </div>

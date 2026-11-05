@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect, useRef } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 export type Theme = 'light' | 'dark';
 
@@ -18,7 +18,6 @@ const ThemeContext = createContext<ThemeContextType>({
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setThemeState] = useState<Theme>('light');
-  const transitionTimeoutRef = useRef<number | null>(null);
 
   useEffect(() => {
     // Check saved theme; default is LIGHT if not set
@@ -33,29 +32,18 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const applyThemeClasses = (newTheme: Theme) => {
-    // Add theme-transition class to animate colors & borders smoothly
-    document.documentElement.classList.add('theme-transition');
-
     if (newTheme === 'dark') {
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
     }
-
-    if (transitionTimeoutRef.current) {
-      window.clearTimeout(transitionTimeoutRef.current);
-    }
-    // Remove after transition finishes so hover states remain snappy
-    transitionTimeoutRef.current = window.setTimeout(() => {
-      document.documentElement.classList.remove('theme-transition');
-    }, 400);
   };
 
   const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme);
     localStorage.setItem('sajalm-theme', newTheme);
 
-    // Support View Transitions API if available (Chrome 111+, Edge, Safari 18+)
+    // Support native View Transitions API if available (Chrome 111+, Edge, Safari 18+)
     if (typeof document !== 'undefined' && 'startViewTransition' in document) {
       (document as any).startViewTransition(() => {
         applyThemeClasses(newTheme);
