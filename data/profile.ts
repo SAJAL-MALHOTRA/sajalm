@@ -137,6 +137,13 @@ export const profile = {
     buyMeAChai: "https://buymeachai.in/sajalmalhotra",
   },
 
+  // Backward compatibility for standalone showcase modules
+  audioGreeting: "Hi, I'm Sajal.",
+  audioBriefing: "Audio briefing for Sajal Malhotra · NIT Jalandhar",
+  society: "Fashion & Modelling Club / Cybernauts NITJ",
+  issue: "ISSUE N° 01 // 2026",
+  issn: "ISSN 2026-NITJ",
+
   rotation: {
     building: "DSA Lecture RAG (FastAPI/PyTorch) & Cybernauts Arena (Next.js/Express)",
     wearing: "Dark brown leather blouson, olive zip fleece, tailored gray pleated trousers",

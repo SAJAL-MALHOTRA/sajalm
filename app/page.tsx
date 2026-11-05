@@ -16,6 +16,8 @@ import { projects } from '@/data/projects';
 import { useSound } from '@/hooks/useSound';
 import { X, ArrowUp } from 'lucide-react';
 
+export type ViewType = 'overview' | 'hero' | 'home' | 'work' | 'about' | 'skills' | 'experience' | 'contact' | 'resume' | 'terminal';
+
 export default function Home() {
   const [modalProjectId, setModalProjectId] = useState<string | null>(null);
   const [terminalOpen, setTerminalOpen] = useState(false);
