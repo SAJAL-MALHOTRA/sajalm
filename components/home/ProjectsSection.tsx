@@ -1,9 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { projects, Project } from '@/data/projects';
 import { useSound } from '@/hooks/useSound';
-import { ExternalLink, Code2, Layers, ArrowUpRight, Sparkles } from 'lucide-react';
+import { ExternalLink, Code2, Layers, ArrowUpRight, Terminal } from 'lucide-react';
 
 interface ProjectsSectionProps {
   onOpenProjectModal: (id: string) => void;
@@ -12,6 +12,19 @@ interface ProjectsSectionProps {
 export default function ProjectsSection({ onOpenProjectModal }: ProjectsSectionProps) {
   const [filter, setFilter] = useState<'ALL' | 'AI_ML' | 'REALTIME' | 'CV'>('ALL');
   const { playClick, playHover } = useSound();
+
+  const aiMlCount = useMemo(
+    () => projects.filter((p) => p.id === 'PRJ-02' || p.id === 'PRJ-04' || p.id === 'PRJ-07' || p.id === 'PRJ-08').length,
+    []
+  );
+  const realtimeCount = useMemo(
+    () => projects.filter((p) => p.id === 'PRJ-01' || p.id === 'PRJ-03').length,
+    []
+  );
+  const cvCount = useMemo(
+    () => projects.filter((p) => p.id === 'PRJ-05' || p.id === 'PRJ-06').length,
+    []
+  );
 
   const filteredProjects = projects.filter((p) => {
     if (filter === 'ALL') return true;
@@ -39,11 +52,11 @@ export default function ProjectsSection({ onOpenProjectModal }: ProjectsSectionP
       <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-[#E2E4E8] dark:border-[#22242A] pb-3 gap-3">
         <div className="space-y-1">
           <div className="text-[9.5px] font-mono text-[#71717A] uppercase tracking-widest">
-            ENGINEERING PORTFOLIO // 08 PRODUCTION BUILDS
+            ENGINEERING PORTFOLIO // {String(projects.length).padStart(2, '0')} PRODUCTION BUILDS
           </div>
           <h2 className="text-2xl sm:text-3xl font-black font-sans text-[#09090B] dark:text-white tracking-tight flex items-center gap-2">
             <span>Shipped Technical Systems</span>
-            <Sparkles size={18} className="text-amber-500" />
+            <Code2 size={18} className="text-[#09090B] dark:text-white" />
           </h2>
         </div>
 
@@ -51,9 +64,9 @@ export default function ProjectsSection({ onOpenProjectModal }: ProjectsSectionP
         <div className="flex flex-wrap items-center gap-1 p-1 rounded-xl bg-[#ECEEF2] dark:bg-[#16171B] border border-[#D1D5DB] dark:border-[#27272A] text-xs font-mono self-start sm:self-auto">
           {[
             { id: 'ALL', label: `ALL (${projects.length})` },
-            { id: 'AI_ML', label: 'AI & ML (4)' },
-            { id: 'REALTIME', label: 'REAL-TIME (2)' },
-            { id: 'CV', label: 'VISION (2)' },
+            { id: 'AI_ML', label: `AI & ML (${aiMlCount})` },
+            { id: 'REALTIME', label: `REAL-TIME (${realtimeCount})` },
+            { id: 'CV', label: `VISION (${cvCount})` },
           ].map((tab) => (
             <button
               key={tab.id}

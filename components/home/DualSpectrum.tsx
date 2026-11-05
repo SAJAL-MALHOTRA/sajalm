@@ -60,7 +60,7 @@ export default function DualSpectrum() {
             }`}
           >
             <Cpu size={12} />
-            <span>Technical Arsenal (4)</span>
+            <span>Technical Arsenal ({skills.categories.length})</span>
           </button>
 
           <button
@@ -72,43 +72,52 @@ export default function DualSpectrum() {
             }`}
           >
             <Palette size={12} />
-            <span>Creative Passions (4)</span>
+            <span>Creative Passions ({aestheticPassions.length})</span>
           </button>
         </div>
       </div>
 
-      {/* ── TECHNICAL ARSENAL TAB ── */}
+      {/* ── TECHNICAL ARSENAL TAB (PERFECTLY BALANCED 5-CARD MATRIX) ── */}
       {activeTab === 'tech' && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          {skills.categories.map((cat) => (
-            <div
-              key={cat.title}
-              className="p-4 rounded-2xl bg-white dark:bg-[#101115] border border-[#E2E4E8] dark:border-[#22242B] space-y-3 shadow-xs hover:border-black/30 dark:hover:border-white/30 transition-all flex flex-col justify-between"
-            >
-              <div className="space-y-1.5">
-                <div className="flex items-center justify-between text-[9px] font-mono text-[#71717A] uppercase font-bold">
-                  <span>{cat.title}</span>
-                  <Code2 size={12} />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-3.5">
+          {skills.categories.map((cat, idx) => {
+            const spanClass =
+              idx < 3
+                ? 'md:col-span-1 lg:col-span-2'
+                : idx === 4
+                ? 'md:col-span-2 lg:col-span-3'
+                : 'md:col-span-1 lg:col-span-3';
+
+            return (
+              <div
+                key={cat.title}
+                className={`${spanClass} p-4 sm:p-5 rounded-2xl bg-white dark:bg-[#101115] border border-[#E2E4E8] dark:border-[#22242B] space-y-3 shadow-xs hover:border-black/30 dark:hover:border-white/30 transition-all flex flex-col justify-between`}
+              >
+                <div className="space-y-1.5">
+                  <div className="flex items-center justify-between text-[9px] font-mono text-[#71717A] uppercase font-bold">
+                    <span>{cat.title}</span>
+                    <span className="font-mono text-[#A1A1AA]">[{String(idx + 1).padStart(2, '0')}]</span>
+                  </div>
+                  <div className="h-0.5 w-6 bg-black/40 dark:bg-white/40" />
                 </div>
-                <div className="h-0.5 w-6 bg-black/40 dark:bg-white/40" />
-              </div>
 
-              <div className="flex flex-wrap gap-1.5 pt-1">
-                {cat.items.map((skill) => (
-                  <span
-                    key={skill}
-                    className="px-2 py-1 rounded-md bg-[#F4F4F6] dark:bg-[#18191E] border border-[#E2E4E8] dark:border-[#27272A] text-[#09090B] dark:text-[#EDEDED] font-mono text-[11px] font-medium"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  {cat.items.map((skill) => (
+                    <span
+                      key={skill}
+                      className="px-2 py-1 rounded-md bg-[#F4F4F6] dark:bg-[#18191E] border border-[#E2E4E8] dark:border-[#27272A] text-[#09090B] dark:text-[#EDEDED] font-mono text-[11px] font-medium"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
 
-              <div className="pt-2 border-t border-[#ECEEF2] dark:border-white/5 text-[9.5px] font-mono text-[#71717A]">
-                NIT JALANDHAR // VERIFIED STACK
+                <div className="pt-2 border-t border-[#ECEEF2] dark:border-white/5 text-[9.5px] font-mono text-[#71717A]">
+                  NIT JALANDHAR // VERIFIED STACK
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       )}
 
