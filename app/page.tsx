@@ -8,6 +8,7 @@ import DualSpectrum from '@/components/home/DualSpectrum';
 import AchievementsSection from '@/components/home/AchievementsSection';
 import ProjectsSection from '@/components/home/ProjectsSection';
 import OpportunitiesSection from '@/components/home/OpportunitiesSection';
+import MinimalFooter from '@/components/home/MinimalFooter';
 import ProjectModal from '@/components/ui/ProjectModal';
 import DeveloperTerminal from '@/components/terminal/DeveloperTerminal';
 import PhotoLightboxModal from '@/components/ui/PhotoLightboxModal';
@@ -100,18 +101,8 @@ export default function Home() {
 
       </main>
 
-      {/* ── MINIMALIST EDITORIAL FOOTER ── */}
-      <footer className="w-full max-w-5xl z-30 flex flex-col sm:flex-row items-center justify-between gap-2 font-mono text-[9px] text-[#71717A] dark:text-[#52525B] tracking-wider select-none py-6 px-4 border-t border-[#E4E4E7] dark:border-[#18181B] shrink-0 text-center sm:text-left mt-8">
-        <div>
-          SAJALM // MODEL DX-042 · SAJAL MALHOTRA · NIT JALANDHAR (2025–2029)
-        </div>
-        <div className="flex items-center gap-3">
-          <span>MACHINE LEARNING &times; DISTRIBUTED SYSTEMS &times; FASHION DIRECTION</span>
-          <a href="#intro" className="hover:text-[#09090B] dark:hover:text-white transition-colors">
-            TOP ↑
-          </a>
-        </div>
-      </footer>
+      {/* ── MINIMALIST EDITORIAL FOOTER (MATCHING DESIGN SPEC) ── */}
+      <MinimalFooter />
 
       {/* ── FLOATING BACK TO TOP BUTTON ── */}
       {showScrollTop && (

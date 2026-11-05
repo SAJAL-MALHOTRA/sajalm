@@ -302,7 +302,7 @@ export default function EditorialHero({
                                   href="#contact"
                                   className="inline-flex items-center gap-1 font-bold underline text-xs"
                                 >
-                                  <span>Send relay message ↓</span>
+                                  <span>View contact channels ↓</span>
                                 </a>
                               </div>
                             )}

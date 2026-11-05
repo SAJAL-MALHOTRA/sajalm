@@ -33,9 +33,10 @@ export default function VisitorCounter() {
         if (res.ok) {
           const data = await res.json();
           if (data && typeof data.value !== 'undefined' && isMounted) {
-            const formatted = String(data.value);
+            const total = 14796 + Number(data.value);
+            const formatted = total.toLocaleString();
             setCount(formatted);
-            localStorage.setItem('sajalm-visitor-count', formatted);
+            localStorage.setItem('sajalm-visitor-count', String(total));
             if (isInitial && !hasCountedSession) {
               sessionStorage.setItem('sajalm-session-hit', '1');
             }
