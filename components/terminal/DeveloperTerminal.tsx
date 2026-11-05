@@ -141,7 +141,7 @@ export default function DeveloperTerminal({ onOpenModalProject }: DeveloperTermi
       responseNode = (
         <div className="space-y-1 text-xs text-[#9E9EA8]">
           <div className="text-[#F4F4F6] font-semibold">{profile.fullName} ({profile.name})</div>
-          <div>Role: ML Engineer & Full-Stack Builder</div>
+          <div>Role: ML Engineer &amp; Full-Stack Builder</div>
           <div>Institution: NIT Jalandhar (IT &apos;29)</div>
           <div className="text-[#F4F4F6] pt-1">{profile.description}</div>
         </div>
@@ -242,28 +242,28 @@ export default function DeveloperTerminal({ onOpenModalProject }: DeveloperTermi
   return (
     <div
       onClick={() => { if (!isBooting) inputRef.current?.focus(); }}
-      className="w-full bg-[#111216] border border-white/10 rounded-2xl overflow-hidden font-mono select-text flex flex-col justify-between cursor-text shadow-xl min-h-[460px] relative"
+      className="w-full h-full bg-[#111216] border border-white/10 rounded-2xl overflow-hidden font-mono select-text flex flex-col justify-between cursor-text shadow-xl relative min-h-[340px]"
     >
       {/* Native macOS Header */}
-      <div className="h-10 px-4 bg-[#16181F] border-b border-white/[0.06] flex items-center justify-between select-none shrink-0">
-        <div className="flex items-center gap-2">
+      <div className="h-9 sm:h-10 px-3 sm:px-4 bg-[#16181F] border-b border-white/[0.06] flex items-center justify-between select-none shrink-0">
+        <div className="flex items-center gap-1.5 sm:gap-2">
           <span className="w-2.5 h-2.5 rounded-full bg-[#E5484D]" />
           <span className="w-2.5 h-2.5 rounded-full bg-[#F5A623]" />
           <span className="w-2.5 h-2.5 rounded-full bg-[#30A46C]" />
         </div>
 
-        <div className="text-xs text-[#9E9EA8] font-medium flex items-center gap-1.5">
+        <div className="text-[11px] sm:text-xs text-[#9E9EA8] font-medium flex items-center gap-1.5 truncate">
           <span>sajal@portfolio ~ (zsh)</span>
         </div>
 
-        <div className="w-12" />
+        <div className="w-8 sm:w-12" />
       </div>
 
       {/* Terminal Content Box */}
-      <div className="p-6 space-y-4 text-xs overflow-y-auto custom-scrollbar flex-1 pb-20 pr-2">
+      <div className="p-3 sm:p-5 space-y-3 sm:space-y-4 text-xs overflow-y-auto custom-scrollbar flex-1 pb-24 sm:pb-20 pr-1.5 sm:pr-2">
         {logs.map((log, index) => (
           <div key={index} className="space-y-1">
-            <div className="flex items-center gap-2 text-white font-medium">
+            <div className="flex items-center gap-2 text-white font-medium text-[11px] sm:text-xs">
               <span className="text-[#9E9EA8]">sajal@portfolio ~ %</span>
               <span>{log.cmd}</span>
             </div>
@@ -274,14 +274,14 @@ export default function DeveloperTerminal({ onOpenModalProject }: DeveloperTermi
         {/* Active Input Line */}
         {!isBooting && (
           <form onSubmit={handleExecuteCommandForm} className="flex items-center gap-2 pt-1">
-            <span className="text-[#9E9EA8] font-medium shrink-0">sajal@portfolio ~ %</span>
+            <span className="text-[#9E9EA8] font-medium shrink-0 text-[11px] sm:text-xs">sajal@portfolio ~ %</span>
             <input
               ref={inputRef}
               type="text"
               value={inputVal}
               onChange={(e) => setInputVal(e.target.value)}
               onKeyDown={handleKeyDown}
-              className="flex-1 bg-transparent text-[#F4F4F6] text-xs outline-none font-mono caret-white"
+              className="flex-1 bg-transparent text-[#F4F4F6] text-[16px] sm:text-xs outline-none font-mono caret-white"
               autoFocus
             />
           </form>
@@ -291,9 +291,9 @@ export default function DeveloperTerminal({ onOpenModalProject }: DeveloperTermi
       </div>
 
       {/* Quick Run Chips */}
-      <div className="absolute bottom-3 left-6 right-6 border-t border-white/[0.06] pt-3 bg-[#111216]">
-        <div className="flex items-center gap-1.5 sm:gap-2 text-xs flex-wrap">
-          <span className="text-[#62636C] text-[11px]">Commands:</span>
+      <div className="absolute bottom-2 sm:bottom-3 left-2.5 right-2.5 sm:left-4 sm:right-4 border-t border-white/[0.06] pt-2 sm:pt-3 bg-[#111216]">
+        <div className="flex items-center gap-1 sm:gap-1.5 text-xs flex-wrap">
+          <span className="text-[#62636C] text-[10px] sm:text-[11px]">Run:</span>
           {['whoami', 'projects', 'skills', 'experience', 'contact', 'clear', 'help'].map((cmd) => (
             <button
               key={cmd}
@@ -301,7 +301,7 @@ export default function DeveloperTerminal({ onOpenModalProject }: DeveloperTermi
                 e.stopPropagation();
                 executeCommand(cmd);
               }}
-              className="px-2 py-0.5 bg-white/[0.04] hover:bg-white/10 rounded text-[11px] text-[#9E9EA8] hover:text-white transition-colors cursor-pointer"
+              className="px-1.5 sm:px-2 py-0.5 bg-white/[0.04] hover:bg-white/10 rounded text-[10px] sm:text-[11px] text-[#9E9EA8] hover:text-white transition-colors cursor-pointer"
             >
               {cmd}
             </button>

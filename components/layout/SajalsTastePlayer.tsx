@@ -187,7 +187,7 @@ export default function SajalsTastePlayer() {
           ) : (
             <>
               <Play size={8.5} className="fill-current text-[#09090B] dark:text-[#EDEDED] shrink-0" />
-              <span className="font-semibold tracking-widest text-[9.5px]">SONGS</span>
+              <span className="font-semibold tracking-widest text-[9.5px] hidden xs:inline">SONGS</span>
             </>
           )}
         </button>

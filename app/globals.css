@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme {
+  --breakpoint-xs: 400px;
+}
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 @layer base {
@@ -40,8 +44,28 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
-    transition: background-color 0.2s ease, color 0.2s ease;
   }
+}
+
+/* Smooth View Transitions for theme toggle (Chrome, Safari 18+, Edge) */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 350ms;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Global smooth transition applied dynamically during theme switch */
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after {
+  transition: background-color 350ms cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 350ms cubic-bezier(0.4, 0, 0.2, 1),
+              color 350ms cubic-bezier(0.4, 0, 0.2, 1),
+              fill 350ms cubic-bezier(0.4, 0, 0.2, 1),
+              stroke 350ms cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 350ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition-delay: 0s !important;
 }
 
 /* Minimal Custom Scrollbar */

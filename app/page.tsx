@@ -49,26 +49,35 @@ export default function Home() {
   }, [playClick, terminalOpen, modalProjectId]);
 
   return (
-    <main className="min-h-screen w-full lg:h-screen lg:max-h-screen bg-[#F4F4F6] dark:bg-[#09090B] text-[#09090B] dark:text-[#EDEDED] font-mono antialiased selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black flex flex-col justify-between items-center p-2 sm:p-3 relative overflow-x-hidden overflow-y-auto lg:overflow-hidden transition-colors duration-200">
+    <main className="min-h-screen w-full lg:h-screen lg:max-h-screen bg-[#F4F4F6] dark:bg-[#09090B] text-[#09090B] dark:text-[#EDEDED] font-mono antialiased selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black flex flex-col justify-between items-center p-2 sm:p-3 relative overflow-x-hidden overflow-y-auto lg:overflow-hidden">
       
       {/* ── MINIMALIST TECHNICAL GRID (LIGHT & DARK ADAPTIVE) ── */}
       <div className="fixed inset-0 bg-[radial-gradient(#CBD0D8_1px,transparent_1px)] dark:bg-[radial-gradient(#27272A_1px,transparent_1px)] [background-size:20px_20px] opacity-50 dark:opacity-35 pointer-events-none" />
 
-      {/* ── TOP AMBIENT STATUS STRIP ── */}
-      <header className="w-full max-w-5xl z-30 flex items-center justify-between font-mono text-[10.5px] text-[#52525B] dark:text-[#71717A] select-none py-1.5 px-1 shrink-0 gap-2">
-        <div className="flex items-center gap-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-black/80 dark:bg-white/80" />
+      {/* ── TOP AMBIENT STATUS STRIP (FULLY RESPONSIVE) ── */}
+      <header className="w-full max-w-5xl z-30 flex items-center justify-between font-mono text-[10px] sm:text-[10.5px] text-[#52525B] dark:text-[#71717A] select-none py-1.5 px-1 shrink-0 gap-1.5 sm:gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+          <span className="w-1.5 h-1.5 rounded-full bg-black/80 dark:bg-white/80 shrink-0" />
           <span className="text-[#09090B] dark:text-white font-medium tracking-wider text-[10px] sm:text-[11px] truncate">SAJAL MALHOTRA</span>
-          <span className="text-[#D1D5DB] dark:text-[#3F3F46]">•</span>
+          <span className="text-[#D1D5DB] dark:text-[#3F3F46] hidden sm:inline">•</span>
           <span className="text-[#52525B] dark:text-[#A1A1AA] hidden sm:inline">NIT JALANDHAR // IT (2025–2029)</span>
         </div>
 
-        <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+        <div className="flex items-center gap-1 sm:gap-2 shrink-0">
           <span className="text-[9.5px] text-[#71717A] dark:text-[#52525B] hidden md:inline">
             PRESS &lsquo;1-5&rsquo; TO SWITCH MODULES
           </span>
           <VisitorCounter />
-          <a href={profile.links.buyMeAChai || 'https://buymeachai.in/sajalmalhotra'} target="_blank" rel="noreferrer" className="flex items-center gap-1 px-2 py-0.5 rounded bg-amber-500/10 hover:bg-amber-500/20 text-amber-800 dark:text-amber-300 border border-amber-500/30 transition-colors font-mono text-[10px] font-medium shadow-xs" title="Buy Me a Chai"><span>☕</span><span className="hidden sm:inline">CHAI</span></a>
+          <a
+            href={profile.links.buyMeAChai || 'https://buymeachai.in/sajalmalhotra'}
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center gap-1 px-1.5 sm:px-2 py-0.5 rounded bg-amber-500/10 hover:bg-amber-500/20 text-amber-800 dark:text-amber-300 border border-amber-500/30 transition-colors font-mono text-[10px] font-medium shadow-xs"
+            title="Buy Me a Chai"
+          >
+            <span>☕</span>
+            <span className="hidden xs:inline">CHAI</span>
+          </a>
           <ThemeToggle />
           <SajalsTastePlayer />
           <button
@@ -76,11 +85,12 @@ export default function Home() {
               playClick();
               setTerminalOpen(true);
             }}
-            className="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-0.5 rounded bg-white hover:bg-[#F4F4F6] dark:bg-[#141417] dark:hover:bg-[#1E1E24] border border-[#D1D5DB] dark:border-[#27272A] text-[#09090B] dark:text-[#EDEDED] font-medium transition-colors cursor-pointer text-[10px] shadow-sm"
+            className="flex items-center gap-1 sm:gap-1.5 px-1.5 sm:px-2.5 py-0.5 rounded bg-white hover:bg-[#F4F4F6] dark:bg-[#141417] dark:hover:bg-[#1E1E24] border border-[#D1D5DB] dark:border-[#27272A] text-[#09090B] dark:text-[#EDEDED] font-medium transition-colors cursor-pointer text-[10px] shadow-xs"
             title="Terminal (~)"
           >
-            <Terminal size={10} className="text-[#52525B] dark:text-[#A1A1AA]" />
-            <span>CLI (~)</span>
+            <Terminal size={10} className="text-[#52525B] dark:text-[#A1A1AA] shrink-0" />
+            <span className="hidden xs:inline">CLI (~)</span>
+            <span className="xs:hidden">CLI</span>
           </button>
         </div>
       </header>
@@ -116,18 +126,18 @@ export default function Home() {
 
       {/* ── DEVELOPER TERMINAL OVERLAY ── */}
       {terminalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/60 dark:bg-black/80 backdrop-blur-md">
-          <div className="relative w-full max-w-3xl bg-white dark:bg-[#0E0E11] border border-[#E2E4E8] dark:border-[#27272A] rounded-xl shadow-2xl overflow-hidden flex flex-col">
-            <div className="h-9 px-4 bg-[#F4F4F6] dark:bg-[#141417] text-[#09090B] dark:text-white font-mono text-xs font-medium flex items-center justify-between border-b border-[#E2E4E8] dark:border-[#27272A] select-none">
-              <span className="tracking-wide">DEVDEX TERMINAL // SHELL (zsh)</span>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-6 bg-black/60 dark:bg-black/80 backdrop-blur-md">
+          <div className="relative w-full max-w-3xl max-h-[90vh] bg-white dark:bg-[#0E0E11] border border-[#E2E4E8] dark:border-[#27272A] rounded-xl shadow-2xl overflow-hidden flex flex-col">
+            <div className="h-9 px-3 sm:px-4 bg-[#F4F4F6] dark:bg-[#141417] text-[#09090B] dark:text-white font-mono text-xs font-medium flex items-center justify-between border-b border-[#E2E4E8] dark:border-[#27272A] select-none shrink-0">
+              <span className="tracking-wide text-[11px] sm:text-xs">DEVDEX TERMINAL // SHELL</span>
               <button
                 onClick={() => setTerminalOpen(false)}
                 className="hover:bg-black/10 dark:hover:bg-white/10 p-1 rounded text-[#71717A] hover:text-[#09090B] dark:hover:text-white cursor-pointer transition-colors"
               >
-                <X size={13} />
+                <X size={14} />
               </button>
             </div>
-            <div className="h-[460px] overflow-hidden">
+            <div className="h-[380px] sm:h-[460px] max-h-[75vh] overflow-hidden">
               <DeveloperTerminal
                 onOpenModalProject={(id) => {
                   setTerminalOpen(false);

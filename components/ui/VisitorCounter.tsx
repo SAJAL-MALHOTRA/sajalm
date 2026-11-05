@@ -2,61 +2,84 @@
 
 import { useState, useEffect } from 'react';
 
+const API_BASE = 'https://countapi.mileshilliard.com/api/v1';
+const KEY = 'sajal_malhotra_sajdex';
+
 export default function VisitorCounter() {
   const [count, setCount] = useState<string | null>(null);
 
   useEffect(() => {
     let isMounted = true;
 
-    async function fetchVisitorCount() {
-      // Check cached count first to avoid flicker
-      const cached = typeof window !== 'undefined' ? localStorage.getItem('sajdex-visitor-count') : null;
-      if (cached && isMounted) {
-        setCount(cached);
-      }
+    // Fast initial load from cache to eliminate flicker
+    const cached = typeof window !== 'undefined' ? localStorage.getItem('sajdex-visitor-count') : null;
+    if (cached) {
+      setCount(cached);
+    }
 
+    async function syncCount(isInitial = false) {
       try {
-        const res = await fetch('https://visitor-badge.laobi.icu/badge?page_id=sajal-malhotra.sajdex&nocache=' + Date.now());
+        const hasCountedSession = typeof window !== 'undefined' && sessionStorage.getItem('sajdex-session-hit');
+        
+        // If initial load and not counted in this session, increment (+1). Otherwise read latest value (/get).
+        const endpoint = (isInitial && !hasCountedSession)
+          ? `${API_BASE}/hit/${KEY}`
+          : `${API_BASE}/get/${KEY}`;
+
+        const res = await fetch(endpoint, { cache: 'no-store' });
         if (res.ok) {
-          const svgText = await res.text();
-          // Extract the counter number from the SVG text node
-          const matches = [...svgText.matchAll(/<text[^>]*>([0-9,]+)<\/text>/g)];
-          if (matches.length > 0) {
-            // The actual number is the last text element in the badge SVG
-            const rawCount = matches[matches.length - 1][1];
-            if (rawCount && isMounted) {
-              setCount(rawCount);
-              localStorage.setItem('sajdex-visitor-count', rawCount);
-              return;
+          const data = await res.json();
+          if (data && typeof data.value !== 'undefined' && isMounted) {
+            const formatted = String(data.value);
+            setCount(formatted);
+            localStorage.setItem('sajdex-visitor-count', formatted);
+            if (isInitial && !hasCountedSession) {
+              sessionStorage.setItem('sajdex-session-hit', '1');
             }
+            return;
           }
         }
       } catch {
-        // Fallback gracefully to local increment
+        // Network failure / offline
       }
 
-      // Fallback: local session-incremented counter
-      if (isMounted) {
-        const fallbackCount = cached ? String(parseInt(cached.replace(/,/g, ''), 10) + 1) : '12';
-        setCount(fallbackCount);
-        localStorage.setItem('sajdex-visitor-count', fallbackCount);
+      // Offline / network fallback
+      if (isMounted && !count && cached) {
+        setCount(cached);
       }
     }
 
-    fetchVisitorCount();
+    // Initial hit / get
+    syncCount(true);
+
+    // Live sync polling every 30 seconds
+    const interval = setInterval(() => {
+      syncCount(false);
+    }, 30000);
+
+    // Refresh immediately when user switches back to tab
+    const handleVisibility = () => {
+      if (document.visibilityState === 'visible') {
+        syncCount(false);
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibility);
+
     return () => {
       isMounted = false;
+      clearInterval(interval);
+      document.removeEventListener('visibilitychange', handleVisibility);
     };
   }, []);
 
   return (
     <div
-      className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-white hover:bg-[#F4F4F6] dark:bg-[#141417] dark:hover:bg-[#1C1D22] border border-[#D1D5DB] dark:border-[#27272A] text-[#09090B] dark:text-[#EDEDED] font-mono text-[10px] select-none transition-colors shadow-xs"
-      title="Live Visitor Count"
+      className="flex items-center gap-1 sm:gap-1.5 px-1.5 sm:px-2 py-0.5 rounded bg-white hover:bg-[#F4F4F6] dark:bg-[#141417] dark:hover:bg-[#1C1D22] border border-[#D1D5DB] dark:border-[#27272A] text-[#09090B] dark:text-[#EDEDED] font-mono text-[10px] select-none transition-colors shadow-xs"
+      title="Live Synchronized Visitor Count"
     >
-      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-      <span className="text-[#71717A] dark:text-[#A1A1AA] text-[9.5px]">VISITS:</span>
-      <span className="font-bold text-[#09090B] dark:text-white">
+      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+      <span className="text-[#71717A] dark:text-[#A1A1AA] text-[9px] hidden xs:inline">VISITS:</span>
+      <span className="font-bold text-[#09090B] dark:text-white tabular-nums">
         {count ? `#${count}` : '...'}
       </span>
     </div>
