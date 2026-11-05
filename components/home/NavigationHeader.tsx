@@ -6,7 +6,7 @@ import ThemeToggle from '@/components/theme/ThemeToggle';
 import SajalsTastePlayer from '@/components/layout/SajalsTastePlayer';
 import { profile } from '@/data/profile';
 import { useSound } from '@/hooks/useSound';
-import { Terminal } from 'lucide-react';
+import { Terminal, Coffee } from 'lucide-react';
 
 interface NavigationHeaderProps {
   onOpenTerminal: () => void;
@@ -89,7 +89,7 @@ export default function NavigationHeader({ onOpenTerminal }: NavigationHeaderPro
           className="flex items-center gap-1 px-1.5 sm:px-2 py-0.5 rounded bg-amber-500/10 hover:bg-amber-500/20 text-amber-800 dark:text-amber-300 border border-amber-500/30 transition-colors font-mono text-[10px] font-medium shadow-2xs"
           title="Buy Me a Chai"
         >
-          <span>☕</span>
+          <Coffee size={10} className="text-amber-700 dark:text-amber-400 shrink-0" />
           <span className="hidden xs:inline font-bold">CHAI</span>
         </a>
 

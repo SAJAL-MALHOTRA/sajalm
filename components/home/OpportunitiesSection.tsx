@@ -129,7 +129,7 @@ export default function OpportunitiesSection() {
                   className="p-2.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-900 dark:text-amber-200 border border-amber-500/30 flex items-center justify-between transition-colors cursor-pointer"
                 >
                   <span className="font-bold text-[11px]">BUY CHAI</span>
-                  <span className="text-sm">☕</span>
+                  <Coffee size={13} className="text-amber-700 dark:text-amber-300" />
                 </a>
               </div>
             </div>

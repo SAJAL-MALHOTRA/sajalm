@@ -8,13 +8,19 @@ import { useSound } from '@/hooks/useSound';
 import {
   ArrowDown,
   ExternalLink,
-  Sparkles,
   CheckCircle2,
   Terminal,
   FileText,
   Mail,
   X,
   Maximize2,
+  Code2,
+  Briefcase,
+  Compass,
+  Layers,
+  Camera,
+  Coffee,
+  Activity,
 } from 'lucide-react';
 
 interface EditorialHeroProps {
@@ -60,7 +66,7 @@ export default function EditorialHero({
           
           <div className="space-y-2">
             <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-[10.5px] font-mono text-[#52525B] dark:text-[#A1A1AA]">
-              <Sparkles size={11} className="text-amber-500" />
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
               <span>A REFLECTION OF WHO I AM</span>
             </div>
 
@@ -70,10 +76,10 @@ export default function EditorialHero({
           </div>
 
           <p className="text-base sm:text-lg text-[#3F3F46] dark:text-[#D4D4D8] leading-relaxed font-sans font-normal">
-            Software engineer &amp; machine learning researcher by daylight. Fashion model &amp; creative director after hours. An intentional overthinker building fast, beautiful, and resilient distributed platforms at NIT Jalandhar.
+            Software engineer &amp; machine learning researcher by daylight. Fashion model &amp; creative director after hours. Grounded in spirituality and engineering rigor, building fast, resilient, and beautiful distributed platforms at NIT Jalandhar.
           </p>
 
-          {/* Quick Manifesto Badges */}
+          {/* Quick Manifesto Badges (Prioritizing Tech First) */}
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 pt-2 text-xs font-mono">
             <div className="p-2.5 rounded-xl bg-white dark:bg-[#121316] border border-[#E2E4E8] dark:border-[#22242B] space-y-0.5 shadow-xs">
               <div className="text-[9px] text-[#71717A] uppercase font-bold">FOUNDATION</div>
@@ -82,15 +88,15 @@ export default function EditorialHero({
             </div>
 
             <div className="p-2.5 rounded-xl bg-white dark:bg-[#121316] border border-[#E2E4E8] dark:border-[#22242B] space-y-0.5 shadow-xs">
-              <div className="text-[9px] text-[#71717A] uppercase font-bold">SCALED IMPACT</div>
+              <div className="text-[9px] text-[#71717A] uppercase font-bold">PRODUCTION IMPACT</div>
               <div className="font-bold text-[#09090B] dark:text-white text-[11px]">Pairfect App</div>
               <div className="text-[10px] text-[#71717A]">200+ Active Users</div>
             </div>
 
             <div className="p-2.5 rounded-xl bg-white dark:bg-[#121316] border border-[#E2E4E8] dark:border-[#22242B] space-y-0.5 shadow-xs col-span-2 sm:col-span-1">
-              <div className="text-[9px] text-[#71717A] uppercase font-bold">REACH &amp; STAGE</div>
-              <div className="font-bold text-[#09090B] dark:text-white text-[11px]">220K+ Views</div>
-              <div className="text-[10px] text-[#71717A]">Runway Model &amp; Creator</div>
+              <div className="text-[9px] text-[#71717A] uppercase font-bold">COMPETITION RANK</div>
+              <div className="font-bold text-[#09090B] dark:text-white text-[11px]">#16 of 227 (Top 7%)</div>
+              <div className="text-[10px] text-[#71717A]">CV Lighting Challenge</div>
             </div>
           </div>
 
@@ -206,8 +212,30 @@ export default function EditorialHero({
               </div>
 
               <div className="space-y-1">
-                {profile.personality.map((trait) => {
+                {profile.personality.map((trait, idx) => {
                   const isSelected = activeTrait === trait.id;
+                  const renderTraitIcon = (id: string) => {
+                    const iconClass = isSelected
+                      ? 'text-white dark:text-black shrink-0'
+                      : 'text-[#52525B] dark:text-[#A1A1AA] shrink-0';
+                    switch (id) {
+                      case 'tech':
+                        return <Terminal size={12} className={iconClass} />;
+                      case 'nerd':
+                        return <Code2 size={12} className={iconClass} />;
+                      case 'opportunities':
+                        return <Briefcase size={12} className={isSelected ? iconClass : 'text-emerald-700 dark:text-emerald-400 shrink-0'} />;
+                      case 'spirituality':
+                        return <Compass size={12} className={iconClass} />;
+                      case 'fashion':
+                        return <Layers size={12} className={iconClass} />;
+                      case 'modelling':
+                        return <Camera size={12} className={iconClass} />;
+                      default:
+                        return <Terminal size={12} className={iconClass} />;
+                    }
+                  };
+
                   return (
                     <button
                       key={trait.id}
@@ -225,13 +253,18 @@ export default function EditorialHero({
                       }`}
                     >
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <span className="text-sm">{trait.emoji}</span>
-                          <span className={`text-[11.5px] font-bold ${isSelected ? 'text-white dark:text-black' : 'text-[#09090B] dark:text-white'}`}>
+                        <div className="flex items-center gap-2 min-w-0">
+                          <span className={`font-mono text-[10px] font-bold shrink-0 ${
+                            isSelected ? 'text-white/70 dark:text-black/70' : 'text-[#71717A] dark:text-[#A1A1AA]'
+                          }`}>
+                            [{trait.code || String(idx + 1).padStart(2, '0')}]
+                          </span>
+                          {renderTraitIcon(trait.id)}
+                          <span className={`text-[11.5px] font-bold truncate ${isSelected ? 'text-white dark:text-black' : 'text-[#09090B] dark:text-white'}`}>
                             {trait.title}
                           </span>
                         </div>
-                        <span className={`text-[9px] font-mono px-1.5 py-0.2 rounded uppercase ${
+                        <span className={`text-[9px] font-mono px-1.5 py-0.2 rounded uppercase shrink-0 ${
                           isSelected
                             ? 'bg-white/20 text-white dark:bg-black/20 dark:text-black font-bold'
                             : 'text-[#71717A] dark:text-[#A1A1AA]'
@@ -277,9 +310,10 @@ export default function EditorialHero({
                 href={profile.links.buyMeAChai}
                 target="_blank"
                 rel="noreferrer"
-                className="text-amber-700 dark:text-amber-400 font-semibold hover:underline"
+                className="inline-flex items-center gap-1 text-amber-700 dark:text-amber-400 font-semibold hover:underline"
               >
-                ☕ Buy Me a Chai ↗
+                <Coffee size={11} className="shrink-0" />
+                <span>Buy Me a Chai ↗</span>
               </a>
             </div>
 

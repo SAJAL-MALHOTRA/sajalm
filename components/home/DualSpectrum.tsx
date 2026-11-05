@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { skills } from '@/data/skills';
 import { profile } from '@/data/profile';
-import { Code2, Palette, Sparkles, Cpu, Layers, Disc3 } from 'lucide-react';
+import { Code2, Palette, Cpu, Layers, Disc3, Compass, Camera } from 'lucide-react';
 
 export default function DualSpectrum() {
   const [activeTab, setActiveTab] = useState<'tech' | 'passions'>('tech');
@@ -22,10 +22,10 @@ export default function DualSpectrum() {
       tags: ['220K+ Monthly Reach', 'Runway Choreography', 'Editorial Shoots', 'NITJ FMC'],
     },
     {
-      title: 'Intentional Critical Overthinking',
-      category: 'Engineering Philosophy',
-      detail: 'Refusing to settle for "it works." Obsessively interrogating sub-50ms network roundtrips, race condition fallbacks, zero TypeScript warnings, and intuitive micro-interactions.',
-      tags: ['Latency Profiling', 'Type-Safety', 'Resilient Architecture', 'Perfectionist'],
+      title: 'Spirituality, Mindfulness & Grounded Focus',
+      category: 'Inner Balance & Discipline',
+      detail: 'Grounding high-tempo engineering sprints with daily meditation, mindfulness, and philosophical reflection. Cultivating deep inner stillness, intentional focus, and mental calm amidst rapid execution and complex systems.',
+      tags: ['Mindfulness', 'Inner Balance', 'Meditation', 'Mental Discipline'],
     },
     {
       title: 'Music Curation & Soundscapes',
@@ -112,39 +112,51 @@ export default function DualSpectrum() {
         </div>
       )}
 
-      {/* ── CREATIVE PASSIONS TAB ── */}
+      {/* ── CREATIVE & MINDFUL PASSIONS TAB ── */}
       {activeTab === 'passions' && (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-          {aestheticPassions.map((p) => (
-            <div
-              key={p.title}
-              className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-[#101115] border border-[#E2E4E8] dark:border-[#22242B] space-y-3 shadow-xs hover:border-black/30 dark:hover:border-white/30 transition-all flex flex-col justify-between"
-            >
-              <div className="space-y-1.5">
-                <div className="flex items-center justify-between text-[9px] font-mono text-[#71717A] uppercase font-bold">
-                  <span>{p.category}</span>
-                  <Sparkles size={12} className="text-amber-500" />
-                </div>
-                <h3 className="text-base font-bold text-[#09090B] dark:text-white font-sans">
-                  {p.title}
-                </h3>
-                <p className="text-xs text-[#52525B] dark:text-[#A1A1AA] leading-relaxed font-sans">
-                  {p.detail}
-                </p>
-              </div>
+          {aestheticPassions.map((p, idx) => {
+            const getPassionIcon = (cat: string) => {
+              if (cat.includes('Fashion')) return <Layers size={12} className="text-[#71717A] dark:text-[#A1A1AA]" />;
+              if (cat.includes('Stage')) return <Camera size={12} className="text-[#71717A] dark:text-[#A1A1AA]" />;
+              if (cat.includes('Inner')) return <Compass size={12} className="text-[#71717A] dark:text-[#A1A1AA]" />;
+              return <Disc3 size={12} className="text-[#71717A] dark:text-[#A1A1AA]" />;
+            };
 
-              <div className="flex flex-wrap gap-1.5 pt-2 border-t border-[#ECEEF2] dark:border-white/5">
-                {p.tags.map((t) => (
-                  <span
-                    key={t}
-                    className="px-2 py-0.5 rounded bg-black/5 dark:bg-white/5 text-[#09090B] dark:text-white font-mono text-[10px] font-medium"
-                  >
-                    #{t}
-                  </span>
-                ))}
+            return (
+              <div
+                key={p.title}
+                className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-[#101115] border border-[#E2E4E8] dark:border-[#22242B] space-y-3 shadow-xs hover:border-black/30 dark:hover:border-white/30 transition-all flex flex-col justify-between"
+              >
+                <div className="space-y-1.5">
+                  <div className="flex items-center justify-between text-[9px] font-mono text-[#71717A] uppercase font-bold">
+                    <div className="flex items-center gap-1.5">
+                      {getPassionIcon(p.category)}
+                      <span>{p.category}</span>
+                    </div>
+                    <span className="font-mono text-[#A1A1AA]">[{String(idx + 1).padStart(2, '0')}]</span>
+                  </div>
+                  <h3 className="text-base font-bold text-[#09090B] dark:text-white font-sans">
+                    {p.title}
+                  </h3>
+                  <p className="text-xs text-[#52525B] dark:text-[#A1A1AA] leading-relaxed font-sans">
+                    {p.detail}
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap gap-1.5 pt-2 border-t border-[#ECEEF2] dark:border-white/5">
+                  {p.tags.map((t) => (
+                    <span
+                      key={t}
+                      className="px-2 py-0.5 rounded bg-black/5 dark:bg-white/5 text-[#09090B] dark:text-white font-mono text-[10px] font-medium"
+                    >
+                      #{t}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       )}
 

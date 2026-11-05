@@ -116,11 +116,11 @@ export const projects: Project[] = [
     name: 'Surveillance Illumination Classifier',
     subtitle: 'Computer Vision Deep Multi-Backbone Ensemble',
     status: 'SHIPPED',
-    metric: 'Top 7% · 0.211 Score (Best Solution)',
+    metric: 'Rank #16 of 227 (Top 7%) · 0.21 Score',
     tagline: 'PYTORCH · RESNET-34 · EFFICIENTNET · FASTMLP',
     description: 'Leaderboard champion deep CNN ensemble (ResNet-18/34, EfficientNet-B0, FastMLP) for 3-class surveillance illumination classification.',
     bullets: [
-      'Engineered a high-performance 3-class surveillance video illumination classifier (Dark, Normal, Bright) reaching 0.211 Platform Score ("Best Solution" on leaderboard) under strict CPU-only constraints.',
+      'Engineered a high-performance 3-class surveillance video illumination classifier (Dark, Normal, Bright) reaching 0.21 Platform Score (Rank #16 of 227, "Best Solution" on leaderboard) under strict CPU-only constraints.',
       'Fused 128-D handcrafted luminance descriptors (spatial grid uniformity, HSV saturation ratios, dark-to-bright curves) with 2,304-D deep features from ResNet-18/34 and EfficientNet-B0.',
       'Trained a 10-fold bagged FastMLP with LayerNorm, Dropout (0.35), label smoothing (0.05), and Cosine Annealing learning rate schedules.',
       'Performed extensive visual domain error analysis discovering the Global Luminance Albedo Illusion, correcting high-albedo supermarket and indoor reflections.'

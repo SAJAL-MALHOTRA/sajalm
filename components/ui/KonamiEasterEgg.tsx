@@ -76,7 +76,7 @@ export default function KonamiEasterEgg() {
           </p>
 
           <div className="p-3 rounded-xl bg-[#0D0D0D] border border-white/10 text-xs text-emerald-400 font-bold">
-            ⚡ CODE: UP UP DOWN DOWN LEFT RIGHT LEFT RIGHT B A
+            [SYS_OVERRIDE] CODE: UP UP DOWN DOWN LEFT RIGHT LEFT RIGHT B A
           </div>
         </motion.div>
       </div>

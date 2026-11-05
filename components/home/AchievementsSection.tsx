@@ -74,16 +74,21 @@ export default function AchievementsSection() {
               <Award size={13} className="text-emerald-500" />
             </div>
 
-            <div className="text-3xl font-black font-sans text-[#09090B] dark:text-white">
-              TOP 7%
+            <div className="flex items-baseline gap-2">
+              <span className="text-3xl font-black font-sans text-[#09090B] dark:text-white">
+                #16
+              </span>
+              <span className="text-sm font-bold font-mono text-[#71717A] dark:text-[#A1A1AA]">
+                of 227 (Top 7%)
+              </span>
             </div>
 
             <div className="text-xs font-bold font-mono text-emerald-700 dark:text-emerald-400">
-              Score: 0.211 (Best Solution)
+              Score: 0.21 · Best Solution Leaderboard
             </div>
 
             <p className="text-xs text-[#52525B] dark:text-[#A1A1AA] leading-relaxed font-sans">
-              Ranked in national top 7% (169/227) on 3-class surveillance illumination classification. Earned &apos;Best Solution&apos; badge on leaderboard with 128-D luminance descriptors and 10-fold bagged FastMLP on CPU.
+              Ranked #16 of 227 (National Top 7%) on “Lighting Level” illumination prediction from camera images with a score of 0.21. Earned &apos;Best Solution&apos; recognition with 128-D luminance descriptors and 10-fold bagged FastMLP on CPU.
             </p>
           </div>
 
