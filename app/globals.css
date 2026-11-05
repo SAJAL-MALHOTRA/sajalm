@@ -34,6 +34,10 @@
     --color-scrollbar-hover: #3F3F46;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   html,
   body {
     width: 100%;
@@ -66,6 +70,34 @@ html.theme-transition *::after {
               stroke 350ms cubic-bezier(0.4, 0, 0.2, 1),
               box-shadow 350ms cubic-bezier(0.4, 0, 0.2, 1) !important;
   transition-delay: 0s !important;
+}
+
+/* Continuous Flowing Marquees */
+@keyframes marquee-left {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+.animate-marquee-left {
+  display: flex;
+  width: max-content;
+  animation: marquee-left 34s linear infinite;
+}
+
+.animate-marquee-right {
+  display: flex;
+  width: max-content;
+  animation: marquee-right 38s linear infinite;
+}
+
+.animate-marquee-left:hover,
+.animate-marquee-right:hover {
+  animation-play-state: paused;
 }
 
 /* Minimal Custom Scrollbar */

@@ -1,23 +1,26 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import FieldConsole from '@/components/console/FieldConsole';
+import NavigationHeader from '@/components/home/NavigationHeader';
+import EditorialHero from '@/components/home/EditorialHero';
+import FlowingTicker from '@/components/home/FlowingTicker';
+import DualSpectrum from '@/components/home/DualSpectrum';
+import AchievementsSection from '@/components/home/AchievementsSection';
+import ProjectsSection from '@/components/home/ProjectsSection';
+import OpportunitiesSection from '@/components/home/OpportunitiesSection';
 import ProjectModal from '@/components/ui/ProjectModal';
 import DeveloperTerminal from '@/components/terminal/DeveloperTerminal';
+import PhotoLightboxModal from '@/components/ui/PhotoLightboxModal';
 import KonamiEasterEgg from '@/components/ui/KonamiEasterEgg';
-import SajalsTastePlayer from '@/components/layout/SajalsTastePlayer';
-import ThemeToggle from '@/components/theme/ThemeToggle';
-import VisitorCounter from '@/components/ui/VisitorCounter';
-import { profile } from '@/data/profile';
 import { projects } from '@/data/projects';
 import { useSound } from '@/hooks/useSound';
-import { Terminal, X } from 'lucide-react';
-
-export type ViewType = 'overview' | 'hero' | 'home' | 'work' | 'about' | 'skills' | 'experience' | 'contact' | 'resume' | 'terminal';
+import { X, ArrowUp } from 'lucide-react';
 
 export default function Home() {
   const [modalProjectId, setModalProjectId] = useState<string | null>(null);
   const [terminalOpen, setTerminalOpen] = useState(false);
+  const [photoZoomOpen, setPhotoZoomOpen] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   const { playClick, playModalOpen } = useSound();
 
@@ -36,85 +39,89 @@ export default function Home() {
         playClick();
         setTerminalOpen((prev) => !prev);
       } else if (e.key === 'Escape') {
-        if (terminalOpen) {
-          setTerminalOpen(false);
-        } else if (modalProjectId) {
-          setModalProjectId(null);
-        }
+        if (terminalOpen) setTerminalOpen(false);
+        else if (modalProjectId) setModalProjectId(null);
+        else if (photoZoomOpen) setPhotoZoomOpen(false);
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [playClick, terminalOpen, modalProjectId]);
+  }, [playClick, terminalOpen, modalProjectId, photoZoomOpen]);
+
+  // Scroll listener for Back to Top button
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 400);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <main className="min-h-screen w-full lg:h-screen lg:max-h-screen bg-[#F4F4F6] dark:bg-[#09090B] text-[#09090B] dark:text-[#EDEDED] font-mono antialiased selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black flex flex-col justify-between items-center p-2 sm:p-3 relative overflow-x-hidden overflow-y-auto lg:overflow-hidden">
+    <div className="min-h-screen w-full bg-[#F4F4F6] dark:bg-[#09090B] text-[#09090B] dark:text-[#EDEDED] font-mono antialiased selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black flex flex-col items-center relative overflow-x-hidden">
       
-      {/* ── MINIMALIST TECHNICAL GRID (LIGHT & DARK ADAPTIVE) ── */}
-      <div className="fixed inset-0 bg-[radial-gradient(#CBD0D8_1px,transparent_1px)] dark:bg-[radial-gradient(#27272A_1px,transparent_1px)] [background-size:20px_20px] opacity-50 dark:opacity-35 pointer-events-none" />
+      {/* ── TECHNICAL DOT GRID (LIGHT & DARK ADAPTIVE) ── */}
+      <div className="fixed inset-0 bg-[radial-gradient(#CBD0D8_1px,transparent_1px)] dark:bg-[radial-gradient(#27272A_1px,transparent_1px)] [background-size:20px_20px] opacity-45 dark:opacity-30 pointer-events-none" />
 
-      {/* ── TOP AMBIENT STATUS STRIP (FULLY RESPONSIVE) ── */}
-      <header className="w-full max-w-5xl z-30 flex items-center justify-between font-mono text-[10px] sm:text-[10.5px] text-[#52525B] dark:text-[#71717A] select-none py-1.5 px-1 shrink-0 gap-1.5 sm:gap-2">
-        <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
-          <span className="w-1.5 h-1.5 rounded-full bg-black/80 dark:bg-white/80 shrink-0" />
-          <span className="text-[#09090B] dark:text-white font-medium tracking-wider text-[10px] sm:text-[11px] truncate">SAJAL MALHOTRA</span>
-          <span className="text-[#D1D5DB] dark:text-[#3F3F46] hidden sm:inline">•</span>
-          <span className="text-[#52525B] dark:text-[#A1A1AA] hidden sm:inline">NIT JALANDHAR // IT (2025–2029)</span>
-        </div>
+      {/* ── PERSISTENT TOP AMBIENT STATUS NAVIGATION ── */}
+      <NavigationHeader onOpenTerminal={() => setTerminalOpen(true)} />
 
-        <div className="flex items-center gap-1 sm:gap-2 shrink-0">
-          <span className="text-[9.5px] text-[#71717A] dark:text-[#52525B] hidden md:inline">
-            PRESS &lsquo;1-5&rsquo; TO SWITCH MODULES
-          </span>
-          <VisitorCounter />
-          <a
-            href={profile.links.buyMeAChai || 'https://buymeachai.in/sajalmalhotra'}
-            target="_blank"
-            rel="noreferrer"
-            className="flex items-center gap-1 px-1.5 sm:px-2 py-0.5 rounded bg-amber-500/10 hover:bg-amber-500/20 text-amber-800 dark:text-amber-300 border border-amber-500/30 transition-colors font-mono text-[10px] font-medium shadow-xs"
-            title="Buy Me a Chai"
-          >
-            <span>☕</span>
-            <span className="hidden xs:inline">CHAI</span>
-          </a>
-          <ThemeToggle />
-          <SajalsTastePlayer />
-          <button
-            onClick={() => {
-              playClick();
-              setTerminalOpen(true);
-            }}
-            className="flex items-center gap-1 sm:gap-1.5 px-1.5 sm:px-2.5 py-0.5 rounded bg-white hover:bg-[#F4F4F6] dark:bg-[#141417] dark:hover:bg-[#1E1E24] border border-[#D1D5DB] dark:border-[#27272A] text-[#09090B] dark:text-[#EDEDED] font-medium transition-colors cursor-pointer text-[10px] shadow-xs"
-            title="Terminal (~)"
-          >
-            <Terminal size={10} className="text-[#52525B] dark:text-[#A1A1AA] shrink-0" />
-            <span className="hidden xs:inline">CLI (~)</span>
-            <span className="xs:hidden">CLI</span>
-          </button>
-        </div>
-      </header>
-
-      {/* ── BESPOKE R&D FIELD CONSOLE (100% IN VIEWPORT) ── */}
-      <div className="relative z-10 w-full max-w-5xl flex-1 lg:min-h-0 flex items-center justify-center my-auto py-1">
-        <FieldConsole
+      {/* ── MAIN EDITORIAL SCROLLING CONTAINER ── */}
+      <main className="relative z-10 w-full flex flex-col items-center px-3 sm:px-6">
+        
+        {/* 1. Hero: "Hey, I'm Sajal." with Personality Pop-Up Card */}
+        <EditorialHero
           onOpenTerminal={() => setTerminalOpen(true)}
+          onOpenPhotoZoom={() => setPhotoZoomOpen(true)}
+        />
+
+        {/* 2. Flowing Ticker: Skills & Passions Streams */}
+        <FlowingTicker />
+
+        {/* 3. The Dual Spectrum: Technical Arsenal + Creative Orbit */}
+        <DualSpectrum />
+
+        {/* 4. Dedicated Achievements Section: Pairfect 200+ users, CV top 7%, 220K+ reach */}
+        <AchievementsSection />
+
+        {/* 5. Comprehensive Projects Showcase (8 Shipped Systems) */}
+        <ProjectsSection
           onOpenProjectModal={(id) => {
             playModalOpen();
             setModalProjectId(id);
           }}
         />
-      </div>
 
-      {/* ── BOTTOM FOOTER CAPTION ── */}
-      <footer className="w-full max-w-5xl z-30 flex flex-col sm:flex-row items-center justify-between gap-1 sm:gap-2 font-mono text-[8.5px] sm:text-[9px] text-[#71717A] dark:text-[#52525B] tracking-wider select-none py-1.5 px-1 border-t border-[#E4E4E7] dark:border-[#18181B] shrink-0 text-center sm:text-left">
+        {/* 6. Opportunities & Direct Dispatch Contact */}
+        <OpportunitiesSection />
+
+      </main>
+
+      {/* ── MINIMALIST EDITORIAL FOOTER ── */}
+      <footer className="w-full max-w-5xl z-30 flex flex-col sm:flex-row items-center justify-between gap-2 font-mono text-[9px] text-[#71717A] dark:text-[#52525B] tracking-wider select-none py-6 px-4 border-t border-[#E4E4E7] dark:border-[#18181B] shrink-0 text-center sm:text-left mt-8">
         <div>
-          DEVDEX // MODEL DX-042 · SM-NITJ-2029
+          DEVDEX // MODEL DX-042 · SAJAL MALHOTRA · NIT JALANDHAR (2025–2029)
         </div>
-        <div>
-          MACHINE LEARNING &times; FULL-STACK SYSTEMS &times; AGENTIC ARCHITECTURES
+        <div className="flex items-center gap-3">
+          <span>MACHINE LEARNING &times; DISTRIBUTED SYSTEMS &times; FASHION DIRECTION</span>
+          <a href="#intro" className="hover:text-[#09090B] dark:hover:text-white transition-colors">
+            TOP ↑
+          </a>
         </div>
       </footer>
+
+      {/* ── FLOATING BACK TO TOP BUTTON ── */}
+      {showScrollTop && (
+        <a
+          href="#intro"
+          onClick={playClick}
+          className="fixed bottom-5 right-5 z-40 p-2.5 rounded-full bg-black text-white dark:bg-white dark:text-black shadow-lg hover:scale-110 active:scale-95 transition-all cursor-pointer"
+          title="Scroll to Top"
+        >
+          <ArrowUp size={15} />
+        </a>
+      )}
 
       {/* ── PROJECT ARCHITECTURE SPEC MODAL ── */}
       {activeModalProject && (
@@ -149,9 +156,15 @@ export default function Home() {
         </div>
       )}
 
+      {/* ── PORTRAIT ZOOM LIGHTBOX MODAL ── */}
+      <PhotoLightboxModal
+        isOpen={photoZoomOpen}
+        onClose={() => setPhotoZoomOpen(false)}
+      />
+
       {/* ── KONAMI EASTER EGG ── */}
       <KonamiEasterEgg />
 
-    </main>
+    </div>
   );
 }

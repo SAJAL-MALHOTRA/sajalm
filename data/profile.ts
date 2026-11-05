@@ -17,10 +17,65 @@ export const profile = {
   organization: "NIT JALANDHAR",
   model: "MODEL DX-042",
   quote: "Building ML evaluation engines, real-time products, and multi-agent systems.",
+  tagline: "Software engineer & ML researcher by daylight. Fashion model & creative mind after hours. An intentional overthinker building fast, beautiful, and resilient systems.",
   description:
     "Information Technology undergraduate at NIT Jalandhar (CGPA 8.13) specializing in ML reasoning engines, multi-agent systems, and full-stack real-time platforms. Core Member at Cybernauts and fashion & creative content creator (220K+ monthly views).",
   transcript:
-    "Sajal Malhotra is an Information Technology undergraduate at NIT Jalandhar with an 8.13 CGPA. He specializes in ML reasoning engines, multi-agent systems, and full-stack real-time platforms. Creator of DSA Lecture RAG with a 104-query benchmark, Cybernauts Arena for 16-team simultaneous esports tournaments, Pairfect with sub-50ms Groq Llama 3 inference, ThinkFolio with R² 0.927 accuracy, and a Computer Vision Illumination Classifier ranked in the national Top 7%. He is a Core Member of Cybernauts and an active fashion & creative content creator.",
+    "Sajal Malhotra is an Information Technology undergraduate at NIT Jalandhar with an 8.13 CGPA. He specializes in ML reasoning engines, multi-agent systems, and full-stack real-time platforms. Creator of DSA Lecture RAG with a 104-query benchmark, Cybernauts Arena for 16-team simultaneous esports tournaments, Pairfect with 200+ users and sub-50ms Groq Llama 3 inference, ThinkFolio with R² 0.927 accuracy, and a Computer Vision Illumination Classifier ranked in the national Top 7%. He is a Core Member of Cybernauts and an active fashion & creative content creator with over 220,000 monthly views.",
+
+  // Aspects of Personality requested by Sajal
+  personality: [
+    {
+      id: "fashion",
+      title: "I do fashion.",
+      subtitle: "Archival tailoring & clean silhouettes",
+      detail: "Passionate about tailoring, layered textures, and high-fashion aesthetics. Expressing intentional design both in code and wardrobe.",
+      emoji: "👔",
+      badge: "STYLE & SILHOUETTE",
+    },
+    {
+      id: "modelling",
+      title: "I do modelling.",
+      subtitle: "Runway & editorial visual direction",
+      detail: "Active runway and stage model for the NIT Jalandhar Fashion & Modelling Club with 220,000+ monthly impressions across creative channels.",
+      emoji: "📸",
+      badge: "RUNWAY & STAGE",
+    },
+    {
+      id: "tech",
+      title: "I do tech.",
+      subtitle: "Full-stack & distributed systems",
+      detail: "Building real-time WebSockets, sub-50ms LLM pipelines (Groq Llama 3), and robust cloud infrastructure serving real users.",
+      emoji: "⚡",
+      badge: "SYSTEMS & CODE",
+    },
+    {
+      id: "nerd",
+      title: "I'm a nerd.",
+      subtitle: "DSA benchmarks, PyTorch & arXiv papers",
+      detail: "Obsessed with algorithmic optimization, statistical test sets, Reciprocal Rank Fusion, and exploring modern AI research.",
+      emoji: "🧠",
+      badge: "RESEARCH & DSA",
+    },
+    {
+      id: "overthinker",
+      title: "I'm a critical overthinker.",
+      subtitle: "Micro-detail obsessive & latency purist",
+      detail: "Meticulous about every millisecond of network latency, edge case handling, typographic rhythm, and failure-mode recovery.",
+      emoji: "🔍",
+      badge: "PERFECTIONIST",
+    },
+    {
+      id: "opportunities",
+      title: "I'm looking for internships, jobs & opportunities.",
+      subtitle: "B.Tech IT '29 · Open to SWE & ML roles",
+      detail: "Actively seeking summer internships, high-impact engineering roles, and innovative collaborations where I can ship production code.",
+      emoji: "🎯",
+      badge: "OPEN FOR HIRE",
+      isHighlight: true,
+    },
+  ],
+
   coursework: [
     "Data Structures & Algorithms",
     "Object-Oriented Programming",
@@ -29,28 +84,49 @@ export const profile = {
     "Machine Learning",
     "Computer Networks",
   ],
+
   achievements: [
+    {
+      title: "Grew Pairfect to 200+ Active Users",
+      stat: "200+ USERS",
+      metricNumber: "200+",
+      detail: "Scaled relationship platform (pairfect.site) organically to 200+ active users with sub-50ms Groq Llama 3 AI inference, Supabase real-time sync, and zero TypeScript bugs over 77 production routes.",
+      category: "Product & Growth",
+      highlight: true,
+    },
     {
       title: "National Computer Vision Challenge",
       stat: "TOP 7%",
-      detail: "Ranked in top 7% (169/227) on illumination prediction from camera images using CNN ensemble (ResNet, EfficientNet, FastMLP) with 94.2% validation accuracy.",
-    },
-    {
-      title: "Core Member, Cybernauts NIT Jalandhar",
-      stat: "CORE LEAD",
-      detail: "Organized coding competitions and technical events, mentoring students in competitive programming and software development.",
+      metricNumber: "0.211",
+      detail: "Ranked in top 7% (169/227) on surveillance illumination classification. Earned 'Best Solution' badge on leaderboard with 128-D luminance descriptors and 10-fold bagged FastMLP on CPU.",
+      category: "Machine Learning",
+      highlight: true,
     },
     {
       title: "Content Creator & Model",
       stat: "220K+ VIEWS",
-      detail: "Built personal presence generating 2.2L+ (220K+) monthly views across fashion, tech, and creative content.",
+      metricNumber: "220K+",
+      detail: "Built personal creative presence generating 2.2L+ (220,000+) monthly views across fashion, tech lifestyle, and creative direction.",
+      category: "Creative & Media",
+      highlight: true,
     },
     {
-      title: "Fashion & Modelling Club, NIT Jalandhar",
-      stat: "STAGE & RUNWAY",
-      detail: "Participated in modelling events, workshops, shoots, and stage performances at NIT Jalandhar.",
+      title: "Cybernauts Arena Tournament Platform",
+      stat: "16-TEAM SYNC",
+      metricNumber: "0ms DRIFT",
+      detail: "Core Member at Cybernauts NITJ. Architected the broadcast-grade tournament platform orchestrating 16 simultaneous physical table duels with 2.5s network grace buffer and 4K arena projector.",
+      category: "Distributed Systems",
+      highlight: true,
+    },
+    {
+      title: "Academic Excellence — B.Tech IT",
+      stat: "CGPA 8.13",
+      metricNumber: "8.13",
+      detail: "Dr. B. R. Ambedkar National Institute of Technology Jalandhar (2025–2029). Core coursework in Data Structures, Machine Learning, OS, DBMS, and Networks.",
+      category: "Academics",
     },
   ],
+
   links: {
     github: "https://github.com/SAJAL-MALHOTRA",
     linkedin: "https://linkedin.com/in/sajal-malhotra1",
@@ -60,12 +136,7 @@ export const profile = {
     resume: getAssetPath("/resume.pdf"),
     buyMeAChai: "https://buymeachai.in/sajalmalhotra",
   },
-  // Backward compatibility
-  audioGreeting: "Hi, I'm DevDex.",
-  audioBriefing: "Audio briefing for Sajal Malhotra · NIT Jalandhar",
-  society: "Fashion & Modelling Club / Cybernauts NITJ",
-  issue: "ISSUE N° 01 // 2026",
-  issn: "ISSN 2026-NITJ",
+
   rotation: {
     building: "DSA Lecture RAG (FastAPI/PyTorch) & Cybernauts Arena (Next.js/Express)",
     wearing: "Dark brown leather blouson, olive zip fleece, tailored gray pleated trousers",
