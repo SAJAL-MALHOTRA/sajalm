@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useSound } from '@/hooks/useSound';
+import InteractiveCat from '@/components/ui/InteractiveCat';
 
 const API_BASE = 'https://countapi.mileshilliard.com/api/v1';
 const KEY = 'sajal_malhotra_sajalm';
@@ -60,7 +61,12 @@ export default function MinimalFooter() {
   }, []);
 
   return (
-    <footer className="w-full max-w-5xl z-30 py-8 px-4 sm:px-6 border-t border-[#E2E4E8] dark:border-[#22242B] mt-12 font-sans text-xs sm:text-[13px] text-[#71717A] dark:text-[#A1A1AA] select-none shrink-0">
+    <footer className="w-full max-w-5xl z-30 pt-10 pb-8 px-4 sm:px-6 border-t border-[#E2E4E8] dark:border-[#22242B] mt-16 font-sans text-xs sm:text-[13px] text-[#71717A] dark:text-[#A1A1AA] select-none shrink-0">
+      {/* ── INTERACTIVE CAT EASTER EGG (TOUCH TO PLAY DANCE & SONG) ── */}
+      <div className="w-full flex flex-col items-center justify-center pb-8 mb-6 border-b border-[#E2E4E8]/60 dark:border-[#22242B]/60">
+        <InteractiveCat size={135} />
+      </div>
+
       <div className="flex items-center justify-between">
         <div className="flex items-center">
           <span>Made with</span>
