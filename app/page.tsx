@@ -3,10 +3,8 @@
 import { useState, useEffect } from 'react';
 import NavigationHeader from '@/components/home/NavigationHeader';
 import EditorialHero from '@/components/home/EditorialHero';
-import FlowingTicker from '@/components/home/FlowingTicker';
-import DualSpectrum from '@/components/home/DualSpectrum';
-import AchievementsSection from '@/components/home/AchievementsSection';
 import ProjectsSection from '@/components/home/ProjectsSection';
+import DualSpectrum from '@/components/home/DualSpectrum';
 import OpportunitiesSection from '@/components/home/OpportunitiesSection';
 import MinimalFooter from '@/components/home/MinimalFooter';
 import ProjectModal from '@/components/ui/ProjectModal';
@@ -91,9 +89,6 @@ export default function Home() {
           onOpenPhotoZoom={() => setPhotoZoomOpen(true)}
         />
 
-        {/* Ambient Telemetry Stream */}
-        <FlowingTicker />
-
         {/* 01 // SHIPPED SYSTEMS: Engineering Portfolio (High Priority) */}
         <ProjectsSection
           onOpenProjectModal={(id) => {
@@ -102,13 +97,10 @@ export default function Home() {
           }}
         />
 
-        {/* 02 // RECORDED IMPACT: Verified Achievements & Benchmarks */}
-        <AchievementsSection />
-
-        {/* 03 // THE DUAL SPECTRUM: Technical Arsenal + Creative Orbit */}
+        {/* 02 // THE DUAL SPECTRUM: Technical Arsenal + Creative Orbit */}
         <DualSpectrum />
 
-        {/* 04 // OPPORTUNITIES & DISPATCH: Direct Contact Hub */}
+        {/* 03 // OPPORTUNITIES & DISPATCH: Direct Contact Hub */}
         <OpportunitiesSection />
 
       </main>

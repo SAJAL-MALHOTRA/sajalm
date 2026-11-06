@@ -184,49 +184,13 @@ export default function EditorialHero({
               </button>
             </div>
 
-            {/* Structured Operator Specifications Matrix */}
-            <div className="space-y-2 pt-1 font-mono text-xs">
-              <div className="flex items-start justify-between py-1.5 border-b border-[#ECEEF2] dark:border-[#1E2026] text-[11px]">
-                <span className="text-[#71717A] dark:text-[#A1A1AA] uppercase text-[9.5px] font-bold">CORE DOMAIN</span>
-                <span className="text-[#09090B] dark:text-white font-medium text-right">
-                  Distributed Systems &amp; ML
-                </span>
+            {/* Elegant Editorial Caption Strip */}
+            <div className="pt-2.5 border-t border-[#ECEEF2] dark:border-[#1E2026] flex items-center justify-between text-[11px] font-mono text-[#71717A] dark:text-[#A1A1AA]">
+              <div className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                <span>Jalandhar, Punjab</span>
               </div>
-
-              <div className="flex items-start justify-between py-1.5 border-b border-[#ECEEF2] dark:border-[#1E2026] text-[11px]">
-                <span className="text-[#71717A] dark:text-[#A1A1AA] uppercase text-[9.5px] font-bold">LIVE STACK</span>
-                <span className="text-[#09090B] dark:text-white font-medium text-right">
-                  Next.js · Supabase · PyTorch · FastAPI
-                </span>
-              </div>
-
-              <div className="flex items-start justify-between py-1.5 border-b border-[#ECEEF2] dark:border-[#1E2026] text-[11px]">
-                <span className="text-[#71717A] dark:text-[#A1A1AA] uppercase text-[9.5px] font-bold">CREATIVE ORBIT</span>
-                <span className="text-[#09090B] dark:text-white font-medium text-right">
-                  Runway Model · 220K+ Monthly Reach
-                </span>
-              </div>
-
-              <div className="flex items-start justify-between py-1.5 text-[11px]">
-                <span className="text-[#71717A] dark:text-[#A1A1AA] uppercase text-[9.5px] font-bold">DISCIPLINE</span>
-                <span className="text-[#09090B] dark:text-white font-medium text-right">
-                  Mindfulness &amp; Spiritual Stillness
-                </span>
-              </div>
-            </div>
-
-            {/* Bottom Card Footer */}
-            <div className="pt-2 border-t border-[#ECEEF2] dark:border-[#1E2026] flex items-center justify-between text-[10px] font-mono text-[#71717A]">
-              <span>LOCATION: JALANDHAR, PUNJAB</span>
-              <a
-                href={profile.links.buyMeAChai}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-1 text-amber-700 dark:text-amber-400 font-semibold hover:underline"
-              >
-                <Coffee size={11} className="shrink-0" />
-                <span>Buy Me a Chai ↗</span>
-              </a>
+              <span className="font-semibold text-[#09090B] dark:text-white">NITJ IT &apos;29 · CGPA 8.13</span>
             </div>
 
           </div>

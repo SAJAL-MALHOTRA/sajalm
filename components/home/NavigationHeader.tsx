@@ -1,12 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import VisitorCounter from '@/components/ui/VisitorCounter';
 import ThemeToggle from '@/components/theme/ThemeToggle';
-import SajalsTastePlayer from '@/components/layout/SajalsTastePlayer';
-import { profile } from '@/data/profile';
 import { useSound } from '@/hooks/useSound';
-import { Terminal, Coffee } from 'lucide-react';
+import { Terminal } from 'lucide-react';
 
 interface NavigationHeaderProps {
   onOpenTerminal: () => void;
@@ -17,7 +14,7 @@ export default function NavigationHeader({ onOpenTerminal }: NavigationHeaderPro
   const [activeSection, setActiveSection] = useState('intro');
 
   useEffect(() => {
-    const sectionIds = ['intro', 'projects', 'achievements', 'skills', 'contact'];
+    const sectionIds = ['intro', 'projects', 'skills', 'contact'];
 
     if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
       return;
@@ -50,87 +47,28 @@ export default function NavigationHeader({ onOpenTerminal }: NavigationHeaderPro
   }, []);
 
   return (
-    <header className="sticky top-0 z-40 w-full max-w-5xl mx-auto bg-[#F4F4F6]/90 dark:bg-[#09090B]/90 backdrop-blur-md border-b border-[#E2E4E8] dark:border-[#1E2026] flex flex-col font-mono text-xs select-none">
+    <header className="sticky top-0 z-40 w-full max-w-5xl mx-auto bg-[#F4F4F6]/90 dark:bg-[#09090B]/90 backdrop-blur-md border-b border-[#E2E4E8] dark:border-[#1E2026] flex items-center justify-between py-2.5 px-4 sm:px-6 font-mono text-xs select-none">
       
-      {/* Main Top Bar */}
-      <div className="w-full py-2 px-2.5 sm:px-4 flex items-center justify-between gap-1.5 sm:gap-2">
-        {/* Brand Identity */}
-        <a
-          href="#intro"
-          onClick={playClick}
-          className="flex items-center gap-1.5 sm:gap-2 group min-w-0 shrink-0"
-        >
-          <span className="w-2 h-2 rounded-full bg-black dark:bg-white group-hover:scale-125 transition-transform shrink-0" />
-          <span className="font-black text-[#09090B] dark:text-white tracking-wider text-[11px] sm:text-xs truncate">
-            SAJAL MALHOTRA
-          </span>
-          <span className="text-[#A1A1AA] hidden md:inline">•</span>
-          <span className="text-[10px] text-[#71717A] hidden md:inline">NIT JALANDHAR &apos;29</span>
-        </a>
+      {/* Brand Identity */}
+      <a
+        href="#intro"
+        onClick={playClick}
+        className="flex items-center gap-2 group min-w-0 shrink-0"
+      >
+        <span className="w-2 h-2 rounded-full bg-black dark:bg-white group-hover:scale-125 transition-transform shrink-0" />
+        <span className="font-black text-[#09090B] dark:text-white tracking-wider text-xs sm:text-[13px]">
+          SAJAL MALHOTRA
+        </span>
+        <span className="text-[#A1A1AA] hidden sm:inline">•</span>
+        <span className="text-[10.5px] text-[#71717A] dark:text-[#A1A1AA] hidden sm:inline">
+          NIT JALANDHAR &apos;29
+        </span>
+      </a>
 
-        {/* Nav Jump Anchors (Visible on desktop) */}
-        <nav className="hidden lg:flex items-center gap-1 text-[11px] text-[#71717A] dark:text-[#A1A1AA]">
-          {[
-            { id: 'intro', label: 'Intro' },
-            { id: 'projects', label: 'Projects' },
-            { id: 'achievements', label: 'Achievements' },
-            { id: 'skills', label: 'Spectrum' },
-            { id: 'contact', label: 'Opportunities' },
-          ].map((item) => (
-            <a
-              key={item.id}
-              href={`#${item.id}`}
-              onClick={playClick}
-              className={`px-2.5 py-1 rounded-lg transition-colors cursor-pointer ${
-                activeSection === item.id
-                  ? 'text-[#09090B] dark:text-white font-bold bg-black/5 dark:bg-white/5'
-                  : 'hover:text-[#09090B] dark:hover:text-white'
-              }`}
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
-
-        {/* Controls & Badges */}
-        <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
-          <VisitorCounter />
-
-          <a
-            href={profile.links.buyMeAChai}
-            target="_blank"
-            rel="noreferrer"
-            className="flex items-center gap-1 px-1.5 sm:px-2 py-0.5 rounded bg-amber-500/10 hover:bg-amber-500/20 text-amber-800 dark:text-amber-300 border border-amber-500/30 transition-colors font-mono text-[10px] font-medium shadow-2xs"
-            title="Buy Me a Chai"
-          >
-            <Coffee size={10} className="text-amber-700 dark:text-amber-400 shrink-0" />
-            <span className="hidden xs:inline font-bold">CHAI</span>
-          </a>
-
-          <ThemeToggle />
-
-          <SajalsTastePlayer />
-
-          <button
-            onClick={() => {
-              playClick();
-              onOpenTerminal();
-            }}
-            className="flex items-center gap-1 px-1.5 sm:px-2 py-0.5 rounded bg-white hover:bg-[#F4F4F6] dark:bg-[#141417] dark:hover:bg-[#1E1E24] border border-[#D1D5DB] dark:border-[#27272A] text-[#09090B] dark:text-[#EDEDED] font-medium transition-colors cursor-pointer text-[10px] shadow-2xs"
-            title="Developer Terminal (~)"
-          >
-            <Terminal size={10} className="text-[#52525B] dark:text-[#A1A1AA] shrink-0" />
-            <span className="hidden xs:inline">CLI</span>
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Sub-Navigation Pill Strip (Seamless 1-tap jump on phones) */}
-      <div className="flex lg:hidden items-center gap-1 overflow-x-auto no-scrollbar py-1 px-2 text-[10px] font-mono border-t border-[#E2E4E8]/60 dark:border-[#1E2026]/60 w-full bg-black/[0.02] dark:bg-white/[0.02]">
+      {/* Nav Jump Anchors */}
+      <nav className="flex items-center gap-1 sm:gap-2 text-xs text-[#71717A] dark:text-[#A1A1AA]">
         {[
-          { id: 'intro', label: 'Intro' },
-          { id: 'projects', label: 'Projects' },
-          { id: 'achievements', label: 'Achievements' },
+          { id: 'projects', label: 'Systems' },
           { id: 'skills', label: 'Spectrum' },
           { id: 'contact', label: 'Opportunities' },
         ].map((item) => (
@@ -138,15 +76,32 @@ export default function NavigationHeader({ onOpenTerminal }: NavigationHeaderPro
             key={item.id}
             href={`#${item.id}`}
             onClick={playClick}
-            className={`px-2 py-0.5 rounded-md whitespace-nowrap transition-colors ${
+            className={`px-2.5 sm:px-3 py-1 rounded-lg transition-colors cursor-pointer text-[11px] sm:text-xs ${
               activeSection === item.id
-                ? 'bg-black text-white dark:bg-white dark:text-black font-bold'
-                : 'text-[#71717A] dark:text-[#A1A1AA] hover:text-[#09090B] dark:hover:text-white'
+                ? 'text-[#09090B] dark:text-white font-bold bg-black/5 dark:bg-white/5'
+                : 'hover:text-[#09090B] dark:hover:text-white'
             }`}
           >
             {item.label}
           </a>
         ))}
+      </nav>
+
+      {/* Clean Right Actions: Theme + Terminal */}
+      <div className="flex items-center gap-2 shrink-0">
+        <ThemeToggle />
+
+        <button
+          onClick={() => {
+            playClick();
+            onOpenTerminal();
+          }}
+          className="hidden xs:flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white hover:bg-[#ECEEF2] dark:bg-[#16171B] dark:hover:bg-[#202227] border border-[#D1D5DB] dark:border-[#27272A] text-[#09090B] dark:text-[#EDEDED] font-medium transition-colors cursor-pointer text-[11px] shadow-2xs"
+          title="Open Developer Terminal (~)"
+        >
+          <Terminal size={11} className="text-[#52525B] dark:text-[#A1A1AA]" />
+          <span>CLI</span>
+        </button>
       </div>
 
     </header>
