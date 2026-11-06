@@ -48,35 +48,31 @@ export default function NavigationHeader({ onOpenTerminal }: NavigationHeaderPro
 
   return (
     <header className="sticky top-0 z-40 w-full bg-[#F4F4F6]/95 dark:bg-[#09090B]/95 backdrop-blur-md border-b border-[#E2E4E8] dark:border-[#22242B] select-none px-4 sm:px-6">
-      <div className="w-full max-w-[780px] mx-auto flex items-center justify-between py-2.5 font-mono text-xs">
+      <div className="w-full max-w-[780px] mx-auto flex items-center justify-between py-2.5 text-xs">
         
-        {/* Brand & Editorial Identity */}
+        {/* Brand & Identity */}
         <a
           href="#intro"
           onClick={playClick}
-          className="flex items-center gap-2 group min-w-0 shrink-0"
+          className="font-bold font-sans text-sm tracking-tight text-[#09090B] dark:text-[#EDEDED] hover:opacity-80 transition-opacity shrink-0"
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0" title="System Active / Open for Opportunities" />
-          <span className="font-bold text-[#09090B] dark:text-[#EDEDED] tracking-wider text-xs sm:text-[12.5px]">
-            SAJAL MALHOTRA
-          </span>
-          <span className="text-[#A1A1AA] text-[11px] font-normal hidden min-[400px]:inline">/ NITJ &apos;29</span>
+          Sajal Malhotra
         </a>
 
-        {/* Center Editorial Anchors */}
-        <nav className="hidden sm:flex items-center gap-1 text-[11px] text-[#71717A] dark:text-[#A1A1AA] tracking-wider font-medium">
+        {/* Center Anchors */}
+        <nav className="hidden sm:flex items-center gap-1 text-xs font-sans text-[#71717A] dark:text-[#A1A1AA] font-medium">
           {[
-            { id: 'projects', label: 'SYSTEMS' },
-            { id: 'skills', label: 'SPECTRUM' },
-            { id: 'contact', label: 'CONTACT' },
+            { id: 'projects', label: 'Work' },
+            { id: 'skills', label: 'About' },
+            { id: 'contact', label: 'Contact' },
           ].map((item) => (
             <a
               key={item.id}
               href={`#${item.id}`}
               onClick={playClick}
-              className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
+              className={`px-3 py-1 rounded-md transition-colors cursor-pointer ${
                 activeSection === item.id
-                  ? 'text-[#09090B] dark:text-white font-bold bg-black/5 dark:bg-white/5'
+                  ? 'text-[#09090B] dark:text-white font-semibold bg-black/5 dark:bg-white/5'
                   : 'hover:text-[#09090B] dark:hover:text-white'
               }`}
             >
@@ -85,23 +81,19 @@ export default function NavigationHeader({ onOpenTerminal }: NavigationHeaderPro
           ))}
         </nav>
 
-        {/* Right Telemetry & Controls */}
-        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-          <span className="hidden md:inline text-[10px] text-[#A1A1AA] uppercase tracking-widest font-mono">
-            PORTFOLIO / 2026
-          </span>
-
+        {/* Right Controls */}
+        <div className="flex items-center gap-2 shrink-0">
           {/* Quick Terminal Trigger */}
           <button
             onClick={() => {
               playClick();
               onOpenTerminal();
             }}
-            className="flex items-center gap-1.5 px-2 py-1 rounded bg-white hover:bg-[#ECEEF2] dark:bg-[#121316] dark:hover:bg-[#1E1F24] border border-[#E2E4E8] dark:border-[#22242B] text-[#09090B] dark:text-[#EDEDED] font-mono text-[10.5px] transition-colors cursor-pointer shadow-2xs"
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white hover:bg-[#ECEEF2] dark:bg-[#121316] dark:hover:bg-[#1E1F24] border border-[#E2E4E8] dark:border-[#22242B] text-[#09090B] dark:text-[#EDEDED] font-mono text-xs transition-colors cursor-pointer shadow-2xs"
             title="Open Developer Terminal (~)"
           >
-            <Terminal size={11} className="text-[#71717A] dark:text-[#A1A1AA]" />
-            <span>CLI ~</span>
+            <Terminal size={12} className="text-[#71717A] dark:text-[#A1A1AA]" />
+            <span>CLI</span>
           </button>
 
           {/* Theme Mode Toggle */}

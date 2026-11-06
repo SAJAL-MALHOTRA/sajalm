@@ -92,26 +92,25 @@ export default function MinimalFooter() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-[#ECEEF2] dark:border-white/5 text-[10.5px] font-mono text-[#71717A] dark:text-[#A1A1AA]">
           <div className="space-y-1">
             <div className="text-[9px] uppercase tracking-wider text-[#A1A1AA] dark:text-[#71717A] font-bold">
-              ACADEMIC CITATION
+              EDUCATION &amp; LOCATION
             </div>
             <div className="text-[#09090B] dark:text-white font-medium">
-              Dr B R Ambedkar National Institute of Technology
+              NIT Jalandhar
             </div>
-            <div>B.Tech Information Technology &apos;29 · CGPA 8.13</div>
-            <div>Coordinates: 31.3959° N, 75.5358° E · Jalandhar, India</div>
+            <div>B.Tech Information Technology (2025–2029)</div>
+            <div>Jalandhar, Punjab, India</div>
           </div>
 
           <div className="space-y-1">
             <div className="text-[9px] uppercase tracking-wider text-[#A1A1AA] dark:text-[#71717A] font-bold">
-              SPECIFICATION // COLOPHON
+              COLOPHON
             </div>
             <div className="text-[#09090B] dark:text-white font-medium">
-              Next.js 15 · TypeScript · Tailwind CSS
+              Next.js · TypeScript · Tailwind CSS
             </div>
-            <div>Typefaces: Geist Sans, Geist Mono &amp; Caveat</div>
-            <div className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-semibold pt-0.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span>Available for Summer &apos;26 &amp; Co-ops</span>
+            <div>Typefaces: Inter &amp; JetBrains Mono</div>
+            <div className="text-[#71717A] dark:text-[#A1A1AA] pt-0.5">
+              Available for Summer &apos;26 &amp; Co-ops
             </div>
           </div>
         </div>

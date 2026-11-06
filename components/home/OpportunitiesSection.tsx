@@ -31,17 +31,16 @@ export default function OpportunitiesSection() {
       {/* ── SECTION HEADER ── */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-[#E2E4E8] dark:border-[#22242A] pb-3 gap-3">
         <div className="space-y-1">
-          <div className="text-[9.5px] font-mono text-[#71717A] dark:text-[#A1A1AA] uppercase tracking-widest">
-            05 // THE DISPATCH · OPPORTUNITIES &amp; CONTACT
+          <div className="text-[10px] font-mono text-[#71717A] dark:text-[#A1A1AA] uppercase tracking-widest font-semibold">
+            04 // CONTACT &amp; OPPORTUNITIES
           </div>
-          <h2 className="text-xl sm:text-2xl font-black font-sans text-[#09090B] dark:text-white tracking-tight">
+          <h2 className="text-xl sm:text-2xl font-bold font-sans text-[#09090B] dark:text-white tracking-tight">
             Have something interesting in mind?
           </h2>
         </div>
 
-        <span className="text-[10px] font-mono px-3 py-1 rounded-full bg-black/5 dark:bg-white/5 text-[#09090B] dark:text-[#EDEDED] border border-[#E2E4E8] dark:border-[#22242B] self-start sm:self-auto font-semibold">
-          <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse mr-1.5" />
-          OPEN TO OPPORTUNITIES
+        <span className="text-xs font-mono text-[#71717A] dark:text-[#A1A1AA] self-start sm:self-auto">
+          malhotrasajal243@gmail.com
         </span>
       </div>
 

@@ -115,12 +115,9 @@ export default function ProjectsSection({ onOpenProjectModal }: ProjectsSectionP
               <span className="font-bold text-[#71717A] dark:text-[#A1A1AA]">
                 [{project.index}]
               </span>
-              <div className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-[10.5px] font-mono text-[#71717A] dark:text-[#A1A1AA]">
-                  {project.statusText}
-                </span>
-              </div>
+              <span className="text-[10.5px] font-mono text-[#71717A] dark:text-[#A1A1AA] uppercase tracking-wider">
+                {project.statusText}
+              </span>
             </div>
 
             {/* Project Title, Subtitle & Description */}
