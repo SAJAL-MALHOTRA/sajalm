@@ -11,7 +11,7 @@ export default function AchievementsSection() {
       <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-[#E2E4E8] dark:border-[#22242A] pb-3 gap-2">
         <div className="space-y-1">
           <div className="text-[9.5px] font-mono text-[#71717A] uppercase tracking-widest">
-            MILESTONES &amp; RECORDED IMPACT
+            02 // RECORDED IMPACT &amp; VERIFIED BENCHMARKS
           </div>
           <h2 className="text-2xl sm:text-3xl font-black font-sans text-[#09090B] dark:text-white tracking-tight flex items-center gap-2.5">
             <span>Verified Achievements</span>

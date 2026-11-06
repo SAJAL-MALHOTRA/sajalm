@@ -41,8 +41,8 @@ export default function FlowingTicker() {
       
       {/* Label Bar */}
       <div className="max-w-5xl mx-auto px-4 flex items-center justify-between text-[9px] font-mono text-[#71717A] uppercase tracking-widest">
-        <span>01 // FLOWING ARSENAL (TECHNICAL STACKS)</span>
-        <span className="hidden sm:inline">CONTINUOUS TELEMETRY STREAM</span>
+        <span>TELEMETRY 01 // PRODUCTION ARSENAL &amp; TOOLS</span>
+        <span className="hidden sm:inline">CONTINUOUS STREAM</span>
       </div>
 
       {/* Row 1: Technical Stack flowing Left */}
@@ -62,8 +62,8 @@ export default function FlowingTicker() {
 
       {/* Label Bar 2 */}
       <div className="max-w-5xl mx-auto px-4 flex items-center justify-between text-[9px] font-mono text-[#71717A] uppercase tracking-widest pt-1">
-        <span>02 // PASSIONS, TASTE &amp; OBSESSIONS</span>
-        <span className="hidden sm:inline">CREATIVE FREQUENCIES</span>
+        <span>TELEMETRY 02 // CREATIVE FREQUENCIES &amp; TASTE</span>
+        <span className="hidden sm:inline">220K+ MONTHLY SIGNALS</span>
       </div>
 
       {/* Row 2: Creative Passions flowing Right */}

@@ -17,7 +17,7 @@ export default function NavigationHeader({ onOpenTerminal }: NavigationHeaderPro
   const [activeSection, setActiveSection] = useState('intro');
 
   useEffect(() => {
-    const sectionIds = ['intro', 'skills', 'achievements', 'projects', 'contact'];
+    const sectionIds = ['intro', 'projects', 'achievements', 'skills', 'contact'];
 
     if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
       return;
@@ -72,9 +72,9 @@ export default function NavigationHeader({ onOpenTerminal }: NavigationHeaderPro
         <nav className="hidden lg:flex items-center gap-1 text-[11px] text-[#71717A] dark:text-[#A1A1AA]">
           {[
             { id: 'intro', label: 'Intro' },
-            { id: 'skills', label: 'Skills & Passions' },
-            { id: 'achievements', label: 'Achievements' },
             { id: 'projects', label: 'Projects' },
+            { id: 'achievements', label: 'Achievements' },
+            { id: 'skills', label: 'Spectrum' },
             { id: 'contact', label: 'Opportunities' },
           ].map((item) => (
             <a
@@ -129,9 +129,9 @@ export default function NavigationHeader({ onOpenTerminal }: NavigationHeaderPro
       <div className="flex lg:hidden items-center gap-1 overflow-x-auto no-scrollbar py-1 px-2 text-[10px] font-mono border-t border-[#E2E4E8]/60 dark:border-[#1E2026]/60 w-full bg-black/[0.02] dark:bg-white/[0.02]">
         {[
           { id: 'intro', label: 'Intro' },
-          { id: 'skills', label: 'Skills & Passions' },
-          { id: 'achievements', label: 'Achievements' },
           { id: 'projects', label: 'Projects' },
+          { id: 'achievements', label: 'Achievements' },
+          { id: 'skills', label: 'Spectrum' },
           { id: 'contact', label: 'Opportunities' },
         ].map((item) => (
           <a

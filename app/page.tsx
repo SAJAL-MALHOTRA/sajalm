@@ -85,22 +85,16 @@ export default function Home() {
       {/* ── MAIN EDITORIAL SCROLLING CONTAINER ── */}
       <main className="relative z-10 w-full flex flex-col items-center px-3 sm:px-6">
         
-        {/* 1. Hero: "Hey, I'm Sajal." with Personality Pop-Up Card */}
+        {/* 0. Hero: Editorial Introduction & Operator Dossier */}
         <EditorialHero
           onOpenTerminal={() => setTerminalOpen(true)}
           onOpenPhotoZoom={() => setPhotoZoomOpen(true)}
         />
 
-        {/* 2. Flowing Ticker: Skills & Passions Streams */}
+        {/* Ambient Telemetry Stream */}
         <FlowingTicker />
 
-        {/* 3. The Dual Spectrum: Technical Arsenal + Creative Orbit */}
-        <DualSpectrum />
-
-        {/* 4. Dedicated Achievements Section: Pairfect 200+ users, CV top 7%, 220K+ reach */}
-        <AchievementsSection />
-
-        {/* 5. Comprehensive Projects Showcase (8 Shipped Systems) */}
+        {/* 01 // SHIPPED SYSTEMS: Engineering Portfolio (High Priority) */}
         <ProjectsSection
           onOpenProjectModal={(id) => {
             playModalOpen();
@@ -108,7 +102,13 @@ export default function Home() {
           }}
         />
 
-        {/* 6. Opportunities & Direct Dispatch Contact */}
+        {/* 02 // RECORDED IMPACT: Verified Achievements & Benchmarks */}
+        <AchievementsSection />
+
+        {/* 03 // THE DUAL SPECTRUM: Technical Arsenal + Creative Orbit */}
+        <DualSpectrum />
+
+        {/* 04 // OPPORTUNITIES & DISPATCH: Direct Contact Hub */}
         <OpportunitiesSection />
 
       </main>
