@@ -82,7 +82,7 @@ export default function Home() {
       <NavigationHeader onOpenTerminal={() => setTerminalOpen(true)} />
 
       {/* ── MAIN EDITORIAL SCROLLING CONTAINER ── */}
-      <main className="relative z-10 w-full flex flex-col items-center px-3 sm:px-0">
+      <main className="relative z-10 w-full flex flex-col items-center px-4 sm:px-6">
         
         {/* 0. Hero: Editorial Introduction & Operator Dossier */}
         <EditorialHero

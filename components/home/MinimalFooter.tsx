@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useSound } from '@/hooks/useSound';
 import InteractiveCat from '@/components/ui/InteractiveCat';
+import { ArrowUp } from 'lucide-react';
 
 const API_BASE = 'https://countapi.mileshilliard.com/api/v1';
 const KEY = 'sajal_malhotra_sajalm';
@@ -14,7 +15,6 @@ export default function MinimalFooter() {
   useEffect(() => {
     let isMounted = true;
 
-    // Load actual cached value if available (ignore legacy fabricated counts > 10000)
     const cached = typeof window !== 'undefined'
       ? localStorage.getItem('sajalm-visitor-count')
       : null;
@@ -47,7 +47,7 @@ export default function MinimalFooter() {
           }
         }
       } catch {
-        // Offline / network failure
+        // Offline / network fallback
       }
     }
 
@@ -61,44 +61,64 @@ export default function MinimalFooter() {
   }, []);
 
   return (
-    <footer className="w-full max-w-[690px] mx-auto z-30 pt-8 pb-8 px-3 sm:px-0 mt-12 font-sans text-xs sm:text-[13px] text-[#71717A] dark:text-[#A1A1AA] select-none shrink-0 space-y-6">
-      {/* ── TOP REPEATING DASHED LINE (RINKIT STYLE) ── */}
-      <div
-        className="w-full h-px opacity-70"
-        style={{
-          backgroundImage:
-            'repeating-linear-gradient(to right, var(--border-color) 0px, var(--border-color) 6px, transparent 6px, transparent 14px)',
-          backgroundSize: '100% 1px',
-          backgroundRepeat: 'no-repeat',
-        }}
-      />
+    <footer className="w-full max-w-[780px] mx-auto z-30 pt-10 pb-12 select-none shrink-0 space-y-8 font-mono text-xs px-4 sm:px-6">
+      
+      {/* ── THIN ARCHITECTURAL DIVIDER ── */}
+      <div className="w-full border-t border-[#E2E4E8] dark:border-[#22242B]" />
 
-      {/* ── INTERACTIVE CAT EASTER EGG (TOUCH TO PLAY DANCE & SONG) ── */}
-      <div className="w-full flex flex-col items-center justify-center pb-6 border-b border-[#E2E4E8]/60 dark:border-[#22242B]/60">
-        <InteractiveCat size={135} />
+      {/* ── CHARMING INTERACTIVE CAT (TOUCH TO DANCE, OPT-IN AUDIO) ── */}
+      <div className="w-full flex flex-col items-center justify-center pb-4">
+        <InteractiveCat size={110} />
       </div>
 
-      <div className="flex items-center justify-between">
+      {/* ── EDITORIAL SIGNATURE & CREATIVE THESIS ── */}
+      <div className="p-5 rounded-xl bg-white dark:bg-[#111216] border border-[#E2E4E8] dark:border-[#22242B] space-y-3 text-left">
+        <div className="text-[9.5px] uppercase tracking-widest text-[#71717A] dark:text-[#A1A1AA] font-bold">
+          06 // THE SIGNATURE · CREATIVE THESIS
+        </div>
+
+        <div className="space-y-1 font-sans">
+          <p className="text-sm sm:text-base font-bold text-[#09090B] dark:text-white leading-snug">
+            Precision in systems. Intention in everything.
+          </p>
+          <p className="text-xs text-[#52525B] dark:text-[#A1A1AA]">
+            An engineer by discipline. A creative by instinct. A builder by choice.
+          </p>
+        </div>
+
+        <div className="pt-2 border-t border-[#ECEEF2] dark:border-white/5 flex flex-col sm:flex-row sm:items-center justify-between text-[10.5px] text-[#71717A] dark:text-[#A1A1AA] gap-2">
+          <span>SAJAL MALHOTRA · JALANDHAR, INDIA</span>
+          <span>NIT JALANDHAR IT &apos;29 · CGPA 8.13</span>
+        </div>
+      </div>
+
+      {/* ── BOTTOM UTILITY STRIP ── */}
+      <div className="flex items-center justify-between text-[11px] text-[#71717A] dark:text-[#A1A1AA] pt-2">
         <div className="flex items-center">
           <span>Made with</span>
           <span className="text-[#EF4444] dark:text-[#F87171] mx-1 text-sm font-normal select-none">♡</span>
           <span>in Jalandhar.</span>
         </div>
 
-        <a
-          href="#intro"
-          onClick={playClick}
-          className="flex items-center gap-1 hover:text-[#09090B] dark:hover:text-white transition-colors cursor-pointer"
-          title="Scroll to Top"
-        >
-          {visitorCount ? (
-            <span>{visitorCount} visitors</span>
-          ) : (
-            <span>Top</span>
+        <div className="flex items-center gap-4">
+          {visitorCount && (
+            <span className="text-[10.5px] text-[#A1A1AA]">
+              {visitorCount} visitors
+            </span>
           )}
-          <span className="text-xs">↗</span>
-        </a>
+
+          <a
+            href="#intro"
+            onClick={playClick}
+            className="flex items-center gap-1 hover:text-[#09090B] dark:hover:text-white transition-colors cursor-pointer font-bold"
+            title="Scroll to Top"
+          >
+            <span>Top</span>
+            <ArrowUp size={11} />
+          </a>
+        </div>
       </div>
+
     </footer>
   );
 }

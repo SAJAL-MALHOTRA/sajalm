@@ -101,23 +101,44 @@ export default function DeveloperTerminal({ onOpenModalProject }: DeveloperTermi
     if (lowerCmd === 'clear' || lowerCmd === 'cls') {
       setLogs([]);
       return;
-    } else if (lowerCmd === 'projects' || lowerCmd === 'ls' || lowerCmd === 'cd /projects') {
+    } else if (lowerCmd === 'cat about' || lowerCmd === 'about' || lowerCmd === 'whoami' || lowerCmd === 'cd /') {
+      responseNode = (
+        <div className="space-y-1 text-xs text-[#9E9EA8] font-mono">
+          <div className="text-[#F4F4F6] font-semibold">Sajal Malhotra. IT undergraduate at NIT Jalandhar.</div>
+          <div className="text-[#EDEDED]">Engineer by discipline. Creative by instinct. Builder by choice.</div>
+          <div className="text-[#62636C] pt-1">Software engineering, applied machine learning and creative direction.</div>
+        </div>
+      );
+    } else if (lowerCmd === 'ls projects' || lowerCmd === 'projects' || lowerCmd === 'ls' || lowerCmd === 'cd /projects') {
       responseNode = (
         <div className="space-y-2 pt-1 font-mono text-xs">
-          <div className="font-semibold text-white">Featured Projects</div>
-          <div className="space-y-1">
-            {projects.map((p) => (
-              <div key={p.id} className="flex justify-between items-center text-[#9E9EA8]">
-                <span>
-                  <span className="text-white font-medium">{p.id}</span> {p.name}
-                </span>
-                <span className="text-[#30A46C]">{p.status}</span>
-              </div>
-            ))}
+          <div className="font-semibold text-white">sajal@portfolio:~$ ls projects</div>
+          <div className="text-emerald-400 font-mono tracking-wide">
+            pairfect/&nbsp;&nbsp;&nbsp;&nbsp;cybernauts-arena/&nbsp;&nbsp;&nbsp;&nbsp;dsa-lecture-rag/&nbsp;&nbsp;&nbsp;&nbsp;cv-challenge/
           </div>
           <div className="text-[#62636C] text-[11px] pt-1">
-            Type &apos;open PRJ-01&apos; or &apos;open [name]&apos; to view architecture spec.
+            Type &apos;open PRJ-01&apos; or &apos;open pairfect&apos; to view architecture dossier.
           </div>
+        </div>
+      );
+    } else if (lowerCmd === 'fetch resume' || lowerCmd === 'resume') {
+      if (typeof window !== 'undefined') {
+        window.open(profile.links.resume, '_blank');
+      }
+      responseNode = (
+        <div className="space-y-1 text-xs text-emerald-400 font-mono">
+          <div>[200 OK] Fetching verified curriculum vitae...</div>
+          <div className="text-[#9E9EA8]">Opened resume PDF in a new tab.</div>
+        </div>
+      );
+    } else if (lowerCmd === 'ping stats' || lowerCmd === 'stats') {
+      responseNode = (
+        <div className="space-y-1.5 pt-1 font-mono text-xs text-[#9E9EA8]">
+          <div className="font-semibold text-white">Verified Public Telemetry:</div>
+          <div><span className="text-emerald-400 font-bold">NIT Jalandhar:</span> B.Tech IT &apos;29 · CGPA 8.13</div>
+          <div><span className="text-emerald-400 font-bold">Pairfect:</span> 200+ registered campus pilot users</div>
+          <div><span className="text-emerald-400 font-bold">National CV Challenge:</span> #16 of 227 (Top 7%, 0.211 Score)</div>
+          <div><span className="text-emerald-400 font-bold">Creative Reach:</span> 220,000+ monthly impressions across media</div>
         </div>
       );
     } else if (lowerCmd.startsWith('open ')) {
@@ -131,26 +152,17 @@ export default function DeveloperTerminal({ onOpenModalProject }: DeveloperTermi
       if (proj) {
         if (onOpenModalProject) onOpenModalProject(proj.id);
         responseNode = (
-          <div className="space-y-1 text-xs text-[#30A46C]">
-            <div>Opening architecture spec: {proj.id} ({proj.name})</div>
+          <div className="space-y-1 text-xs text-emerald-400 font-mono">
+            <div>Opening architecture dossier: {proj.id} ({proj.name})</div>
           </div>
         );
       } else {
         responseNode = (
-          <div className="text-xs text-red-400">
-            Project &apos;{targetQuery}&apos; not found. Type &apos;projects&apos; for list.
+          <div className="text-xs text-red-400 font-mono">
+            Project &apos;{targetQuery}&apos; not found. Type &apos;ls projects&apos; for list.
           </div>
         );
       }
-    } else if (lowerCmd === 'about' || lowerCmd === 'whoami' || lowerCmd === 'cd /') {
-      responseNode = (
-        <div className="space-y-1 text-xs text-[#9E9EA8]">
-          <div className="text-[#F4F4F6] font-semibold">{profile.fullName} ({profile.name})</div>
-          <div>Role: ML Engineer &amp; Full-Stack Builder</div>
-          <div>Institution: NIT Jalandhar (IT &apos;29)</div>
-          <div className="text-[#F4F4F6] pt-1">{profile.description}</div>
-        </div>
-      );
     } else if (lowerCmd === 'contact' || lowerCmd === 'email' || lowerCmd === 'reach') {
       responseNode = (
         <div className="space-y-1.5 pt-1 font-mono text-xs text-[#9E9EA8]">
@@ -301,7 +313,7 @@ export default function DeveloperTerminal({ onOpenModalProject }: DeveloperTermi
       <div className="absolute bottom-2 sm:bottom-3 left-2.5 right-2.5 sm:left-4 sm:right-4 border-t border-white/[0.06] pt-2 sm:pt-3 bg-[#111216]">
         <div className="flex items-center gap-1 sm:gap-1.5 text-xs flex-wrap">
           <span className="text-[#62636C] text-[10px] sm:text-[11px]">Run:</span>
-          {['whoami', 'projects', 'skills', 'experience', 'contact', 'clear', 'help'].map((cmd) => (
+          {['cat about', 'ls projects', 'fetch resume', 'ping stats', 'contact', 'clear'].map((cmd) => (
             <button
               key={cmd}
               onClick={(e) => {
