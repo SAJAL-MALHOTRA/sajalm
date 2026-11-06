@@ -17,10 +17,10 @@ export default function ProjectsSection({ onOpenProjectModal }: ProjectsSectionP
   const filteredProjects = projects.filter((project) => {
     if (filter === 'all') return true;
     if (filter === 'systems') {
-      return ['PRJ-01', 'PRJ-03', 'PRJ-06'].includes(project.id);
+      return ['PRJ-01', 'PRJ-03', 'PRJ-06', 'PRJ-08'].includes(project.id);
     }
     if (filter === 'ai') {
-      return ['PRJ-02', 'PRJ-05', 'PRJ-04', 'PRJ-08', 'PRJ-07'].includes(project.id);
+      return ['PRJ-02', 'PRJ-05', 'PRJ-04', 'PRJ-07'].includes(project.id);
     }
     return true;
   });
