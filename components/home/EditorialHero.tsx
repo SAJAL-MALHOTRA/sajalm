@@ -36,23 +36,41 @@ export default function EditorialHero({
         <div className="lg:col-span-7 space-y-5 text-left">
           
           <div className="space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 border border-emerald-500/30 text-[10.5px] font-mono font-medium tracking-wide">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span>OPEN FOR SWE &amp; AI INFERENCE INTERNSHIPS (SUMMER &apos;26)</span>
+            <div className="flex items-center gap-3 flex-wrap">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 border border-emerald-500/30 text-[10.5px] font-mono font-medium tracking-wide">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span>OPEN FOR SWE &amp; ML OPPORTUNITIES (SUMMER &apos;26)</span>
+              </div>
+
+              {/* Playful "HIRE ME" Handwritten Arrow (Rinkit Style) */}
+              <div className="flex items-center gap-1 select-none">
+                <svg width="28" height="28" viewBox="0 0 512 512" fill="none" className="rotate-12 text-[#71717A] dark:text-[#A1A1AA] shrink-0">
+                  <path d="M 437 441 Q 363 418, 264 351 Q 198 295, 160 225 Q 138 178, 122 119" stroke="currentColor" strokeWidth="28" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                  <path d="M 161 149 L 125 73" stroke="currentColor" strokeWidth="28" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                  <path d="M 123 71 L 83 148" stroke="currentColor" strokeWidth="28" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                </svg>
+                <a
+                  href={`mailto:${profile.email}`}
+                  className="font-bold text-base sm:text-lg text-[#71717A] dark:text-[#A1A1AA] hover:text-[#09090B] dark:hover:text-white hover:scale-110 transition-transform tracking-wider"
+                  style={{ fontFamily: "'Caveat', cursive, sans-serif" }}
+                >
+                  HIRE ME
+                </a>
+              </div>
             </div>
 
             <div className="space-y-1">
-              <h1 className="text-3xl sm:text-5xl lg:text-[58px] font-sans font-black tracking-tight text-[#09090B] dark:text-white leading-[1.08]">
-                Architecting intelligent systems with mechanical rigor and human conviction.
+              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-sans font-black tracking-tight text-[#09090B] dark:text-white leading-[1.05]">
+                Hey, I&apos;m Sajal.
               </h1>
               <p className="text-xs sm:text-sm font-mono text-[#71717A] dark:text-[#A1A1AA] pt-1">
-                SAJAL MALHOTRA // NIT JALANDHAR · SOFTWARE &amp; APPLIED ML
+                SOFTWARE ENGINEER &amp; APPLIED ML · NIT JALANDHAR &apos;29
               </p>
             </div>
           </div>
 
-          <p className="text-base sm:text-[17px] text-[#3F3F46] dark:text-[#D4D4D8] leading-relaxed font-sans font-normal">
-            I build deep-tier distributed backends, sub-50ms inference pipelines, and autonomous agents where mathematical precision meets high-craft aesthetics. By daylight, exploring hybrid retrieval and low-latency systems. After hours, navigating creative direction, fashion modeling, and high-conviction design.
+          <p className="text-base sm:text-lg text-[#3F3F46] dark:text-[#D4D4D8] leading-relaxed font-sans font-normal">
+            I&apos;m a software engineer and applied ML builder at NIT Jalandhar. I love building clean, fast systems and modern products where design, low latency, and even the smallest details matter. Outside code, I explore creative direction and runway modeling. Always open to new engineering roles and interesting work.
           </p>
 
           {/* Quick Manifesto Badges (Immediate Proof of Impact) */}

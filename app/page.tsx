@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import NavigationHeader from '@/components/home/NavigationHeader';
 import EditorialHero from '@/components/home/EditorialHero';
+import SocialsAndGithubCalendar from '@/components/home/SocialsAndGithubCalendar';
 import ProjectsSection from '@/components/home/ProjectsSection';
 import DualSpectrum from '@/components/home/DualSpectrum';
 import OpportunitiesSection from '@/components/home/OpportunitiesSection';
@@ -89,7 +90,10 @@ export default function Home() {
           onOpenPhotoZoom={() => setPhotoZoomOpen(true)}
         />
 
-        {/* 01 // SHIPPED SYSTEMS: Engineering Portfolio (High Priority) */}
+        {/* 01 // SOCIALS & GITHUB ACTIVITY CALENDAR (SEAMLESS IN LIGHT & DARK MODE) */}
+        <SocialsAndGithubCalendar />
+
+        {/* 02 // SHIPPED SYSTEMS: 4-Card Flagship Showcase */}
         <ProjectsSection
           onOpenProjectModal={(id) => {
             playModalOpen();

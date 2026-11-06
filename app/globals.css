@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -18,6 +19,7 @@
     --color-text-muted: #71717A;
     --color-chassis-bg: #FFFFFF;
     --color-border-main: #E2E4E8;
+    --border-color: #E4E4E7;
     --color-scrollbar-thumb: #D1D5DB;
     --color-scrollbar-hover: #9CA3AF;
   }
@@ -30,6 +32,7 @@
     --color-text-muted: #71717A;
     --color-chassis-bg: #0E0F12;
     --color-border-main: #22242A;
+    --border-color: #27272A;
     --color-scrollbar-thumb: #27272A;
     --color-scrollbar-hover: #3F3F46;
   }
