@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { sajalContributionsData, DayContribution } from '@/data/githubContributions';
 import { profile } from '@/data/profile';
 import { useSound } from '@/hooks/useSound';
-import { FileText, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
 // Official GitHub green color tokens for the contribution calendar
 const LIGHT_COLORS: Record<number, string> = {
@@ -37,6 +37,7 @@ const MONTH_LABELS = [
   { label: 'Aug', x: 475 },
   { label: 'Sep', x: 537.5 },
   { label: 'Oct', x: 587.5 },
+  { label: 'Nov', x: 650 },
 ];
 
 export default function SocialsAndGithubCalendar() {
@@ -103,15 +104,15 @@ export default function SocialsAndGithubCalendar() {
 
     return (
       <svg
-        width="685"
+        width="665"
         height="116"
-        viewBox="0 0 685 116"
-        className="w-[685px] h-[116px] select-none block shrink-0"
+        viewBox="0 0 665 116"
+        className="w-[665px] h-[116px] select-none block shrink-0"
       >
         {/* Month labels */}
         <g className="text-[10px] font-mono fill-[#71717A] dark:fill-[#A1A1AA]">
           {MONTH_LABELS.map((m) => (
-            <text key={m.label} x={m.x} y="11" textAnchor="start">
+            <text key={`${m.label}-${m.x}`} x={m.x} y="11" textAnchor="start">
               {m.label}
             </text>
           ))}
@@ -170,13 +171,13 @@ export default function SocialsAndGithubCalendar() {
       {/* ── THIN ARCHITECTURAL DIVIDER ── */}
       <div className="w-full border-t border-[#E2E4E8] dark:border-[#22242B]" />
 
-      {/* ── RESTRAINED SOCIAL CHANNELS ── */}
+      {/* ── SOCIAL CHANNELS & PROFILES ── */}
       <div className="flex flex-col gap-2.5">
         <h2 className="text-xs font-mono uppercase tracking-widest text-[#71717A] dark:text-[#A1A1AA]">
-          02 // PROOF OF WORK · CHANNELS &amp; VERIFIED ACTIVITY
+          01 // ACTIVITY &amp; SOCIALS
         </h2>
 
-        {/* Restrained Social Links (GitHub, LinkedIn, X, LeetCode, Email) */}
+        {/* Social Links (GitHub, LinkedIn, X) */}
         <div className="flex items-center gap-2 flex-wrap">
           {/* GitHub */}
           <a
@@ -219,48 +220,43 @@ export default function SocialsAndGithubCalendar() {
             </svg>
             <span>X (Twitter)</span>
           </a>
-
-          {/* Resume PDF */}
-          <a
-            href={profile.links.resume}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={playClick}
-            className="flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-[#121316] hover:bg-[#F4F4F6] dark:hover:bg-[#1C1D22] border border-[#E2E4E8] dark:border-[#22242B] rounded-lg text-xs font-mono text-[#09090B] dark:text-[#EDEDED] transition-colors shadow-2xs ml-auto"
-          >
-            <FileText size={12} />
-            <span>Resume</span>
-            <ArrowUpRight size={11} className="text-[#71717A] dark:text-[#A1A1AA]" />
-          </a>
         </div>
       </div>
 
-      {/* ── MONOCHROME GITHUB ACTIVITY CALENDAR (VERIFIED DATA) ── */}
+      {/* ── GITHUB ACTIVITY CALENDAR ── */}
       <div className="w-full p-4 rounded-xl bg-white dark:bg-[#121316] border border-[#E2E4E8] dark:border-[#22242B] flex flex-col gap-3 shadow-2xs">
         <div className="flex items-center justify-between text-xs font-mono text-[#71717A] dark:text-[#A1A1AA]">
           <span className="font-semibold text-[#09090B] dark:text-[#EDEDED]">
-            GitHub Activity · Verified History
+            GitHub Contributions
           </span>
           <span className="text-[11px]">
-            {data.total} recorded contributions
+            {data.total} contributions in the last year
           </span>
         </div>
 
         <div className="w-full overflow-x-auto no-scrollbar pb-1 touch-pan-x overscroll-x-contain">
           {/* Light Mode SVG (Statically locked geometry to prevent layout shift) */}
-          <div className="block dark:hidden w-[685px] h-[116px] shrink-0">
+          <div className="block dark:hidden w-[665px] h-[116px] shrink-0 mx-auto">
             {renderCalendarSvg(false)}
           </div>
 
           {/* Dark Mode SVG (Statically locked geometry to prevent layout shift) */}
-          <div className="hidden dark:block w-[685px] h-[116px] shrink-0">
+          <div className="hidden dark:block w-[665px] h-[116px] shrink-0 mx-auto">
             {renderCalendarSvg(true)}
           </div>
         </div>
 
-        {/* Legend */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between text-[10.5px] sm:text-[11px] font-mono text-[#71717A] dark:text-[#A1A1AA] pt-2 border-t border-[#ECEEF2] dark:border-white/5 gap-1.5">
-          <span>Continuous code history across public repositories</span>
+        {/* Clean Footer Strip */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between text-[11px] font-mono text-[#71717A] dark:text-[#A1A1AA] pt-2 border-t border-[#ECEEF2] dark:border-white/5 gap-1.5">
+          <a
+            href={profile.links.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:underline flex items-center gap-1 hover:text-[#09090B] dark:hover:text-white transition-colors"
+          >
+            <span>@SAJAL-MALHOTRA on GitHub</span>
+            <ArrowUpRight size={11} />
+          </a>
 
           <div className="flex items-center gap-1.5 text-[10.5px]">
             <span>Less</span>

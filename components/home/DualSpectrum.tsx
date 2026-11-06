@@ -122,8 +122,8 @@ export default function DualSpectrum() {
       {/* ── SECTION HEADER & TWO-STATE INTERACTIVE MATRIX SWITCHER ── */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-[#E2E4E8] dark:border-[#22242A] pb-3 gap-3">
         <div className="space-y-1">
-          <div className="text-[9.5px] font-mono text-[#71717A] dark:text-[#A1A1AA] uppercase tracking-widest">
-            04 // THE DUAL SPECTRUM · TWO SIDES. ONE PERSPECTIVE.
+          <div className="text-[10px] font-mono text-[#71717A] dark:text-[#A1A1AA] uppercase tracking-widest font-semibold">
+            03 // PERSPECTIVE &amp; DISCIPLINE
           </div>
           <h2 className="text-xl sm:text-2xl font-black font-sans text-[#09090B] dark:text-white tracking-tight">
             Two sides. One perspective.

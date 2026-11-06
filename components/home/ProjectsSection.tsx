@@ -85,8 +85,8 @@ export default function ProjectsSection({ onOpenProjectModal }: ProjectsSectionP
       <div className="w-full space-y-3">
         <div className="flex items-end justify-between border-b border-[#E2E4E8] dark:border-[#22242B] pb-3">
           <div>
-            <div className="text-[9.5px] font-mono text-[#71717A] dark:text-[#A1A1AA] uppercase tracking-widest">
-              03 // THE EVIDENCE · SHIPPED SYSTEMS
+            <div className="text-[10px] font-mono text-[#71717A] dark:text-[#A1A1AA] uppercase tracking-widest font-semibold">
+              02 // FEATURED SYSTEMS
             </div>
             <h2 className="text-xl sm:text-2xl font-black font-sans tracking-tight text-[#09090B] dark:text-white pt-1">
               Selected systems.
