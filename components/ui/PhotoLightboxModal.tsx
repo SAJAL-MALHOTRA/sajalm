@@ -38,7 +38,7 @@ export default function PhotoLightboxModal({ isOpen, onClose }: PhotoLightboxMod
             className="relative flex flex-col items-center cursor-default max-w-sm sm:max-w-md w-full"
           >
             {/* Image Frame with Distinct White Border & Viewfinder Reticles */}
-            <div className="relative w-full aspect-square rounded-2xl overflow-hidden border-2 border-white shadow-[0_0_50px_rgba(255,255,255,0.25)] bg-[#0A0B0E]">
+            <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden border-2 border-white shadow-[0_0_50px_rgba(255,255,255,0.25)] bg-[#0A0B0E]">
               {/* Precision Tactical Viewfinder Corner Reticles */}
               <span className="absolute top-2.5 left-2.5 w-4 h-4 border-t-2 border-l-2 border-white z-20 pointer-events-none" />
               <span className="absolute top-2.5 right-2.5 w-4 h-4 border-t-2 border-r-2 border-white z-20 pointer-events-none" />
@@ -58,7 +58,7 @@ export default function PhotoLightboxModal({ isOpen, onClose }: PhotoLightboxMod
               <img
                 src={getAssetPath('/avatar.png')}
                 alt={profile.name}
-                className="w-full h-full object-cover object-top contrast-[1.03] brightness-100"
+                className="w-full h-full object-cover object-[center_25%] contrast-[1.03] brightness-100"
               />
 
               {/* Bottom Spec Bar */}

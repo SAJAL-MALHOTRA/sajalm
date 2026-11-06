@@ -27,38 +27,18 @@ export default function EditorialHero({
   const { playClick, playHover } = useSound();
 
   return (
-    <section id="intro" className="relative w-full max-w-5xl py-6 sm:py-10 space-y-8 select-none">
+    <section id="intro" className="relative w-full max-w-5xl pt-4 sm:pt-6 pb-6 sm:pb-10 space-y-6 select-none">
       
-      {/* ── TOP BADGE & LIVE DISPATCH STATUS ── */}
-      <div className="flex flex-wrap items-center justify-between gap-3 text-xs font-mono border-b border-[#E2E4E8] dark:border-[#22242A] pb-3">
-        <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span className="text-[#09090B] dark:text-white font-bold tracking-wider text-[11px]">
-            SAJAL MALHOTRA // NIT JALANDHAR
-          </span>
-          <span className="text-[#A1A1AA] hidden sm:inline">•</span>
-          <span className="text-[#71717A] text-[10.5px] hidden sm:inline">
-            B.TECH IT · BATCH 2025–2029 (CGPA: 8.13)
-          </span>
-        </div>
-
-        <div className="flex items-center gap-2 font-mono text-[10px]">
-          <span className="px-2.5 py-0.5 rounded bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 border border-emerald-500/30 font-medium">
-            ● ACTIVELY SEEKING INTERNSHIPS &amp; SWE/ML ROLES
-          </span>
-        </div>
-      </div>
-
       {/* ── TWO-COLUMN HERO: CLEAR NARRATIVE & VISUAL ANCHOR ── */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
         
         {/* Left Column (7 cols): Main Typography & Manifesto */}
         <div className="lg:col-span-7 space-y-5 text-left">
           
-          <div className="space-y-2">
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-[10.5px] font-mono text-[#52525B] dark:text-[#A1A1AA]">
+          <div className="space-y-2.5">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 border border-emerald-500/30 text-[10.5px] font-mono font-medium">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span>A REFLECTION OF WHO I AM</span>
+              <span>OPEN TO SWE &amp; ML OPPORTUNITIES (SUMMER &apos;26)</span>
             </div>
 
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-sans font-black tracking-tight text-[#09090B] dark:text-white leading-[1.05]">
@@ -159,8 +139,8 @@ export default function EditorialHero({
               </span>
             </div>
 
-            {/* Prominent Editorial Portrait */}
-            <div className="relative group rounded-xl overflow-hidden border border-[#E2E4E8] dark:border-[#22242B] bg-[#F1F2F5] dark:bg-[#0A0B0E]">
+            {/* Prominent Editorial Portrait (Natural 4:5 Aspect Ratio) */}
+            <div className="relative group rounded-xl overflow-hidden border border-[#E2E4E8] dark:border-[#22242B] bg-[#0A0B0E]">
               <button
                 onClick={() => {
                   playClick();
@@ -168,7 +148,7 @@ export default function EditorialHero({
                 }}
                 onMouseEnter={playHover}
                 title="Click to zoom portrait"
-                className="w-full h-52 sm:h-56 block relative cursor-pointer"
+                className="w-full aspect-[4/5] max-h-[400px] block relative cursor-pointer overflow-hidden"
               >
                 <img
                   src={getAssetPath('/avatar.png')}
@@ -176,24 +156,25 @@ export default function EditorialHero({
                   loading="eager"
                   fetchPriority="high"
                   decoding="async"
-                  className="w-full h-full object-cover object-top contrast-[1.03] group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover object-[center_25%] contrast-[1.03] group-hover:scale-105 transition-transform duration-500"
                 />
                 
                 {/* Subtle Hover Reveal */}
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/90 text-black text-xs font-mono font-bold shadow-lg">
+                <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/95 text-black text-xs font-mono font-bold shadow-lg">
                     <Maximize2 size={12} />
                     <span>Zoom Portrait</span>
                   </div>
                 </div>
 
-                {/* Status Overlay Pill */}
-                <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between px-2.5 py-1.5 rounded-lg bg-black/80 dark:bg-black/90 backdrop-blur-md text-white border border-white/20 text-[10.5px] font-mono">
-                  <div className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    <span className="font-semibold text-emerald-300">Open for Summer &apos;26 &amp; Co-ops</span>
-                  </div>
-                  <span className="text-white/70 text-[9.5px]">NITJ IT</span>
+                {/* Status Badges in the Upper Night Sky (No Face Obscuration) */}
+                <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-black/75 dark:bg-black/85 backdrop-blur-md border border-white/20 text-white font-mono text-[10px] flex items-center gap-1.5 shadow-md">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="font-semibold text-emerald-300">Open for Summer &apos;26 &amp; Co-ops</span>
+                </div>
+
+                <div className="absolute top-3 right-3 px-2 py-1 rounded-md bg-black/75 dark:bg-black/85 backdrop-blur-md border border-white/20 text-white/80 font-mono text-[9px] font-bold">
+                  NITJ &apos;29
                 </div>
               </button>
             </div>
