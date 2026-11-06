@@ -103,10 +103,10 @@ export default function SocialsAndGithubCalendar() {
 
     return (
       <svg
-        width="100%"
-        height="100%"
+        width="685"
+        height="116"
         viewBox="0 0 685 116"
-        className="overflow-visible select-none"
+        className="w-[685px] h-[116px] select-none block shrink-0"
       >
         {/* Month labels */}
         <g className="text-[10px] font-mono fill-[#71717A] dark:fill-[#A1A1AA]">
@@ -140,7 +140,11 @@ export default function SocialsAndGithubCalendar() {
                 data-date={item.date}
                 data-count={item.count}
                 data-level={item.level}
-                className="hover:opacity-75 transition-opacity duration-200 cursor-pointer outline-none"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                }}
+                className="hover:opacity-75 transition-opacity duration-150 cursor-pointer outline-none"
                 onMouseEnter={(e) => {
                   playHover();
                   const rect = e.currentTarget.getBoundingClientRect();
@@ -242,14 +246,14 @@ export default function SocialsAndGithubCalendar() {
           </span>
         </div>
 
-        <div className="w-full overflow-x-auto no-scrollbar pb-1 touch-pan-x">
-          {/* Light Mode SVG */}
-          <div className="block dark:hidden min-w-[660px]">
+        <div className="w-full overflow-x-auto no-scrollbar pb-1 touch-pan-x overscroll-x-contain">
+          {/* Light Mode SVG (Statically locked geometry to prevent layout shift) */}
+          <div className="block dark:hidden w-[685px] h-[116px] shrink-0">
             {renderCalendarSvg(false)}
           </div>
 
-          {/* Dark Mode SVG */}
-          <div className="hidden dark:block min-w-[660px]">
+          {/* Dark Mode SVG (Statically locked geometry to prevent layout shift) */}
+          <div className="hidden dark:block w-[685px] h-[116px] shrink-0">
             {renderCalendarSvg(true)}
           </div>
         </div>
@@ -289,13 +293,13 @@ export default function SocialsAndGithubCalendar() {
         </div>
       </div>
 
-      {/* ── FLOATING TOOLTIP ── */}
+      {/* ── FLOATING TOOLTIP (VIEWPORT BOUNDED TO PREVENT SCROLLBAR FLICKER) ── */}
       {tooltip && (
         <div
-          className="fixed pointer-events-none z-50 -translate-x-1/2 -translate-y-full mb-2 px-2.5 py-1 rounded bg-[#09090B] text-white dark:bg-white dark:text-[#09090B] text-[11px] font-mono shadow-lg font-medium whitespace-nowrap"
+          className="fixed pointer-events-none z-50 -translate-x-1/2 -translate-y-full px-2.5 py-1 rounded bg-[#09090B] text-white dark:bg-white dark:text-[#09090B] text-[11px] font-mono shadow-lg font-medium whitespace-nowrap"
           style={{
-            left: `${tooltip.x}px`,
-            top: `${tooltip.y - 8}px`,
+            left: `${Math.max(80, Math.min(typeof window !== 'undefined' ? window.innerWidth - 80 : 500, tooltip.x))}px`,
+            top: `${tooltip.y - 10}px`,
           }}
         >
           <span>

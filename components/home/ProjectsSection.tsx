@@ -108,7 +108,7 @@ export default function ProjectsSection({ onOpenProjectModal }: ProjectsSectionP
               onOpenProjectModal(project.id);
             }}
             onMouseEnter={playHover}
-            className="p-4 sm:p-5 rounded-xl bg-white dark:bg-[#111216] border border-[#E2E4E8] dark:border-[#22242B] hover:border-black/30 dark:hover:border-white/30 transition-all cursor-pointer group flex flex-col justify-between shadow-2xs space-y-3.5"
+            className="p-4 sm:p-5 rounded-xl bg-white dark:bg-[#111216] border border-[#E2E4E8] dark:border-[#22242B] hover:border-black/30 dark:hover:border-white/30 transition-colors duration-200 cursor-pointer group flex flex-col justify-between shadow-2xs space-y-3.5"
           >
             {/* Top Index & Status Line */}
             <div className="flex items-center justify-between text-xs font-mono">
