@@ -13,7 +13,6 @@ import {
   Network,
   GitBranch,
   Terminal,
-  Music,
 } from 'lucide-react';
 
 export default function DualSpectrum() {
@@ -90,29 +89,6 @@ export default function DualSpectrum() {
       icon: <Disc3 size={13} className="text-[#71717A] dark:text-[#A1A1AA]" />,
       detail: 'What stays on repeat while designing systems late into the night. R&B, ambient electronic textures, and hip-hop.',
       tags: ['Frank Ocean', 'Aphex Twin', 'Travis Scott', 'Dijon'],
-    },
-  ];
-
-  const audioRotations = [
-    {
-      artist: 'Frank Ocean',
-      tracks: 'White Ferrari · Nights · In My Room',
-      mood: 'Late-night design and focus',
-    },
-    {
-      artist: 'Aphex Twin',
-      tracks: '#3 (Rhubarb) · Alberto Balsalm · Avril 14th',
-      mood: 'Ambient, algorithmic focus',
-    },
-    {
-      artist: 'Travis Scott',
-      tracks: 'Telekinesis · My Eyes · Skeletons',
-      mood: 'High-tempo building sessions',
-    },
-    {
-      artist: 'Dijon',
-      tracks: 'The Dress · Many Times · Big Mike\'s',
-      mood: 'Warm analog soul and songwriting',
     },
   ];
 
@@ -259,39 +235,6 @@ export default function DualSpectrum() {
                 </div>
               </div>
             ))}
-          </div>
-
-          {/* Clean Listening Rotation */}
-          <div className="p-4 sm:p-5 rounded-xl bg-white dark:bg-[#111216] border border-[#E2E4E8] dark:border-[#22242B] space-y-3 shadow-2xs">
-            <div className="flex items-center justify-between font-mono text-[10px] text-[#71717A] dark:text-[#A1A1AA] uppercase tracking-wider font-bold">
-              <span className="flex items-center gap-1.5">
-                <Music size={13} className="text-emerald-500" />
-                <span>CURRENT LISTENING ROTATION // FOCUS SOUNDTRACKS</span>
-              </span>
-              <span>4 ROTATIONS</span>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
-              {audioRotations.map((track) => (
-                <div
-                  key={track.artist}
-                  className="p-3 rounded-lg bg-[#F9F9FB] dark:bg-[#16181F] border border-[#E2E4E8] dark:border-[#22242B] space-y-1"
-                >
-                  <div className="flex items-center justify-between text-xs font-bold text-[#09090B] dark:text-white font-mono">
-                    <span>{track.artist}</span>
-                    <span className="text-[9px] px-1.5 py-0.2 rounded bg-black/5 dark:bg-white/5 text-[#71717A] dark:text-[#A1A1AA]">
-                      ACTIVE
-                    </span>
-                  </div>
-                  <div className="text-[11px] font-mono text-emerald-700 dark:text-emerald-400">
-                    {track.tracks}
-                  </div>
-                  <div className="text-[10px] text-[#71717A] dark:text-[#A1A1AA] font-sans">
-                    {track.mood}
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
 
         </div>

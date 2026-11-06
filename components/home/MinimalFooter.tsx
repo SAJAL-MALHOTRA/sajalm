@@ -61,63 +61,101 @@ export default function MinimalFooter() {
   }, []);
 
   return (
-    <footer className="w-full max-w-[780px] mx-auto z-30 pt-10 pb-12 select-none shrink-0 space-y-8 font-mono text-xs px-4 sm:px-6">
+    <footer className="w-full max-w-[780px] mx-auto z-30 pt-4 pb-12 select-none shrink-0 space-y-8 px-4 sm:px-6">
       
-      {/* ── THIN ARCHITECTURAL DIVIDER ── */}
-      <div className="w-full border-t border-[#E2E4E8] dark:border-[#22242B]" />
+      {/* ── 05 SECTION: THE COLOPHON & SIGNATURE (MATCHING SECTION 04 ARCHITECTURE) ── */}
+      <section id="colophon" className="w-full text-left space-y-6">
+        
+        {/* Section Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-[#E2E4E8] dark:border-[#22242B] pb-3 gap-3">
+          <div className="space-y-1">
+            <div className="text-[10px] font-mono text-[#71717A] dark:text-[#A1A1AA] uppercase tracking-widest font-semibold">
+              05 // THE COLOPHON &amp; SIGNATURE
+            </div>
+            <h2 className="text-xl sm:text-2xl font-bold font-sans text-[#09090B] dark:text-white tracking-tight">
+              Precision in systems. Intention in everything.
+            </h2>
+          </div>
+
+          <span className="text-xs font-mono text-[#71717A] dark:text-[#A1A1AA] self-start sm:self-auto">
+            SAJAL MALHOTRA · 2026
+          </span>
+        </div>
+
+        <p className="text-sm text-[#52525B] dark:text-[#A1A1AA] font-sans leading-relaxed max-w-2xl">
+          An engineer by discipline. A creative by instinct. A builder by choice. Developing systems with architectural integrity and visual clarity.
+        </p>
+
+        {/* Symmetrical 2-Card Grid (Exact Match to Section 04) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          
+          {/* Card 1: Education & Location */}
+          <div className="p-5 rounded-xl bg-white dark:bg-[#111216] border border-[#E2E4E8] dark:border-[#22242B] space-y-4 shadow-2xs flex flex-col justify-between hover:border-black/30 dark:hover:border-white/30 transition-all">
+            <div className="space-y-2">
+              <div className="flex items-center justify-between text-[9.5px] font-mono text-[#71717A] uppercase font-bold">
+                <span>01 // EDUCATION &amp; LOCATION</span>
+                <span className="text-emerald-600 dark:text-emerald-400">● B.TECH IT &apos;29</span>
+              </div>
+
+              <h3 className="text-base font-bold text-[#09090B] dark:text-white font-sans">
+                NIT Jalandhar
+              </h3>
+
+              <p className="text-xs text-[#52525B] dark:text-[#A1A1AA] leading-relaxed font-sans">
+                Dr. B. R. Ambedkar National Institute of Technology Jalandhar (Punjab, India). Focus on distributed architecture, algorithms, and applied machine learning.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-1.5 pt-3 border-t border-[#ECEEF2] dark:border-white/5 font-mono text-[10.5px]">
+              <span className="px-2 py-0.5 rounded-md bg-[#F4F4F6] dark:bg-[#18191E] border border-[#E2E4E8] dark:border-[#27272A] text-[#09090B] dark:text-[#EDEDED]">
+                CGPA 8.13
+              </span>
+              <span className="px-2 py-0.5 rounded-md bg-[#F4F4F6] dark:bg-[#18191E] border border-[#E2E4E8] dark:border-[#27272A] text-[#09090B] dark:text-[#EDEDED]">
+                Jalandhar, Punjab
+              </span>
+              <span className="px-2 py-0.5 rounded-md bg-[#F4F4F6] dark:bg-[#18191E] border border-[#E2E4E8] dark:border-[#27272A] text-[#09090B] dark:text-[#EDEDED]">
+                Class of 2029
+              </span>
+            </div>
+          </div>
+
+          {/* Card 2: Colophon & Technical Spec */}
+          <div className="p-5 rounded-xl bg-white dark:bg-[#111216] border border-[#E2E4E8] dark:border-[#22242B] space-y-4 shadow-2xs flex flex-col justify-between hover:border-black/30 dark:hover:border-white/30 transition-all">
+            <div className="space-y-2">
+              <div className="flex items-center justify-between text-[9.5px] font-mono text-[#71717A] uppercase font-bold">
+                <span>02 // COLOPHON &amp; SPECIFICATION</span>
+                <span className="text-[#71717A] dark:text-[#A1A1AA]">VERIFIED SPEC</span>
+              </div>
+
+              <h3 className="text-base font-bold text-[#09090B] dark:text-white font-sans">
+                Next.js · TypeScript · Tailwind CSS
+              </h3>
+
+              <p className="text-xs text-[#52525B] dark:text-[#A1A1AA] leading-relaxed font-sans">
+                Architected with Next.js 16, TypeScript, Tailwind CSS, and Web Audio API. Strictly two complementary typefaces: Inter and JetBrains Mono.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-1.5 pt-3 border-t border-[#ECEEF2] dark:border-white/5 font-mono text-[10.5px]">
+              <span className="px-2 py-0.5 rounded-md bg-[#F4F4F6] dark:bg-[#18191E] border border-[#E2E4E8] dark:border-[#27272A] text-[#09090B] dark:text-[#EDEDED]">
+                Inter &amp; JetBrains Mono
+              </span>
+              <span className="px-2 py-0.5 rounded-md bg-[#F4F4F6] dark:bg-[#18191E] border border-[#E2E4E8] dark:border-[#27272A] text-[#09090B] dark:text-[#EDEDED]">
+                Summer &apos;26 &amp; Co-ops
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </section>
 
       {/* ── CHARMING INTERACTIVE CAT (TOUCH TO DANCE, OPT-IN AUDIO) ── */}
-      <div className="w-full flex flex-col items-center justify-center pb-4">
+      <div className="w-full flex flex-col items-center justify-center pt-2">
         <InteractiveCat size={110} />
       </div>
 
-      {/* ── EDITORIAL COLOPHON & ARCHITECTURAL SIGNATURE (UNBOXED & REFINED) ── */}
-      <div className="w-full text-left space-y-6 pt-2">
-        <div className="flex items-center justify-between text-[9.5px] uppercase tracking-widest text-[#71717A] dark:text-[#A1A1AA] font-bold border-b border-[#E2E4E8] dark:border-[#22242B] pb-2">
-          <span>06 // THE COLOPHON · SIGNATURE</span>
-          <span>SAJAL MALHOTRA · 2026</span>
-        </div>
-
-        {/* Sculptural Thesis Statement */}
-        <div className="space-y-1.5 font-sans">
-          <h3 className="text-lg sm:text-xl font-bold tracking-tight text-[#09090B] dark:text-white leading-snug">
-            Precision in systems. Intention in everything.
-          </h3>
-          <p className="text-xs sm:text-sm text-[#71717A] dark:text-[#A1A1AA] leading-relaxed max-w-xl font-normal">
-            An engineer by discipline. A creative by instinct. A builder by choice. Developing systems with architectural integrity and visual clarity.
-          </p>
-        </div>
-
-        {/* Architectural Metadata Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-[#ECEEF2] dark:border-white/5 text-[10.5px] font-mono text-[#71717A] dark:text-[#A1A1AA]">
-          <div className="space-y-1">
-            <div className="text-[9px] uppercase tracking-wider text-[#A1A1AA] dark:text-[#71717A] font-bold">
-              EDUCATION &amp; LOCATION
-            </div>
-            <div className="text-[#09090B] dark:text-white font-medium">
-              NIT Jalandhar
-            </div>
-            <div>B.Tech Information Technology (2025–2029)</div>
-            <div>Jalandhar, Punjab, India</div>
-          </div>
-
-          <div className="space-y-1">
-            <div className="text-[9px] uppercase tracking-wider text-[#A1A1AA] dark:text-[#71717A] font-bold">
-              COLOPHON
-            </div>
-            <div className="text-[#09090B] dark:text-white font-medium">
-              Next.js · TypeScript · Tailwind CSS
-            </div>
-            <div>Typefaces: Inter &amp; JetBrains Mono</div>
-            <div className="text-[#71717A] dark:text-[#A1A1AA] pt-0.5">
-              Available for Summer &apos;26 &amp; Co-ops
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* ── BOTTOM UTILITY STRIP ── */}
-      <div className="flex items-center justify-between text-[11px] text-[#71717A] dark:text-[#A1A1AA] pt-2">
+      <div className="flex items-center justify-between text-[11px] font-mono text-[#71717A] dark:text-[#A1A1AA] pt-4 border-t border-[#E2E4E8] dark:border-[#22242B]">
         <div className="flex items-center">
           <span>Made with</span>
           <span className="text-[#EF4444] dark:text-[#F87171] mx-1 text-sm font-normal select-none">♡</span>
