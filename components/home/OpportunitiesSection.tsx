@@ -64,7 +64,7 @@ export default function OpportunitiesSection() {
             </h3>
 
             <p className="text-xs text-[#52525B] dark:text-[#A1A1AA] leading-relaxed font-sans">
-              Software engineering, applied ML, and research collaborations. Open to co-ops, summer internships, and high-impact engineering roles where performance and architecture matter.
+              Software engineering, applied ML, and research collaborations. Open to Winter &apos;26 and Summer &apos;27 opportunities, co-ops, and high-impact engineering roles where performance and architecture matter.
             </p>
           </div>
 

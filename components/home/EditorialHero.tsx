@@ -32,7 +32,7 @@ export default function EditorialHero({
           {/* Subtle Status Line */}
           <div className="flex items-center gap-2 text-xs font-mono text-[#71717A] dark:text-[#A1A1AA]">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
-            <span>Available for Summer &apos;26 &amp; Co-ops</span>
+            <span>Winter &apos;26 &amp; Summer &apos;27 Opportunities</span>
             <span className="text-[#D4D4D8] dark:text-[#3F3F46]">/</span>
             <span>Jalandhar, India</span>
           </div>

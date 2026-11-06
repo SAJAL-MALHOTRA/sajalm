@@ -46,7 +46,7 @@ export const profile = {
       code: "03",
       title: "I'm looking for internships, jobs & opportunities.",
       subtitle: "B.Tech IT '29 · Open to SWE & ML roles",
-      detail: "Actively seeking summer internships, high-impact engineering roles, and innovative collaborations where I can ship production code.",
+      detail: "Actively seeking Winter '26 and Summer '27 opportunities, co-ops, and high-impact engineering roles where I can ship production code.",
       badge: "OPEN FOR HIRE",
       isHighlight: true,
     },
