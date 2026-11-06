@@ -28,15 +28,26 @@ export default function OpportunitiesSection() {
   };
 
   return (
-    <section id="contact" className="w-full max-w-5xl py-10 space-y-6 text-left select-none">
+    <section id="contact" className="w-full max-w-[690px] mx-auto py-6 space-y-5 text-left select-none px-3 sm:px-0">
       
+      {/* ── TOP REPEATING DASHED LINE (RINKIT STYLE) ── */}
+      <div
+        className="w-full h-px opacity-70"
+        style={{
+          backgroundImage:
+            'repeating-linear-gradient(to right, var(--border-color) 0px, var(--border-color) 6px, transparent 6px, transparent 14px)',
+          backgroundSize: '100% 1px',
+          backgroundRepeat: 'no-repeat',
+        }}
+      />
+
       {/* Section Header */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-[#E2E4E8] dark:border-[#22242A] pb-3 gap-2">
         <div className="space-y-1">
           <div className="text-[9.5px] font-mono text-[#71717A] uppercase tracking-widest">
             03 // OPPORTUNITIES &amp; CONTACT HUB
           </div>
-          <h2 className="text-2xl sm:text-3xl font-black font-sans text-[#09090B] dark:text-white tracking-tight">
+          <h2 className="text-xl sm:text-2xl font-black font-sans text-[#09090B] dark:text-white tracking-tight">
             Internships, Roles &amp; Contact
           </h2>
         </div>
@@ -47,7 +58,7 @@ export default function OpportunitiesSection() {
       </div>
 
       {/* Balanced 2-Card Contact Hub (Form Removed) */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
         
         {/* Card 1: Direct Inquiries & Roles */}
         <div className="p-5 sm:p-6 rounded-2xl bg-white dark:bg-[#111216] border border-[#E2E4E8] dark:border-[#22242B] space-y-4 shadow-xs flex flex-col justify-between hover:border-black/30 dark:hover:border-white/30 transition-all">

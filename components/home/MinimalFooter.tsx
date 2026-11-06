@@ -61,9 +61,20 @@ export default function MinimalFooter() {
   }, []);
 
   return (
-    <footer className="w-full max-w-5xl z-30 pt-10 pb-8 px-4 sm:px-6 border-t border-[#E2E4E8] dark:border-[#22242B] mt-16 font-sans text-xs sm:text-[13px] text-[#71717A] dark:text-[#A1A1AA] select-none shrink-0">
+    <footer className="w-full max-w-[690px] mx-auto z-30 pt-8 pb-8 px-3 sm:px-0 mt-12 font-sans text-xs sm:text-[13px] text-[#71717A] dark:text-[#A1A1AA] select-none shrink-0 space-y-6">
+      {/* ── TOP REPEATING DASHED LINE (RINKIT STYLE) ── */}
+      <div
+        className="w-full h-px opacity-70"
+        style={{
+          backgroundImage:
+            'repeating-linear-gradient(to right, var(--border-color) 0px, var(--border-color) 6px, transparent 6px, transparent 14px)',
+          backgroundSize: '100% 1px',
+          backgroundRepeat: 'no-repeat',
+        }}
+      />
+
       {/* ── INTERACTIVE CAT EASTER EGG (TOUCH TO PLAY DANCE & SONG) ── */}
-      <div className="w-full flex flex-col items-center justify-center pb-8 mb-6 border-b border-[#E2E4E8]/60 dark:border-[#22242B]/60">
+      <div className="w-full flex flex-col items-center justify-center pb-6 border-b border-[#E2E4E8]/60 dark:border-[#22242B]/60">
         <InteractiveCat size={135} />
       </div>
 

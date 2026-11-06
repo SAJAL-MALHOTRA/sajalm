@@ -36,15 +36,26 @@ export default function DualSpectrum() {
   ];
 
   return (
-    <section id="skills" className="w-full max-w-5xl py-8 space-y-6 text-left select-none">
+    <section id="skills" className="w-full max-w-[690px] mx-auto py-6 space-y-5 text-left select-none px-3 sm:px-0">
       
+      {/* ── TOP REPEATING DASHED LINE (RINKIT STYLE) ── */}
+      <div
+        className="w-full h-px opacity-70"
+        style={{
+          backgroundImage:
+            'repeating-linear-gradient(to right, var(--border-color) 0px, var(--border-color) 6px, transparent 6px, transparent 14px)',
+          backgroundSize: '100% 1px',
+          backgroundRepeat: 'no-repeat',
+        }}
+      />
+
       {/* Section Header */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-[#E2E4E8] dark:border-[#22242A] pb-3 gap-2">
         <div className="space-y-1">
           <div className="text-[9.5px] font-mono text-[#71717A] uppercase tracking-widest">
             02 // THE DUAL SPECTRUM · ARSENAL &amp; CREATIVE ORBIT
           </div>
-          <h2 className="text-2xl sm:text-3xl font-black font-sans text-[#09090B] dark:text-white tracking-tight">
+          <h2 className="text-xl sm:text-2xl font-black font-sans text-[#09090B] dark:text-white tracking-tight">
             Skills, Passions &amp; What Drives Me
           </h2>
         </div>
@@ -77,21 +88,16 @@ export default function DualSpectrum() {
         </div>
       </div>
 
-      {/* ── TECHNICAL ARSENAL TAB (PERFECTLY BALANCED 5-CARD MATRIX) ── */}
+      {/* ── TECHNICAL ARSENAL TAB (PERFECTLY BALANCED 2-COL MATRIX) ── */}
       {activeTab === 'tech' && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-3.5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {skills.categories.map((cat, idx) => {
-            const spanClass =
-              idx < 3
-                ? 'md:col-span-1 lg:col-span-2'
-                : idx === 4
-                ? 'md:col-span-2 lg:col-span-3'
-                : 'md:col-span-1 lg:col-span-3';
+            const isFullWidth = idx === 4;
 
             return (
               <div
                 key={cat.title}
-                className={`${spanClass} p-4 sm:p-5 rounded-2xl bg-white dark:bg-[#101115] border border-[#E2E4E8] dark:border-[#22242B] space-y-3 shadow-xs hover:border-black/30 dark:hover:border-white/30 transition-all flex flex-col justify-between`}
+                className={`${isFullWidth ? 'sm:col-span-2' : ''} p-4 rounded-xl bg-white dark:bg-[#101115] border border-[#E2E4E8] dark:border-[#22242B] space-y-3 shadow-2xs hover:border-black/30 dark:hover:border-white/30 transition-all flex flex-col justify-between`}
               >
                 <div className="space-y-1.5">
                   <div className="flex items-center justify-between text-[9px] font-mono text-[#71717A] uppercase font-bold">
@@ -105,14 +111,14 @@ export default function DualSpectrum() {
                   {cat.items.map((skill) => (
                     <span
                       key={skill}
-                      className="px-2 py-1 rounded-md bg-[#F4F4F6] dark:bg-[#18191E] border border-[#E2E4E8] dark:border-[#27272A] text-[#09090B] dark:text-[#EDEDED] font-mono text-[11px] font-medium"
+                      className="px-2 py-0.5 rounded-md bg-[#F4F4F6] dark:bg-[#18191E] border border-[#E2E4E8] dark:border-[#27272A] text-[#09090B] dark:text-[#EDEDED] font-mono text-[10.5px] font-medium"
                     >
                       {skill}
                     </span>
                   ))}
                 </div>
 
-                <div className="pt-2 border-t border-[#ECEEF2] dark:border-white/5 text-[9.5px] font-mono text-[#71717A]">
+                <div className="pt-2 border-t border-[#ECEEF2] dark:border-white/5 text-[9px] font-mono text-[#71717A]">
                   NIT JALANDHAR // VERIFIED STACK
                 </div>
               </div>
@@ -121,9 +127,9 @@ export default function DualSpectrum() {
         </div>
       )}
 
-      {/* ── CREATIVE & MINDFUL PASSIONS TAB ── */}
+      {/* ── CREATIVE & MINDFUL PASSIONS TAB (2x2 GRID) ── */}
       {activeTab === 'passions' && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {aestheticPassions.map((p, idx) => {
             const getPassionIcon = (cat: string) => {
               if (cat.includes('Fashion')) return <Layers size={12} className="text-[#71717A] dark:text-[#A1A1AA]" />;
@@ -135,7 +141,7 @@ export default function DualSpectrum() {
             return (
               <div
                 key={p.title}
-                className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-[#101115] border border-[#E2E4E8] dark:border-[#22242B] space-y-3 shadow-xs hover:border-black/30 dark:hover:border-white/30 transition-all flex flex-col justify-between"
+                className="p-4 rounded-xl bg-white dark:bg-[#101115] border border-[#E2E4E8] dark:border-[#22242B] space-y-3 shadow-2xs hover:border-black/30 dark:hover:border-white/30 transition-all flex flex-col justify-between"
               >
                 <div className="space-y-1.5">
                   <div className="flex items-center justify-between text-[9px] font-mono text-[#71717A] uppercase font-bold">
@@ -145,7 +151,7 @@ export default function DualSpectrum() {
                     </div>
                     <span className="font-mono text-[#A1A1AA]">[{String(idx + 1).padStart(2, '0')}]</span>
                   </div>
-                  <h3 className="text-base font-bold text-[#09090B] dark:text-white font-sans">
+                  <h3 className="text-sm font-bold text-[#09090B] dark:text-white font-sans">
                     {p.title}
                   </h3>
                   <p className="text-xs text-[#52525B] dark:text-[#A1A1AA] leading-relaxed font-sans">
@@ -157,7 +163,7 @@ export default function DualSpectrum() {
                   {p.tags.map((t) => (
                     <span
                       key={t}
-                      className="px-2 py-0.5 rounded bg-black/5 dark:bg-white/5 text-[#09090B] dark:text-white font-mono text-[10px] font-medium"
+                      className="px-2 py-0.5 rounded bg-black/5 dark:bg-white/5 text-[#09090B] dark:text-white font-mono text-[9.5px] font-medium"
                     >
                       #{t}
                     </span>
