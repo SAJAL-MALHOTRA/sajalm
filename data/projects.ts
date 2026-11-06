@@ -41,13 +41,13 @@ export const projects: Project[] = [
     subtitle: 'Private Relationship Platform',
     status: 'ACTIVE',
     metric: '45ms Median Latency · 200+ Users',
-    tagline: 'NEXT.JS · SUPABASE · REALTIME · GROQ LLAMA 3',
+    tagline: 'NEXT.JS 16 · SUPABASE · REALTIME · GROQ LLAMA 3',
     description: 'A private relationship platform built around shared memories, rituals and connection with live state synchronization.',
     bullets: [
       'Designed and shipped a full-stack real-time social app (pairfect.site) with live state synchronization and LLM-driven prompt analysis.',
       'Built a Groq-accelerated Llama 3 inference pipeline delivering sub-50ms evaluation latency for instant conversational scoring and vibe judging.',
       'Implemented real-time bidirectional communication using Supabase WebSockets with PostgreSQL Row-Level Security (RLS) policies.',
-      'Enforced end-to-end TypeScript schemas across all real-time payloads, shipping with zero TypeScript errors across 77 routes.'
+      'Enforced end-to-end TypeScript schemas across all real-time payloads, shipping with zero TypeScript errors across 77 routes.',
     ],
     stack: ['Next.js 16', 'React 19', 'Supabase', 'Groq LPU (Llama 3 8B)', 'PostgreSQL RLS', 'WebSockets', 'TypeScript'],
     githubUrl: 'https://github.com/SAJAL-MALHOTRA/Pairfect---Your-lovespace',
@@ -110,7 +110,7 @@ export const projects: Project[] = [
       'Architected a broadcast-grade esports tournament engine synchronizing 16 physical participant table desks, an auditorium 4K arena projector, and an authoritative host command console.',
       'Eliminated client clock drift across unpredictable venue Wi-Fi networks by calculating authoritative epoch deadlines with a 2.5-second network latency grace buffer.',
       'Engineered a 5-tier incident response decision matrix evaluating real-world cybersecurity outages (Best, Less-Good, Neutral, Less-Bad, Catastrophic) with instant credit calculations.',
-      'Integrated Web Audio API synthesizer soundscapes and atomic stage advancement algorithms (Ro16 → Quarterfinals → Semifinals → Finals).'
+      'Integrated Web Audio API synthesizer soundscapes and atomic stage advancement algorithms (Ro16 → Quarterfinals → Semifinals → Finals).',
     ],
     stack: ['Next.js 16', 'React 19', 'TypeScript', 'Express.js', 'Web Audio API', 'Framer Motion', 'Tailwind CSS'],
     githubUrl: 'https://github.com/SAJAL-MALHOTRA/cybernauts-arena',
@@ -170,7 +170,7 @@ export const projects: Project[] = [
       'Engineered a precision hybrid RAG pipeline (BM25Okapi + paraphrase-multilingual-MiniLM dense embeddings via Reciprocal Rank Fusion) mapping student programming doubts directly to exact video lecture timestamps.',
       'Conducted an expanded 104-query benchmark across 18 YouTube lecture videos spanning 8 core DSA topics with non-transcript golden query evaluations.',
       'Developed sub-chunk sentence seek refinement snapping playback to the exact concept introduction, achieving 30.0% Hit@3 on verified moments with <50ms extractive synthesis latency and zero hallucinated timestamps.',
-      'Integrated client-side Python execution via WebAssembly (Pyodide) and Docker containerization on Render cloud.'
+      'Integrated client-side Python execution via WebAssembly (Pyodide) and Docker containerization on Render cloud.',
     ],
     stack: ['FastAPI', 'PyTorch', 'sentence-transformers', 'BM25Okapi', 'Reciprocal Rank Fusion', 'Docker', 'WebAssembly (Pyodide)'],
     githubUrl: 'https://github.com/SAJAL-MALHOTRA/dsa-lecture-rag',
@@ -233,7 +233,7 @@ export const projects: Project[] = [
       'Engineered a high-performance 3-class surveillance video illumination classifier (Dark, Normal, Bright) reaching 0.211 Platform Score (Rank #16 of 227, "Best Solution" on leaderboard) under strict CPU-only constraints.',
       'Fused 128-D handcrafted luminance descriptors (spatial grid uniformity, HSV saturation ratios, dark-to-bright curves) with 2,304-D deep features from ResNet-18/34 and EfficientNet-B0.',
       'Trained a 10-fold bagged FastMLP with LayerNorm, Dropout (0.35), label smoothing (0.05), and Cosine Annealing learning rate schedules.',
-      'Performed extensive visual domain error analysis discovering the Global Luminance Albedo Illusion, correcting high-albedo supermarket and indoor reflections.'
+      'Performed extensive visual domain error analysis discovering the Global Luminance Albedo Illusion, correcting high-albedo supermarket and indoor reflections.',
     ],
     stack: ['PyTorch', 'Torchvision', 'OpenCV', 'ResNet-34', 'EfficientNet-B0', 'FastMLP', 'Python'],
     githubUrl: 'https://github.com/SAJAL-MALHOTRA/surveillance-illumination-classification',
@@ -249,8 +249,8 @@ export const projects: Project[] = [
         │                                                                                     ├──> [Concatenation + L2 Norm]
         └──> [2,304-D Deep Features (ResNet-18 + ResNet-34 + EfficientNet-B0)] ───────────────┘                 │
                                                                                                                 └──> [10-Fold Bagged FastMLP (CPU)]
-                                                                                                                            │
-                                                                                                                            └──> [Illumination Class: Dark/Normal/Bright]`,
+                                                                                                                             │
+                                                                                                                             └──> [Illumination Class: Dark/Normal/Bright]`,
     tradeoffs: [
       {
         decision: 'Hybrid physical luminance descriptors fused with deep embeddings',
@@ -278,6 +278,161 @@ export const projects: Project[] = [
         metric: 'Inference Speed',
         value: '<80ms per frame on CPU',
         condition: 'Single-thread x86 CPU evaluation environment',
+      },
+    ],
+  },
+  {
+    id: 'PRJ-04',
+    name: 'ThinkFolio',
+    subtitle: 'Adaptive Financial Reasoning Engine',
+    status: 'ACTIVE',
+    metric: 'R² = 0.927 · <100ms Inference',
+    tagline: 'PYTORCH · FASTAPI · XGBOOST · FINBERT',
+    description: 'Dual-branch machine learning evaluation engine scoring financial reasoning across 8 dimensions with FinBERT & SHAP explainability.',
+    bullets: [
+      'Engineered a dual-branch ML evaluation engine (PyTorch Tabular MLP + gradient-boosted trees) scoring financial reasoning across 8 dimensions, reaching R² = 0.927 predictive accuracy.',
+      'Integrated FinBERT sentence embeddings with SHAP explainability to deliver real-time feature attribution at under 100ms latency overhead.',
+      'Architected a containerized microservice backend with FastAPI, SQLAlchemy, and PostgreSQL, adding EMA-based competency tracking and Alembic migrations.',
+      'Built an interactive evaluation UI in Next.js and Tailwind CSS surfacing dynamic rubric scores and personalized learning trajectories.',
+    ],
+    stack: ['PyTorch', 'XGBoost', 'FastAPI', 'PostgreSQL', 'Docker', 'Next.js', 'FinBERT', 'SHAP'],
+    githubUrl: 'https://github.com/SAJAL-MALHOTRA/thinkfolio',
+    github: 'https://github.com/SAJAL-MALHOTRA/thinkfolio',
+    types: ['ML Evaluation Engine', 'Financial Reasoning'],
+    abilities: ['PyTorch', 'FinBERT', 'SHAP', 'FastAPI', 'PostgreSQL', 'Docker'],
+    whyBuilt: 'Quantitative portfolio analysis and finance education platforms lack real-time reasoning feedback that shows users why their capital allocation strategies succeeded or failed.',
+    problem: 'Financial reasoning assessment is typically manual or rule-based, failing to capture subtle multi-dimensional competence or provide immediate mathematical feature attribution.',
+    solution: 'Engineered dual-branch Tabular MLP + gradient-boosted trees with FinBERT embeddings and SHAP explainability delivering R² 0.927 accuracy under 100ms latency.',
+    tradeoffs: [
+      {
+        decision: 'Dual-branch Tabular MLP + XGBoost ensemble',
+        why: 'Combines tabular feature interaction power with dense semantic text understanding.',
+        alternative: 'Pure LLM prompt evaluation (expensive and inconsistent variance).',
+      },
+    ],
+    measuredOutcomes: [
+      {
+        metric: 'Predictive Accuracy',
+        value: 'R² = 0.927',
+        condition: 'Evaluated on out-of-sample portfolio reasoning benchmark dataset',
+      },
+      {
+        metric: 'Inference Latency',
+        value: '<100ms end-to-end',
+        condition: 'FastAPI microservice running ONNX-optimized FinBERT pipeline',
+      },
+    ],
+  },
+  {
+    id: 'PRJ-08',
+    name: 'ResearchFlow',
+    subtitle: 'Stateful Multi-Agent Literature Synthesis',
+    status: 'ACTIVE',
+    metric: '5-Node Cyclic Graph · pgvector',
+    tagline: 'LANGGRAPH · LANGCHAIN · FASTAPI · PGVECTOR',
+    description: 'Autonomous multi-agent research synthesis engine with cyclic stateful graph routing and vector search over technical literature.',
+    bullets: [
+      'Architected a 5-node stateful LangGraph pipeline (Planner → Researcher → Evidence Collector → Verifier → Writer) automating academic paper discovery, semantic parsing, and structured synthesis.',
+      'Implemented vector similarity search over Supabase pgvector with semantic embeddings for high-precision retrieval across technical literature.',
+      'Built asynchronous REST APIs with FastAPI to handle long-running multi-agent reasoning cycles with checkpointing and state recovery.',
+    ],
+    stack: ['LangGraph', 'LangChain', 'Python', 'FastAPI', 'pgvector', 'Supabase'],
+    githubUrl: 'https://github.com/SAJAL-MALHOTRA/researchflow',
+    github: 'https://github.com/SAJAL-MALHOTRA/researchflow',
+    types: ['Autonomous Multi-Agent System', 'AI Research Tools'],
+    abilities: ['LangGraph', 'LangChain', 'FastAPI', 'pgvector', 'Vector Search'],
+    whyBuilt: 'Conducting literature reviews across arXiv and technical publications requires multi-step synthesis, cross-verification of citations, and stateful tracking across multiple specialized agents.',
+    problem: 'Single-prompt LLM agents suffer from hallucinations, lost context over long literature surveys, and lack of rollback checkpointing when retrieval branches dead-end.',
+    solution: 'Designed a 5-node stateful LangGraph pipeline with cyclic routing, checkpoint recovery, and pgvector semantic retrieval.',
+    tradeoffs: [
+      {
+        decision: 'Stateful LangGraph with persistence checkpoints',
+        why: 'Allows long-running synthesis workflows to resume and branch without rerunning full prompt cascades.',
+        alternative: 'Linear LangChain sequential chains (failed on complex literature loops).',
+      },
+    ],
+    measuredOutcomes: [
+      {
+        metric: 'Synthesis Consistency',
+        value: '100% verified citation provenance',
+        condition: 'Verifier agent enforces direct PDF text span alignment before final writing',
+      },
+      {
+        metric: 'Graph Fault Tolerance',
+        value: 'Instant state recovery',
+        condition: 'SQLite/PostgreSQL checkpoint persistence across long agent loops',
+      },
+    ],
+  },
+  {
+    id: 'PRJ-06',
+    name: 'Automated Pothole Detection',
+    subtitle: 'Real-Time Edge Computer Vision Pipeline',
+    status: 'SHIPPED',
+    metric: 'Real-Time YOLO · Temporal Cooldown',
+    tagline: 'YOLO · OPENCV · PYTHON · EDGE AI',
+    description: 'Real-time edge computer vision pipeline detecting road surface hazards and potholes from vehicle dashcam video feeds.',
+    bullets: [
+      'Developed an end-to-end edge computer vision pipeline detecting road surface hazards and potholes from vehicle dashcam video feeds in real time.',
+      'Implemented YOLO deep learning model inference with custom confidence tuning and temporal cooldown logic to prevent duplicate hazard logging.',
+      'Integrated automated timestamped visual evidence capture and disk persistence for road maintenance inspection and geospatial telemetry.',
+    ],
+    stack: ['Python', 'YOLO', 'OpenCV', 'Computer Vision', 'Edge AI'],
+    githubUrl: 'https://github.com/SAJAL-MALHOTRA/Automated-Pothole-Detection',
+    github: 'https://github.com/SAJAL-MALHOTRA/Automated-Pothole-Detection',
+    types: ['Edge Computer Vision', 'Autonomous Systems'],
+    abilities: ['YOLO', 'OpenCV', 'Real-Time Video Analytics', 'Evidence Logging'],
+    whyBuilt: 'Municipal road inspection is slow, hazardous, and infrequent. Dashcam-mounted edge AI can continuously map road degradation without manual surveys.',
+    problem: 'Continuous video frames generate thousands of duplicate detections for a single pothole as a vehicle drives past, spamming the incident database.',
+    solution: 'Engineered a YOLO-powered edge CV pipeline with temporal debounce cooldown, confidence gating, and automated visual evidence archiving.',
+    tradeoffs: [
+      {
+        decision: 'Edge YOLO inference with temporal cooldown gating',
+        why: 'Eliminates 98% of duplicate telemetry logs while keeping model inference real-time on edge devices.',
+        alternative: 'Streaming all raw frames to cloud endpoints (cost-prohibitive and bandwidth-heavy).',
+      },
+    ],
+    measuredOutcomes: [
+      {
+        metric: 'Detection Speed',
+        value: '>30 FPS real-time on edge GPU',
+        condition: 'Tested on vehicle dashcam 1080p stream',
+      },
+    ],
+  },
+  {
+    id: 'PRJ-07',
+    name: 'India Tech Salary Predictor',
+    subtitle: 'Applied ML Compensation Regression',
+    status: 'SHIPPED',
+    metric: '6,000+ Verified Records · Streamlit',
+    tagline: 'SCIKIT-LEARN · RANDOM FOREST · STREAMLIT',
+    description: 'Compensation regression model trained on 6,000+ AmbitionBox verified Indian tech records with interactive Streamlit forecasting.',
+    bullets: [
+      'Built an end-to-end compensation prediction system trained on 6,000+ verified Indian tech industry compensation records scraped and cleaned from AmbitionBox.',
+      'Trained a Random Forest Regressor modeling non-linear interactions across company tiers, job titles, technical departments, and years of experience.',
+      'Deployed an interactive Streamlit web application with dynamic company-to-job filtering and one-hot encoding alignment for instant LPA salary forecasts.',
+    ],
+    stack: ['Python', 'Scikit-learn', 'Random Forest', 'Pandas', 'Streamlit', 'Joblib'],
+    githubUrl: 'https://github.com/SAJAL-MALHOTRA/salary-predictor',
+    github: 'https://github.com/SAJAL-MALHOTRA/salary-predictor',
+    types: ['Machine Learning', 'Data Science & Regression'],
+    abilities: ['Scikit-learn', 'Random Forest', 'Data Cleaning', 'Streamlit UI'],
+    whyBuilt: 'Indian engineering students and job switchers face opaque compensation bands across Tier-1/2/3 companies with huge variance.',
+    problem: 'Job portals give wide, unhelpful ranges that do not correlate experience, company tier, and skill demand mathematically.',
+    solution: 'Trained a Random Forest regressor with one-hot feature encoding predicting LPA packages based on 6,000+ verified data points.',
+    tradeoffs: [
+      {
+        decision: 'Random Forest Regressor over Linear Regression',
+        why: 'Captures non-linear tier step-functions between startups, service companies, and product unicorns.',
+        alternative: 'Linear ridge regression (failed to capture tier salary multipliers).',
+      },
+    ],
+    measuredOutcomes: [
+      {
+        metric: 'Dataset Scale',
+        value: '6,000+ verified records',
+        condition: 'Scraped, normalized, and cleaned from AmbitionBox industry data',
       },
     ],
   },
