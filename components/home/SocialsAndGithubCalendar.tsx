@@ -225,20 +225,6 @@ export default function SocialsAndGithubCalendar() {
             <span>LinkedIn</span>
           </a>
 
-          {/* Medium */}
-          <a
-            href="https://medium.com/@malhotrasajal243"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={playClick}
-            className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 bg-[#F4F4F5] hover:bg-[#E4E4E7] dark:bg-[#18181B] dark:hover:bg-[#27272A] border border-[#E4E4E7] dark:border-[#27272A] rounded-[6px] text-xs font-medium text-[#09090B] dark:text-[#EDEDED] transition-colors duration-200 shadow-xs"
-          >
-            <svg stroke="currentColor" fill="currentColor" viewBox="0 0 640 512" height="12" width="12">
-              <path d="M180.5,74.262C80.813,74.262,0,155.633,0,256S80.819,437.738,180.5,437.738,361,356.373,361,256,280.191,74.262,180.5,74.262Zm288.6,10.655c-49.845,0-90.245,76.619-90.245,171.083s40.4,171.09,90.251,171.09,90.251-76.619,90.251-171.09S518.943,84.917,469.1,84.917Zm134.463,27.15c-19.141,0-34.66,64.442-34.66,143.933s15.519,143.935,34.66,143.935,34.66-64.444,34.66-143.935S622.7,112.067,603.561,112.067Z" />
-            </svg>
-            <span>Medium</span>
-          </a>
-
           {/* Buy Me A Chai */}
           <a
             href={profile.links.buyMeAChai}

@@ -41,22 +41,6 @@ export default function EditorialHero({
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                 <span>OPEN FOR SWE &amp; ML OPPORTUNITIES (SUMMER &apos;26)</span>
               </div>
-
-              {/* Playful "HIRE ME" Handwritten Arrow (Rinkit Style) */}
-              <div className="flex items-center gap-1 select-none">
-                <svg width="28" height="28" viewBox="0 0 512 512" fill="none" className="rotate-12 text-[#71717A] dark:text-[#A1A1AA] shrink-0">
-                  <path d="M 437 441 Q 363 418, 264 351 Q 198 295, 160 225 Q 138 178, 122 119" stroke="currentColor" strokeWidth="28" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-                  <path d="M 161 149 L 125 73" stroke="currentColor" strokeWidth="28" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-                  <path d="M 123 71 L 83 148" stroke="currentColor" strokeWidth="28" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-                </svg>
-                <a
-                  href={`mailto:${profile.email}`}
-                  className="font-bold text-base sm:text-lg text-[#71717A] dark:text-[#A1A1AA] hover:text-[#09090B] dark:hover:text-white hover:scale-110 transition-transform tracking-wider"
-                  style={{ fontFamily: "'Caveat', cursive, sans-serif" }}
-                >
-                  HIRE ME
-                </a>
-              </div>
             </div>
 
             <div className="space-y-1">
@@ -142,12 +126,79 @@ export default function EditorialHero({
             </button>
           </div>
 
+          {/* Active Focus & Technology Telemetry (Balances vertical space seamlessly) */}
+          <div className="p-3.5 rounded-xl bg-white dark:bg-[#121316] border border-[#E2E4E8] dark:border-[#22242B] space-y-2 shadow-xs">
+            <div className="flex items-center justify-between text-[10px] font-mono text-[#71717A] dark:text-[#A1A1AA] uppercase tracking-wider">
+              <span className="flex items-center gap-1.5 font-semibold">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span>ACTIVE FOCUS // WHAT I&apos;M BUILDING</span>
+              </span>
+              <span className="text-[9px] px-1.5 py-0.5 rounded bg-[#F4F4F5] dark:bg-[#1C1D22] text-[#71717A] dark:text-[#A1A1AA]">
+                NIT JALANDHAR &apos;29
+              </span>
+            </div>
+            <p className="text-xs text-[#3F3F46] dark:text-[#D4D4D8] font-sans leading-relaxed">
+              Engineering <span className="font-semibold text-[#09090B] dark:text-white">DSA Lecture RAG</span> (dense RRF hybrid search) &amp; <span className="font-semibold text-[#09090B] dark:text-white">Cybernauts Arena</span> (broadcast esports engine with 0ms clock drift).
+            </p>
+            <div className="flex items-center gap-1.5 flex-wrap pt-0.5 text-[10.5px] font-mono text-[#71717A] dark:text-[#A1A1AA]">
+              <span className="px-2 py-0.5 rounded-md bg-[#F4F4F5] dark:bg-[#18181B] border border-[#E4E4E7] dark:border-[#27272A]">Next.js 16</span>
+              <span className="px-2 py-0.5 rounded-md bg-[#F4F4F5] dark:bg-[#18181B] border border-[#E4E4E7] dark:border-[#27272A]">PyTorch</span>
+              <span className="px-2 py-0.5 rounded-md bg-[#F4F4F5] dark:bg-[#18181B] border border-[#E4E4E7] dark:border-[#27272A]">FastAPI</span>
+              <span className="px-2 py-0.5 rounded-md bg-[#F4F4F5] dark:bg-[#18181B] border border-[#E4E4E7] dark:border-[#27272A]">Groq Llama 3</span>
+              <span className="px-2 py-0.5 rounded-md bg-[#F4F4F5] dark:bg-[#18181B] border border-[#E4E4E7] dark:border-[#27272A]">Supabase</span>
+            </div>
+          </div>
+
         </div>
 
         {/* Right Column (5 cols): The Signature Operator Dossier & Visual Anchor */}
-        <div className="lg:col-span-5 relative">
+        <div className="lg:col-span-5 relative pt-4 sm:pt-0">
           
-          <div className="rounded-2xl bg-white dark:bg-[#0E0F12] border-2 border-black/10 dark:border-white/10 p-4 sm:p-5 shadow-xl space-y-4 text-left transition-all relative overflow-hidden">
+          {/* Playful "HIRE ME" Handwritten Arrow (Rinkit Style) Positioned Aside Picture */}
+          <div className="absolute -top-6 -left-8 sm:-left-12 lg:-left-14 flex flex-col items-center justify-center select-none z-30 pointer-events-auto -rotate-12">
+            <a
+              href={`mailto:${profile.email}`}
+              onClick={playClick}
+              className="text-lg sm:text-xl font-bold text-[#71717A] dark:text-[#A1A1AA] hover:text-[#09090B] dark:hover:text-white hover:scale-110 transition-transform tracking-wider drop-shadow-xs"
+              style={{ fontFamily: "'Caveat', cursive, sans-serif" }}
+            >
+              HIRE ME
+            </a>
+            <svg
+              width="46"
+              height="46"
+              viewBox="0 0 512 512"
+              fill="none"
+              className="rotate-12 text-[#71717A] dark:text-[#A1A1AA] shrink-0"
+            >
+              <path
+                d="M 437 441 Q 363 418, 264 351 Q 198 295, 160 225 Q 138 178, 122 119"
+                stroke="currentColor"
+                strokeWidth="24"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                fill="none"
+              />
+              <path
+                d="M 161 149 L 125 73"
+                stroke="currentColor"
+                strokeWidth="24"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                fill="none"
+              />
+              <path
+                d="M 123 71 L 83 148"
+                stroke="currentColor"
+                strokeWidth="24"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                fill="none"
+              />
+            </svg>
+          </div>
+
+          <div className="rounded-2xl bg-white dark:bg-[#0E0F12] border-2 border-black/10 dark:border-white/10 p-4 sm:p-5 shadow-xl space-y-4 text-left transition-all relative">
             
             {/* Top Header of the Dossier */}
             <div className="flex items-center justify-between border-b border-[#ECEEF2] dark:border-[#1E2026] pb-3">
@@ -171,7 +222,7 @@ export default function EditorialHero({
                 }}
                 onMouseEnter={playHover}
                 title="Click to zoom portrait"
-                className="w-full aspect-[4/5] max-h-[400px] block relative cursor-pointer overflow-hidden"
+                className="w-full aspect-[4/5] max-h-[345px] sm:max-h-[360px] block relative cursor-pointer overflow-hidden"
               >
                 <img
                   src={getAssetPath('/avatar.png')}

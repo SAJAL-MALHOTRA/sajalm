@@ -130,7 +130,7 @@ export const profile = {
   links: {
     github: "https://github.com/SAJAL-MALHOTRA",
     linkedin: "https://linkedin.com/in/sajal-malhotra1",
-    twitter: "https://x.com/sajal",
+    twitter: "https://x.com/slothinslowlane",
     instagram: "https://instagram.com/sajal",
     email: "malhotrasajal243@gmail.com",
     resume: getAssetPath("/resume.pdf"),
