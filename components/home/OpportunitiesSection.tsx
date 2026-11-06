@@ -56,7 +56,7 @@ export default function OpportunitiesSection() {
           <div className="space-y-2">
             <div className="flex items-center justify-between text-[9.5px] font-mono text-[#71717A] uppercase font-bold">
               <span>01 // DIRECT COLLABORATION</span>
-              <span className="text-emerald-600 dark:text-emerald-400">● AVAILABLE</span>
+              <span className="text-emerald-600 dark:text-emerald-400">● OPEN TO OPPORTUNITIES</span>
             </div>
 
             <h3 className="text-base font-bold text-[#09090B] dark:text-white font-sans">

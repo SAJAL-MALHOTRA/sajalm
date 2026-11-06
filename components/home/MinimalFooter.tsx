@@ -141,7 +141,7 @@ export default function MinimalFooter() {
                 Inter &amp; JetBrains Mono
               </span>
               <span className="px-2 py-0.5 rounded-md bg-[#F4F4F6] dark:bg-[#18191E] border border-[#E2E4E8] dark:border-[#27272A] text-[#09090B] dark:text-[#EDEDED]">
-                Winter &apos;26 &amp; Summer &apos;27 Opportunities
+                Open to Winter &apos;26 &amp; Summer &apos;27 opportunities
               </span>
             </div>
           </div>
