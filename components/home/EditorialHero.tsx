@@ -35,19 +35,24 @@ export default function EditorialHero({
         {/* Left Column (7 cols): Main Typography & Manifesto */}
         <div className="lg:col-span-7 space-y-5 text-left">
           
-          <div className="space-y-2.5">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 border border-emerald-500/30 text-[10.5px] font-mono font-medium">
+          <div className="space-y-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 border border-emerald-500/30 text-[10.5px] font-mono font-medium tracking-wide">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span>OPEN TO SWE &amp; ML OPPORTUNITIES (SUMMER &apos;26)</span>
+              <span>OPEN FOR SWE &amp; AI INFERENCE INTERNSHIPS (SUMMER &apos;26)</span>
             </div>
 
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-sans font-black tracking-tight text-[#09090B] dark:text-white leading-[1.05]">
-              Hey, I&apos;m Sajal.
-            </h1>
+            <div className="space-y-1">
+              <h1 className="text-3xl sm:text-5xl lg:text-[58px] font-sans font-black tracking-tight text-[#09090B] dark:text-white leading-[1.08]">
+                Architecting intelligent systems with mechanical rigor and human conviction.
+              </h1>
+              <p className="text-xs sm:text-sm font-mono text-[#71717A] dark:text-[#A1A1AA] pt-1">
+                SAJAL MALHOTRA // NIT JALANDHAR · SOFTWARE &amp; APPLIED ML
+              </p>
+            </div>
           </div>
 
-          <p className="text-base sm:text-lg text-[#3F3F46] dark:text-[#D4D4D8] leading-relaxed font-sans font-normal">
-            Software engineer &amp; machine learning researcher by daylight. Fashion model &amp; creative director after hours. Grounded in spirituality and engineering rigor, building fast, resilient, and beautiful distributed platforms at NIT Jalandhar.
+          <p className="text-base sm:text-[17px] text-[#3F3F46] dark:text-[#D4D4D8] leading-relaxed font-sans font-normal">
+            I build deep-tier distributed backends, sub-50ms inference pipelines, and autonomous agents where mathematical precision meets high-craft aesthetics. By daylight, exploring hybrid retrieval and low-latency systems. After hours, navigating creative direction, fashion modeling, and high-conviction design.
           </p>
 
           {/* Quick Manifesto Badges (Immediate Proof of Impact) */}
