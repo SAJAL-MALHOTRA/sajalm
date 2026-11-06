@@ -76,58 +76,64 @@ export default function EditorialHero({
         </div>
 
         {/* Right Column: Editorial Operator Spec Dossier Card */}
-        <div className="w-full sm:w-[270px] md:w-[290px] flex flex-col items-center shrink-0 self-center sm:self-start pt-1">
+        <div className="w-full sm:w-[310px] md:w-[330px] flex flex-col items-center shrink-0 self-center sm:self-start pt-3 sm:pt-1 relative">
           
-          {/* Subtle Editorial Markup pointing to contact */}
-          <a
-            href="#contact"
-            onClick={playClick}
-            className="flex items-center gap-1.5 group cursor-pointer mb-2 select-none transition-transform hover:scale-105 self-end sm:self-center pr-1"
-            title="Jump to Opportunities & Contact Hub"
-          >
-            <span
-              className="text-base sm:text-lg font-bold text-[#71717A] dark:text-[#A1A1AA] group-hover:text-black dark:group-hover:text-white tracking-wider"
+          {/* Playful "HIRE ME" Handwritten Arrow pointing at Dossier Card */}
+          <div className="absolute -top-7 -left-4 sm:-left-8 flex flex-col items-center justify-center select-none z-30 pointer-events-auto -rotate-12">
+            <a
+              href="#contact"
+              onClick={playClick}
+              className="text-base sm:text-lg font-bold text-[#71717A] dark:text-[#A1A1AA] hover:text-[#09090B] dark:hover:text-white hover:scale-110 transition-transform tracking-wider drop-shadow-xs cursor-pointer"
               style={{ fontFamily: "'Caveat', cursive, sans-serif" }}
             >
-              hire me
-            </span>
+              HIRE ME
+            </a>
             <svg
-              width="20"
-              height="20"
-              viewBox="0 0 100 100"
+              width="42"
+              height="42"
+              viewBox="0 0 512 512"
               fill="none"
-              className="text-[#71717A] dark:text-[#A1A1AA] group-hover:text-black dark:group-hover:text-white -rotate-12 transition-colors"
+              className="rotate-12 text-[#71717A] dark:text-[#A1A1AA] shrink-0"
             >
               <path
-                d="M 20 20 Q 50 45, 75 75"
+                d="M 437 441 Q 363 418, 264 351 Q 198 295, 160 225 Q 138 178, 122 119"
                 stroke="currentColor"
-                strokeWidth="6"
+                strokeWidth="24"
                 strokeLinecap="round"
+                strokeLinejoin="round"
                 fill="none"
               />
               <path
-                d="M 50 78 L 78 78 L 78 50"
+                d="M 161 149 L 125 73"
                 stroke="currentColor"
-                strokeWidth="6"
+                strokeWidth="24"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                fill="none"
+              />
+              <path
+                d="M 123 71 L 83 148"
+                stroke="currentColor"
+                strokeWidth="24"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 fill="none"
               />
             </svg>
-          </a>
+          </div>
 
           {/* ── OPERATOR SPEC // SPECTRUM DOSSIER CARD ── */}
-          <div className="w-full rounded-2xl bg-white dark:bg-[#111216] border border-[#E2E4E8] dark:border-[#22242B] p-3.5 sm:p-4 shadow-sm space-y-3 text-left transition-all relative">
+          <div className="w-full rounded-2xl bg-white dark:bg-[#0E0F12] border-2 border-black/10 dark:border-white/10 p-4 sm:p-5 shadow-xl space-y-4 text-left transition-all relative">
             
             {/* Top Header of the Dossier */}
-            <div className="flex items-center justify-between border-b border-[#ECEEF2] dark:border-[#1E2026] pb-2.5">
+            <div className="flex items-center justify-between border-b border-[#ECEEF2] dark:border-[#1E2026] pb-3">
               <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="font-mono text-[11px] font-black tracking-wider text-[#09090B] dark:text-white uppercase">
+                <span className="w-2 h-2 rounded-full bg-black dark:bg-white" />
+                <span className="font-mono text-xs font-black tracking-wider text-[#09090B] dark:text-white uppercase">
                   OPERATOR SPEC // SPECTRUM
                 </span>
               </div>
-              <span className="text-[8.5px] font-mono px-2 py-0.5 rounded bg-black text-white dark:bg-white dark:text-black font-bold uppercase tracking-wider">
+              <span className="text-[9px] font-mono px-2 py-0.5 rounded bg-black text-white dark:bg-white dark:text-black font-bold uppercase tracking-wider">
                 VERIFIED [NITJ]
               </span>
             </div>
@@ -141,7 +147,7 @@ export default function EditorialHero({
                 }}
                 onMouseEnter={playHover}
                 title="Click to zoom portrait"
-                className="w-full aspect-[4/5] block relative cursor-pointer overflow-hidden"
+                className="w-full aspect-[4/5] max-h-[345px] sm:max-h-[360px] block relative cursor-pointer overflow-hidden"
               >
                 <img
                   src={getAssetPath('/avatar.png')}
@@ -149,7 +155,7 @@ export default function EditorialHero({
                   loading="eager"
                   fetchPriority="high"
                   decoding="async"
-                  className="w-full h-full object-cover object-[center_20%] contrast-[1.03] group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover object-[center_25%] contrast-[1.03] group-hover:scale-105 transition-transform duration-500"
                 />
                 
                 {/* Subtle Hover Reveal */}
@@ -161,19 +167,19 @@ export default function EditorialHero({
                 </div>
 
                 {/* Status Badges in the Upper Night Sky (No Face Obscuration) */}
-                <div className="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-full bg-black/75 dark:bg-black/85 backdrop-blur-md border border-white/20 text-white font-mono text-[9.5px] flex items-center gap-1.5 shadow-md">
+                <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-black/75 dark:bg-black/85 backdrop-blur-md border border-white/20 text-white font-mono text-[10px] flex items-center gap-1.5 shadow-md">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                   <span className="font-semibold text-emerald-300">Open for Summer &apos;26 &amp; Co-ops</span>
                 </div>
 
-                <div className="absolute top-2.5 right-2.5 px-2 py-1 rounded-md bg-black/75 dark:bg-black/85 backdrop-blur-md border border-white/20 text-white/80 font-mono text-[9px] font-bold">
+                <div className="absolute top-3 right-3 px-2 py-1 rounded-md bg-black/75 dark:bg-black/85 backdrop-blur-md border border-white/20 text-white/80 font-mono text-[9px] font-bold">
                   NITJ &apos;29
                 </div>
               </button>
             </div>
 
             {/* Elegant Editorial Caption Strip */}
-            <div className="pt-2 border-t border-[#ECEEF2] dark:border-[#1E2026] flex items-center justify-between text-[10.5px] font-mono text-[#71717A] dark:text-[#A1A1AA]">
+            <div className="pt-2.5 border-t border-[#ECEEF2] dark:border-[#1E2026] flex items-center justify-between text-[11px] font-mono text-[#71717A] dark:text-[#A1A1AA]">
               <div className="flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                 <span>Jalandhar, Punjab</span>
