@@ -131,7 +131,7 @@ export const profile = {
     github: "https://github.com/SAJAL-MALHOTRA",
     linkedin: "https://linkedin.com/in/sajal-malhotra1",
     twitter: "https://x.com/slothinslowlane",
-    instagram: "https://instagram.com/sajal",
+    instagram: "https://www.instagram.com/malhotra.sajal",
     email: "malhotrasajal243@gmail.com",
     resume: getAssetPath("/resume.pdf"),
     buyMeAChai: "https://buymeachai.in/sajalmalhotra",

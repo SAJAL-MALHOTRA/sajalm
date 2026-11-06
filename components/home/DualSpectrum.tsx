@@ -64,7 +64,7 @@ export default function DualSpectrum() {
       subtitle: 'NIT Jalandhar Fashion & Modelling Club',
       icon: <Camera size={13} className="text-[#71717A] dark:text-[#A1A1AA]" />,
       detail: 'Active runway model with the NIT Jalandhar FMC team. Walking shows, directing creative photo sessions, and working with lighting, movement, and stage presence.',
-      tags: ['NITJ FMC', 'Runway', 'Editorial Shoots', 'Stage Choreography'],
+      tags: ['NITJ FMC', 'Runway', 'Editorial Shoots', '@malhotra.sajal'],
     },
     {
       index: '02',

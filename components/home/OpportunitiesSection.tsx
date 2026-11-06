@@ -143,7 +143,7 @@ export default function OpportunitiesSection() {
                 rel="noreferrer"
                 download="Sajal_Malhotra_Resume.pdf"
                 onMouseEnter={playHover}
-                className="p-2.5 rounded-lg bg-black hover:bg-neutral-800 text-white dark:bg-white dark:hover:bg-neutral-200 dark:text-black flex items-center justify-between transition-colors cursor-pointer font-bold shadow-2xs"
+                className="col-span-2 p-2.5 rounded-lg bg-black hover:bg-neutral-800 text-white dark:bg-white dark:hover:bg-neutral-200 dark:text-black flex items-center justify-between transition-colors cursor-pointer font-bold shadow-2xs"
               >
                 <span className="text-[11px]">RESUME.PDF</span>
                 <Download size={13} />
@@ -159,9 +159,7 @@ export default function OpportunitiesSection() {
                 <span className="text-[11px]">LINKEDIN</span>
                 <ArrowUpRight size={13} />
               </a>
-            </div>
 
-            <div className="grid grid-cols-2 gap-2">
               <a
                 href={profile.links.github}
                 target="_blank"
@@ -181,6 +179,17 @@ export default function OpportunitiesSection() {
                 className="p-2.5 rounded-lg bg-white hover:bg-[#F4F4F6] dark:bg-[#16171B] dark:hover:bg-[#202227] border border-[#E2E4E8] dark:border-[#22242B] text-[#09090B] dark:text-[#EDEDED] flex items-center justify-between transition-colors cursor-pointer font-medium"
               >
                 <span className="text-[11px]">X (TWITTER)</span>
+                <ArrowUpRight size={13} />
+              </a>
+
+              <a
+                href={profile.links.instagram}
+                target="_blank"
+                rel="noreferrer"
+                onMouseEnter={playHover}
+                className="p-2.5 rounded-lg bg-white hover:bg-[#F4F4F6] dark:bg-[#16171B] dark:hover:bg-[#202227] border border-[#E2E4E8] dark:border-[#22242B] text-[#09090B] dark:text-[#EDEDED] flex items-center justify-between transition-colors cursor-pointer font-medium"
+              >
+                <span className="text-[11px]">INSTAGRAM</span>
                 <ArrowUpRight size={13} />
               </a>
             </div>
