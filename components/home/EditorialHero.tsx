@@ -154,12 +154,12 @@ export default function EditorialHero({
         {/* Right Column (5 cols): The Signature Operator Dossier & Visual Anchor */}
         <div className="lg:col-span-5 relative pt-4 sm:pt-0">
           
-          {/* Playful "HIRE ME" Handwritten Arrow (Rinkit Style) Positioned Aside Picture */}
-          <div className="absolute -top-6 -left-8 sm:-left-12 lg:-left-14 flex flex-col items-center justify-center select-none z-30 pointer-events-auto -rotate-12">
+          {/* Playful "HIRE ME" Handwritten Arrow (Rinkit Style) Positioned on Right Side pointing to Contact Hub */}
+          <div className="absolute -top-7 -right-3 sm:-right-7 lg:-right-10 flex flex-col items-center justify-center select-none z-30 pointer-events-auto rotate-12">
             <a
-              href={`mailto:${profile.email}`}
+              href="#contact"
               onClick={playClick}
-              className="text-lg sm:text-xl font-bold text-[#71717A] dark:text-[#A1A1AA] hover:text-[#09090B] dark:hover:text-white hover:scale-110 transition-transform tracking-wider drop-shadow-xs"
+              className="text-lg sm:text-xl font-bold text-[#71717A] dark:text-[#A1A1AA] hover:text-[#09090B] dark:hover:text-white hover:scale-110 transition-transform tracking-wider drop-shadow-xs cursor-pointer"
               style={{ fontFamily: "'Caveat', cursive, sans-serif" }}
             >
               HIRE ME
@@ -169,7 +169,7 @@ export default function EditorialHero({
               height="46"
               viewBox="0 0 512 512"
               fill="none"
-              className="rotate-12 text-[#71717A] dark:text-[#A1A1AA] shrink-0"
+              className="-scale-x-100 -rotate-12 text-[#71717A] dark:text-[#A1A1AA] shrink-0"
             >
               <path
                 d="M 437 441 Q 363 418, 264 351 Q 198 295, 160 225 Q 138 178, 122 119"

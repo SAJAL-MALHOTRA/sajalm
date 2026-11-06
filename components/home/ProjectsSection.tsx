@@ -41,7 +41,7 @@ export default function ProjectsSection({ onOpenProjectModal }: ProjectsSectionP
               <span className="w-2 h-2 rounded-full bg-[#27C93F]" />
             </div>
             <div className="px-2 py-0.5 rounded-md bg-white/80 dark:bg-[#121316]/80 border border-[#E4E4E7] dark:border-[#27272A] text-[9.5px] font-mono text-[#71717A] dark:text-[#A1A1AA]">
-              pairfect.site/vibe
+              pairfect.site
             </div>
             <span className="text-[9px] font-medium px-1.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
               ● 200+ Live
@@ -96,8 +96,8 @@ export default function ProjectsSection({ onOpenProjectModal }: ProjectsSectionP
               <span className="w-2 h-2 rounded-full bg-[#FFBD2E]" />
               <span className="w-2 h-2 rounded-full bg-[#27C93F]" />
             </div>
-            <div className="px-2 py-0.5 rounded-md bg-white/80 dark:bg-[#121316]/80 border border-[#E4E4E7] dark:border-[#27272A] text-[9.5px] font-mono text-[#71717A] dark:text-[#A1A1AA]">
-              rag.video-ai.dev
+            <div className="px-2 py-0.5 rounded-md bg-white/80 dark:bg-[#121316]/80 border border-[#E4E4E7] dark:border-[#27272A] text-[9.5px] font-mono text-[#71717A] dark:text-[#A1A1AA] truncate max-w-[170px]">
+              striver-dsa-platform.onrender.com
             </div>
             <span className="text-[9px] font-medium px-1.5 py-0.5 rounded-full bg-sky-500/10 text-sky-600 dark:text-sky-400">
               104 Bench
@@ -151,8 +151,8 @@ export default function ProjectsSection({ onOpenProjectModal }: ProjectsSectionP
               <span className="w-2 h-2 rounded-full bg-[#FFBD2E]" />
               <span className="w-2 h-2 rounded-full bg-[#27C93F]" />
             </div>
-            <div className="px-2 py-0.5 rounded-md bg-white/80 dark:bg-[#121316]/80 border border-[#E4E4E7] dark:border-[#27272A] text-[9.5px] font-mono text-[#71717A] dark:text-[#A1A1AA]">
-              arena.cybernauts.net
+            <div className="px-2 py-0.5 rounded-md bg-white/80 dark:bg-[#121316]/80 border border-[#E4E4E7] dark:border-[#27272A] text-[9.5px] font-mono text-[#71717A] dark:text-[#A1A1AA] truncate max-w-[170px]">
+              Cybernauts Arena (Ro16)
             </div>
             <span className="text-[9px] font-medium px-1.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
               ● 0ms Drift
@@ -202,8 +202,8 @@ export default function ProjectsSection({ onOpenProjectModal }: ProjectsSectionP
               <span className="w-2 h-2 rounded-full bg-[#FFBD2E]" />
               <span className="w-2 h-2 rounded-full bg-[#27C93F]" />
             </div>
-            <div className="px-2 py-0.5 rounded-md bg-white/80 dark:bg-[#121316]/80 border border-[#E4E4E7] dark:border-[#27272A] text-[9.5px] font-mono text-[#71717A] dark:text-[#A1A1AA]">
-              cv-telemetry.sys
+            <div className="px-2 py-0.5 rounded-md bg-white/80 dark:bg-[#121316]/80 border border-[#E4E4E7] dark:border-[#27272A] text-[9.5px] font-mono text-[#71717A] dark:text-[#A1A1AA] truncate max-w-[170px]">
+              National CV Challenge
             </div>
             <span className="text-[9px] font-medium px-1.5 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400">
               #16 of 227
