@@ -71,24 +71,49 @@ export default function MinimalFooter() {
         <InteractiveCat size={110} />
       </div>
 
-      {/* ── EDITORIAL SIGNATURE & CREATIVE THESIS ── */}
-      <div className="p-5 rounded-xl bg-white dark:bg-[#111216] border border-[#E2E4E8] dark:border-[#22242B] space-y-3 text-left">
-        <div className="text-[9.5px] uppercase tracking-widest text-[#71717A] dark:text-[#A1A1AA] font-bold">
-          06 // THE SIGNATURE · CREATIVE THESIS
+      {/* ── EDITORIAL COLOPHON & ARCHITECTURAL SIGNATURE (UNBOXED & REFINED) ── */}
+      <div className="w-full text-left space-y-6 pt-2">
+        <div className="flex items-center justify-between text-[9.5px] uppercase tracking-widest text-[#71717A] dark:text-[#A1A1AA] font-bold border-b border-[#E2E4E8] dark:border-[#22242B] pb-2">
+          <span>06 // THE COLOPHON · SIGNATURE</span>
+          <span>SAJAL MALHOTRA · 2026</span>
         </div>
 
-        <div className="space-y-1 font-sans">
-          <p className="text-sm sm:text-base font-bold text-[#09090B] dark:text-white leading-snug">
+        {/* Sculptural Thesis Statement */}
+        <div className="space-y-1.5 font-sans">
+          <h3 className="text-lg sm:text-xl font-bold tracking-tight text-[#09090B] dark:text-white leading-snug">
             Precision in systems. Intention in everything.
-          </p>
-          <p className="text-xs text-[#52525B] dark:text-[#A1A1AA]">
-            An engineer by discipline. A creative by instinct. A builder by choice.
+          </h3>
+          <p className="text-xs sm:text-sm text-[#71717A] dark:text-[#A1A1AA] leading-relaxed max-w-xl font-normal">
+            An engineer by discipline. A creative by instinct. A builder by choice. Developing systems with architectural integrity and visual clarity.
           </p>
         </div>
 
-        <div className="pt-2 border-t border-[#ECEEF2] dark:border-white/5 flex flex-col sm:flex-row sm:items-center justify-between text-[10.5px] text-[#71717A] dark:text-[#A1A1AA] gap-2">
-          <span>SAJAL MALHOTRA · JALANDHAR, INDIA</span>
-          <span>NIT JALANDHAR IT &apos;29 · CGPA 8.13</span>
+        {/* Architectural Metadata Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-[#ECEEF2] dark:border-white/5 text-[10.5px] font-mono text-[#71717A] dark:text-[#A1A1AA]">
+          <div className="space-y-1">
+            <div className="text-[9px] uppercase tracking-wider text-[#A1A1AA] dark:text-[#71717A] font-bold">
+              ACADEMIC CITATION
+            </div>
+            <div className="text-[#09090B] dark:text-white font-medium">
+              Dr B R Ambedkar National Institute of Technology
+            </div>
+            <div>B.Tech Information Technology &apos;29 · CGPA 8.13</div>
+            <div>Coordinates: 31.3959° N, 75.5358° E · Jalandhar, India</div>
+          </div>
+
+          <div className="space-y-1">
+            <div className="text-[9px] uppercase tracking-wider text-[#A1A1AA] dark:text-[#71717A] font-bold">
+              SPECIFICATION // COLOPHON
+            </div>
+            <div className="text-[#09090B] dark:text-white font-medium">
+              Next.js 15 · TypeScript · Tailwind CSS
+            </div>
+            <div>Typefaces: Geist Sans, Geist Mono &amp; Caveat</div>
+            <div className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-semibold pt-0.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span>Available for Summer &apos;26 &amp; Co-ops</span>
+            </div>
+          </div>
         </div>
       </div>
 

@@ -75,14 +75,14 @@ export default function EditorialHero({
 
         </div>
 
-        {/* Right Column: Editorial Portrait & Subtle Markup */}
-        <div className="flex flex-col items-center shrink-0 self-center sm:self-start pt-1">
+        {/* Right Column: Editorial Operator Spec Dossier Card */}
+        <div className="w-full sm:w-[270px] md:w-[290px] flex flex-col items-center shrink-0 self-center sm:self-start pt-1">
           
           {/* Subtle Editorial Markup pointing to contact */}
           <a
             href="#contact"
             onClick={playClick}
-            className="flex flex-col items-center group cursor-pointer mb-1.5 select-none transition-transform hover:scale-105"
+            className="flex items-center gap-1.5 group cursor-pointer mb-2 select-none transition-transform hover:scale-105 self-end sm:self-center pr-1"
             title="Jump to Opportunities & Contact Hub"
           >
             <span
@@ -92,23 +92,23 @@ export default function EditorialHero({
               hire me
             </span>
             <svg
-              width="24"
-              height="24"
+              width="20"
+              height="20"
               viewBox="0 0 100 100"
               fill="none"
-              className="text-[#71717A] dark:text-[#A1A1AA] group-hover:text-black dark:group-hover:text-white -mt-1 transition-colors"
+              className="text-[#71717A] dark:text-[#A1A1AA] group-hover:text-black dark:group-hover:text-white -rotate-12 transition-colors"
             >
               <path
-                d="M 50 12 Q 54 44, 49 68"
+                d="M 20 20 Q 50 45, 75 75"
                 stroke="currentColor"
-                strokeWidth="4"
+                strokeWidth="6"
                 strokeLinecap="round"
                 fill="none"
               />
               <path
-                d="M 38 56 L 49 70 L 60 56"
+                d="M 50 78 L 78 78 L 78 50"
                 stroke="currentColor"
-                strokeWidth="4"
+                strokeWidth="6"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 fill="none"
@@ -116,36 +116,71 @@ export default function EditorialHero({
             </svg>
           </a>
 
-          {/* 4:5 Aspect Ratio Editorial Portrait Frame with Intentional Crop */}
-          <div
-            onClick={() => {
-              playClick();
-              onOpenPhotoZoom();
-            }}
-            onMouseEnter={playHover}
-            title="Click to view full portrait"
-            className="relative w-32 h-40 sm:w-36 sm:h-44 rounded-xl overflow-hidden border border-[#E2E4E8] dark:border-[#22242B] shadow-2xs group cursor-pointer bg-[#0A0B0E]"
-          >
-            <img
-              src={getAssetPath('/avatar.png')}
-              alt={profile.name}
-              loading="eager"
-              fetchPriority="high"
-              decoding="async"
-              className="w-full h-full object-cover object-[center_18%] contrast-[1.03] group-hover:scale-105 transition-transform duration-500"
-            />
+          {/* ── OPERATOR SPEC // SPECTRUM DOSSIER CARD ── */}
+          <div className="w-full rounded-2xl bg-white dark:bg-[#111216] border border-[#E2E4E8] dark:border-[#22242B] p-3.5 sm:p-4 shadow-sm space-y-3 text-left transition-all relative">
             
-            {/* Subtle Zoom Hover Overlay */}
-            <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-              <div className="p-1.5 rounded-full bg-white/95 text-black shadow-md">
-                <Maximize2 size={13} />
+            {/* Top Header of the Dossier */}
+            <div className="flex items-center justify-between border-b border-[#ECEEF2] dark:border-[#1E2026] pb-2.5">
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="font-mono text-[11px] font-black tracking-wider text-[#09090B] dark:text-white uppercase">
+                  OPERATOR SPEC // SPECTRUM
+                </span>
               </div>
+              <span className="text-[8.5px] font-mono px-2 py-0.5 rounded bg-black text-white dark:bg-white dark:text-black font-bold uppercase tracking-wider">
+                VERIFIED [NITJ]
+              </span>
             </div>
 
-            {/* Small NITJ '29 Annotation */}
-            <div className="absolute bottom-1.5 right-1.5 px-1.5 py-0.5 rounded bg-black/75 backdrop-blur-md text-[8.5px] font-mono text-white/90 font-bold">
-              NITJ &apos;29
+            {/* Prominent Editorial Portrait (Natural 4:5 Aspect Ratio) */}
+            <div className="relative group rounded-xl overflow-hidden border border-[#E2E4E8] dark:border-[#22242B] bg-[#0A0B0E]">
+              <button
+                onClick={() => {
+                  playClick();
+                  onOpenPhotoZoom();
+                }}
+                onMouseEnter={playHover}
+                title="Click to zoom portrait"
+                className="w-full aspect-[4/5] block relative cursor-pointer overflow-hidden"
+              >
+                <img
+                  src={getAssetPath('/avatar.png')}
+                  alt={profile.name}
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
+                  className="w-full h-full object-cover object-[center_20%] contrast-[1.03] group-hover:scale-105 transition-transform duration-500"
+                />
+                
+                {/* Subtle Hover Reveal */}
+                <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/95 text-black text-xs font-mono font-bold shadow-lg">
+                    <Maximize2 size={12} />
+                    <span>Zoom Portrait</span>
+                  </div>
+                </div>
+
+                {/* Status Badges in the Upper Night Sky (No Face Obscuration) */}
+                <div className="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-full bg-black/75 dark:bg-black/85 backdrop-blur-md border border-white/20 text-white font-mono text-[9.5px] flex items-center gap-1.5 shadow-md">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="font-semibold text-emerald-300">Open for Summer &apos;26 &amp; Co-ops</span>
+                </div>
+
+                <div className="absolute top-2.5 right-2.5 px-2 py-1 rounded-md bg-black/75 dark:bg-black/85 backdrop-blur-md border border-white/20 text-white/80 font-mono text-[9px] font-bold">
+                  NITJ &apos;29
+                </div>
+              </button>
             </div>
+
+            {/* Elegant Editorial Caption Strip */}
+            <div className="pt-2 border-t border-[#ECEEF2] dark:border-[#1E2026] flex items-center justify-between text-[10.5px] font-mono text-[#71717A] dark:text-[#A1A1AA]">
+              <div className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                <span>Jalandhar, Punjab</span>
+              </div>
+              <span className="font-semibold text-[#09090B] dark:text-white">NITJ IT &apos;29 · CGPA 8.13</span>
+            </div>
+
           </div>
 
         </div>

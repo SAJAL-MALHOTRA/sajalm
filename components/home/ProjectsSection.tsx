@@ -41,17 +41,18 @@ export default function ProjectsSection({ onOpenProjectModal }: ProjectsSectionP
         <div className="w-full h-full bg-[#FAFAFA] dark:bg-[#121316] flex flex-col font-sans select-none overflow-hidden">
           {/* Chrome Header */}
           <div className="h-6 px-2.5 bg-[#F0F1F4] dark:bg-[#1A1B20] border-b border-[#E4E4E7] dark:border-[#27272A] flex items-center justify-between shrink-0">
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-1.5 shrink-0">
               <span className="w-2 h-2 rounded-full bg-[#FF5F56]" />
               <span className="w-2 h-2 rounded-full bg-[#FFBD2E]" />
               <span className="w-2 h-2 rounded-full bg-[#27C93F]" />
             </div>
-            <div className="px-2 py-0.5 rounded-md bg-white/80 dark:bg-[#121316]/80 border border-[#E4E4E7] dark:border-[#27272A] text-[9.5px] font-mono text-[#71717A] dark:text-[#A1A1AA]">
+            <div className="px-2 py-0.5 rounded bg-white/90 dark:bg-[#121316]/90 border border-[#E4E4E7] dark:border-[#27272A] text-[9.5px] font-mono text-[#71717A] dark:text-[#A1A1AA]">
               pairfect.site
             </div>
-            <span className="text-[9px] font-mono font-medium px-1.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
-              ● 200+ Pilot Users
-            </span>
+            <div className="flex items-center gap-1 text-[9px] font-mono text-[#71717A] dark:text-[#A1A1AA] group-hover:text-[#09090B] dark:group-hover:text-white transition-colors shrink-0">
+              <span className="hidden sm:inline">view</span>
+              <ArrowUpRight size={11} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </div>
           </div>
 
           {/* App Canvas */}
@@ -97,17 +98,18 @@ export default function ProjectsSection({ onOpenProjectModal }: ProjectsSectionP
       renderPreview: () => (
         <div className="w-full h-full bg-[#FAFAFA] dark:bg-[#121316] flex flex-col font-sans select-none overflow-hidden">
           <div className="h-6 px-2.5 bg-[#F0F1F4] dark:bg-[#1A1B20] border-b border-[#E4E4E7] dark:border-[#27272A] flex items-center justify-between shrink-0">
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-1.5 shrink-0">
               <span className="w-2 h-2 rounded-full bg-[#FF5F56]" />
               <span className="w-2 h-2 rounded-full bg-[#FFBD2E]" />
               <span className="w-2 h-2 rounded-full bg-[#27C93F]" />
             </div>
-            <div className="px-2 py-0.5 rounded-md bg-white/80 dark:bg-[#121316]/80 border border-[#E4E4E7] dark:border-[#27272A] text-[9.5px] font-mono text-[#71717A] dark:text-[#A1A1AA] truncate max-w-[170px]">
-              Cybernauts Arena (Ro16)
+            <div className="px-2 py-0.5 rounded bg-white/90 dark:bg-[#121316]/90 border border-[#E4E4E7] dark:border-[#27272A] text-[9.5px] font-mono text-[#71717A] dark:text-[#A1A1AA]">
+              cybernauts.live
             </div>
-            <span className="text-[9px] font-mono font-medium px-1.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
-              ● 16-Team Sync
-            </span>
+            <div className="flex items-center gap-1 text-[9px] font-mono text-[#71717A] dark:text-[#A1A1AA] group-hover:text-[#09090B] dark:group-hover:text-white transition-colors shrink-0">
+              <span className="hidden sm:inline">view</span>
+              <ArrowUpRight size={11} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </div>
           </div>
 
           <div className="p-2.5 space-y-2 flex-1 bg-gradient-to-b from-[#FFFFFF] to-[#F8F9FA] dark:from-[#141519] dark:to-[#0D0E11] flex flex-col justify-between">
@@ -150,17 +152,18 @@ export default function ProjectsSection({ onOpenProjectModal }: ProjectsSectionP
       renderPreview: () => (
         <div className="w-full h-full bg-[#FAFAFA] dark:bg-[#121316] flex flex-col font-sans select-none overflow-hidden">
           <div className="h-6 px-2.5 bg-[#F0F1F4] dark:bg-[#1A1B20] border-b border-[#E4E4E7] dark:border-[#27272A] flex items-center justify-between shrink-0">
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-1.5 shrink-0">
               <span className="w-2 h-2 rounded-full bg-[#FF5F56]" />
               <span className="w-2 h-2 rounded-full bg-[#FFBD2E]" />
               <span className="w-2 h-2 rounded-full bg-[#27C93F]" />
             </div>
-            <div className="px-2 py-0.5 rounded-md bg-white/80 dark:bg-[#121316]/80 border border-[#E4E4E7] dark:border-[#27272A] text-[9.5px] font-mono text-[#71717A] dark:text-[#A1A1AA] truncate max-w-[170px]">
-              striver-dsa-platform.onrender.com
+            <div className="px-2 py-0.5 rounded bg-white/90 dark:bg-[#121316]/90 border border-[#E4E4E7] dark:border-[#27272A] text-[9.5px] font-mono text-[#71717A] dark:text-[#A1A1AA]">
+              dsa-rag.platform
             </div>
-            <span className="text-[9px] font-mono font-medium px-1.5 py-0.5 rounded-full bg-sky-500/10 text-sky-600 dark:text-sky-400">
-              104 Benchmark
-            </span>
+            <div className="flex items-center gap-1 text-[9px] font-mono text-[#71717A] dark:text-[#A1A1AA] group-hover:text-[#09090B] dark:group-hover:text-white transition-colors shrink-0">
+              <span className="hidden sm:inline">view</span>
+              <ArrowUpRight size={11} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </div>
           </div>
 
           <div className="p-2.5 space-y-2 flex-1 bg-gradient-to-b from-[#FFFFFF] to-[#F8F9FA] dark:from-[#141519] dark:to-[#0D0E11] flex flex-col justify-between">
@@ -206,17 +209,18 @@ export default function ProjectsSection({ onOpenProjectModal }: ProjectsSectionP
       renderPreview: () => (
         <div className="w-full h-full bg-[#FAFAFA] dark:bg-[#121316] flex flex-col font-sans select-none overflow-hidden">
           <div className="h-6 px-2.5 bg-[#F0F1F4] dark:bg-[#1A1B20] border-b border-[#E4E4E7] dark:border-[#27272A] flex items-center justify-between shrink-0">
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-1.5 shrink-0">
               <span className="w-2 h-2 rounded-full bg-[#FF5F56]" />
               <span className="w-2 h-2 rounded-full bg-[#FFBD2E]" />
               <span className="w-2 h-2 rounded-full bg-[#27C93F]" />
             </div>
-            <div className="px-2 py-0.5 rounded-md bg-white/80 dark:bg-[#121316]/80 border border-[#E4E4E7] dark:border-[#27272A] text-[9.5px] font-mono text-[#71717A] dark:text-[#A1A1AA] truncate max-w-[170px]">
-              National CV Challenge
+            <div className="px-2 py-0.5 rounded bg-white/90 dark:bg-[#121316]/90 border border-[#E4E4E7] dark:border-[#27272A] text-[9.5px] font-mono text-[#71717A] dark:text-[#A1A1AA]">
+              cv-challenge.sys
             </div>
-            <span className="text-[9px] font-mono font-medium px-1.5 py-0.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400">
-              #16 / 227
-            </span>
+            <div className="flex items-center gap-1 text-[9px] font-mono text-[#71717A] dark:text-[#A1A1AA] group-hover:text-[#09090B] dark:group-hover:text-white transition-colors shrink-0">
+              <span className="hidden sm:inline">view</span>
+              <ArrowUpRight size={11} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </div>
           </div>
 
           <div className="p-2.5 space-y-2 flex-1 bg-gradient-to-b from-[#FFFFFF] to-[#F8F9FA] dark:from-[#141519] dark:to-[#0D0E11] flex flex-col justify-between">
@@ -293,18 +297,14 @@ export default function ProjectsSection({ onOpenProjectModal }: ProjectsSectionP
             {/* Interactive Preview Window Frame */}
             <div className="relative w-full rounded-lg border border-[#E2E4E8] dark:border-[#22242B] bg-[#F4F4F5] dark:bg-[#141519] h-[175px] sm:h-[185px] overflow-hidden select-none">
               {project.renderPreview()}
-
-              {/* Pin Indicator */}
-              <div className="absolute top-2 right-2 p-1.5 rounded-md border border-[#E2E4E8] dark:border-[#27272A] bg-white dark:bg-[#18181B] text-[#71717A] dark:text-[#A1A1AA] group-hover:text-black dark:group-hover:text-white transition-colors z-20 shadow-2xs">
-                <ArrowUpRight size={12} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-              </div>
             </div>
 
             {/* Project Editorial Metadata */}
             <div className="space-y-1.5 pt-1">
               <div className="flex items-center justify-between">
-                <h3 className="text-base font-bold font-sans tracking-tight text-[#09090B] dark:text-white group-hover:underline">
-                  {project.title}
+                <h3 className="text-base font-bold font-sans tracking-tight text-[#09090B] dark:text-white group-hover:underline flex items-center gap-1.5">
+                  <span>{project.title}</span>
+                  <ArrowUpRight size={13} className="text-[#71717A] dark:text-[#A1A1AA] opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0" />
                 </h3>
                 <span className="text-[10px] font-mono text-[#71717A] dark:text-[#A1A1AA]">
                   {project.categoryLabel}

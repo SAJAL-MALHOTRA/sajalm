@@ -6,21 +6,21 @@ import { profile } from '@/data/profile';
 import { useSound } from '@/hooks/useSound';
 import { FileText, ArrowUpRight, Mail } from 'lucide-react';
 
-// Monochrome color tokens for GitHub activity calendar matching Swiss editorial rules
+// Official GitHub green color tokens for the contribution calendar
 const LIGHT_COLORS: Record<number, string> = {
-  0: '#F4F4F5',
-  1: '#D4D4D8',
-  2: '#A1A1AA',
-  3: '#52525B',
-  4: '#18181B',
+  0: '#EBEDF0',
+  1: '#9BE9A8',
+  2: '#40C463',
+  3: '#30A14E',
+  4: '#216E39',
 };
 
 const DARK_COLORS: Record<number, string> = {
-  0: '#18181B',
-  1: '#27272A',
-  2: '#3F3F46',
-  3: '#71717A',
-  4: '#D4D4D8',
+  0: '#161B22',
+  1: '#0E4429',
+  2: '#006D32',
+  3: '#26A641',
+  4: '#39D353',
 };
 
 // Month legends and column offsets across 53 weeks
@@ -99,7 +99,7 @@ export default function SocialsAndGithubCalendar() {
   // Render SVG calendar grid
   const renderCalendarSvg = (isDark: boolean) => {
     const colors = isDark ? DARK_COLORS : LIGHT_COLORS;
-    const stroke = isDark ? '#27272A' : '#E4E4E7';
+    const stroke = isDark ? '#21262D' : '#E1E4E8';
 
     return (
       <svg
