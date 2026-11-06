@@ -60,7 +60,7 @@ export default function NavigationHeader({ onOpenTerminal }: NavigationHeaderPro
           <span className="font-bold text-[#09090B] dark:text-[#EDEDED] tracking-wider text-xs sm:text-[12.5px]">
             SAJAL MALHOTRA
           </span>
-          <span className="text-[#A1A1AA] text-[11px] font-normal">/ NITJ &apos;29</span>
+          <span className="text-[#A1A1AA] text-[11px] font-normal hidden min-[400px]:inline">/ NITJ &apos;29</span>
         </a>
 
         {/* Center Editorial Anchors */}

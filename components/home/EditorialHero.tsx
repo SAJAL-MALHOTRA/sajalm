@@ -76,10 +76,10 @@ export default function EditorialHero({
         </div>
 
         {/* Right Column: Editorial Operator Spec Dossier Card */}
-        <div className="w-full sm:w-[310px] md:w-[330px] flex flex-col items-center shrink-0 self-center sm:self-start pt-3 sm:pt-1 relative">
+        <div className="w-full max-w-[340px] sm:max-w-none sm:w-[310px] md:w-[330px] flex flex-col items-center shrink-0 self-center sm:self-start pt-4 sm:pt-1 relative mx-auto sm:mx-0">
           
           {/* Playful "HIRE ME" Handwritten Arrow pointing at Dossier Card */}
-          <div className="absolute -top-7 -left-4 sm:-left-8 flex flex-col items-center justify-center select-none z-30 pointer-events-auto -rotate-12">
+          <div className="absolute -top-7 left-2 sm:-left-8 flex flex-col items-center justify-center select-none z-30 pointer-events-auto -rotate-12">
             <a
               href="#contact"
               onClick={playClick}
@@ -227,11 +227,11 @@ export default function EditorialHero({
       </div>
 
       {/* ── ACTION CTAS BAR ── */}
-      <div className="flex flex-wrap items-center gap-2.5 pt-1 font-mono text-xs">
+      <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 pt-1 font-mono text-xs">
         <a
           href="#projects"
           onClick={playClick}
-          className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-black hover:bg-neutral-800 text-white dark:bg-white dark:hover:bg-neutral-200 dark:text-black font-bold transition-all shadow-sm active:scale-95 cursor-pointer text-xs"
+          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-black hover:bg-neutral-800 text-white dark:bg-white dark:hover:bg-neutral-200 dark:text-black font-bold transition-all shadow-sm active:scale-95 cursor-pointer text-xs"
         >
           <span>Explore Shipped Systems</span>
           <ArrowDown size={13} />
@@ -242,7 +242,7 @@ export default function EditorialHero({
           target="_blank"
           rel="noreferrer"
           onClick={playClick}
-          className="inline-flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl bg-white hover:bg-[#F4F4F6] dark:bg-[#121316] dark:hover:bg-[#1C1D22] text-[#09090B] dark:text-[#EDEDED] border border-[#E2E4E8] dark:border-[#22242B] font-medium transition-all shadow-2xs cursor-pointer text-xs"
+          className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl bg-white hover:bg-[#F4F4F6] dark:bg-[#121316] dark:hover:bg-[#1C1D22] text-[#09090B] dark:text-[#EDEDED] border border-[#E2E4E8] dark:border-[#22242B] font-medium transition-all shadow-2xs cursor-pointer text-xs"
         >
           <FileText size={13} className="text-[#71717A] dark:text-[#A1A1AA]" />
           <span>Resume PDF</span>

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { sajalContributionsData, DayContribution } from '@/data/githubContributions';
 import { profile } from '@/data/profile';
 import { useSound } from '@/hooks/useSound';
-import { FileText, ArrowUpRight, Mail } from 'lucide-react';
+import { FileText, ArrowUpRight } from 'lucide-react';
 
 // Official GitHub green color tokens for the contribution calendar
 const LIGHT_COLORS: Record<number, string> = {
@@ -216,28 +216,6 @@ export default function SocialsAndGithubCalendar() {
             <span>X (Twitter)</span>
           </a>
 
-          {/* LeetCode */}
-          <a
-            href="https://leetcode.com/u/sajalmalhotra303/"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={playClick}
-            className="flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-[#121316] hover:bg-[#F4F4F6] dark:hover:bg-[#1C1D22] border border-[#E2E4E8] dark:border-[#22242B] rounded-lg text-xs font-mono text-[#09090B] dark:text-[#EDEDED] transition-colors shadow-2xs"
-          >
-            <span className="font-bold text-[#FFA116]">LC</span>
-            <span>LeetCode</span>
-          </a>
-
-          {/* Email Direct */}
-          <a
-            href={`mailto:${profile.email}`}
-            onClick={playClick}
-            className="flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-[#121316] hover:bg-[#F4F4F6] dark:hover:bg-[#1C1D22] border border-[#E2E4E8] dark:border-[#22242B] rounded-lg text-xs font-mono text-[#09090B] dark:text-[#EDEDED] transition-colors shadow-2xs"
-          >
-            <Mail size={12} className="text-[#71717A] dark:text-[#A1A1AA]" />
-            <span>Email</span>
-          </a>
-
           {/* Resume PDF */}
           <a
             href={profile.links.resume}
@@ -264,20 +242,20 @@ export default function SocialsAndGithubCalendar() {
           </span>
         </div>
 
-        <div className="w-full overflow-x-auto no-scrollbar pb-1">
+        <div className="w-full overflow-x-auto no-scrollbar pb-1 touch-pan-x">
           {/* Light Mode SVG */}
-          <div className="block dark:hidden">
+          <div className="block dark:hidden min-w-[660px]">
             {renderCalendarSvg(false)}
           </div>
 
           {/* Dark Mode SVG */}
-          <div className="hidden dark:block">
+          <div className="hidden dark:block min-w-[660px]">
             {renderCalendarSvg(true)}
           </div>
         </div>
 
         {/* Legend */}
-        <div className="flex items-center justify-between text-[11px] font-mono text-[#71717A] dark:text-[#A1A1AA] pt-1 border-t border-[#ECEEF2] dark:border-white/5">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between text-[10.5px] sm:text-[11px] font-mono text-[#71717A] dark:text-[#A1A1AA] pt-2 border-t border-[#ECEEF2] dark:border-white/5 gap-1.5">
           <span>Continuous code history across public repositories</span>
 
           <div className="flex items-center gap-1.5 text-[10.5px]">
