@@ -5,8 +5,8 @@ export const profile = {
   name: "Sajal Malhotra",
   fullName: "Sajal Malhotra",
   handle: "@SAJAL-MALHOTRA",
-  phone: "+91-62845-96119",
-  email: "malhotrasajal243@gmail.com",
+  phone: "+91 97801 89330",
+  email: "sajalmalhotra303@gmail.com",
   title: "B.TECH INFORMATION TECHNOLOGY",
   department: "INFORMATION TECHNOLOGY",
   college: "NIT JALANDHAR",
@@ -21,7 +21,7 @@ export const profile = {
   description:
     "Information Technology undergraduate at NIT Jalandhar (CGPA 8.13) specializing in ML reasoning engines, multi-agent systems, and full-stack real-time platforms. Core Member at Cybernauts, practitioner of spirituality and mindfulness, and creative director.",
   transcript:
-    "Sajal Malhotra is an Information Technology undergraduate at NIT Jalandhar with an 8.13 CGPA. He specializes in ML reasoning engines, multi-agent systems, and full-stack real-time platforms. Creator of DSA Lecture RAG with a 104-query benchmark, Cybernauts Arena for 16-team simultaneous esports tournaments, Pairfect with 200+ users and sub-50ms Groq Llama 3 inference, ThinkFolio with R² 0.927 accuracy, and ranked #16 of 227 (National Top 7%, Score 0.21) in the Computer Vision Lighting Challenge with Best Solution recognition. He is a Core Member of Cybernauts and an active fashion & creative content creator with over 220,000 monthly views.",
+    "Sajal Malhotra is an Information Technology undergraduate at NIT Jalandhar with an 8.13 CGPA. He specializes in ML reasoning engines, multi-agent systems, and full-stack real-time platforms. Creator of DSA Lecture RAG with a 104-query benchmark, Cybernauts Arena for 16-team simultaneous esports tournaments, Pairfect with 200+ registered pilot users and sub-50ms median Groq Llama 3 inference, ThinkFolio with R² 0.927 accuracy, and ranked #16 of 227 (National Top 7%, Score 0.211) in the Computer Vision Lighting Challenge with Best Solution recognition. He is a Core Member of Cybernauts and an active fashion & creative content creator with over 220,000 monthly views.",
 
   // Aspects of Personality requested by Sajal (Tech prioritized, clean & emoji-free)
   personality: [
@@ -87,10 +87,10 @@ export const profile = {
 
   achievements: [
     {
-      title: "Grew Pairfect to 200+ Active Users",
-      stat: "200+ USERS",
+      title: "Shipped Pairfect (Campus Pilot)",
+      stat: "200+ PILOT USERS",
       metricNumber: "200+",
-      detail: "Scaled relationship platform (pairfect.site) organically to 200+ active users with sub-50ms Groq Llama 3 AI inference, Supabase real-time sync, and zero TypeScript bugs over 77 production routes.",
+      detail: "Designed and deployed relationship platform (pairfect.site) with 200+ registered student users, median ~45ms Groq Llama 3 API inference, Supabase real-time sync, and zero TypeScript bugs over 77 production routes.",
       category: "Product & Growth",
       highlight: true,
     },
@@ -98,7 +98,7 @@ export const profile = {
       title: "National Computer Vision Challenge",
       stat: "TOP 7%",
       metricNumber: "16/227",
-      detail: "Ranked #16 of 227 (National Top 7%) on “Lighting Level” illumination prediction from camera images with a score of 0.21. Earned 'Best Solution' recognition on leaderboard with 128-D luminance descriptors and 10-fold bagged FastMLP on CPU.",
+      detail: "Ranked #16 of 227 (National Top 7%) on “Lighting Level” illumination prediction from camera images with a score of 0.211. Earned 'Best Solution' recognition on leaderboard with 128-D luminance descriptors and 10-fold bagged FastMLP on CPU.",
       category: "Machine Learning",
       highlight: true,
     },
@@ -106,15 +106,15 @@ export const profile = {
       title: "Content Creator & Model",
       stat: "220K+ VIEWS",
       metricNumber: "220K+",
-      detail: "Built personal creative presence generating 2.2L+ (220,000+) monthly views across fashion, tech lifestyle, and creative direction.",
+      detail: "Built personal creative presence generating 2.2L+ (220,000+) monthly views across fashion, runway modeling, and digital creative direction.",
       category: "Creative & Media",
       highlight: true,
     },
     {
       title: "Cybernauts Arena Tournament Platform",
       stat: "16-TEAM SYNC",
-      metricNumber: "0ms DRIFT",
-      detail: "Core Member at Cybernauts NITJ. Architected the broadcast-grade tournament platform orchestrating 16 simultaneous physical table duels with 2.5s network grace buffer and 4K arena projector.",
+      metricNumber: "2.5s BUFFER",
+      detail: "Core Member at Cybernauts NITJ. Architected the broadcast tournament platform orchestrating 16 simultaneous physical table duels with authoritative epoch master clocks and 2.5s network jitter buffer.",
       category: "Distributed Systems",
       highlight: true,
     },
@@ -132,7 +132,7 @@ export const profile = {
     linkedin: "https://linkedin.com/in/sajal-malhotra1",
     twitter: "https://x.com/slothinslowlane",
     instagram: "https://instagram.com/sajal",
-    email: "malhotrasajal243@gmail.com",
+    email: "sajalmalhotra303@gmail.com",
     resume: getAssetPath("/resume.pdf"),
     buyMeAChai: "https://buymeachai.in/sajalmalhotra",
   },

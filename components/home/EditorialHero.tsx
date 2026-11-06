@@ -23,24 +23,25 @@ export default function EditorialHero({
   const { playClick, playHover } = useSound();
 
   return (
-    <section id="intro" className="relative w-full max-w-[780px] mx-auto pt-8 sm:pt-12 pb-6 select-none space-y-7">
+    <section id="intro" className="relative w-full max-w-[780px] mx-auto pt-8 sm:pt-12 pb-6 select-none space-y-8">
       
-      {/* ── TOP SECTION: BIOGRAPHY & EDITORIAL PORTRAIT ── */}
+      {/* ── TOP SECTION: COMPOSED EDITORIAL SPREAD ── */}
       <div className="flex flex-col-reverse sm:flex-row items-center sm:items-start justify-between gap-6 sm:gap-8">
         
         {/* Left Column: Narrative Identity & Manifest */}
         <div className="flex-1 space-y-4 text-left">
           
-          {/* Status Pill: Location & Availability */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/5 dark:bg-white/5 border border-[#E2E4E8] dark:border-[#22242B] text-[10.5px] font-mono tracking-wider text-[#71717A] dark:text-[#A1A1AA]">
+          {/* Understated Availability Indicator */}
+          <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-black/5 dark:bg-white/5 border border-[#E2E4E8] dark:border-[#22242B] text-[10.5px] font-mono tracking-wider text-[#71717A] dark:text-[#A1A1AA]">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="font-semibold text-[#09090B] dark:text-[#EDEDED]">AVAILABLE FOR OPPORTUNITIES</span>
+            <span className="font-medium text-[#09090B] dark:text-[#EDEDED]">AVAILABLE FOR OPPORTUNITIES</span>
             <span className="text-[#A1A1AA]">·</span>
             <span>JALANDHAR, INDIA</span>
           </div>
 
+          {/* Core Manifesto Headline */}
           <div className="space-y-1.5">
-            <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-sans font-black tracking-tight text-[#09090B] dark:text-white leading-[1.12]">
+            <h1 className="text-3xl sm:text-4xl lg:text-[40px] font-sans font-black tracking-tight text-[#09090B] dark:text-white leading-[1.12]">
               Hey, I&apos;m Sajal.
             </h1>
             <p className="text-base sm:text-lg font-medium text-[#09090B] dark:text-[#EDEDED] font-sans leading-snug">
@@ -53,7 +54,7 @@ export default function EditorialHero({
           </p>
 
           {/* Identity Chips & Scroll Cue */}
-          <div className="flex items-center justify-between pt-1 border-t border-[#E2E4E8] dark:border-[#22242B] text-[10.5px] font-mono text-[#71717A] dark:text-[#A1A1AA]">
+          <div className="flex items-center justify-between pt-2 border-t border-[#E2E4E8] dark:border-[#22242B] text-[10.5px] font-mono text-[#71717A] dark:text-[#A1A1AA]">
             <div className="flex items-center gap-2 flex-wrap">
               <span className="px-2 py-0.5 rounded bg-black/5 dark:bg-white/5 font-semibold text-[#09090B] dark:text-[#EDEDED]">ENGINEERING</span>
               <span>·</span>
@@ -74,25 +75,25 @@ export default function EditorialHero({
 
         </div>
 
-        {/* Right Column: Editorial Portrait & Hand-drawn Markup */}
-        <div className="flex flex-col items-center shrink-0 self-center sm:self-start">
+        {/* Right Column: Editorial Portrait & Subtle Markup */}
+        <div className="flex flex-col items-center shrink-0 self-center sm:self-start pt-1">
           
-          {/* Handwritten "HIRE ME" Editorial Markup with Downward Arrow */}
+          {/* Subtle Editorial Markup pointing to contact */}
           <a
             href="#contact"
             onClick={playClick}
-            className="flex flex-col items-center group cursor-pointer -mt-2 mb-1.5 transition-transform hover:scale-105 select-none"
+            className="flex flex-col items-center group cursor-pointer mb-1.5 select-none transition-transform hover:scale-105"
             title="Jump to Opportunities & Contact Hub"
           >
             <span
-              className="text-lg sm:text-xl font-bold text-[#71717A] dark:text-[#A1A1AA] group-hover:text-black dark:group-hover:text-white tracking-wider"
+              className="text-base sm:text-lg font-bold text-[#71717A] dark:text-[#A1A1AA] group-hover:text-black dark:group-hover:text-white tracking-wider"
               style={{ fontFamily: "'Caveat', cursive, sans-serif" }}
             >
-              HIRE ME
+              hire me
             </span>
             <svg
-              width="32"
-              height="32"
+              width="24"
+              height="24"
               viewBox="0 0 100 100"
               fill="none"
               className="text-[#71717A] dark:text-[#A1A1AA] group-hover:text-black dark:group-hover:text-white -mt-1 transition-colors"
@@ -100,14 +101,14 @@ export default function EditorialHero({
               <path
                 d="M 50 12 Q 54 44, 49 68"
                 stroke="currentColor"
-                strokeWidth="5"
+                strokeWidth="4"
                 strokeLinecap="round"
                 fill="none"
               />
               <path
-                d="M 36 56 L 49 70 L 62 56"
+                d="M 38 56 L 49 70 L 60 56"
                 stroke="currentColor"
-                strokeWidth="5"
+                strokeWidth="4"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 fill="none"
@@ -115,7 +116,7 @@ export default function EditorialHero({
             </svg>
           </a>
 
-          {/* 4:5 Aspect Ratio Editorial Portrait Frame */}
+          {/* 4:5 Aspect Ratio Editorial Portrait Frame with Intentional Crop */}
           <div
             onClick={() => {
               playClick();
@@ -123,7 +124,7 @@ export default function EditorialHero({
             }}
             onMouseEnter={playHover}
             title="Click to view full portrait"
-            className="relative w-32 h-40 sm:w-36 sm:h-44 rounded-xl overflow-hidden border border-[#E2E4E8] dark:border-[#22242B] shadow-sm group cursor-pointer bg-[#0A0B0E]"
+            className="relative w-32 h-40 sm:w-36 sm:h-44 rounded-xl overflow-hidden border border-[#E2E4E8] dark:border-[#22242B] shadow-2xs group cursor-pointer bg-[#0A0B0E]"
           >
             <img
               src={getAssetPath('/avatar.png')}
@@ -131,7 +132,7 @@ export default function EditorialHero({
               loading="eager"
               fetchPriority="high"
               decoding="async"
-              className="w-full h-full object-cover object-[center_20%] contrast-[1.03] group-hover:scale-105 transition-transform duration-500"
+              className="w-full h-full object-cover object-[center_18%] contrast-[1.03] group-hover:scale-105 transition-transform duration-500"
             />
             
             {/* Subtle Zoom Hover Overlay */}
@@ -151,8 +152,8 @@ export default function EditorialHero({
 
       </div>
 
-      {/* ── FOUNDATION METRICS (THREE COMPACT PROOF POINTS) ── */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1 text-xs font-mono">
+      {/* ── FOUNDATION METRICS (BREATHING ROOM & HONEST TELEMETRY) ── */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-1 text-xs font-mono">
         <div className="p-3.5 rounded-xl bg-white dark:bg-[#121316] border border-[#E2E4E8] dark:border-[#22242B] space-y-1 shadow-2xs">
           <div className="text-[9px] text-[#71717A] uppercase font-bold tracking-wider">ACADEMIC FOUNDATION</div>
           <div className="font-bold text-[#09090B] dark:text-white text-[12.5px]">NIT Jalandhar · IT &apos;29</div>

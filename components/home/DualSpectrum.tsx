@@ -2,7 +2,20 @@
 
 import { useState } from 'react';
 import { useSound } from '@/hooks/useSound';
-import { Cpu, Palette, Layers, Camera, Compass, Disc3, Code2, Database, Network, GitBranch, Terminal } from 'lucide-react';
+import {
+  Cpu,
+  Palette,
+  Layers,
+  Camera,
+  Compass,
+  Disc3,
+  Code2,
+  Network,
+  GitBranch,
+  Terminal,
+  Music,
+  Sparkles,
+} from 'lucide-react';
 
 export default function DualSpectrum() {
   const [activeTab, setActiveTab] = useState<'tech' | 'passions'>('tech');
@@ -57,10 +70,10 @@ export default function DualSpectrum() {
     },
     {
       index: '02',
-      title: 'Runway & Visual Direction',
+      title: 'Runway & Stage Direction',
       subtitle: 'Presence and visual direction',
       icon: <Camera size={13} className="text-[#71717A] dark:text-[#A1A1AA]" />,
-      detail: 'Core runway and editorial model for the NIT Jalandhar Fashion & Modelling Club (NITJ FMC). Commanding stage choreography, high-contrast visual framing, and digital creative direction.',
+      detail: 'Core runway and editorial model for the NIT Jalandhar Fashion & Modelling Club (NITJ FMC). Commanding stage choreography, high-contrast visual framing, and digital creative direction with over 220,000+ monthly impressions.',
       tags: ['NITJ FMC', 'Runway Choreography', 'Editorial Shoots', 'Visual Direction'],
     },
     {
@@ -78,6 +91,29 @@ export default function DualSpectrum() {
       icon: <Disc3 size={13} className="text-[#71717A] dark:text-[#A1A1AA]" />,
       detail: 'Deep focus rotations featuring Frank Ocean, Travis Scott, Aphex Twin, Dijon, and atmospheric ambient electronics. Sound shapes the rhythm and velocity of every codebase built.',
       tags: ['Frank Ocean', 'Aphex Twin', 'Ambient Soundscapes', 'Focus Rotations'],
+    },
+  ];
+
+  const audioRotations = [
+    {
+      artist: 'Frank Ocean',
+      tracks: 'White Ferrari · Nights · In My Room',
+      mood: 'Nocturnal focus & aesthetic clarity',
+    },
+    {
+      artist: 'Aphex Twin',
+      tracks: '#3 (Rhubarb) · Alberto Balsalm · Avril 14th',
+      mood: 'Deep algorithmic & systems flow',
+    },
+    {
+      artist: 'Travis Scott',
+      tracks: 'Telekinesis · My Eyes · Skeletons',
+      mood: 'High-tempo engineering execution',
+    },
+    {
+      artist: 'Dijon',
+      tracks: 'The Dress · Many Times · Big Mike\'s',
+      mood: 'Organic warmth & analog texture',
     },
   ];
 
@@ -131,7 +167,7 @@ export default function DualSpectrum() {
         </div>
       </div>
 
-      {/* ── 01 ENGINEERING MATRIX ── */}
+      {/* ── 01 ENGINEERING MATRIX (TECHNICAL INDEX) ── */}
       {activeTab === 'tech' && (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 transition-opacity duration-300">
           {technicalCategories.map((cat, idx) => {
@@ -171,42 +207,94 @@ export default function DualSpectrum() {
         </div>
       )}
 
-      {/* ── 02 CREATIVE ORBIT MATRIX ── */}
+      {/* ── 02 CREATIVE ORBIT MATRIX (VISUAL MAGAZINE SPREAD) ── */}
       {activeTab === 'passions' && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 transition-opacity duration-300">
-          {creativeDimensions.map((p) => (
-            <div
-              key={p.title}
-              className="p-4 sm:p-4.5 rounded-xl bg-white dark:bg-[#111216] border border-[#E2E4E8] dark:border-[#22242B] space-y-3 shadow-2xs hover:border-black/30 dark:hover:border-white/30 transition-all flex flex-col justify-between"
-            >
-              <div className="space-y-1.5">
-                <div className="flex items-center justify-between text-[9px] font-mono text-[#71717A] uppercase font-bold">
-                  <div className="flex items-center gap-1.5">
-                    {p.icon}
-                    <span>{p.title}</span>
-                  </div>
-                  <span className="font-mono text-[#A1A1AA]">[{p.index}]</span>
-                </div>
-                <h3 className="text-sm font-bold text-[#09090B] dark:text-white font-sans">
-                  {p.subtitle}
-                </h3>
-                <p className="text-xs text-[#52525B] dark:text-[#A1A1AA] leading-relaxed font-sans">
-                  {p.detail}
-                </p>
-              </div>
-
-              <div className="flex flex-wrap gap-1.5 pt-2 border-t border-[#ECEEF2] dark:border-white/5">
-                {p.tags.map((t) => (
-                  <span
-                    key={t}
-                    className="px-2 py-0.5 rounded bg-black/5 dark:bg-white/5 text-[#09090B] dark:text-white font-mono text-[10px] font-medium"
-                  >
-                    #{t}
-                  </span>
-                ))}
-              </div>
+        <div className="space-y-4 transition-opacity duration-300">
+          
+          {/* Magazine Editorial Masthead */}
+          <div className="p-4 sm:p-5 rounded-xl bg-white dark:bg-[#111216] border border-[#E2E4E8] dark:border-[#22242B] space-y-2 select-none shadow-2xs">
+            <div className="flex items-center justify-between font-mono text-[9.5px] tracking-widest uppercase text-[#71717A] dark:text-[#A1A1AA]">
+              <span>MAGAZINE ISSUE 01 // AESTHETIC CONVICTION</span>
+              <span>NIT JALANDHAR FMC</span>
             </div>
-          ))}
+            <h3 className="text-base sm:text-lg font-black font-sans tracking-tight text-[#09090B] dark:text-white">
+              Wardrobe, silhouette and visual direction curated with the exact same architectural rigor as code.
+            </h3>
+            <p className="text-xs text-[#52525B] dark:text-[#A1A1AA] leading-relaxed font-sans max-w-2xl">
+              High-contrast monochrome silhouettes, disciplined runway presence with 220,000+ monthly views, and quiet mental stillness amidst high-velocity systems engineering.
+            </p>
+          </div>
+
+          {/* 4 Creative Dimensions (2x2 Grid) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            {creativeDimensions.map((p) => (
+              <div
+                key={p.title}
+                className="p-4 sm:p-4.5 rounded-xl bg-white dark:bg-[#111216] border border-[#E2E4E8] dark:border-[#22242B] space-y-3 shadow-2xs hover:border-black/30 dark:hover:border-white/30 transition-all flex flex-col justify-between"
+              >
+                <div className="space-y-1.5">
+                  <div className="flex items-center justify-between text-[9px] font-mono text-[#71717A] uppercase font-bold">
+                    <div className="flex items-center gap-1.5">
+                      {p.icon}
+                      <span>{p.title}</span>
+                    </div>
+                    <span className="font-mono text-[#A1A1AA]">[{p.index}]</span>
+                  </div>
+                  <h3 className="text-sm font-bold text-[#09090B] dark:text-white font-sans">
+                    {p.subtitle}
+                  </h3>
+                  <p className="text-xs text-[#52525B] dark:text-[#A1A1AA] leading-relaxed font-sans">
+                    {p.detail}
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap gap-1.5 pt-2 border-t border-[#ECEEF2] dark:border-white/5">
+                  {p.tags.map((t) => (
+                    <span
+                      key={t}
+                      className="px-2 py-0.5 rounded bg-black/5 dark:bg-white/5 text-[#09090B] dark:text-white font-mono text-[10px] font-medium"
+                    >
+                      #{t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Curated Personal Listening Archive */}
+          <div className="p-4 sm:p-5 rounded-xl bg-white dark:bg-[#111216] border border-[#E2E4E8] dark:border-[#22242B] space-y-3 shadow-2xs">
+            <div className="flex items-center justify-between font-mono text-[10px] text-[#71717A] dark:text-[#A1A1AA] uppercase tracking-wider font-bold">
+              <span className="flex items-center gap-1.5">
+                <Music size={13} className="text-emerald-500" />
+                <span>PERSONAL LISTENING ARCHIVE // SOUNDSCAPES OF FOCUS</span>
+              </span>
+              <span>4 ROTATIONS</span>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
+              {audioRotations.map((track) => (
+                <div
+                  key={track.artist}
+                  className="p-3 rounded-lg bg-[#F9F9FB] dark:bg-[#16181F] border border-[#E2E4E8] dark:border-[#22242B] space-y-1"
+                >
+                  <div className="flex items-center justify-between text-xs font-bold text-[#09090B] dark:text-white font-mono">
+                    <span>{track.artist}</span>
+                    <span className="text-[9px] px-1.5 py-0.2 rounded bg-black/5 dark:bg-white/5 text-[#71717A] dark:text-[#A1A1AA]">
+                      ACTIVE
+                    </span>
+                  </div>
+                  <div className="text-[11px] font-mono text-emerald-700 dark:text-emerald-400">
+                    {track.tracks}
+                  </div>
+                  <div className="text-[10px] text-[#71717A] dark:text-[#A1A1AA] font-sans">
+                    {track.mood}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
         </div>
       )}
 
