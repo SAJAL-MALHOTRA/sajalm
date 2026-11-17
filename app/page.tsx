@@ -153,7 +153,12 @@ export default function Home() {
         />
 
         {/* 03 // TECHNICAL BLUEPRINT & RUNTIME MICRO-SIMULATIONS MATRIX */}
-        <TechnicalDesignMap />
+        <TechnicalDesignMap
+          onOpenProjectModal={(id) => {
+            playModalOpen();
+            setModalProjectId(id);
+          }}
+        />
 
         {/* 04 // THE DUAL SPECTRUM: Technical Arsenal + Creative Orbit */}
         <DualSpectrum />

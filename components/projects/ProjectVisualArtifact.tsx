@@ -21,6 +21,17 @@ import {
   Zap,
 } from 'lucide-react';
 
+function CornerBrackets({ color = 'rgba(255,255,255,0.2)' }: { color?: string }) {
+  return (
+    <>
+      <div className="absolute top-1.5 left-1.5 w-1.5 h-1.5 border-t border-l pointer-events-none z-20" style={{ borderColor: color }} />
+      <div className="absolute top-1.5 right-1.5 w-1.5 h-1.5 border-t border-r pointer-events-none z-20" style={{ borderColor: color }} />
+      <div className="absolute bottom-1.5 left-1.5 w-1.5 h-1.5 border-b border-l pointer-events-none z-20" style={{ borderColor: color }} />
+      <div className="absolute bottom-1.5 right-1.5 w-1.5 h-1.5 border-b border-r pointer-events-none z-20" style={{ borderColor: color }} />
+    </>
+  );
+}
+
 interface ProjectVisualArtifactProps {
   id: string;
   name: string;
@@ -69,6 +80,7 @@ export default function ProjectVisualArtifact({
     case 'PRJ-01':
       return (
         <div className="relative w-full rounded-xl overflow-hidden bg-gradient-to-br from-[#1C1318] via-[#151014] to-[#0D0B0E] border border-rose-500/25 group-hover:border-rose-400/50 transition-all duration-300 shadow-[0_4px_24px_rgba(244,63,94,0.08)] flex flex-col select-none">
+          <CornerBrackets color="rgba(244, 63, 94, 0.45)" />
           {/* Subtle Ambient Radial Glow */}
           <div className="absolute -top-12 -right-12 w-48 h-48 bg-rose-500/15 rounded-full blur-3xl pointer-events-none group-hover:bg-rose-500/25 transition-all" />
           <div className="absolute -bottom-8 -left-8 w-40 h-40 bg-amber-500/10 rounded-full blur-2xl pointer-events-none" />
@@ -239,6 +251,7 @@ export default function ProjectVisualArtifact({
     case 'PRJ-02':
       return (
         <div className="relative w-full rounded-xl overflow-hidden bg-gradient-to-br from-[#0F1722] via-[#0D131C] to-[#0A0D14] border border-cyan-500/25 group-hover:border-cyan-400/50 transition-all duration-300 shadow-[0_4px_24px_rgba(6,182,212,0.08)] flex flex-col select-none">
+          <CornerBrackets color="rgba(6, 182, 212, 0.45)" />
           <div className="absolute -top-12 -right-12 w-48 h-48 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none group-hover:bg-cyan-500/25 transition-all" />
           <div className="absolute -bottom-8 -left-8 w-40 h-40 bg-indigo-500/10 rounded-full blur-2xl pointer-events-none" />
 
@@ -364,6 +377,7 @@ export default function ProjectVisualArtifact({
     case 'PRJ-03':
       return (
         <div className="relative w-full rounded-xl overflow-hidden bg-gradient-to-br from-[#181122] via-[#120E1A] to-[#0A0810] border border-purple-500/25 group-hover:border-purple-400/50 transition-all duration-300 shadow-[0_4px_24px_rgba(168,85,247,0.08)] flex flex-col select-none">
+          <CornerBrackets color="rgba(168, 85, 247, 0.45)" />
           <div className="absolute -top-12 -right-12 w-48 h-48 bg-purple-500/15 rounded-full blur-3xl pointer-events-none group-hover:bg-purple-500/25 transition-all" />
 
           {/* Control Room Bar */}
@@ -470,6 +484,7 @@ export default function ProjectVisualArtifact({
     case 'PRJ-05':
       return (
         <div className="relative w-full rounded-xl overflow-hidden bg-gradient-to-br from-[#0F1B17] via-[#0B1512] to-[#070D0B] border border-emerald-500/25 group-hover:border-emerald-400/50 transition-all duration-300 shadow-[0_4px_24px_rgba(16,185,129,0.08)] flex flex-col select-none">
+          <CornerBrackets color="rgba(16, 185, 129, 0.45)" />
           <div className="absolute -top-12 -right-12 w-48 h-48 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none group-hover:bg-emerald-500/25 transition-all" />
 
           <div className="relative z-10 flex items-center justify-between px-3.5 py-2 bg-black/40 backdrop-blur-md border-b border-emerald-500/20 text-xs font-mono">
@@ -571,6 +586,7 @@ export default function ProjectVisualArtifact({
     case 'PRJ-04':
       return (
         <div className="relative w-full rounded-xl overflow-hidden bg-gradient-to-br from-[#1C1710] via-[#14100B] to-[#0A0805] border border-amber-500/25 group-hover:border-amber-400/50 transition-all duration-300 shadow-[0_4px_24px_rgba(245,158,11,0.08)] flex flex-col select-none">
+          <CornerBrackets color="rgba(245, 158, 11, 0.45)" />
           <div className="absolute -top-12 -right-12 w-48 h-48 bg-amber-500/15 rounded-full blur-3xl pointer-events-none group-hover:bg-amber-500/25 transition-all" />
 
           <div className="relative z-10 flex items-center justify-between px-3.5 py-2 bg-black/40 backdrop-blur-md border-b border-amber-500/20 text-xs font-mono">
