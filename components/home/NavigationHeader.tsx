@@ -17,7 +17,7 @@ export default function NavigationHeader({ onOpenTerminal, onOpenCommandPalette 
   const [activeSection, setActiveSection] = useState('intro');
 
   useEffect(() => {
-    const sectionIds = ['intro', 'projects', 'skills', 'guestbook', 'contact'];
+    const sectionIds = ['intro', 'projects', 'design-map', 'skills', 'guestbook', 'contact'];
 
     if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
       return;
@@ -66,6 +66,7 @@ export default function NavigationHeader({ onOpenTerminal, onOpenCommandPalette 
         <nav className="hidden sm:flex items-center gap-1 text-xs font-sans text-[#71717A] dark:text-[#A1A1AA] font-medium">
           {[
             { id: 'projects', label: 'Work' },
+            { id: 'design-map', label: 'Simulations' },
             { id: 'skills', label: 'About' },
             { id: 'guestbook', label: 'Guestbook' },
             { id: 'contact', label: 'Contact' },

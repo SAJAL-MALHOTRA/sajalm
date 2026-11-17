@@ -287,6 +287,20 @@ export default function DeveloperTerminal({ onOpenModalProject }: DeveloperTermi
           <div className="text-[#9E9EA8]"><span className="text-white font-bold">Audio Track:</span> {profile.rotation.listening}</div>
         </div>
       );
+    } else if (lowerCmd === 'sim' || lowerCmd === 'sims' || lowerCmd === 'simulations' || lowerCmd === 'designmap' || lowerCmd === 'map') {
+      const el = document.getElementById('design-map');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+      responseNode = (
+        <div className="space-y-1.5 pt-1 font-mono text-xs text-[#9E9EA8]">
+          <div className="text-purple-400 font-bold">[ARCHITECTURE SIMULATION MATRIX LAUNCHED]</div>
+          <div className="text-white">Jumped to 10 Runtime Micro-Simulations in Section 03.</div>
+          <div className="text-[11px] text-[#71717A]">
+            Micro-Kernels: tinyGPT, Athena Radar RAG, Cortex Causal Attention, CUDA Thread Warps, Epoll Sockets, and Quadtrees.
+          </div>
+        </div>
+      );
     } else if (lowerCmd === 'ml' || lowerCmd === 'train' || lowerCmd === 'nn' || lowerCmd === 'play' || lowerCmd === 'game') {
       const el = document.getElementById('ml-lab');
       if (el) {
