@@ -7,6 +7,7 @@ import { X, ExternalLink, Code2, ShieldCheck, Cpu, GitBranch, CheckCircle2, Arro
 import { useSound } from '@/hooks/useSound';
 import KeycapBadge from '@/components/ui/KeycapBadge';
 import ArchitectureDiffViewer from '@/components/ui/ArchitectureDiffViewer';
+import ProjectVisualArtifact from '@/components/projects/ProjectVisualArtifact';
 
 interface ProjectModalProps {
   project: Project | null;
@@ -130,6 +131,15 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           {/* ── TAB 1: OVERVIEW & WHY BUILT ── */}
           {activeTab === 'overview' && (
             <div className="space-y-4 text-left">
+              {/* Visual App Artifact / Screenshot */}
+              <div className="w-full">
+                <ProjectVisualArtifact
+                  id={project.id}
+                  name={project.name}
+                  liveUrl={liveUrl}
+                />
+              </div>
+
               {project.whyBuilt && (
                 <div className="space-y-1.5">
                   <span className="font-mono text-[10px] text-[#71717A] dark:text-[#A1A1AA] uppercase tracking-wider font-bold">

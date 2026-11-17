@@ -98,24 +98,24 @@ export default function EditorialHero({
 
           {/* ── QUICK TELEMETRY KPI STRIP IN HERO ── */}
           <div className="grid grid-cols-3 gap-3 pt-4 border-t border-[#E2E4E8] dark:border-[#22242B] max-w-xl font-mono text-xs">
-            <div>
-              <div className="text-[10px] text-[#71717A] dark:text-[#8E92A2] uppercase tracking-wider">Institution</div>
+            <div className="p-2 rounded-lg bg-emerald-500/5 dark:bg-emerald-500/5 border border-emerald-500/15">
+              <div className="text-[10px] text-emerald-600 dark:text-emerald-400 uppercase tracking-wider font-semibold">Institution</div>
               <div className="font-bold text-[#09090B] dark:text-white mt-0.5">NIT Jalandhar &apos;29</div>
               <div className="text-[10.5px] text-emerald-600 dark:text-emerald-400 font-medium">
                 <NumberTicker value={8.13} decimalPlaces={2} /> CGPA
               </div>
             </div>
-            <div>
-              <div className="text-[10px] text-[#71717A] dark:text-[#8E92A2] uppercase tracking-wider">Production Pilot</div>
-              <div className="font-bold text-[#09090B] dark:text-white mt-0.5">Pairfect Engine</div>
-              <div className="text-[10.5px] text-[#71717A] dark:text-[#A1A1AA]">
+            <div className="p-2 rounded-lg bg-rose-500/5 dark:bg-rose-500/5 border border-rose-500/15">
+              <div className="text-[10px] text-rose-600 dark:text-rose-400 uppercase tracking-wider font-semibold">Production Pilot</div>
+              <div className="font-bold text-[#09090B] dark:text-white mt-0.5">pairfect.site</div>
+              <div className="text-[10.5px] text-rose-600 dark:text-rose-400 font-medium">
                 <NumberTicker value={200} suffix="+" /> Active Users
               </div>
             </div>
-            <div>
-              <div className="text-[10px] text-[#71717A] dark:text-[#8E92A2] uppercase tracking-wider">National Rank</div>
+            <div className="p-2 rounded-lg bg-amber-500/5 dark:bg-amber-500/5 border border-amber-500/15">
+              <div className="text-[10px] text-amber-600 dark:text-amber-400 uppercase tracking-wider font-semibold">National Rank</div>
               <div className="font-bold text-[#09090B] dark:text-white mt-0.5">Top 7% (#{<NumberTicker value={16} />}/227)</div>
-              <div className="text-[10.5px] text-emerald-600 dark:text-emerald-400 font-medium">Best Solution</div>
+              <div className="text-[10.5px] text-amber-600 dark:text-amber-400 font-medium">Best Solution</div>
             </div>
           </div>
 

@@ -97,9 +97,14 @@ export default function Home() {
       <SmoothScroll>
         <div className="min-h-screen w-full bg-[#F8F9FA] dark:bg-[#07080B] text-[#09090B] dark:text-[#EDEDED] font-sans antialiased selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black flex flex-col items-center relative overflow-x-hidden">
         
-        {/* ── TECHNICAL DOT GRID & LINEAR AMBIENT LIGHTING ── */}
+        {/* ── TECHNICAL DOT GRID & LINEAR AMBIENT GRADIENT MESH ── */}
         <div className="fixed inset-0 bg-[radial-gradient(#D1D5DB_1px,transparent_1px)] dark:bg-[radial-gradient(#232733_1px,transparent_1px)] [background-size:24px_24px] opacity-40 dark:opacity-35 pointer-events-none -z-10" />
-        <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-[radial-gradient(ellipse_at_top,rgba(16,185,129,0.05),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.045),transparent_70%)] pointer-events-none -z-10" />
+        
+        {/* Soft Ambient Multi-Color Gradient Orbs */}
+        <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[1100px] h-[550px] bg-[radial-gradient(ellipse_at_top,rgba(6,182,212,0.08),transparent_70%)] pointer-events-none -z-10" />
+        <div className="fixed top-[450px] right-[-150px] w-[650px] h-[650px] bg-[radial-gradient(circle,rgba(244,63,94,0.06),transparent_65%)] pointer-events-none -z-10" />
+        <div className="fixed top-[1100px] left-[-150px] w-[650px] h-[650px] bg-[radial-gradient(circle,rgba(168,85,247,0.05),transparent_65%)] pointer-events-none -z-10" />
+        <div className="fixed top-[1800px] right-[-100px] w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(16,185,129,0.05),transparent_65%)] pointer-events-none -z-10" />
 
         {/* ── ON-SCREEN TACTILE CEILING PULL-CORD LAMP (GLOBAL THEME SWITCHER) ── */}
         <div
