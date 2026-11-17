@@ -63,34 +63,34 @@ export default function DualSpectrum() {
   const creativeDimensions = [
     {
       index: '01',
-      title: 'Runway & Modeling',
+      title: 'Runway & Stage Architecture',
       subtitle: 'NIT Jalandhar Fashion & Modelling Club',
       icon: <Camera size={13} className="text-[#71717A] dark:text-[#A1A1AA]" />,
-      detail: 'Active runway model with the NIT Jalandhar FMC team. Walking shows, directing creative photo sessions, and working with lighting, movement, and stage presence.',
+      detail: 'Active runway model for NIT Jalandhar FMC. Spatial choreography, stage lighting composure, and high-impact live presentations.',
       tags: ['NITJ FMC', 'Runway', 'Editorial Shoots', '@malhotra.sajal'],
     },
     {
       index: '02',
-      title: 'Personal Style & Aesthetics',
-      subtitle: 'Cut, proportion, and monochrome tones',
+      title: 'Architectural Style & Silhouettes',
+      subtitle: 'Proportion, drape, and monochrome palettes',
       icon: <Layers size={13} className="text-[#71717A] dark:text-[#A1A1AA]" />,
-      detail: 'A genuine interest in structured silhouettes, vintage leather cuts, and clean monochrome palettes. The same attention to detail applied to clothes as to clean UI.',
-      tags: ['Monochrome', 'Structured Tailoring', 'Vintage Cuts', 'Proportion'],
+      detail: 'Disciplined focus on tailoring geometry, texture contrast, and structural silhouettes. Applying the exact same rigor of proportion to garments as to layout systems.',
+      tags: ['Monochrome', 'Structured Tailoring', 'Geometry', 'Proportion'],
     },
     {
       index: '03',
-      title: 'Mindfulness & Balance',
-      subtitle: 'Stepping back from screens',
+      title: 'Mindfulness & Cognitive Recovery',
+      subtitle: 'Deliberate detachment and focused stillness',
       icon: <Compass size={13} className="text-[#71717A] dark:text-[#A1A1AA]" />,
-      detail: 'Daily meditation and quiet routines away from code. Stepping back keeps judgment clear and problem-solving disciplined.',
+      detail: 'Disciplined daily meditation and digital detachment routines. Sustaining mental clarity, zero cognitive thrashing, and high-focus engineering sprints.',
       tags: ['Meditation', 'Focus', 'Discipline', 'Stillness'],
     },
     {
       index: '04',
-      title: 'Music & Sound',
-      subtitle: 'Late-night building soundtrack',
+      title: 'Acoustic Focus Environments',
+      subtitle: 'Audio landscapes for deep architecture cycles',
       icon: <Disc3 size={13} className="text-[#71717A] dark:text-[#A1A1AA]" />,
-      detail: 'What stays on repeat while designing systems late into the night. R&B, ambient electronic textures, and hip-hop.',
+      detail: 'Atmospheric sound design on repeat during late-night systems engineering. Ambient electronic textures, precision synth lines, and modern production.',
       tags: ['Frank Ocean', 'Aphex Twin', 'Travis Scott', 'Dijon'],
     },
   ];
@@ -105,7 +105,7 @@ export default function DualSpectrum() {
             03 // PERSPECTIVE &amp; DISCIPLINE
           </div>
           <h2 className="text-xl sm:text-2xl font-black font-sans text-[#09090B] dark:text-white tracking-tight">
-            Two sides. One perspective.
+            Dual Competence. Engineering &amp; Visual Systems.
           </h2>
         </div>
 
@@ -113,7 +113,7 @@ export default function DualSpectrum() {
         <div className="w-full sm:w-auto grid grid-cols-2 sm:flex items-center gap-1 p-1 rounded-xl bg-[#ECEEF2] dark:bg-[#16171B] border border-[#D1D5DB] dark:border-[#27272A] text-xs font-mono relative">
           {[
             { id: 'tech', label: '01 Engineering', icon: <Cpu size={12} className="shrink-0" /> },
-            { id: 'passions', label: '02 Creative side', icon: <Palette size={12} className="shrink-0" /> },
+            { id: 'passions', label: '02 Applied Disciplines', icon: <Palette size={12} className="shrink-0" /> },
           ].map((tab) => {
             const isActive = activeTab === tab.id;
             return (
@@ -198,14 +198,14 @@ export default function DualSpectrum() {
           {/* Grounded Editorial Header */}
           <div className="p-4 sm:p-5 rounded-xl bg-white dark:bg-[#111216] border border-[#E2E4E8] dark:border-[#22242B] space-y-2 select-none shadow-2xs">
             <div className="flex items-center justify-between font-mono text-[9.5px] tracking-widest uppercase text-[#71717A] dark:text-[#A1A1AA]">
-              <span>CREATIVE DIRECTION &amp; VISUAL TASTE</span>
+              <span>VISUAL DISCIPLINE &amp; CREATIVE ORBIT</span>
               <span>NIT JALANDHAR FMC</span>
             </div>
             <h3 className="text-base sm:text-lg font-bold font-sans tracking-tight text-[#09090B] dark:text-white">
-              The eye of a creative director, grounded in engineering.
+              Visual rigor and proportion, executed with engineering discipline.
             </h3>
             <p className="text-xs sm:text-[13px] text-[#52525B] dark:text-[#A1A1AA] leading-relaxed font-sans max-w-2xl">
-              Walking runway for NIT Jalandhar FMC, curating structured clothing silhouettes, and bringing aesthetic intentionality to every system built.
+              Stage movement and runway modeling with NIT Jalandhar FMC, structured garment architecture, and disciplined mindfulness routines that keep technical execution grounded.
             </p>
           </div>
 

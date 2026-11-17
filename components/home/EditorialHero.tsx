@@ -45,18 +45,18 @@ export default function EditorialHero({
               Hey, I&apos;m Sajal.
             </h1>
             <p className="text-base sm:text-lg font-medium text-[#09090B] dark:text-[#EDEDED] font-sans leading-snug">
-              I build systems. I care about how things feel.
+              Distributed systems, low-latency protocols, and applied machine learning.
             </p>
           </div>
 
           {/* Grounded Bio (Single Natural Mention of NIT Jalandhar) */}
           <p className="text-sm sm:text-[14.5px] text-[#52525B] dark:text-[#A1A1AA] leading-relaxed font-sans max-w-xl">
-            Software engineering, applied machine learning, and creative direction. Currently studying Information Technology at NIT Jalandhar.
+            Software engineer studying Information Technology at NIT Jalandhar. Building low-latency backend architectures, synchronization primitives, and evaluated inference pipelines.
           </p>
 
           {/* Disciplines Line */}
           <div className="text-xs font-mono text-[#71717A] dark:text-[#A1A1AA] tracking-wide pt-1">
-            Systems Architecture · Applied Machine Learning · Creative Direction
+            Distributed Systems · WebSockets &amp; WebRTC Mesh · Evaluated Machine Learning
           </div>
 
           {/* ── PROMINENT HERO CTAS (DIRECTLY IN THE HERO FOLD) ── */}

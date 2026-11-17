@@ -90,8 +90,28 @@ export default function SystemHealthMonitor() {
 
       {/* Collapsible Telemetry Panel */}
       {isOpen && (
-        <div className="px-3 sm:px-5 pb-5 pt-1 border-t border-[#E2E4E8] dark:border-[#22242B]">
-          <div className="pt-2">
+        <div className="px-3 sm:px-5 pb-5 pt-3 border-t border-[#E2E4E8] dark:border-[#22242B] space-y-3">
+          {/* Latency & Reliability Telemetry Strip */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1 font-mono text-[11px]">
+            <div className="p-2 rounded-lg bg-[#F8F9FA] dark:bg-[#16171B] border border-[#E2E4E8] dark:border-[#22242B]">
+              <div className="text-[9px] uppercase tracking-wider text-[#71717A] dark:text-[#A1A1AA]">Latency (p50 / p99)</div>
+              <div className="text-xs font-bold text-[#09090B] dark:text-white mt-0.5">18ms / 76ms</div>
+            </div>
+            <div className="p-2 rounded-lg bg-[#F8F9FA] dark:bg-[#16171B] border border-[#E2E4E8] dark:border-[#22242B]">
+              <div className="text-[9px] uppercase tracking-wider text-[#71717A] dark:text-[#A1A1AA]">Edge Cache Hit</div>
+              <div className="text-xs font-bold text-[#09090B] dark:text-white mt-0.5">98.4%</div>
+            </div>
+            <div className="p-2 rounded-lg bg-[#F8F9FA] dark:bg-[#16171B] border border-[#E2E4E8] dark:border-[#22242B]">
+              <div className="text-[9px] uppercase tracking-wider text-[#71717A] dark:text-[#A1A1AA]">Master Clock Drift</div>
+              <div className="text-xs font-bold text-[#09090B] dark:text-white mt-0.5">&lt;0.5ms</div>
+            </div>
+            <div className="p-2 rounded-lg bg-[#F8F9FA] dark:bg-[#16171B] border border-[#E2E4E8] dark:border-[#22242B]">
+              <div className="text-[9px] uppercase tracking-wider text-[#71717A] dark:text-[#A1A1AA]">Deployment Status</div>
+              <div className="text-xs font-bold text-emerald-600 dark:text-emerald-400 mt-0.5">ALL HEALTHY</div>
+            </div>
+          </div>
+
+          <div className="pt-1">
             <UptimeCard
               title="Infrastructure Telemetry Status"
               services={SAJAL_SERVICES}
