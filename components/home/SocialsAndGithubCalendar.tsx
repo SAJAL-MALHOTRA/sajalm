@@ -5,6 +5,8 @@ import { sajalContributionsData, DayContribution } from '@/data/githubContributi
 import { profile } from '@/data/profile';
 import { useSound } from '@/hooks/useSound';
 import { ArrowUpRight } from 'lucide-react';
+import MagneticButton from '@/components/ui/MagneticButton';
+import LocalTimeStatus from '@/components/ui/LocalTimeStatus';
 
 // Official GitHub green color tokens for the contribution calendar
 const LIGHT_COLORS: Record<number, string> = {
@@ -171,69 +173,79 @@ export default function SocialsAndGithubCalendar() {
       {/* ── THIN ARCHITECTURAL DIVIDER ── */}
       <div className="w-full border-t border-[#E2E4E8] dark:border-[#22242B]" />
 
-      {/* ── SOCIAL CHANNELS & PROFILES ── */}
+      {/* ── SOCIAL CHANNELS & PROFILES WITH LIVE TIME WIDGET ── */}
       <div className="flex flex-col gap-2.5">
-        <h2 className="text-xs font-mono uppercase tracking-widest text-[#71717A] dark:text-[#A1A1AA]">
-          01 // ACTIVITY &amp; SOCIALS
-        </h2>
+        <div className="flex items-center justify-between flex-wrap gap-2">
+          <h2 className="text-xs font-mono uppercase tracking-widest text-[#71717A] dark:text-[#A1A1AA]">
+            01 // ACTIVITY &amp; SOCIALS
+          </h2>
+          <LocalTimeStatus />
+        </div>
 
-        {/* Social Links (GitHub, LinkedIn, X) */}
+        {/* Social Links (GitHub, LinkedIn, X, Instagram) with Kokonut Magnetic Physics */}
         <div className="flex items-center gap-2 flex-wrap">
-          {/* GitHub */}
-          <a
-            href={profile.links.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={playClick}
-            className="flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-[#121316] hover:bg-[#F4F4F6] dark:hover:bg-[#1C1D22] border border-[#E2E4E8] dark:border-[#22242B] rounded-lg text-xs font-mono text-[#09090B] dark:text-[#EDEDED] transition-colors shadow-2xs"
-          >
-            <svg stroke="currentColor" fill="currentColor" viewBox="0 0 496 512" height="12" width="12">
-              <path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8z" />
-            </svg>
-            <span>GitHub</span>
-          </a>
+          <MagneticButton>
+            <a
+              href={profile.links.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={playClick}
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-[#121316] hover:bg-[#F4F4F6] dark:hover:bg-[#1C1D22] border border-[#E2E4E8] dark:border-[#22242B] rounded-lg text-xs font-mono text-[#09090B] dark:text-[#EDEDED] transition-colors shadow-2xs cursor-pointer"
+            >
+              <svg stroke="currentColor" fill="currentColor" viewBox="0 0 496 512" height="12" width="12">
+                <path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8z" />
+              </svg>
+              <span>GitHub</span>
+            </a>
+          </MagneticButton>
 
           {/* LinkedIn */}
-          <a
-            href={profile.links.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={playClick}
-            className="flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-[#121316] hover:bg-[#F4F4F6] dark:hover:bg-[#1C1D22] border border-[#E2E4E8] dark:border-[#22242B] rounded-lg text-xs font-mono text-[#09090B] dark:text-[#EDEDED] transition-colors shadow-2xs"
-          >
-            <svg stroke="currentColor" fill="currentColor" viewBox="0 0 448 512" height="12" width="12">
-              <path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z" />
-            </svg>
-            <span>LinkedIn</span>
-          </a>
+          <MagneticButton>
+            <a
+              href={profile.links.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={playClick}
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-[#121316] hover:bg-[#F4F4F6] dark:hover:bg-[#1C1D22] border border-[#E2E4E8] dark:border-[#22242B] rounded-lg text-xs font-mono text-[#09090B] dark:text-[#EDEDED] transition-colors shadow-2xs cursor-pointer"
+            >
+              <svg stroke="currentColor" fill="currentColor" viewBox="0 0 448 512" height="12" width="12">
+                <path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z" />
+              </svg>
+              <span>LinkedIn</span>
+            </a>
+          </MagneticButton>
 
           {/* X / Twitter */}
-          <a
-            href={profile.links.twitter}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={playClick}
-            className="flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-[#121316] hover:bg-[#F4F4F6] dark:hover:bg-[#1C1D22] border border-[#E2E4E8] dark:border-[#22242B] rounded-lg text-xs font-mono text-[#09090B] dark:text-[#EDEDED] transition-colors shadow-2xs"
-          >
-            <svg stroke="currentColor" fill="currentColor" viewBox="0 0 512 512" height="11" width="11">
-              <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
-            </svg>
-            <span>X (Twitter)</span>
-          </a>
+          <MagneticButton>
+            <a
+              href={profile.links.twitter}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={playClick}
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-[#121316] hover:bg-[#F4F4F6] dark:hover:bg-[#1C1D22] border border-[#E2E4E8] dark:border-[#22242B] rounded-lg text-xs font-mono text-[#09090B] dark:text-[#EDEDED] transition-colors shadow-2xs cursor-pointer"
+            >
+              <svg stroke="currentColor" fill="currentColor" viewBox="0 0 512 512" height="11" width="11">
+                <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
+              </svg>
+              <span>X (Twitter)</span>
+            </a>
+          </MagneticButton>
 
           {/* Instagram */}
-          <a
-            href={profile.links.instagram}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={playClick}
-            className="flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-[#121316] hover:bg-[#F4F4F6] dark:hover:bg-[#1C1D22] border border-[#E2E4E8] dark:border-[#22242B] rounded-lg text-xs font-mono text-[#09090B] dark:text-[#EDEDED] transition-colors shadow-2xs"
-          >
-            <svg stroke="currentColor" fill="currentColor" viewBox="0 0 24 24" height="12" width="12">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-            </svg>
-            <span>Instagram</span>
-          </a>
+          <MagneticButton>
+            <a
+              href={profile.links.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={playClick}
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-[#121316] hover:bg-[#F4F4F6] dark:hover:bg-[#1C1D22] border border-[#E2E4E8] dark:border-[#22242B] rounded-lg text-xs font-mono text-[#09090B] dark:text-[#EDEDED] transition-colors shadow-2xs cursor-pointer"
+            >
+              <svg stroke="currentColor" fill="currentColor" viewBox="0 0 24 24" height="12" width="12">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+              </svg>
+              <span>Instagram</span>
+            </a>
+          </MagneticButton>
         </div>
       </div>
 
