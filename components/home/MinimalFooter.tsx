@@ -63,7 +63,7 @@ export default function MinimalFooter() {
   }, []);
 
   return (
-    <footer className="w-full max-w-[780px] mx-auto z-30 pt-4 pb-12 select-none shrink-0 space-y-8 px-4 sm:px-6">
+    <footer className="w-full max-w-[1020px] mx-auto z-30 pt-4 pb-12 select-none shrink-0 space-y-8 px-4 sm:px-6">
       
       {/* ── 05 SECTION: THE COLOPHON & SIGNATURE (MATCHING SECTION 04 ARCHITECTURE) ── */}
       <section id="colophon" className="w-full text-left space-y-6">

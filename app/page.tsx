@@ -92,7 +92,10 @@ export default function Home() {
 
       {/* ── ON-SCREEN TACTILE CEILING PULL-CORD LAMP (GLOBAL THEME SWITCHER) ── */}
       <div
-        className="fixed top-0 right-1 sm:right-6 md:right-10 lg:right-14 xl:right-20 z-50 pointer-events-none select-none transition-transform duration-300 origin-top scale-[0.75] sm:scale-90 md:scale-100"
+        className="fixed top-0 z-50 pointer-events-none select-none transition-transform duration-300 origin-top scale-[0.75] sm:scale-90 md:scale-100"
+        style={{
+          right: 'max(0.5rem, calc((100vw - 1020px) / 2 - 90px))',
+        }}
         title="Tactile Ceiling Pull-Cord Lamp · Pull or drag cord to switch Day/Night"
       >
         <PullCord

@@ -50,7 +50,7 @@ export default function NavigationHeader({ onOpenTerminal }: NavigationHeaderPro
 
   return (
     <header className="sticky top-0 z-40 w-full bg-[#F8F9FA]/90 dark:bg-[#07080B]/90 backdrop-blur-md border-b border-[#E2E4E8] dark:border-[#22242B] select-none px-4 sm:px-6">
-      <div className="w-full max-w-[780px] mx-auto flex items-center justify-between py-2.5 text-xs">
+      <div className="w-full max-w-[1020px] mx-auto flex items-center justify-between py-2.5 text-xs">
         
         {/* Brand & Identity */}
         <a

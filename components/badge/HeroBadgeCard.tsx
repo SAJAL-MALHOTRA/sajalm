@@ -70,7 +70,7 @@ export default function HeroBadgeCard({ onOpenPhotoZoom }: HeroBadgeCardProps) {
   };
 
   return (
-    <div className="w-full max-w-[280px] sm:w-[260px] md:w-[270px] shrink-0 self-center sm:self-start select-none">
+    <div className="w-full max-w-[320px] sm:w-[300px] md:w-[330px] shrink-0 self-center md:self-start select-none">
       <CardFlip
         axis="y"
         flipped={flipped}

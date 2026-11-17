@@ -147,7 +147,7 @@ export default function VisitorRegistry() {
   };
 
   return (
-    <section id="guestbook" className="w-full max-w-[780px] mx-auto py-8 text-left select-none space-y-6">
+    <section id="guestbook" className="w-full max-w-[1020px] mx-auto py-8 text-left select-none space-y-6">
       
       {/* ── SECTION HEADER ── */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-[#E2E4E8] dark:border-[#22242A] pb-3 gap-3">

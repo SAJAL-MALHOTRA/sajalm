@@ -23,10 +23,10 @@ export default function EditorialHero({
   const { playClick, playHover } = useSound();
 
   return (
-    <section id="intro" className="relative w-full max-w-[780px] mx-auto pt-8 sm:pt-12 pb-6 select-none">
+    <section id="intro" className="relative w-full max-w-[1020px] mx-auto pt-8 sm:pt-14 pb-8 select-none">
       
-      {/* ── BALANCED TWO-COLUMN SPREAD (CLEAN, PROPORTIONAL, ZERO FILLER) ── */}
-      <div className="flex flex-col-reverse sm:flex-row items-center sm:items-start justify-between gap-6 sm:gap-8">
+      {/* ── BALANCED TWO-COLUMN SPREAD (CLEAN, PROPORTIONAL, EXPANSIVE) ── */}
+      <div className="flex flex-col-reverse md:flex-row items-center md:items-start justify-between gap-8 md:gap-12">
         
         {/* Left Column: Identity, Bio & Clear CTAs */}
         <div className="flex-1 space-y-4 text-left">
@@ -41,16 +41,16 @@ export default function EditorialHero({
 
           {/* Headline & Core Statement */}
           <div className="space-y-1.5">
-            <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-sans font-bold tracking-tight text-[#09090B] dark:text-white leading-[1.12]">
+            <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-sans font-black tracking-tight text-[#09090B] dark:text-white leading-[1.08]">
               Hey, I&apos;m Sajal.
             </h1>
-            <p className="text-base sm:text-lg font-medium text-[#09090B] dark:text-[#EDEDED] font-sans leading-snug">
+            <p className="text-lg sm:text-xl font-medium text-[#09090B] dark:text-[#EDEDED] font-sans leading-snug">
               Distributed systems, low-latency protocols, and applied machine learning.
             </p>
           </div>
 
-          {/* Grounded Bio (Single Natural Mention of NIT Jalandhar) */}
-          <p className="text-sm sm:text-[14.5px] text-[#52525B] dark:text-[#A1A1AA] leading-relaxed font-sans max-w-xl">
+          {/* Grounded Bio */}
+          <p className="text-sm sm:text-base text-[#52525B] dark:text-[#A1A1AA] leading-relaxed font-sans max-w-2xl">
             Software engineer studying Information Technology at NIT Jalandhar. Building low-latency backend architectures, synchronization primitives, and evaluated inference pipelines.
           </p>
 
@@ -59,8 +59,8 @@ export default function EditorialHero({
             Distributed Systems · WebSockets &amp; WebRTC Mesh · Evaluated Machine Learning
           </div>
 
-          {/* ── PROMINENT HERO CTAS (DIRECTLY IN THE HERO FOLD) ── */}
-          <div className="flex flex-wrap items-center gap-2.5 pt-2">
+          {/* ── HERO CTAS ── */}
+          <div className="flex flex-wrap items-center gap-3 pt-2">
             <MagneticButton>
               <a
                 href="#projects"
@@ -93,6 +93,25 @@ export default function EditorialHero({
             >
               <span>malhotrasajal243@gmail.com</span>
             </a>
+          </div>
+
+          {/* ── QUICK TELEMETRY KPI STRIP IN HERO ── */}
+          <div className="grid grid-cols-3 gap-3 pt-4 border-t border-[#E2E4E8] dark:border-[#22242B] max-w-xl font-mono text-xs">
+            <div>
+              <div className="text-[10px] text-[#71717A] dark:text-[#8E92A2] uppercase tracking-wider">Institution</div>
+              <div className="font-bold text-[#09090B] dark:text-white mt-0.5">NIT Jalandhar &apos;29</div>
+              <div className="text-[10.5px] text-emerald-600 dark:text-emerald-400 font-medium">8.13 CGPA</div>
+            </div>
+            <div>
+              <div className="text-[10px] text-[#71717A] dark:text-[#8E92A2] uppercase tracking-wider">Production Pilot</div>
+              <div className="font-bold text-[#09090B] dark:text-white mt-0.5">Pairfect Engine</div>
+              <div className="text-[10.5px] text-[#71717A] dark:text-[#A1A1AA]">200+ Active Users</div>
+            </div>
+            <div>
+              <div className="text-[10px] text-[#71717A] dark:text-[#8E92A2] uppercase tracking-wider">National Rank</div>
+              <div className="font-bold text-[#09090B] dark:text-white mt-0.5">Top 7% (#16/227)</div>
+              <div className="text-[10.5px] text-emerald-600 dark:text-emerald-400 font-medium">Best Solution</div>
+            </div>
           </div>
 
         </div>

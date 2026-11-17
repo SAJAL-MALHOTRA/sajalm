@@ -168,7 +168,7 @@ export default function SocialsAndGithubCalendar() {
   };
 
   return (
-    <section className="w-full max-w-[780px] mx-auto py-6 select-none space-y-6">
+    <section className="w-full max-w-[1020px] mx-auto py-6 select-none space-y-6">
       
       {/* ── THIN ARCHITECTURAL DIVIDER ── */}
       <div className="w-full border-t border-[#E2E4E8] dark:border-[#22242B]" />
@@ -249,70 +249,125 @@ export default function SocialsAndGithubCalendar() {
         </div>
       </div>
 
-      {/* ── GITHUB ACTIVITY CALENDAR ── */}
-      <div className="w-full p-4 rounded-xl bg-white dark:bg-[#121316] border border-[#E2E4E8] dark:border-[#22242B] flex flex-col gap-3 shadow-2xs">
-        <div className="flex items-center justify-between text-xs font-mono text-[#71717A] dark:text-[#A1A1AA]">
-          <span className="font-semibold text-[#09090B] dark:text-[#EDEDED]">
-            GitHub Contributions
-          </span>
-          <span className="text-[11px]">
-            {data.total} contributions in the last year
-          </span>
-        </div>
-
-        <div className="w-full overflow-x-auto no-scrollbar pb-1 touch-pan-x overscroll-x-contain">
-          {/* Light Mode SVG (Statically locked geometry to prevent layout shift) */}
-          <div className="block dark:hidden w-[665px] h-[116px] shrink-0 mx-auto">
-            {renderCalendarSvg(false)}
+      {/* ── GITHUB ACTIVITY & CODE METRICS BENTO SPREAD ── */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-3.5 items-stretch">
+        
+        {/* Left: 52-Week Contributions Heatmap (lg:col-span-8) */}
+        <div className="lg:col-span-8 p-4 sm:p-5 rounded-xl bg-white dark:bg-[#121316] border border-[#E2E4E8] dark:border-[#22242B] flex flex-col justify-between gap-3 shadow-2xs">
+          <div className="flex items-center justify-between text-xs font-mono text-[#71717A] dark:text-[#A1A1AA]">
+            <span className="font-semibold text-[#09090B] dark:text-[#EDEDED]">
+              GitHub Annual Contributions
+            </span>
+            <span className="text-[11px] font-bold text-emerald-600 dark:text-emerald-400">
+              {data.total} contributions
+            </span>
           </div>
 
-          {/* Dark Mode SVG (Statically locked geometry to prevent layout shift) */}
-          <div className="hidden dark:block w-[665px] h-[116px] shrink-0 mx-auto">
-            {renderCalendarSvg(true)}
-          </div>
-        </div>
-
-        {/* Clean Footer Strip */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between text-[11px] font-mono text-[#71717A] dark:text-[#A1A1AA] pt-2 border-t border-[#ECEEF2] dark:border-white/5 gap-1.5">
-          <a
-            href={profile.links.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:underline flex items-center gap-1 hover:text-[#09090B] dark:hover:text-white transition-colors"
-          >
-            <span>@SAJAL-MALHOTRA on GitHub</span>
-            <ArrowUpRight size={11} />
-          </a>
-
-          <div className="flex items-center gap-1.5 text-[10.5px]">
-            <span>Less</span>
-            <div className="flex items-center gap-[2.5px] dark:hidden">
-              {[0, 1, 2, 3, 4].map((lvl) => (
-                <div
-                  key={lvl}
-                  className="w-2.5 h-2.5 rounded-[2px]"
-                  style={{
-                    backgroundColor: LIGHT_COLORS[lvl],
-                    border: '1px solid rgba(0, 0, 0, 0.08)',
-                  }}
-                />
-              ))}
+          <div className="w-full overflow-x-auto no-scrollbar pb-1 touch-pan-x overscroll-x-contain flex items-center justify-center">
+            {/* Light Mode SVG */}
+            <div className="block dark:hidden w-[665px] h-[116px] shrink-0 mx-auto">
+              {renderCalendarSvg(false)}
             </div>
-            <div className="hidden dark:flex items-center gap-[2.5px]">
-              {[0, 1, 2, 3, 4].map((lvl) => (
-                <div
-                  key={lvl}
-                  className="w-2.5 h-2.5 rounded-[2px]"
-                  style={{
-                    backgroundColor: DARK_COLORS[lvl],
-                    border: '1px solid rgba(255, 255, 255, 0.08)',
-                  }}
-                />
-              ))}
+
+            {/* Dark Mode SVG */}
+            <div className="hidden dark:block w-[665px] h-[116px] shrink-0 mx-auto">
+              {renderCalendarSvg(true)}
             </div>
-            <span>More</span>
+          </div>
+
+          {/* Clean Footer Strip */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between text-[11px] font-mono text-[#71717A] dark:text-[#A1A1AA] pt-2 border-t border-[#ECEEF2] dark:border-white/5 gap-1.5">
+            <a
+              href={profile.links.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline flex items-center gap-1 hover:text-[#09090B] dark:hover:text-white transition-colors"
+            >
+              <span>@SAJAL-MALHOTRA on GitHub</span>
+              <ArrowUpRight size={11} />
+            </a>
+
+            <div className="flex items-center gap-1.5 text-[10.5px]">
+              <span>Less</span>
+              <div className="flex items-center gap-[2.5px] dark:hidden">
+                {[0, 1, 2, 3, 4].map((lvl) => (
+                  <div
+                    key={lvl}
+                    className="w-2.5 h-2.5 rounded-[2px]"
+                    style={{
+                      backgroundColor: LIGHT_COLORS[lvl],
+                      border: '1px solid rgba(0, 0, 0, 0.08)',
+                    }}
+                  />
+                ))}
+              </div>
+              <div className="hidden dark:flex items-center gap-[2.5px]">
+                {[0, 1, 2, 3, 4].map((lvl) => (
+                  <div
+                    key={lvl}
+                    className="w-2.5 h-2.5 rounded-[2px]"
+                    style={{
+                      backgroundColor: DARK_COLORS[lvl],
+                      border: '1px solid rgba(255, 255, 255, 0.08)',
+                    }}
+                  />
+                ))}
+              </div>
+              <span>More</span>
+            </div>
           </div>
         </div>
+
+        {/* Right: Real Code Metrics & Velocity Card (lg:col-span-4) */}
+        <div className="lg:col-span-4 p-4 sm:p-5 rounded-xl bg-white dark:bg-[#121316] border border-[#E2E4E8] dark:border-[#22242B] flex flex-col justify-between gap-3 shadow-2xs font-mono text-xs">
+          <div className="space-y-1">
+            <div className="flex items-center justify-between text-[10px] text-[#71717A] dark:text-[#A1A1AA] uppercase tracking-wider font-bold">
+              <span>ENGINEERING VELOCITY</span>
+              <span className="text-emerald-600 dark:text-emerald-400">ACTIVE DEV</span>
+            </div>
+            <div className="text-sm font-bold text-[#09090B] dark:text-white font-sans">
+              Codebase Distribution
+            </div>
+          </div>
+
+          <div className="space-y-2 py-1">
+            <div>
+              <div className="flex justify-between text-[11px] mb-1">
+                <span className="text-[#52525B] dark:text-[#A1A1AA]">TypeScript / Next.js</span>
+                <span className="font-semibold text-[#09090B] dark:text-white">65%</span>
+              </div>
+              <div className="w-full h-1.5 rounded-full bg-black/5 dark:bg-white/5 overflow-hidden">
+                <div className="h-full bg-blue-500 rounded-full" style={{ width: '65%' }} />
+              </div>
+            </div>
+
+            <div>
+              <div className="flex justify-between text-[11px] mb-1">
+                <span className="text-[#52525B] dark:text-[#A1A1AA]">Python / PyTorch</span>
+                <span className="font-semibold text-[#09090B] dark:text-white">25%</span>
+              </div>
+              <div className="w-full h-1.5 rounded-full bg-black/5 dark:bg-white/5 overflow-hidden">
+                <div className="h-full bg-emerald-500 rounded-full" style={{ width: '25%' }} />
+              </div>
+            </div>
+
+            <div>
+              <div className="flex justify-between text-[11px] mb-1">
+                <span className="text-[#52525B] dark:text-[#A1A1AA]">Go / SQL Schemas</span>
+                <span className="font-semibold text-[#09090B] dark:text-white">10%</span>
+              </div>
+              <div className="w-full h-1.5 rounded-full bg-black/5 dark:bg-white/5 overflow-hidden">
+                <div className="h-full bg-amber-500 rounded-full" style={{ width: '10%' }} />
+              </div>
+            </div>
+          </div>
+
+          <div className="pt-2 border-t border-[#ECEEF2] dark:border-white/5 flex items-center justify-between text-[10.5px] text-[#71717A] dark:text-[#A1A1AA]">
+            <span>STRICT TYPE CHECKING</span>
+            <span className="font-bold text-emerald-600 dark:text-emerald-400">100% TYPE-SAFE</span>
+          </div>
+        </div>
+
       </div>
 
       {/* ── FLOATING TOOLTIP (VIEWPORT BOUNDED TO PREVENT SCROLLBAR FLICKER) ── */}
