@@ -287,6 +287,20 @@ export default function DeveloperTerminal({ onOpenModalProject }: DeveloperTermi
           <div className="text-[#9E9EA8]"><span className="text-white font-bold">Audio Track:</span> {profile.rotation.listening}</div>
         </div>
       );
+    } else if (lowerCmd === 'ml' || lowerCmd === 'train' || lowerCmd === 'nn' || lowerCmd === 'play' || lowerCmd === 'game') {
+      const el = document.getElementById('ml-lab');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+      responseNode = (
+        <div className="space-y-1.5 pt-1 font-mono text-xs text-[#9E9EA8]">
+          <div className="text-emerald-400 font-bold">[ML ENGINE LAUNCHED]</div>
+          <div className="text-white">Jumped to Decision Boundary Contour Classifier in Section 03.</div>
+          <div className="text-[11px] text-[#71717A]">
+            Architecture: 2-layer MLP (Input: 2 → Hidden: 6 → Output: 1) running backpropagation at 60fps.
+          </div>
+        </div>
+      );
     } else if (lowerCmd === 'help') {
       responseNode = (
         <div className="space-y-1 text-xs text-[#9E9EA8]">
@@ -299,6 +313,7 @@ export default function DeveloperTerminal({ onOpenModalProject }: DeveloperTermi
             <div><span className="text-white">netstat</span> — Active network listeners</div>
             <div><span className="text-white">stats</span> — Telemetry benchmarks</div>
             <div><span className="text-white">skills</span> — Technical arsenal</div>
+            <div><span className="text-white">ml</span> — Launch neural net playground</div>
             <div><span className="text-white">open [ID]</span> — View project architecture</div>
             <div><span className="text-white">clear</span> — Reset terminal</div>
           </div>

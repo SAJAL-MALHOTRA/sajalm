@@ -18,6 +18,7 @@ import {
   BookOpen,
   Send,
   UserCheck,
+  Zap,
 } from 'lucide-react';
 import { projects } from '@/data/projects';
 import { useSound } from '@/hooks/useSound';
@@ -94,6 +95,15 @@ export default function CommandPalette({
         subtitle: 'Engineering arsenal vs NITJ FMC Runway & Stage Architecture',
         icon: <Cpu size={14} className="text-purple-500" />,
         action: () => scrollToSection('skills'),
+      },
+      {
+        id: 'nav-ml-lab',
+        category: 'NAVIGATION',
+        title: 'ML Lab // Neural Net Decision Boundary Playground',
+        subtitle: 'Interactive 2D multi-layer perceptron running backpropagation at 60fps',
+        icon: <Zap size={14} className="text-emerald-500" />,
+        shortcut: 'G N',
+        action: () => scrollToSection('ml-lab'),
       },
       {
         id: 'nav-guestbook',

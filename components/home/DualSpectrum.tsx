@@ -6,6 +6,7 @@ import { useSound } from '@/hooks/useSound';
 import SpotlightCard from '@/components/ui/SpotlightCard';
 import DisciplineRingsCard from '@/components/ui/DisciplineRingsCard';
 import EditorialLookbookStrip from '@/components/ui/EditorialLookbookStrip';
+import NeuralPlayground from '@/components/ml/NeuralPlayground';
 import {
   Cpu,
   Palette,
@@ -189,6 +190,12 @@ export default function DualSpectrum() {
               );
             })}
           </div>
+
+          {/* ── LIVE INTERACTIVE APPLIED ML LAB (DECISION BOUNDARY PERCEPTRON) ── */}
+          <div id="ml-lab" className="pt-2">
+            <NeuralPlayground />
+          </div>
+
         </div>
       )}
 
