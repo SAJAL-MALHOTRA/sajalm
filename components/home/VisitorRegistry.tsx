@@ -26,26 +26,6 @@ export interface SignatureEntry {
   timestamp: string;
 }
 
-// Inaugural canonical signatures (Sajal Malhotra & NITJ Cybernauts)
-const INITIAL_ENTRIES: SignatureEntry[] = [
-  {
-    id: 'SIG-FOUNDER-001',
-    name: 'Sajal Malhotra',
-    role: 'Creator & Engineer · NIT Jalandhar',
-    note: 'Welcome to the dossier. Excited to build, collaborate, and push low-latency systems.',
-    signatureSvg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 120" fill="currentColor"><path d="M 35 75 Q 65 25 110 50 T 170 65 Q 210 20 250 55 T 290 50" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M 40 85 Q 120 70 280 68" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/><circle cx="285" cy="50" r="3.5" fill="currentColor"/></svg>`,
-    timestamp: 'Permanent Entry #001',
-  },
-  {
-    id: 'SIG-NITJ-002',
-    name: 'Cybernauts NITJ',
-    role: 'Technical Society · NIT Jalandhar',
-    note: 'Cybernauts Arena tournament mesh verified. 16-node zero clock drift.',
-    signatureSvg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 120" fill="currentColor"><path d="M 45 60 Q 90 20 150 70 T 260 45" stroke="currentColor" stroke-width="2.8" fill="none" stroke-linecap="round"/><path d="M 90 40 L 160 85 L 230 35" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>`,
-    timestamp: 'Verified Node #002',
-  },
-];
-
 const STORAGE_KEY = 'sajdex_guestbook_signatures';
 const ACTIVE_USER_KEY = 'sajdex_signed_user';
 
@@ -60,7 +40,7 @@ export default function VisitorRegistry() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [hasSigned, setHasSigned] = useState(false);
   const [mySignature, setMySignature] = useState<SignatureEntry | null>(null);
-  const [entries, setEntries] = useState<SignatureEntry[]>(INITIAL_ENTRIES);
+  const [entries, setEntries] = useState<SignatureEntry[]>([]);
 
   // Load signatures from localStorage
   useEffect(() => {
@@ -68,8 +48,12 @@ export default function VisitorRegistry() {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
         const parsed = JSON.parse(stored);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          setEntries([...parsed, ...INITIAL_ENTRIES]);
+        if (Array.isArray(parsed)) {
+          // Filter out any old mock entries
+          const realEntries = parsed.filter(
+            (e: SignatureEntry) => !e.id.startsWith('SIG-FOUNDER') && !e.id.startsWith('SIG-NITJ')
+          );
+          setEntries(realEntries);
         }
       }
 
@@ -108,10 +92,10 @@ export default function VisitorRegistry() {
 
     // 1. Save to local storage
     try {
-      const updatedEntries = [newEntry, ...entries.filter((e) => !e.id.startsWith('SIG-FOUNDER') && !e.id.startsWith('SIG-NITJ'))];
+      const updatedEntries = [newEntry, ...entries];
       localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedEntries));
       localStorage.setItem(ACTIVE_USER_KEY, JSON.stringify(newEntry));
-      setEntries([newEntry, ...entries]);
+      setEntries(updatedEntries);
       setMySignature(newEntry);
       setHasSigned(true);
     } catch {
@@ -357,39 +341,55 @@ export default function VisitorRegistry() {
           </div>
 
           <div className="space-y-2.5 max-h-[460px] overflow-y-auto pr-1">
-            {entries.map((entry) => (
-              <SpotlightCard
-                key={entry.id}
-                className="p-3.5 rounded-xl bg-white dark:bg-[#111216] border border-[#E2E4E8] dark:border-[#22242B] shadow-2xs space-y-2 hover:border-black/30 dark:hover:border-white/30 transition-colors"
-              >
-                <div className="flex items-center justify-between text-[10px] font-mono text-[#71717A] dark:text-[#A1A1AA]">
-                  <span className="font-semibold text-[#09090B] dark:text-white font-sans text-xs">
-                    {entry.name}
-                  </span>
-                  <span>{entry.timestamp}</span>
+            {entries.length === 0 ? (
+              <div className="p-8 rounded-xl border border-dashed border-[#E2E4E8] dark:border-[#27272A] bg-white/40 dark:bg-[#111216]/40 flex flex-col items-center justify-center text-center space-y-2.5 text-[#71717A] dark:text-[#A1A1AA] min-h-[220px]">
+                <div className="w-9 h-9 rounded-full bg-black/5 dark:bg-white/5 flex items-center justify-center text-[#71717A] dark:text-[#A1A1AA]">
+                  <PenTool size={16} />
                 </div>
-
-                {entry.role && (
-                  <div className="text-[11px] font-mono text-emerald-600 dark:text-emerald-400">
-                    {entry.role}
-                  </div>
-                )}
-
-                {/* Vector Stroke Showcase */}
-                <div className="h-16 w-full flex items-center justify-start overflow-hidden py-1 opacity-90 dark:invert dark:hue-rotate-180">
-                  <div
-                    className="w-full h-full [&>svg]:w-auto [&>svg]:h-full [&>svg]:max-w-[200px]"
-                    dangerouslySetInnerHTML={{ __html: entry.signatureSvg }}
-                  />
-                </div>
-
-                {entry.note && (
-                  <p className="text-[11.5px] font-sans text-[#52525B] dark:text-[#A1A1AA] italic pt-1 border-t border-[#ECEEF2] dark:border-[#22242B]">
-                    &ldquo;{entry.note}&rdquo;
+                <div className="space-y-1">
+                  <p className="text-xs font-mono font-bold text-[#09090B] dark:text-white">
+                    No signatures logged yet
                   </p>
-                )}
-              </SpotlightCard>
-            ))}
+                  <p className="text-[11.5px] font-sans text-[#71717A] dark:text-[#A1A1AA] max-w-[240px]">
+                    Draw your signature on the pad to add the first verified entry to the dossier.
+                  </p>
+                </div>
+              </div>
+            ) : (
+              entries.map((entry) => (
+                <SpotlightCard
+                  key={entry.id}
+                  className="p-3.5 rounded-xl bg-white dark:bg-[#111216] border border-[#E2E4E8] dark:border-[#22242B] shadow-2xs space-y-2 hover:border-black/30 dark:hover:border-white/30 transition-colors"
+                >
+                  <div className="flex items-center justify-between text-[10px] font-mono text-[#71717A] dark:text-[#A1A1AA]">
+                    <span className="font-semibold text-[#09090B] dark:text-white font-sans text-xs">
+                      {entry.name}
+                    </span>
+                    <span>{entry.timestamp}</span>
+                  </div>
+
+                  {entry.role && (
+                    <div className="text-[11px] font-mono text-emerald-600 dark:text-emerald-400">
+                      {entry.role}
+                    </div>
+                  )}
+
+                  {/* Vector Stroke Showcase */}
+                  <div className="h-16 w-full flex items-center justify-start overflow-hidden py-1 opacity-90 dark:invert dark:hue-rotate-180">
+                    <div
+                      className="w-full h-full [&>svg]:w-auto [&>svg]:h-full [&>svg]:max-w-[200px]"
+                      dangerouslySetInnerHTML={{ __html: entry.signatureSvg }}
+                    />
+                  </div>
+
+                  {entry.note && (
+                    <p className="text-[11.5px] font-sans text-[#52525B] dark:text-[#A1A1AA] italic pt-1 border-t border-[#ECEEF2] dark:border-[#22242B]">
+                      &ldquo;{entry.note}&rdquo;
+                    </p>
+                  )}
+                </SpotlightCard>
+              ))
+            )}
           </div>
         </div>
 
