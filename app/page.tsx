@@ -84,10 +84,11 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen w-full bg-[#F4F4F6] dark:bg-[#09090B] text-[#09090B] dark:text-[#EDEDED] font-sans antialiased selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black flex flex-col items-center relative overflow-x-hidden">
+    <div className="min-h-screen w-full bg-[#F8F9FA] dark:bg-[#07080B] text-[#09090B] dark:text-[#EDEDED] font-sans antialiased selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black flex flex-col items-center relative overflow-x-hidden">
       
-      {/* ── TECHNICAL DOT GRID (GPU-ACCELERATED LAYER) ── */}
-      <div className="fixed inset-0 bg-[radial-gradient(#CBD0D8_1px,transparent_1px)] dark:bg-[radial-gradient(#27272A_1px,transparent_1px)] [background-size:20px_20px] opacity-45 dark:opacity-30 pointer-events-none -z-10" />
+      {/* ── TECHNICAL DOT GRID & LINEAR AMBIENT LIGHTING ── */}
+      <div className="fixed inset-0 bg-[radial-gradient(#D1D5DB_1px,transparent_1px)] dark:bg-[radial-gradient(#232733_1px,transparent_1px)] [background-size:24px_24px] opacity-40 dark:opacity-35 pointer-events-none -z-10" />
+      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-[radial-gradient(ellipse_at_top,rgba(16,185,129,0.05),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.045),transparent_70%)] pointer-events-none -z-10" />
 
       {/* ── ON-SCREEN TACTILE CEILING PULL-CORD LAMP (GLOBAL THEME SWITCHER) ── */}
       <div

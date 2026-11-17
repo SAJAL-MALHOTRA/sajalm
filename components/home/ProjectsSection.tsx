@@ -7,6 +7,7 @@ import { ArrowUpRight, ExternalLink } from 'lucide-react';
 import { projects } from '@/data/projects';
 import SpotlightCard from '@/components/ui/SpotlightCard';
 import SystemHealthMonitor from '@/components/ui/SystemHealthMonitor';
+import DistributedSyncSimulator from '@/components/systems/DistributedSyncSimulator';
 
 interface ProjectsSectionProps {
   onOpenProjectModal: (id: string) => void;
@@ -166,6 +167,9 @@ export default function ProjectsSection({ onOpenProjectModal }: ProjectsSectionP
           );
         })}
       </div>
+
+      {/* ── LIVE INTERACTIVE DISTRIBUTED SYNC SIMULATOR ── */}
+      <DistributedSyncSimulator />
 
       {/* ── PRODUCTION SYSTEM HEALTH & TELEMETRY (KOKONUT UI UPTIME CARD) ── */}
       <SystemHealthMonitor />
