@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useSound } from '@/hooks/useSound';
+import SpotlightCard from '@/components/ui/SpotlightCard';
 import InteractiveCat from '@/components/ui/InteractiveCat';
 import { ArrowUp } from 'lucide-react';
 
@@ -90,7 +91,7 @@ export default function MinimalFooter() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           
           {/* Card 1: Education & Location */}
-          <div className="p-5 rounded-xl bg-white dark:bg-[#111216] border border-[#E2E4E8] dark:border-[#22242B] space-y-4 shadow-2xs flex flex-col justify-between hover:border-black/30 dark:hover:border-white/30 transition-all">
+          <SpotlightCard className="p-5 rounded-xl bg-white dark:bg-[#111216] border border-[#E2E4E8] dark:border-[#22242B] space-y-4 shadow-2xs flex flex-col justify-between hover:border-black/30 dark:hover:border-white/30 transition-all">
             <div className="space-y-2">
               <div className="flex items-center justify-between text-[9.5px] font-mono text-[#71717A] uppercase font-bold">
                 <span>01 // EDUCATION &amp; LOCATION</span>
@@ -117,10 +118,10 @@ export default function MinimalFooter() {
                 Class of 2029
               </span>
             </div>
-          </div>
+          </SpotlightCard>
 
           {/* Card 2: Colophon & Technical Spec */}
-          <div className="p-5 rounded-xl bg-white dark:bg-[#111216] border border-[#E2E4E8] dark:border-[#22242B] space-y-4 shadow-2xs flex flex-col justify-between hover:border-black/30 dark:hover:border-white/30 transition-all">
+          <SpotlightCard className="p-5 rounded-xl bg-white dark:bg-[#111216] border border-[#E2E4E8] dark:border-[#22242B] space-y-4 shadow-2xs flex flex-col justify-between hover:border-black/30 dark:hover:border-white/30 transition-all">
             <div className="space-y-2">
               <div className="flex items-center justify-between text-[9.5px] font-mono text-[#71717A] uppercase font-bold">
                 <span>02 // COLOPHON &amp; SPECIFICATION</span>
@@ -144,7 +145,7 @@ export default function MinimalFooter() {
                 Open to Winter &apos;26 &amp; Summer &apos;27 opportunities
               </span>
             </div>
-          </div>
+          </SpotlightCard>
 
         </div>
       </section>

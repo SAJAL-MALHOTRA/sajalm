@@ -1,7 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { useSound } from '@/hooks/useSound';
+import SpotlightCard from '@/components/ui/SpotlightCard';
 import {
   Cpu,
   Palette,
@@ -106,39 +108,41 @@ export default function DualSpectrum() {
           </h2>
         </div>
 
-        {/* Interactive Matrix Tab Switcher */}
-        <div className="w-full sm:w-auto grid grid-cols-2 sm:flex items-center gap-1 p-1 rounded-xl bg-[#ECEEF2] dark:bg-[#16171B] border border-[#D1D5DB] dark:border-[#27272A] text-xs font-mono">
-          <button
-            onClick={() => {
-              playClick();
-              setActiveTab('tech');
-            }}
-            onMouseEnter={playHover}
-            className={`flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg transition-all cursor-pointer text-center text-[11px] sm:text-xs ${
-              activeTab === 'tech'
-                ? 'bg-black text-white dark:bg-white dark:text-black font-bold shadow-xs'
-                : 'text-[#52525B] dark:text-[#A1A1AA] hover:text-[#09090B] dark:hover:text-white'
-            }`}
-          >
-            <Cpu size={12} className="shrink-0" />
-            <span>01 Engineering</span>
-          </button>
-
-          <button
-            onClick={() => {
-              playClick();
-              setActiveTab('passions');
-            }}
-            onMouseEnter={playHover}
-            className={`flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg transition-all cursor-pointer text-center text-[11px] sm:text-xs ${
-              activeTab === 'passions'
-                ? 'bg-black text-white dark:bg-white dark:text-black font-bold shadow-xs'
-                : 'text-[#52525B] dark:text-[#A1A1AA] hover:text-[#09090B] dark:hover:text-white'
-            }`}
-          >
-            <Palette size={12} className="shrink-0" />
-            <span>02 Creative side</span>
-          </button>
+        {/* Interactive Matrix Tab Switcher with Kokonut Fluid Spring */}
+        <div className="w-full sm:w-auto grid grid-cols-2 sm:flex items-center gap-1 p-1 rounded-xl bg-[#ECEEF2] dark:bg-[#16171B] border border-[#D1D5DB] dark:border-[#27272A] text-xs font-mono relative">
+          {[
+            { id: 'tech', label: '01 Engineering', icon: <Cpu size={12} className="shrink-0" /> },
+            { id: 'passions', label: '02 Creative side', icon: <Palette size={12} className="shrink-0" /> },
+          ].map((tab) => {
+            const isActive = activeTab === tab.id;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => {
+                  playClick();
+                  setActiveTab(tab.id as 'tech' | 'passions');
+                }}
+                onMouseEnter={playHover}
+                className={`relative flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-lg cursor-pointer text-center text-[11px] sm:text-xs transition-colors duration-150 ${
+                  isActive
+                    ? 'text-white dark:text-black font-bold'
+                    : 'text-[#52525B] dark:text-[#A1A1AA] hover:text-[#09090B] dark:hover:text-white'
+                }`}
+              >
+                {isActive && (
+                  <motion.div
+                    layoutId="spectrumTabPill"
+                    className="absolute inset-0 rounded-lg bg-black dark:bg-white shadow-xs"
+                    transition={{ type: 'spring', stiffness: 450, damping: 32 }}
+                  />
+                )}
+                <span className="relative z-10 flex items-center gap-1.5">
+                  {tab.icon}
+                  <span>{tab.label}</span>
+                </span>
+              </button>
+            );
+          })}
         </div>
       </div>
 
@@ -149,7 +153,7 @@ export default function DualSpectrum() {
             const isFullWidth = idx === 4;
 
             return (
-              <div
+              <SpotlightCard
                 key={cat.title}
                 className={`${isFullWidth ? 'sm:col-span-2' : ''} p-4 sm:p-4.5 rounded-xl bg-white dark:bg-[#111216] border border-[#E2E4E8] dark:border-[#22242B] space-y-3 shadow-2xs hover:border-black/30 dark:hover:border-white/30 transition-colors duration-200 flex flex-col justify-between`}
               >
@@ -176,7 +180,7 @@ export default function DualSpectrum() {
                     </span>
                   ))}
                 </div>
-              </div>
+              </SpotlightCard>
             );
           })}
         </div>
@@ -203,7 +207,7 @@ export default function DualSpectrum() {
           {/* 4 Creative Dimensions (2x2 Grid) */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
             {creativeDimensions.map((p) => (
-              <div
+              <SpotlightCard
                 key={p.title}
                 className="p-4 sm:p-4.5 rounded-xl bg-white dark:bg-[#111216] border border-[#E2E4E8] dark:border-[#22242B] space-y-3 shadow-2xs hover:border-black/30 dark:hover:border-white/30 transition-colors duration-200 flex flex-col justify-between"
               >
@@ -233,7 +237,7 @@ export default function DualSpectrum() {
                     </span>
                   ))}
                 </div>
-              </div>
+              </SpotlightCard>
             ))}
           </div>
 

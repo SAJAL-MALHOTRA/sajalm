@@ -1,29 +1,20 @@
 'use client';
 
-import { useState } from 'react';
 import { profile } from '@/data/profile';
 import { getAssetPath } from '@/utils/asset';
 import { useSound } from '@/hooks/useSound';
+import SpotlightCard from '@/components/ui/SpotlightCard';
+import MicroCopyButton from '@/components/ui/MicroCopyButton';
 import {
   Mail,
   Phone,
   Download,
-  ExternalLink,
   ShieldCheck,
   ArrowUpRight,
-  Send,
 } from 'lucide-react';
 
 export default function OpportunitiesSection() {
-  const [copiedField, setCopiedField] = useState<string | null>(null);
   const { playClick, playHover } = useSound();
-
-  const handleCopy = (text: string, label: string) => {
-    playClick();
-    navigator.clipboard.writeText(text);
-    setCopiedField(label);
-    setTimeout(() => setCopiedField(null), 2000);
-  };
 
   return (
     <section id="contact" className="w-full max-w-[780px] mx-auto py-8 text-left select-none space-y-6">
@@ -52,7 +43,7 @@ export default function OpportunitiesSection() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         
         {/* Path 1: Engineering Opportunities */}
-        <div className="p-5 rounded-xl bg-white dark:bg-[#111216] border border-[#E2E4E8] dark:border-[#22242B] space-y-4 shadow-2xs flex flex-col justify-between hover:border-black/30 dark:hover:border-white/30 transition-all">
+        <SpotlightCard className="p-5 rounded-xl bg-white dark:bg-[#111216] border border-[#E2E4E8] dark:border-[#22242B] space-y-4 shadow-2xs flex flex-col justify-between hover:border-black/30 dark:hover:border-white/30 transition-all">
           <div className="space-y-2">
             <div className="flex items-center justify-between text-[9.5px] font-mono text-[#71717A] uppercase font-bold">
               <span>01 // DIRECT COLLABORATION</span>
@@ -81,13 +72,12 @@ export default function OpportunitiesSection() {
                 <span className="truncate text-xs font-medium">{profile.email}</span>
               </a>
 
-              <button
-                onClick={() => handleCopy(profile.email, 'email')}
-                className="p-2.5 rounded-lg bg-white hover:bg-[#F4F4F6] dark:bg-[#16171B] dark:hover:bg-[#1F2127] border border-[#E2E4E8] dark:border-[#22242B] text-[#09090B] dark:text-[#EDEDED] font-bold text-[10px] transition-colors cursor-pointer shrink-0"
+              <MicroCopyButton
+                text={profile.email}
+                label="COPY"
+                copiedLabel="COPIED"
                 title="Copy Email to Clipboard"
-              >
-                {copiedField === 'email' ? 'COPIED' : 'COPY'}
-              </button>
+              />
             </div>
 
             <div className="flex items-center gap-1.5">
@@ -101,13 +91,12 @@ export default function OpportunitiesSection() {
                 <span className="text-xs font-medium">{profile.phone}</span>
               </a>
 
-              <button
-                onClick={() => handleCopy(profile.phone, 'phone')}
-                className="p-2.5 rounded-lg bg-white hover:bg-[#F4F4F6] dark:bg-[#16171B] dark:hover:bg-[#1F2127] border border-[#E2E4E8] dark:border-[#22242B] text-[#09090B] dark:text-[#EDEDED] font-bold text-[10px] transition-colors cursor-pointer shrink-0"
+              <MicroCopyButton
+                text={profile.phone}
+                label="COPY"
+                copiedLabel="COPIED"
                 title="Copy Phone to Clipboard"
-              >
-                {copiedField === 'phone' ? 'COPIED' : 'COPY'}
-              </button>
+              />
             </div>
 
             <div className="pt-1.5 text-[10px] font-mono text-[#71717A] dark:text-[#A1A1AA] flex items-center justify-between">
@@ -115,10 +104,10 @@ export default function OpportunitiesSection() {
               <span>NIT JALANDHAR &apos;29</span>
             </div>
           </div>
-        </div>
+        </SpotlightCard>
 
         {/* Path 2: Selected Assets */}
-        <div className="p-5 rounded-xl bg-white dark:bg-[#111216] border border-[#E2E4E8] dark:border-[#22242B] space-y-4 shadow-2xs flex flex-col justify-between hover:border-black/30 dark:hover:border-white/30 transition-all">
+        <SpotlightCard className="p-5 rounded-xl bg-white dark:bg-[#111216] border border-[#E2E4E8] dark:border-[#22242B] space-y-4 shadow-2xs flex flex-col justify-between hover:border-black/30 dark:hover:border-white/30 transition-all">
           <div className="space-y-2">
             <div className="flex items-center justify-between text-[9.5px] font-mono text-[#71717A] uppercase font-bold">
               <span>02 // VERIFIED ASSETS</span>
@@ -194,7 +183,7 @@ export default function OpportunitiesSection() {
               </a>
             </div>
           </div>
-        </div>
+        </SpotlightCard>
 
       </div>
 

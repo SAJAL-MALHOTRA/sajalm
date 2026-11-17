@@ -3,6 +3,8 @@
 import { profile } from '@/data/profile';
 import { getAssetPath } from '@/utils/asset';
 import { useSound } from '@/hooks/useSound';
+import MagneticButton from '@/components/ui/MagneticButton';
+import SpotlightCard from '@/components/ui/SpotlightCard';
 import {
   ArrowDown,
   ArrowUpRight,
@@ -59,26 +61,30 @@ export default function EditorialHero({
 
           {/* ── PROMINENT HERO CTAS (DIRECTLY IN THE HERO FOLD) ── */}
           <div className="flex flex-wrap items-center gap-2.5 pt-2">
-            <a
-              href="#projects"
-              onClick={playClick}
-              className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[#09090B] hover:bg-neutral-800 text-white dark:bg-white dark:hover:bg-neutral-200 dark:text-[#09090B] font-medium text-xs font-sans transition-all shadow-xs active:scale-95 cursor-pointer"
-            >
-              <span>View Work</span>
-              <ArrowDown size={13} />
-            </a>
+            <MagneticButton>
+              <a
+                href="#projects"
+                onClick={playClick}
+                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[#09090B] hover:bg-neutral-800 text-white dark:bg-white dark:hover:bg-neutral-200 dark:text-[#09090B] font-medium text-xs font-sans transition-all shadow-xs active:scale-95 cursor-pointer"
+              >
+                <span>View Work</span>
+                <ArrowDown size={13} />
+              </a>
+            </MagneticButton>
 
-            <a
-              href={getAssetPath('/resume.pdf')}
-              target="_blank"
-              rel="noreferrer"
-              onClick={playClick}
-              className="inline-flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-lg bg-white hover:bg-[#F4F4F6] dark:bg-[#121316] dark:hover:bg-[#1C1D22] text-[#09090B] dark:text-[#EDEDED] border border-[#E2E4E8] dark:border-[#22242B] font-medium text-xs font-sans transition-all shadow-2xs cursor-pointer"
-            >
-              <FileText size={13} className="text-[#71717A] dark:text-[#A1A1AA]" />
-              <span>Resume</span>
-              <ArrowUpRight size={12} className="text-[#71717A] dark:text-[#A1A1AA]" />
-            </a>
+            <MagneticButton>
+              <a
+                href={getAssetPath('/resume.pdf')}
+                target="_blank"
+                rel="noreferrer"
+                onClick={playClick}
+                className="inline-flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-lg bg-white hover:bg-[#F4F4F6] dark:bg-[#121316] dark:hover:bg-[#1C1D22] text-[#09090B] dark:text-[#EDEDED] border border-[#E2E4E8] dark:border-[#22242B] font-medium text-xs font-sans transition-all shadow-2xs cursor-pointer"
+              >
+                <FileText size={13} className="text-[#71717A] dark:text-[#A1A1AA]" />
+                <span>Resume</span>
+                <ArrowUpRight size={12} className="text-[#71717A] dark:text-[#A1A1AA]" />
+              </a>
+            </MagneticButton>
 
             <a
               href="mailto:malhotrasajal243@gmail.com"
@@ -91,9 +97,9 @@ export default function EditorialHero({
 
         </div>
 
-        {/* Right Column: Clean Editorial Portrait Card */}
+        {/* Right Column: Clean Editorial Portrait Card with Spotlight */}
         <div className="w-full max-w-[280px] sm:w-[260px] md:w-[270px] shrink-0 self-center sm:self-start">
-          <div className="rounded-2xl bg-white dark:bg-[#111216] border border-[#E2E4E8] dark:border-[#22242B] p-2.5 shadow-sm space-y-2.5">
+          <SpotlightCard className="rounded-2xl bg-white dark:bg-[#111216] border border-[#E2E4E8] dark:border-[#22242B] p-2.5 shadow-sm space-y-2.5">
             <button
               onClick={() => {
                 playClick();
@@ -130,7 +136,7 @@ export default function EditorialHero({
                 Jalandhar, India
               </span>
             </div>
-          </div>
+          </SpotlightCard>
         </div>
 
       </div>

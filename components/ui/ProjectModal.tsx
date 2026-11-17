@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Project } from '@/data/projects';
 import { X, ExternalLink, Code2, ShieldCheck, Cpu, GitBranch, CheckCircle2, ArrowUpRight } from 'lucide-react';
 import { useSound } from '@/hooks/useSound';
+import KeycapBadge from '@/components/ui/KeycapBadge';
 
 interface ProjectModalProps {
   project: Project | null;
@@ -72,42 +73,57 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               </h2>
             </div>
 
-            <button
-              onClick={() => {
-                playClick();
-                onClose();
-              }}
-              className="p-1.5 rounded-full bg-[#F4F4F6] hover:bg-[#EAECEF] border border-[#D1D5DB] text-[#52525B] hover:text-[#09090B] dark:bg-[#16181F] dark:border-[#27272A] dark:text-[#A1A1AA] dark:hover:text-white transition-colors cursor-pointer shrink-0"
-              title="Close (Esc)"
-            >
-              <X size={15} />
-            </button>
+            <div className="flex items-center gap-2">
+              <KeycapBadge size="sm" className="hidden sm:inline-flex text-[#71717A] dark:text-[#A1A1AA]">
+                ESC
+              </KeycapBadge>
+              <button
+                onClick={() => {
+                  playClick();
+                  onClose();
+                }}
+                className="p-1.5 rounded-full bg-[#F4F4F6] hover:bg-[#EAECEF] border border-[#D1D5DB] text-[#52525B] hover:text-[#09090B] dark:bg-[#16181F] dark:border-[#27272A] dark:text-[#A1A1AA] dark:hover:text-white transition-colors cursor-pointer shrink-0"
+                title="Close (Esc)"
+              >
+                <X size={15} />
+              </button>
+            </div>
           </div>
 
-          {/* ── ARCHITECTURAL CASE STUDY TABS ── */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-1 p-1 rounded-xl bg-[#F4F4F6] dark:bg-[#14161C] border border-[#E2E4E8] dark:border-[#22242B] text-xs font-mono">
+          {/* ── ARCHITECTURAL CASE STUDY TABS WITH FLUID SPRING BACKDROP ── */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-1 p-1 rounded-xl bg-[#F4F4F6] dark:bg-[#14161C] border border-[#E2E4E8] dark:border-[#22242B] text-xs font-mono relative">
             {[
               { id: 'overview', label: '01 Overview' },
               { id: 'architecture', label: '02 Architecture' },
               { id: 'tradeoffs', label: '03 Tradeoffs' },
               { id: 'outcomes', label: '04 Outcomes' },
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => {
-                  playClick();
-                  setActiveTab(tab.id as typeof activeTab);
-                }}
-                onMouseEnter={playHover}
-                className={`py-1.5 px-2 rounded-lg transition-all text-center text-[11px] font-medium cursor-pointer ${
-                  activeTab === tab.id
-                    ? 'bg-black text-white dark:bg-white dark:text-black font-bold shadow-xs'
-                    : 'text-[#52525B] dark:text-[#A1A1AA] hover:text-[#09090B] dark:hover:text-white'
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
+            ].map((tab) => {
+              const isActive = activeTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => {
+                    playClick();
+                    setActiveTab(tab.id as typeof activeTab);
+                  }}
+                  onMouseEnter={playHover}
+                  className={`relative py-1.5 px-2 rounded-lg transition-colors duration-150 text-center text-[11px] font-medium cursor-pointer ${
+                    isActive
+                      ? 'text-white dark:text-black font-bold'
+                      : 'text-[#52525B] dark:text-[#A1A1AA] hover:text-[#09090B] dark:hover:text-white'
+                  }`}
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="modalTabPill"
+                      className="absolute inset-0 rounded-lg bg-black dark:bg-white shadow-xs"
+                      transition={{ type: 'spring', stiffness: 450, damping: 32 }}
+                    />
+                  )}
+                  <span className="relative z-10">{tab.label}</span>
+                </button>
+              );
+            })}
           </div>
 
           {/* ── TAB 1: OVERVIEW & WHY BUILT ── */}

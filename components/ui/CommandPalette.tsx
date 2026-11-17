@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Home, Briefcase, Terminal, Mail, X, ArrowRight } from 'lucide-react';
 import { ViewType } from '@/app/page';
 import { useSound } from '@/hooks/useSound';
+import KeycapBadge from '@/components/ui/KeycapBadge';
 
 interface CommandPaletteProps {
   isOpen: boolean;
@@ -118,7 +119,11 @@ export default function CommandPalette({
 
           {/* Footer Badge */}
           <div className="px-4 py-2 bg-[#08090B] border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-[#94A3B8]">
-            <span>Press <kbd className="px-1.5 py-0.5 rounded bg-[#111317] border border-white/10 text-[#F8FAFC]">ESC</kbd> to exit</span>
+            <span className="flex items-center gap-1.5">
+              <span>Press</span>
+              <KeycapBadge size="xs" className="text-white bg-[#14161C] border-white/20 shadow-none">ESC</KeycapBadge>
+              <span>to exit</span>
+            </span>
             <span className="text-[#EF4444] font-bold">SAJDEX COMMAND PALETTE</span>
           </div>
         </motion.div>

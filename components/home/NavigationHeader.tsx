@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import ThemeToggle from '@/components/theme/ThemeToggle';
+import KeycapBadge from '@/components/ui/KeycapBadge';
 import { useSound } from '@/hooks/useSound';
 import { Terminal } from 'lucide-react';
 
@@ -89,11 +90,12 @@ export default function NavigationHeader({ onOpenTerminal }: NavigationHeaderPro
               playClick();
               onOpenTerminal();
             }}
-            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white hover:bg-[#ECEEF2] dark:bg-[#121316] dark:hover:bg-[#1E1F24] border border-[#E2E4E8] dark:border-[#22242B] text-[#09090B] dark:text-[#EDEDED] font-mono text-xs transition-colors cursor-pointer shadow-2xs"
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white hover:bg-[#ECEEF2] dark:bg-[#121316] dark:hover:bg-[#1E1F24] border border-[#E2E4E8] dark:border-[#22242B] text-[#09090B] dark:text-[#EDEDED] font-mono text-xs transition-colors cursor-pointer shadow-2xs group"
             title="Open Developer Terminal (~)"
           >
             <Terminal size={12} className="text-[#71717A] dark:text-[#A1A1AA]" />
             <span>CLI</span>
+            <KeycapBadge size="xs">~</KeycapBadge>
           </button>
 
           {/* Theme Mode Toggle */}

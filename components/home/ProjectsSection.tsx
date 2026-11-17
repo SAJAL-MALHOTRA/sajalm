@@ -1,9 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { useSound } from '@/hooks/useSound';
 import { ArrowUpRight, ExternalLink } from 'lucide-react';
 import { projects } from '@/data/projects';
+import SpotlightCard from '@/components/ui/SpotlightCard';
 
 interface ProjectsSectionProps {
   onOpenProjectModal: (id: string) => void;
@@ -40,29 +42,39 @@ export default function ProjectsSection({ onOpenProjectModal }: ProjectsSectionP
             </h2>
           </div>
 
-          {/* Clean Category Filter */}
-          <div className="flex items-center gap-1 p-1 rounded-lg bg-[#ECEEF2] dark:bg-[#16171B] border border-[#D1D5DB] dark:border-[#27272A] text-xs font-mono self-start sm:self-auto">
+          {/* Clean Category Filter with Fluid Spring Backdrop */}
+          <div className="flex items-center gap-1 p-1 rounded-lg bg-[#ECEEF2] dark:bg-[#16171B] border border-[#D1D5DB] dark:border-[#27272A] text-xs font-mono self-start sm:self-auto relative">
             {[
               { id: 'all', label: `All (${projects.length})` },
               { id: 'systems', label: 'Systems & Real-Time' },
               { id: 'ai', label: 'ML & Research' },
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => {
-                  playClick();
-                  setFilter(tab.id as 'all' | 'systems' | 'ai');
-                }}
-                onMouseEnter={playHover}
-                className={`px-2.5 py-1 rounded-md transition-all cursor-pointer text-[11px] ${
-                  filter === tab.id
-                    ? 'bg-white text-black dark:bg-[#27272A] dark:text-white font-semibold shadow-xs'
-                    : 'text-[#52525B] dark:text-[#A1A1AA] hover:text-[#09090B] dark:hover:text-white'
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
+            ].map((tab) => {
+              const isActive = filter === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => {
+                    playClick();
+                    setFilter(tab.id as 'all' | 'systems' | 'ai');
+                  }}
+                  onMouseEnter={playHover}
+                  className={`relative px-2.5 py-1 rounded-md transition-colors duration-150 cursor-pointer text-[11px] ${
+                    isActive
+                      ? 'text-black dark:text-white font-semibold'
+                      : 'text-[#52525B] dark:text-[#A1A1AA] hover:text-[#09090B] dark:hover:text-white'
+                  }`}
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="projectTabPill"
+                      className="absolute inset-0 rounded-md bg-white dark:bg-[#27272A] shadow-xs"
+                      transition={{ type: 'spring', stiffness: 450, damping: 32 }}
+                    />
+                  )}
+                  <span className="relative z-10">{tab.label}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
 
@@ -78,7 +90,7 @@ export default function ProjectsSection({ onOpenProjectModal }: ProjectsSectionP
           const hasLiveDemo = Boolean(project.liveUrl || project.demo);
 
           return (
-            <div
+            <SpotlightCard
               key={project.id}
               onClick={() => {
                 playClick();
@@ -149,7 +161,7 @@ export default function ProjectsSection({ onOpenProjectModal }: ProjectsSectionP
               <div className="pt-2 border-t border-[#ECEEF2] dark:border-white/5 text-[10.5px] font-mono text-[#71717A] dark:text-[#A1A1AA] tracking-wide">
                 {project.stack.slice(0, 4).join(' · ')}
               </div>
-            </div>
+            </SpotlightCard>
           );
         })}
       </div>
