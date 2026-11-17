@@ -1,13 +1,10 @@
 "use client";
 
 /**
- * @author: @dorianbaffier
- * @description: Pull Cord
- * @version: 1.0.0
- * @date: 2026-10-14
+ * @author: @dorianbaffier (enhanced for SajDex on-screen ceiling mounting)
+ * @description: Pull Cord - Real-time physics chain light switch
  * @license: MIT
  * @website: https://kokonutui.com
- * @github: https://github.com/kokonut-labs/kokonutui
  */
 
 import {
@@ -19,33 +16,23 @@ import {
 } from "react";
 import { cn } from "@/lib/utils";
 
-const WIDTH = 288;
-const HEIGHT = 360;
+const WIDTH = 240;
+const DEFAULT_HEIGHT = 270;
 // Where the cord hangs from, under the lamp shade.
-const ANCHOR = { x: WIDTH / 2 + 36, y: 116 };
+const ANCHOR = { x: WIDTH / 2 + 32, y: 116 };
 // The cord is a chain of points joined by fixed-length links.
 const LINKS = 12;
 const LINK = 8.5;
-// Simulation, in px and seconds. A fixed step keeps the chain stable on any
-// refresh rate.
+// Simulation, in px and seconds. A fixed step keeps the chain stable on any refresh rate.
 const STEP = 1 / 120;
 const GRAVITY = 1400;
 const DAMPING = 0.992;
-// Fastest a link may move in one step. Letting go of a stretched cord would
-// otherwise fling it up into the shade.
 const MAX_SPEED = 4;
-// A cord has a little stiffness: two links apart, points never get closer
-// than this, so it bends in curves instead of folding into kinks.
 const BEND_MIN = LINK * 1.9;
 const BEND_STIFFNESS = 0.8;
 const ITERATIONS = 14;
-// How far past its length the cord has to be pulled to click the switch,
-// and how far it can stretch at all. The stretch flattens out, so it slows
-// down instead of stopping at a wall.
 const CLICK_PULL = 22;
 const MAX_STRETCH = 34;
-// Below this movement per step for a while, the chain is at rest and the
-// loop stops.
 const REST_EPSILON = 0.015;
 const REST_STEPS = 24;
 
@@ -55,14 +42,12 @@ function damp(distance: number, max: number) {
 
 function haptic() {
   if (typeof navigator !== "undefined" && "vibrate" in navigator) {
-    navigator.vibrate(8);
+    try {
+      navigator.vibrate(8);
+    } catch {}
   }
 }
 
-/**
- * Move points a and b towards `length` apart. A bend constraint only ever
- * pushes apart, and only part of the way each pass: stiff, not rigid.
- */
 function relax(
   chain: { xs: Float64Array; ys: Float64Array; held: number },
   a: number,
@@ -95,7 +80,6 @@ function relax(
   ys[b] -= dy * diff * (1 - wa);
 }
 
-/** A smooth curve through the chain's points. */
 function cordPath(xs: Float64Array, ys: Float64Array) {
   let d = `M${xs[0].toFixed(2)} ${ys[0].toFixed(2)}`;
   for (let i = 1; i < xs.length - 1; i++) {
@@ -103,8 +87,8 @@ function cordPath(xs: Float64Array, ys: Float64Array) {
     const my = (ys[i] + ys[i + 1]) / 2;
     d += ` Q${xs[i].toFixed(2)} ${ys[i].toFixed(2)} ${mx.toFixed(2)} ${my.toFixed(2)}`;
   }
-  const n = xs.length - 1;
-  d += ` L${xs[n].toFixed(2)} ${ys[n].toFixed(2)}`;
+  const last = xs.length - 1;
+  d += ` L${xs[last].toFixed(2)} ${ys[last].toFixed(2)}`;
   return d;
 }
 
@@ -130,6 +114,9 @@ export interface PullCordProps {
   /** Accessible name of the switch. */
   label?: string;
   className?: string;
+  /** Whether to render frameless without box border/background (for on-screen ceiling mounting). */
+  frameless?: boolean;
+  height?: number;
 }
 
 export default function PullCord({
@@ -138,6 +125,8 @@ export default function PullCord({
   onCheckedChange,
   label = "Desk lamp",
   className,
+  frameless = false,
+  height = DEFAULT_HEIGHT,
 }: PullCordProps) {
   const [internal, setInternal] = useState(defaultChecked);
   const checked = checkedProp ?? internal;
@@ -158,7 +147,6 @@ export default function PullCord({
     last: 0,
     carry: 0,
     still: 0,
-    // The link being held, and where the hand is holding it.
     held: -1,
     targetX: 0,
     targetY: 0,
@@ -166,11 +154,11 @@ export default function PullCord({
     reduceMotion: false,
   });
 
-  // Read from pointer handlers, which outlive the render they came from.
   const latest = useRef<{ checked: boolean; toggle: (next: boolean) => void }>({
     checked,
     toggle: () => undefined,
   });
+
   const toggle = useCallback(
     (next: boolean) => {
       if (checkedProp === undefined) {
@@ -187,6 +175,7 @@ export default function PullCord({
     const d = cordPath(xs, ys);
     cordRef.current?.setAttribute("d", d);
     hitRef.current?.setAttribute("d", d);
+
     const n = LINKS;
     const angle =
       (Math.atan2(xs[n] - xs[n - 1], ys[n] - ys[n - 1]) * 180) / Math.PI;
@@ -196,8 +185,6 @@ export default function PullCord({
     );
   }, []);
 
-  // Verlet: each free link keeps the velocity it had last step, plus
-  // gravity. The held link goes to the hand.
   const integrate = useCallback(() => {
     const s = sim.current;
     const { xs, ys, pxs, pys } = s;
@@ -228,14 +215,12 @@ export default function PullCord({
       pxs[i] = xs[i];
       pys[i] = ys[i];
       xs[i] = s.targetX;
+      xs[i] = s.targetX;
       ys[i] = s.targetY;
     }
     return moved;
   }, []);
 
-  // Pull each link back to its length, and keep points two links apart from
-  // folding too close. The anchor and the held link don't move; everything
-  // else shares the correction.
   const constrain = useCallback(() => {
     const s = sim.current;
     for (let k = 0; k < ITERATIONS; k++) {
@@ -279,34 +264,32 @@ export default function PullCord({
 
   const wake = useCallback(() => {
     const s = sim.current;
-    s.still = 0;
     if (!s.raf) {
+      s.last = performance.now();
       s.raf = requestAnimationFrame(tick);
     }
   }, [tick]);
 
   useEffect(() => {
+    draw();
     const s = sim.current;
     s.reduceMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
     return () => cancelAnimationFrame(s.raf);
-  }, []);
+  }, [draw]);
 
   const localPoint = (event: PointerEvent) => {
     const rect = svgRef.current?.getBoundingClientRect();
     if (!rect) {
       return { x: 0, y: 0 };
     }
-    // The drawing is laid out in its own units; map the pointer into them.
     return {
       x: ((event.clientX - rect.left) / rect.width) * WIDTH,
-      y: ((event.clientY - rect.top) / rect.height) * HEIGHT,
+      y: ((event.clientY - rect.top) / rect.height) * height,
     };
   };
 
-  // The hand can pull the cord a little past its length, with growing
-  // resistance, but never pull it off the anchor.
   const reach = (index: number, x: number, y: number) => {
     const dx = x - ANCHOR.x;
     const dy = y - ANCHOR.y;
@@ -333,7 +316,6 @@ export default function PullCord({
     }
     event.preventDefault();
     const point = localPoint(event);
-    // Hold the link nearest to where the cord was grabbed.
     let nearest = LINKS;
     let best = Number.POSITIVE_INFINITY;
     for (let i = 1; i <= LINKS; i++) {
@@ -343,10 +325,11 @@ export default function PullCord({
         nearest = i;
       }
     }
-    svgRef.current?.setPointerCapture(event.pointerId);
     s.held = nearest;
-    s.targetX = s.xs[nearest];
-    s.targetY = s.ys[nearest];
+    svgRef.current?.setPointerCapture(event.pointerId);
+    const target = reach(s.held, point.x, point.y);
+    s.targetX = target.x;
+    s.targetY = target.y;
     s.armed = true;
     setGrabbing(true);
     wake();
@@ -361,8 +344,6 @@ export default function PullCord({
     const target = reach(s.held, point.x, point.y);
     s.targetX = target.x;
     s.targetY = target.y;
-    // The switch clicks once per pull, as soon as the cord is pulled far
-    // enough, not on release. It re-arms when the cord eases back.
     if (s.armed && target.pull > CLICK_PULL) {
       s.armed = false;
       haptic();
@@ -381,7 +362,6 @@ export default function PullCord({
     s.held = -1;
     setGrabbing(false);
     if (s.reduceMotion) {
-      // No swinging back: the cord drops straight to rest.
       s.xs.set(REST.xs);
       s.ys.set(REST.ys);
       s.pxs.set(REST.xs);
@@ -396,7 +376,6 @@ export default function PullCord({
     toggle(!checked);
     const s = sim.current;
     if (!s.reduceMotion) {
-      // A small tug on the bead, so the cord answers the key too.
       s.pys[LINKS] = s.ys[LINKS] - 5;
       wake();
     }
@@ -405,34 +384,50 @@ export default function PullCord({
   return (
     <div
       className={cn(
-        "relative select-none overflow-hidden rounded-3xl border transition-colors duration-300 ease-out",
-        checked
-          ? "border-zinc-200 bg-white text-zinc-900"
-          : "border-zinc-800 bg-zinc-950 text-zinc-100",
+        "relative select-none",
+        !frameless && [
+          "overflow-hidden rounded-3xl border transition-colors duration-300 ease-out",
+          checked
+            ? "border-zinc-200 bg-white text-zinc-900"
+            : "border-zinc-800 bg-zinc-950 text-zinc-100",
+        ],
+        frameless && "pointer-events-none bg-transparent",
         className
       )}
-      style={{ width: WIDTH, height: HEIGHT }}
+      style={{ width: WIDTH, height }}
     >
       <svg
         aria-hidden="true"
         className={cn(
-          "absolute inset-0 touch-none",
+          "absolute inset-0 touch-none overflow-visible",
+          frameless && "pointer-events-none",
           grabbing ? "cursor-grabbing" : "cursor-default"
         )}
-        height={HEIGHT}
+        height={height}
         onLostPointerCapture={handlePointerUp}
         onPointerCancel={handlePointerUp}
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
         ref={svgRef}
-        viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
+        viewBox={`0 0 ${WIDTH} ${height}`}
         width={WIDTH}
       >
-        {/* Ceiling wire and shade. */}
+        {/* Ambient lamp glow when bulb is lit (Light mode) */}
+        {checked && (
+          <ellipse
+            cx={WIDTH / 2}
+            cy={126}
+            rx={50}
+            ry={32}
+            className="fill-amber-400/20 dark:fill-amber-400/30 blur-md pointer-events-none transition-opacity duration-300"
+          />
+        )}
+
+        {/* Ceiling wire and shade */}
         <line
           className={cn(
             "transition-[stroke] duration-300 ease-out",
-            checked ? "stroke-zinc-300" : "stroke-zinc-700"
+            checked ? "stroke-zinc-400 dark:stroke-zinc-600" : "stroke-zinc-700 dark:stroke-zinc-600"
           )}
           strokeWidth={1.5}
           x1={WIDTH / 2}
@@ -442,24 +437,26 @@ export default function PullCord({
         />
         <path
           className={cn(
-            "transition-[fill] duration-300 ease-out",
-            checked ? "fill-zinc-900" : "fill-zinc-800"
+            "transition-[fill] duration-300 ease-out drop-shadow-xs",
+            checked ? "fill-zinc-800 dark:fill-zinc-700" : "fill-zinc-800 dark:fill-zinc-800"
           )}
           d={`M${WIDTH / 2 - 14} 62 h28 l38 50 q2 4 -3 4 h-98 q-5 0 -3 -4 Z`}
         />
-        {/* The bulb, lit or not. */}
+
+        {/* The bulb, lit or dimmed */}
         <path
           className={cn(
             "transition-[fill] duration-300 ease-out",
-            checked ? "fill-amber-300" : "fill-zinc-700"
+            checked ? "fill-amber-400" : "fill-zinc-600 dark:fill-zinc-700"
           )}
           d={`M${WIDTH / 2 - 15} 116 a15 13 0 0 0 30 0 Z`}
         />
 
+        {/* The visual pull cord */}
         <path
           className={cn(
             "transition-[stroke] duration-300 ease-out",
-            checked ? "stroke-zinc-400" : "stroke-zinc-600"
+            checked ? "stroke-zinc-500 dark:stroke-zinc-400" : "stroke-zinc-600 dark:stroke-zinc-500"
           )}
           d={REST_PATH}
           fill="none"
@@ -467,27 +464,30 @@ export default function PullCord({
           strokeLinecap="round"
           strokeWidth={1.5}
         />
-        {/* A wider invisible copy of the cord, so it's easy to grab. */}
+
+        {/* A wider invisible copy of the cord, so it's easy to grab */}
         <path
-          className={cn(!grabbing && "cursor-grab")}
+          className={cn("pointer-events-auto", !grabbing && "cursor-grab")}
           d={REST_PATH}
           fill="none"
           onPointerDown={handlePointerDown}
           pointerEvents="stroke"
           ref={hitRef}
           stroke="transparent"
-          strokeWidth={22}
+          strokeWidth={26}
         />
+
+        {/* The tactile bead at the bottom of the cord */}
         <g
-          className={cn(!grabbing && "cursor-grab")}
+          className={cn("pointer-events-auto", !grabbing && "cursor-grab")}
           onPointerDown={handlePointerDown}
           ref={beadRef}
           transform={`translate(${ANCHOR.x} ${ANCHOR.y + LINKS * LINK})`}
         >
-          <circle fill="transparent" r={20} />
+          <circle fill="transparent" r={26} />
           {focused && (
             <rect
-              className="fill-none stroke-zinc-400"
+              className="fill-none stroke-amber-400"
               height={30}
               rx={9}
               strokeWidth={2}
@@ -498,8 +498,8 @@ export default function PullCord({
           )}
           <rect
             className={cn(
-              "transition-[fill] duration-300 ease-out",
-              checked ? "fill-zinc-800" : "fill-zinc-300"
+              "transition-[fill] duration-300 ease-out shadow-md",
+              checked ? "fill-amber-500" : "fill-zinc-300 dark:fill-zinc-400"
             )}
             height={20}
             rx={5}
@@ -510,12 +510,14 @@ export default function PullCord({
         </g>
       </svg>
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 p-6">
-        <p className="font-medium text-sm">{label}</p>
-        <p className="text-sm text-zinc-500">
-          {checked ? "On" : "Off"} · pull the cord
-        </p>
-      </div>
+      {!frameless && (
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 p-6">
+          <p className="font-medium text-sm">{label}</p>
+          <p className="text-sm text-zinc-500">
+            {checked ? "On" : "Off"} · pull the cord
+          </p>
+        </div>
+      )}
 
       <button
         aria-checked={checked}

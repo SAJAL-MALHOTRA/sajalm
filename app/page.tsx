@@ -11,7 +11,8 @@ import MinimalFooter from '@/components/home/MinimalFooter';
 import ProjectModal from '@/components/ui/ProjectModal';
 import DeveloperTerminal from '@/components/terminal/DeveloperTerminal';
 import PhotoLightboxModal from '@/components/ui/PhotoLightboxModal';
-import StudioLampModal from '@/components/ui/StudioLampModal';
+import PullCord from '@/components/kokonutui/pull-cord';
+import { useTheme } from '@/components/theme/ThemeProvider';
 import KonamiEasterEgg from '@/components/ui/KonamiEasterEgg';
 import { projects } from '@/data/projects';
 import { useSound } from '@/hooks/useSound';
@@ -23,16 +24,18 @@ export default function Home() {
   const [modalProjectId, setModalProjectId] = useState<string | null>(null);
   const [terminalOpen, setTerminalOpen] = useState(false);
   const [photoZoomOpen, setPhotoZoomOpen] = useState(false);
-  const [lampOpen, setLampOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
+  const { theme, setTheme, toggleTheme } = useTheme();
   const { playClick, playModalOpen } = useSound();
+
+  const isLight = theme === 'light';
 
   const activeModalProject = modalProjectId
     ? projects.find((p) => p.id === modalProjectId) || null
     : null;
 
-  // Keyboard shortcut listener (`~` for terminal, `L` for lamp, Esc to close modals)
+  // Keyboard shortcut listener (`~` for terminal, `L` to toggle lamp, Esc to close modals)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       const targetTag = (e.target as HTMLElement)?.tagName?.toUpperCase();
@@ -45,10 +48,9 @@ export default function Home() {
       } else if (e.key === 'l' || e.key === 'L') {
         e.preventDefault();
         playClick();
-        setLampOpen((prev) => !prev);
+        toggleTheme();
       } else if (e.key === 'Escape') {
         if (terminalOpen) setTerminalOpen(false);
-        else if (lampOpen) setLampOpen(false);
         else if (modalProjectId) setModalProjectId(null);
         else if (photoZoomOpen) setPhotoZoomOpen(false);
       }
@@ -56,7 +58,7 @@ export default function Home() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [playClick, terminalOpen, modalProjectId, photoZoomOpen, lampOpen]);
+  }, [playClick, toggleTheme, terminalOpen, modalProjectId, photoZoomOpen]);
 
   // Scroll listener for Back to Top button (Throttled with state change guard)
   useEffect(() => {
@@ -85,11 +87,24 @@ export default function Home() {
       {/* ── TECHNICAL DOT GRID (GPU-ACCELERATED LAYER) ── */}
       <div className="fixed inset-0 bg-[radial-gradient(#CBD0D8_1px,transparent_1px)] dark:bg-[radial-gradient(#27272A_1px,transparent_1px)] [background-size:20px_20px] opacity-45 dark:opacity-30 pointer-events-none -z-10" />
 
+      {/* ── ON-SCREEN TACTILE CEILING PULL-CORD LAMP (GLOBAL THEME SWITCHER) ── */}
+      <div
+        className="fixed top-0 right-1 sm:right-6 md:right-10 lg:right-14 xl:right-20 z-50 pointer-events-none select-none transition-transform duration-300 origin-top scale-[0.75] sm:scale-90 md:scale-100"
+        title="Tactile Ceiling Pull-Cord Lamp · Pull or drag cord to switch Day/Night"
+      >
+        <PullCord
+          frameless
+          checked={isLight}
+          onCheckedChange={(checked) => {
+            playClick();
+            setTheme(checked ? 'light' : 'dark');
+          }}
+          label="Ceiling Lamp"
+        />
+      </div>
+
       {/* ── PERSISTENT TOP AMBIENT STATUS NAVIGATION ── */}
-      <NavigationHeader
-        onOpenTerminal={() => setTerminalOpen(true)}
-        onOpenLamp={() => setLampOpen(true)}
-      />
+      <NavigationHeader onOpenTerminal={() => setTerminalOpen(true)} />
 
       {/* ── MAIN EDITORIAL SCROLLING CONTAINER ── */}
       <main className="relative z-10 w-full flex flex-col items-center px-4 sm:px-6">
@@ -171,12 +186,6 @@ export default function Home() {
       <PhotoLightboxModal
         isOpen={photoZoomOpen}
         onClose={() => setPhotoZoomOpen(false)}
-      />
-
-      {/* ── KOKONUT UI STUDIO PULL-CORD LAMP MODAL ── */}
-      <StudioLampModal
-        isOpen={lampOpen}
-        onClose={() => setLampOpen(false)}
       />
 
 

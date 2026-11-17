@@ -5,14 +5,13 @@ import ThemeToggle from '@/components/theme/ThemeToggle';
 import KeycapBadge from '@/components/ui/KeycapBadge';
 import AudioWaveformToggle from '@/components/ui/AudioWaveformToggle';
 import { useSound } from '@/hooks/useSound';
-import { Terminal, Lamp } from 'lucide-react';
+import { Terminal } from 'lucide-react';
 
 interface NavigationHeaderProps {
   onOpenTerminal: () => void;
-  onOpenLamp?: () => void;
 }
 
-export default function NavigationHeader({ onOpenTerminal, onOpenLamp }: NavigationHeaderProps) {
+export default function NavigationHeader({ onOpenTerminal }: NavigationHeaderProps) {
   const { playClick } = useSound();
   const [activeSection, setActiveSection] = useState('intro');
 
@@ -102,21 +101,6 @@ export default function NavigationHeader({ onOpenTerminal, onOpenLamp }: Navigat
             <span>CLI</span>
             <KeycapBadge size="xs" reactiveKey="~">~</KeycapBadge>
           </button>
-
-          {/* Interactive Pull-Cord Studio Lamp */}
-          {onOpenLamp && (
-            <button
-              onClick={() => {
-                playClick();
-                onOpenLamp();
-              }}
-              className="hidden sm:flex items-center gap-1 px-2 py-1.5 rounded-lg bg-white hover:bg-[#ECEEF2] dark:bg-[#121316] dark:hover:bg-[#1E1F24] border border-[#E2E4E8] dark:border-[#22242B] text-[#71717A] hover:text-[#09090B] dark:text-[#A1A1AA] dark:hover:text-white font-mono text-[11px] transition-colors cursor-pointer shadow-2xs"
-              title="Pull-Cord Studio Lamp Switch (L)"
-            >
-              <Lamp size={12} className="text-amber-500" />
-              <span>LAMP</span>
-            </button>
-          )}
 
           {/* Theme Mode Toggle */}
           <ThemeToggle />
