@@ -5,7 +5,17 @@ import CardFlip from '@/components/kokonutui/card-flip';
 import { getAssetPath } from '@/utils/asset';
 import { profile } from '@/data/profile';
 import { useSound } from '@/hooks/useSound';
-import { Maximize2, RotateCw, CheckCircle2, ShieldCheck, Mail, Phone, Cpu } from 'lucide-react';
+import {
+  Maximize2,
+  RotateCw,
+  CheckCircle2,
+  ShieldCheck,
+  Mail,
+  Phone,
+  Copy,
+  Check,
+  UserPlus,
+} from 'lucide-react';
 
 interface HeroBadgeCardProps {
   onOpenPhotoZoom: () => void;
@@ -14,11 +24,49 @@ interface HeroBadgeCardProps {
 export default function HeroBadgeCard({ onOpenPhotoZoom }: HeroBadgeCardProps) {
   const { playClick, playHover } = useSound();
   const [flipped, setFlipped] = useState(false);
+  const [copiedEmail, setCopiedEmail] = useState(false);
 
   const toggleFlip = (e?: React.MouseEvent) => {
     e?.stopPropagation();
     playClick();
     setFlipped((prev) => !prev);
+  };
+
+  const handleCopyEmail = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    playClick();
+    navigator.clipboard.writeText(profile.email);
+    setCopiedEmail(true);
+    setTimeout(() => setCopiedEmail(false), 2000);
+  };
+
+  const handleDownloadVCard = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    playClick();
+    const cleanPhone = profile.phone.replace(/\s+/g, '');
+    const vcardContent = [
+      'BEGIN:VCARD',
+      'VERSION:3.0',
+      'N:Malhotra;Sajal;;;',
+      'FN:Sajal Malhotra',
+      'ORG:NIT Jalandhar',
+      'TITLE:Software Engineer',
+      `EMAIL;TYPE=INTERNET,PREF:${profile.email}`,
+      `TEL;TYPE=CELL:${cleanPhone}`,
+      'URL:https://sajal-malhotra.github.io/sajalm/',
+      'NOTE:B.Tech Information Technology, NIT Jalandhar Class of 2029',
+      'END:VCARD',
+    ].join('\r\n');
+
+    const blob = new Blob([vcardContent], { type: 'text/vcard;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'Sajal_Malhotra.vcf');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
   };
 
   return (
@@ -172,8 +220,8 @@ export default function HeroBadgeCard({ onOpenPhotoZoom }: HeroBadgeCardProps) {
               </div>
             </div>
 
-            {/* Barcode & Verification Stamp */}
-            <div className="pt-1 px-1 border-t border-[#E2E4E8] dark:border-[#22242B] space-y-1">
+            {/* Quick-Action Relay Bar */}
+            <div className="pt-1.5 px-1 border-t border-[#E2E4E8] dark:border-[#22242B] space-y-1.5">
               <div className="flex items-center justify-between text-[8.5px] text-[#71717A] dark:text-[#8E92A2]">
                 <span>KEY: NITJ-SM-2029</span>
                 <span className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400">
@@ -182,17 +230,38 @@ export default function HeroBadgeCard({ onOpenPhotoZoom }: HeroBadgeCardProps) {
                 </span>
               </div>
 
-              {/* High-Fidelity SVG Barcode */}
-              <div className="w-full h-4 flex items-center justify-between opacity-75 dark:opacity-60 overflow-hidden">
-                {[2, 1, 3, 1, 2, 4, 1, 3, 2, 1, 1, 3, 2, 4, 1, 2, 1, 3, 1, 2, 3, 1, 4, 2].map(
-                  (w, i) => (
-                    <span
-                      key={i}
-                      className="h-full bg-current"
-                      style={{ width: `${w * 1.5}px` }}
-                    />
-                  )
-                )}
+              {/* Action Buttons */}
+              <div className="grid grid-cols-2 gap-1.5">
+                <button
+                  type="button"
+                  data-no-flip
+                  onClick={handleCopyEmail}
+                  className="flex items-center justify-center gap-1 px-2 py-1.5 rounded-lg bg-black/5 hover:bg-black/10 dark:bg-white/5 dark:hover:bg-white/10 text-[#09090B] dark:text-white border border-[#E2E4E8] dark:border-[#27272A] text-[10px] font-mono font-medium transition-colors cursor-pointer active:scale-95"
+                  title="Copy email to clipboard"
+                >
+                  {copiedEmail ? (
+                    <>
+                      <Check size={11} className="text-emerald-500" />
+                      <span className="text-emerald-600 dark:text-emerald-400 font-semibold">COPIED</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy size={11} className="text-[#71717A] dark:text-[#A1A1AA]" />
+                      <span>Copy Email</span>
+                    </>
+                  )}
+                </button>
+
+                <button
+                  type="button"
+                  data-no-flip
+                  onClick={handleDownloadVCard}
+                  className="flex items-center justify-center gap-1 px-2 py-1.5 rounded-lg bg-black text-white dark:bg-white dark:text-black hover:opacity-90 text-[10px] font-mono font-semibold transition-opacity cursor-pointer active:scale-95 shadow-2xs"
+                  title="Download vCard contact"
+                >
+                  <UserPlus size={11} />
+                  <span>Save Contact</span>
+                </button>
               </div>
             </div>
           </div>
