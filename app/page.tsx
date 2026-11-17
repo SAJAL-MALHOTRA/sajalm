@@ -105,7 +105,7 @@ export default function Home() {
         <div
           className="fixed top-0 z-50 pointer-events-none select-none transition-transform duration-300 origin-top scale-[0.75] sm:scale-90 md:scale-100"
           style={{
-            right: 'max(0.5rem, calc((100vw - 1020px) / 2 - 90px))',
+            left: 'max(-30px, calc((100vw - 1020px) / 2 - 160px))',
           }}
           title="Tactile Ceiling Pull-Cord Lamp · Pull or drag cord to switch Day/Night"
         >
