@@ -4,25 +4,21 @@ import { profile } from '@/data/profile';
 import { getAssetPath } from '@/utils/asset';
 import { useSound } from '@/hooks/useSound';
 import MagneticButton from '@/components/ui/MagneticButton';
-import SpotlightCard from '@/components/ui/SpotlightCard';
+import HeroBadgeCard from '@/components/badge/HeroBadgeCard';
 import KeycapBadge from '@/components/ui/KeycapBadge';
 import {
   ArrowDown,
   ArrowUpRight,
   FileText,
-  Maximize2,
-  IdCard,
 } from 'lucide-react';
 
 interface EditorialHeroProps {
   onOpenTerminal: () => void;
   onOpenPhotoZoom: () => void;
-  onOpenBadge?: () => void;
 }
 
 export default function EditorialHero({
   onOpenPhotoZoom,
-  onOpenBadge,
 }: EditorialHeroProps) {
   const { playClick, playHover } = useSound();
 
@@ -101,57 +97,8 @@ export default function EditorialHero({
 
         </div>
 
-        {/* Right Column: Clean Editorial Portrait Card with Spotlight */}
-        <div className="w-full max-w-[280px] sm:w-[260px] md:w-[270px] shrink-0 self-center sm:self-start">
-          <SpotlightCard className="rounded-2xl bg-white dark:bg-[#111216] border border-[#E2E4E8] dark:border-[#22242B] p-2.5 shadow-sm space-y-2.5">
-            <button
-              onClick={() => {
-                playClick();
-                onOpenPhotoZoom();
-              }}
-              onMouseEnter={playHover}
-              title="Click to zoom portrait"
-              className="w-full aspect-[4/5] rounded-xl overflow-hidden block relative cursor-pointer group bg-[#0A0B0E]"
-            >
-              <img
-                src={getAssetPath('/avatar.png')}
-                alt={profile.name}
-                loading="eager"
-                fetchPriority="high"
-                decoding="async"
-                className="w-full h-full object-cover object-[center_25%] contrast-[1.03] group-hover:scale-105 transition-transform duration-500"
-              />
-              
-              {/* Subtle Hover Reveal */}
-              <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/95 text-black text-xs font-mono font-bold shadow-lg">
-                  <Maximize2 size={12} />
-                  <span>Zoom Portrait</span>
-                </div>
-              </div>
-            </button>
-
-            {/* Clean Footer Caption */}
-            <div className="px-1 flex items-center justify-between text-xs font-mono text-[#71717A] dark:text-[#A1A1AA]">
-              <span className="font-semibold font-sans text-[#09090B] dark:text-white">
-                Sajal Malhotra
-              </span>
-              {onOpenBadge && (
-                <button
-                  onClick={() => {
-                    playClick();
-                    onOpenBadge();
-                  }}
-                  className="text-[10.5px] hover:text-[#09090B] dark:hover:text-white transition-colors cursor-pointer flex items-center gap-1 font-mono"
-                  title="View 3D Physical ID Badge"
-                >
-                  <span>3D ID</span>
-                  <KeycapBadge size="xs">BADGE</KeycapBadge>
-                </button>
-              )}
-            </div>
-          </SpotlightCard>
-        </div>
+        {/* Right Column: Tactile Flippable Engineering ID Badge Card */}
+        <HeroBadgeCard onOpenPhotoZoom={onOpenPhotoZoom} />
 
       </div>
 

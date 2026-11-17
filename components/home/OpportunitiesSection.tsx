@@ -5,6 +5,7 @@ import { getAssetPath } from '@/utils/asset';
 import { useSound } from '@/hooks/useSound';
 import SpotlightCard from '@/components/ui/SpotlightCard';
 import MicroCopyButton from '@/components/ui/MicroCopyButton';
+import HoldButton from '@/components/kokonutui/hold-button';
 import {
   Mail,
   Phone,
@@ -126,17 +127,30 @@ export default function OpportunitiesSection() {
           {/* Quick Action Grid */}
           <div className="space-y-2 pt-3 border-t border-[#ECEEF2] dark:border-white/10 font-mono text-xs">
             <div className="grid grid-cols-2 gap-2">
-              <a
-                href={getAssetPath('/resume.pdf')}
-                target="_blank"
-                rel="noreferrer"
-                download="Sajal_Malhotra_Resume.pdf"
-                onMouseEnter={playHover}
-                className="col-span-2 p-2.5 rounded-lg bg-black hover:bg-neutral-800 text-white dark:bg-white dark:hover:bg-neutral-200 dark:text-black flex items-center justify-between transition-colors cursor-pointer font-bold shadow-2xs"
-              >
-                <span className="text-[11px]">RESUME.PDF</span>
-                <Download size={13} />
-              </a>
+              <div className="col-span-2">
+                <HoldButton
+                  variant="mono"
+                  className="w-full h-10 font-mono font-bold text-[11px] justify-between px-3"
+                  holdDuration={850}
+                  completeLabel="DOWNLOADING RESUME.PDF"
+                  holdingLabel="HOLDING TO VERIFY DOWNLOAD..."
+                  icon={Download}
+                  onClick={() => {
+                    playClick();
+                    window.open(getAssetPath('/resume.pdf'), '_blank');
+                  }}
+                  onHoldComplete={() => {
+                    playClick();
+                    const link = document.createElement('a');
+                    link.href = getAssetPath('/resume.pdf');
+                    link.download = 'Sajal_Malhotra_Resume.pdf';
+                    link.target = '_blank';
+                    link.click();
+                  }}
+                >
+                  HOLD TO DOWNLOAD RESUME.PDF
+                </HoldButton>
+              </div>
 
               <a
                 href={profile.links.linkedin}

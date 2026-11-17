@@ -6,6 +6,7 @@ import { useSound } from '@/hooks/useSound';
 import { ArrowUpRight, ExternalLink } from 'lucide-react';
 import { projects } from '@/data/projects';
 import SpotlightCard from '@/components/ui/SpotlightCard';
+import SystemHealthMonitor from '@/components/ui/SystemHealthMonitor';
 
 interface ProjectsSectionProps {
   onOpenProjectModal: (id: string) => void;
@@ -165,6 +166,9 @@ export default function ProjectsSection({ onOpenProjectModal }: ProjectsSectionP
           );
         })}
       </div>
+
+      {/* ── PRODUCTION SYSTEM HEALTH & TELEMETRY (KOKONUT UI UPTIME CARD) ── */}
+      <SystemHealthMonitor />
 
     </section>
   );

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useSound } from '@/hooks/useSound';
 import SpotlightCard from '@/components/ui/SpotlightCard';
 import InteractiveCat from '@/components/ui/InteractiveCat';
+import PluckedText from '@/components/kokonutui/plucked-text';
 import { ArrowUp } from 'lucide-react';
 
 const API_BASE = 'https://countapi.mileshilliard.com/api/v1';
@@ -149,6 +150,25 @@ export default function MinimalFooter() {
 
         </div>
       </section>
+
+      {/* ── INTERACTIVE PLUCKED TEXT SIGNATURE (KOKONUT UI STANDING WAVE PHYSICS) ── */}
+      <div className="w-full flex flex-col items-center justify-center pt-6 pb-2 select-none overflow-hidden">
+        <div className="flex items-center gap-2 text-[10px] font-mono text-[#71717A] dark:text-[#A1A1AA] uppercase tracking-widest mb-2">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+          <span>TACTILE STRING // SWEEP CURSOR OR DRAG TO STRUM</span>
+        </div>
+        <div className="w-full max-w-lg flex justify-center py-2 px-4">
+          <PluckedText
+            text="Sajal Malhotra"
+            className="text-3xl sm:text-4xl font-bold font-sans tracking-tight text-[#09090B] dark:text-white"
+            tension={1.15}
+            strum={true}
+          />
+        </div>
+        <p className="text-[11px] font-mono text-[#71717A] dark:text-[#8E92A2] pt-1">
+          Systems &amp; Applied ML · Standing wave harmonic oscillator
+        </p>
+      </div>
 
       {/* ── CHARMING INTERACTIVE CAT (TOUCH TO DANCE, OPT-IN AUDIO) ── */}
       <div className="w-full flex flex-col items-center justify-center pt-2">

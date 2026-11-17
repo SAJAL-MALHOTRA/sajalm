@@ -11,7 +11,7 @@ import MinimalFooter from '@/components/home/MinimalFooter';
 import ProjectModal from '@/components/ui/ProjectModal';
 import DeveloperTerminal from '@/components/terminal/DeveloperTerminal';
 import PhotoLightboxModal from '@/components/ui/PhotoLightboxModal';
-import InteractiveBadgeModal from '@/components/ui/InteractiveBadgeModal';
+import StudioLampModal from '@/components/ui/StudioLampModal';
 import KonamiEasterEgg from '@/components/ui/KonamiEasterEgg';
 import { projects } from '@/data/projects';
 import { useSound } from '@/hooks/useSound';
@@ -23,7 +23,7 @@ export default function Home() {
   const [modalProjectId, setModalProjectId] = useState<string | null>(null);
   const [terminalOpen, setTerminalOpen] = useState(false);
   const [photoZoomOpen, setPhotoZoomOpen] = useState(false);
-  const [badgeOpen, setBadgeOpen] = useState(false);
+  const [lampOpen, setLampOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   const { playClick, playModalOpen } = useSound();
@@ -32,7 +32,7 @@ export default function Home() {
     ? projects.find((p) => p.id === modalProjectId) || null
     : null;
 
-  // Keyboard shortcut listener (`~` for terminal, Esc to close modals)
+  // Keyboard shortcut listener (`~` for terminal, `L` for lamp, Esc to close modals)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       const targetTag = (e.target as HTMLElement)?.tagName?.toUpperCase();
@@ -42,17 +42,21 @@ export default function Home() {
         e.preventDefault();
         playClick();
         setTerminalOpen((prev) => !prev);
+      } else if (e.key === 'l' || e.key === 'L') {
+        e.preventDefault();
+        playClick();
+        setLampOpen((prev) => !prev);
       } else if (e.key === 'Escape') {
         if (terminalOpen) setTerminalOpen(false);
+        else if (lampOpen) setLampOpen(false);
         else if (modalProjectId) setModalProjectId(null);
         else if (photoZoomOpen) setPhotoZoomOpen(false);
-        else if (badgeOpen) setBadgeOpen(false);
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [playClick, terminalOpen, modalProjectId, photoZoomOpen, badgeOpen]);
+  }, [playClick, terminalOpen, modalProjectId, photoZoomOpen, lampOpen]);
 
   // Scroll listener for Back to Top button (Throttled with state change guard)
   useEffect(() => {
@@ -82,7 +86,10 @@ export default function Home() {
       <div className="fixed inset-0 bg-[radial-gradient(#CBD0D8_1px,transparent_1px)] dark:bg-[radial-gradient(#27272A_1px,transparent_1px)] [background-size:20px_20px] opacity-45 dark:opacity-30 pointer-events-none -z-10" />
 
       {/* ── PERSISTENT TOP AMBIENT STATUS NAVIGATION ── */}
-      <NavigationHeader onOpenTerminal={() => setTerminalOpen(true)} />
+      <NavigationHeader
+        onOpenTerminal={() => setTerminalOpen(true)}
+        onOpenLamp={() => setLampOpen(true)}
+      />
 
       {/* ── MAIN EDITORIAL SCROLLING CONTAINER ── */}
       <main className="relative z-10 w-full flex flex-col items-center px-4 sm:px-6">
@@ -91,7 +98,6 @@ export default function Home() {
         <EditorialHero
           onOpenTerminal={() => setTerminalOpen(true)}
           onOpenPhotoZoom={() => setPhotoZoomOpen(true)}
-          onOpenBadge={() => setBadgeOpen(true)}
         />
 
         {/* 01 // SOCIALS & GITHUB ACTIVITY CALENDAR (SEAMLESS IN LIGHT & DARK MODE) */}
@@ -167,11 +173,13 @@ export default function Home() {
         onClose={() => setPhotoZoomOpen(false)}
       />
 
-      {/* ── INTERACTIVE 3D BADGE DOSSIER MODAL ── */}
-      <InteractiveBadgeModal
-        isOpen={badgeOpen}
-        onClose={() => setBadgeOpen(false)}
+      {/* ── KOKONUT UI STUDIO PULL-CORD LAMP MODAL ── */}
+      <StudioLampModal
+        isOpen={lampOpen}
+        onClose={() => setLampOpen(false)}
       />
+
+
 
       {/* ── KONAMI EASTER EGG ── */}
       <KonamiEasterEgg />
