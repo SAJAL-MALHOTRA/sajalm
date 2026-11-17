@@ -4,6 +4,7 @@ import { profile } from '@/data/profile';
 import { getAssetPath } from '@/utils/asset';
 import { useSound } from '@/hooks/useSound';
 import MagneticButton from '@/components/ui/MagneticButton';
+import NumberTicker from '@/components/ui/NumberTicker';
 import HeroBadgeCard from '@/components/badge/HeroBadgeCard';
 import KeycapBadge from '@/components/ui/KeycapBadge';
 import {
@@ -100,16 +101,20 @@ export default function EditorialHero({
             <div>
               <div className="text-[10px] text-[#71717A] dark:text-[#8E92A2] uppercase tracking-wider">Institution</div>
               <div className="font-bold text-[#09090B] dark:text-white mt-0.5">NIT Jalandhar &apos;29</div>
-              <div className="text-[10.5px] text-emerald-600 dark:text-emerald-400 font-medium">8.13 CGPA</div>
+              <div className="text-[10.5px] text-emerald-600 dark:text-emerald-400 font-medium">
+                <NumberTicker value={8.13} decimalPlaces={2} /> CGPA
+              </div>
             </div>
             <div>
               <div className="text-[10px] text-[#71717A] dark:text-[#8E92A2] uppercase tracking-wider">Production Pilot</div>
               <div className="font-bold text-[#09090B] dark:text-white mt-0.5">Pairfect Engine</div>
-              <div className="text-[10.5px] text-[#71717A] dark:text-[#A1A1AA]">200+ Active Users</div>
+              <div className="text-[10.5px] text-[#71717A] dark:text-[#A1A1AA]">
+                <NumberTicker value={200} suffix="+" /> Active Users
+              </div>
             </div>
             <div>
               <div className="text-[10px] text-[#71717A] dark:text-[#8E92A2] uppercase tracking-wider">National Rank</div>
-              <div className="font-bold text-[#09090B] dark:text-white mt-0.5">Top 7% (#16/227)</div>
+              <div className="font-bold text-[#09090B] dark:text-white mt-0.5">Top 7% (#{<NumberTicker value={16} />}/227)</div>
               <div className="text-[10.5px] text-emerald-600 dark:text-emerald-400 font-medium">Best Solution</div>
             </div>
           </div>

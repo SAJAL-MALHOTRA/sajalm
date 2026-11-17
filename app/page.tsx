@@ -13,6 +13,9 @@ import ProjectModal from '@/components/ui/ProjectModal';
 import DeveloperTerminal from '@/components/terminal/DeveloperTerminal';
 import PhotoLightboxModal from '@/components/ui/PhotoLightboxModal';
 import VisitorSignaturePill from '@/components/ui/VisitorSignaturePill';
+import CommandPalette from '@/components/ui/CommandPalette';
+import { ToastProvider } from '@/components/ui/ToastProvider';
+import SmoothScroll from '@/components/atelier/SmoothScroll';
 import PullCord from '@/components/kokonutui/pull-cord';
 import { useTheme } from '@/components/theme/ThemeProvider';
 import KonamiEasterEgg from '@/components/ui/KonamiEasterEgg';
@@ -25,6 +28,7 @@ export type ViewType = 'overview' | 'hero' | 'home' | 'work' | 'about' | 'skills
 export default function Home() {
   const [modalProjectId, setModalProjectId] = useState<string | null>(null);
   const [terminalOpen, setTerminalOpen] = useState(false);
+  const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
   const [photoZoomOpen, setPhotoZoomOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
@@ -37,13 +41,17 @@ export default function Home() {
     ? projects.find((p) => p.id === modalProjectId) || null
     : null;
 
-  // Keyboard shortcut listener (`~` for terminal, `L` to toggle lamp, Esc to close modals)
+  // Keyboard shortcut listener (`Cmd+K` for command palette, `~` for terminal, `L` to toggle lamp, Esc to close modals)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       const targetTag = (e.target as HTMLElement)?.tagName?.toUpperCase();
       if (targetTag === 'INPUT' || targetTag === 'TEXTAREA') return;
 
-      if (e.key === '`' || e.key === '~') {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        playModalOpen();
+        setCommandPaletteOpen((prev) => !prev);
+      } else if (e.key === '`' || e.key === '~') {
         e.preventDefault();
         playClick();
         setTerminalOpen((prev) => !prev);
@@ -52,7 +60,8 @@ export default function Home() {
         playClick();
         toggleTheme();
       } else if (e.key === 'Escape') {
-        if (terminalOpen) setTerminalOpen(false);
+        if (commandPaletteOpen) setCommandPaletteOpen(false);
+        else if (terminalOpen) setTerminalOpen(false);
         else if (modalProjectId) setModalProjectId(null);
         else if (photoZoomOpen) setPhotoZoomOpen(false);
       }
@@ -60,7 +69,7 @@ export default function Home() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [playClick, toggleTheme, terminalOpen, modalProjectId, photoZoomOpen]);
+  }, [playClick, playModalOpen, toggleTheme, commandPaletteOpen, terminalOpen, modalProjectId, photoZoomOpen]);
 
   // Scroll listener for Back to Top button (Throttled with state change guard)
   useEffect(() => {
@@ -84,33 +93,38 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen w-full bg-[#F8F9FA] dark:bg-[#07080B] text-[#09090B] dark:text-[#EDEDED] font-sans antialiased selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black flex flex-col items-center relative overflow-x-hidden">
-      
-      {/* ── TECHNICAL DOT GRID & LINEAR AMBIENT LIGHTING ── */}
-      <div className="fixed inset-0 bg-[radial-gradient(#D1D5DB_1px,transparent_1px)] dark:bg-[radial-gradient(#232733_1px,transparent_1px)] [background-size:24px_24px] opacity-40 dark:opacity-35 pointer-events-none -z-10" />
-      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-[radial-gradient(ellipse_at_top,rgba(16,185,129,0.05),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.045),transparent_70%)] pointer-events-none -z-10" />
+    <ToastProvider>
+      <SmoothScroll>
+        <div className="min-h-screen w-full bg-[#F8F9FA] dark:bg-[#07080B] text-[#09090B] dark:text-[#EDEDED] font-sans antialiased selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black flex flex-col items-center relative overflow-x-hidden">
+        
+        {/* ── TECHNICAL DOT GRID & LINEAR AMBIENT LIGHTING ── */}
+        <div className="fixed inset-0 bg-[radial-gradient(#D1D5DB_1px,transparent_1px)] dark:bg-[radial-gradient(#232733_1px,transparent_1px)] [background-size:24px_24px] opacity-40 dark:opacity-35 pointer-events-none -z-10" />
+        <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-[radial-gradient(ellipse_at_top,rgba(16,185,129,0.05),transparent_70%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.045),transparent_70%)] pointer-events-none -z-10" />
 
-      {/* ── ON-SCREEN TACTILE CEILING PULL-CORD LAMP (GLOBAL THEME SWITCHER) ── */}
-      <div
-        className="fixed top-0 z-50 pointer-events-none select-none transition-transform duration-300 origin-top scale-[0.75] sm:scale-90 md:scale-100"
-        style={{
-          right: 'max(0.5rem, calc((100vw - 1020px) / 2 - 90px))',
-        }}
-        title="Tactile Ceiling Pull-Cord Lamp · Pull or drag cord to switch Day/Night"
-      >
-        <PullCord
-          frameless
-          checked={isLight}
-          onCheckedChange={(checked) => {
-            playClick();
-            setTheme(checked ? 'light' : 'dark');
+        {/* ── ON-SCREEN TACTILE CEILING PULL-CORD LAMP (GLOBAL THEME SWITCHER) ── */}
+        <div
+          className="fixed top-0 z-50 pointer-events-none select-none transition-transform duration-300 origin-top scale-[0.75] sm:scale-90 md:scale-100"
+          style={{
+            right: 'max(0.5rem, calc((100vw - 1020px) / 2 - 90px))',
           }}
-          label="Ceiling Lamp"
-        />
-      </div>
+          title="Tactile Ceiling Pull-Cord Lamp · Pull or drag cord to switch Day/Night"
+        >
+          <PullCord
+            frameless
+            checked={isLight}
+            onCheckedChange={(checked) => {
+              playClick();
+              setTheme(checked ? 'light' : 'dark');
+            }}
+            label="Ceiling Lamp"
+          />
+        </div>
 
-      {/* ── PERSISTENT TOP AMBIENT STATUS NAVIGATION ── */}
-      <NavigationHeader onOpenTerminal={() => setTerminalOpen(true)} />
+        {/* ── PERSISTENT TOP AMBIENT STATUS NAVIGATION ── */}
+        <NavigationHeader
+          onOpenTerminal={() => setTerminalOpen(true)}
+          onOpenCommandPalette={() => setCommandPaletteOpen(true)}
+        />
 
       {/* ── MAIN EDITORIAL SCROLLING CONTAINER ── */}
       <main className="relative z-10 w-full flex flex-col items-center px-4 sm:px-6">
@@ -200,11 +214,19 @@ export default function Home() {
         onClose={() => setPhotoZoomOpen(false)}
       />
 
-
+      {/* ── COMMAND PALETTE (⌘K / CTRL+K) ── */}
+      <CommandPalette
+        isOpen={commandPaletteOpen}
+        onClose={() => setCommandPaletteOpen(false)}
+        onOpenTerminal={() => setTerminalOpen(true)}
+        onOpenProjectModal={(id) => setModalProjectId(id)}
+      />
 
       {/* ── KONAMI EASTER EGG ── */}
       <KonamiEasterEgg />
 
     </div>
+    </SmoothScroll>
+    </ToastProvider>
   );
 }

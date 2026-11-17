@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Copy, Check } from 'lucide-react';
 import { useSound } from '@/hooks/useSound';
+import { useToast } from '@/components/ui/ToastProvider';
 
 interface MicroCopyButtonProps {
   text: string;
@@ -22,6 +23,7 @@ export default function MicroCopyButton({
 }: MicroCopyButtonProps) {
   const [copied, setCopied] = useState(false);
   const { playClick, playHover } = useSound();
+  const { toast } = useToast();
 
   const handleCopy = async (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -29,6 +31,11 @@ export default function MicroCopyButton({
     try {
       await navigator.clipboard.writeText(text);
       setCopied(true);
+      toast({
+        title: 'Copied to Clipboard',
+        description: text,
+        type: 'copy',
+      });
       setTimeout(() => setCopied(false), 2000);
     } catch {
       // Clipboard fallback

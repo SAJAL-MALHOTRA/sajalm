@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { useSound } from '@/hooks/useSound';
 import SpotlightCard from '@/components/ui/SpotlightCard';
 import DisciplineRingsCard from '@/components/ui/DisciplineRingsCard';
+import EditorialLookbookStrip from '@/components/ui/EditorialLookbookStrip';
 import {
   Cpu,
   Palette,
@@ -245,6 +246,9 @@ export default function DualSpectrum() {
               </SpotlightCard>
             ))}
           </div>
+
+          {/* FMC Runway & Architectural Lookbook Visual Strip */}
+          <EditorialLookbookStrip />
 
         </div>
       )}

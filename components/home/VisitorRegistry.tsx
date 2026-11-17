@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import SignaturePad from '@/components/kokonutui/signature-pad';
 import { useSound } from '@/hooks/useSound';
+import { useToast } from '@/components/ui/ToastProvider';
 import SpotlightCard from '@/components/ui/SpotlightCard';
 import {
   PenTool,
@@ -31,6 +32,7 @@ const ACTIVE_USER_KEY = 'sajdex_signed_user';
 
 export default function VisitorRegistry() {
   const { playClick } = useSound();
+  const { toast } = useToast();
 
   const [name, setName] = useState('');
   const [role, setRole] = useState('');
@@ -98,6 +100,11 @@ export default function VisitorRegistry() {
       setEntries(updatedEntries);
       setMySignature(newEntry);
       setHasSigned(true);
+      toast({
+        title: 'Dossier Signed',
+        description: `Thank you, ${newEntry.name}! Entry saved and relayed to Sajal.`,
+        type: 'success',
+      });
     } catch {
       // Continue even if localStorage is disabled
     }
@@ -144,6 +151,11 @@ export default function VisitorRegistry() {
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
+    toast({
+      title: 'Vector Signature Saved',
+      description: 'Downloaded SVG vector file',
+      type: 'success',
+    });
   };
 
   return (

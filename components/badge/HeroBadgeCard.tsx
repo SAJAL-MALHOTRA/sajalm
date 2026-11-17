@@ -5,6 +5,7 @@ import CardFlip from '@/components/kokonutui/card-flip';
 import { getAssetPath } from '@/utils/asset';
 import { profile } from '@/data/profile';
 import { useSound } from '@/hooks/useSound';
+import { useToast } from '@/components/ui/ToastProvider';
 import {
   Maximize2,
   RotateCw,
@@ -23,6 +24,7 @@ interface HeroBadgeCardProps {
 
 export default function HeroBadgeCard({ onOpenPhotoZoom }: HeroBadgeCardProps) {
   const { playClick, playHover } = useSound();
+  const { toast } = useToast();
   const [flipped, setFlipped] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
 
@@ -37,6 +39,11 @@ export default function HeroBadgeCard({ onOpenPhotoZoom }: HeroBadgeCardProps) {
     playClick();
     navigator.clipboard.writeText(profile.email);
     setCopiedEmail(true);
+    toast({
+      title: 'Email Copied',
+      description: profile.email,
+      type: 'copy',
+    });
     setTimeout(() => setCopiedEmail(false), 2000);
   };
 
@@ -67,6 +74,11 @@ export default function HeroBadgeCard({ onOpenPhotoZoom }: HeroBadgeCardProps) {
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
+    toast({
+      title: 'Contact vCard Downloaded',
+      description: 'Sajal_Malhotra.vcf saved to contacts',
+      type: 'success',
+    });
   };
 
   return (

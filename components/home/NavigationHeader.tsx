@@ -5,13 +5,14 @@ import ThemeToggle from '@/components/theme/ThemeToggle';
 import KeycapBadge from '@/components/ui/KeycapBadge';
 import AudioWaveformToggle from '@/components/ui/AudioWaveformToggle';
 import { useSound } from '@/hooks/useSound';
-import { Terminal } from 'lucide-react';
+import { Terminal, Search } from 'lucide-react';
 
 interface NavigationHeaderProps {
   onOpenTerminal: () => void;
+  onOpenCommandPalette: () => void;
 }
 
-export default function NavigationHeader({ onOpenTerminal }: NavigationHeaderProps) {
+export default function NavigationHeader({ onOpenTerminal, onOpenCommandPalette }: NavigationHeaderProps) {
   const { playClick } = useSound();
   const [activeSection, setActiveSection] = useState('intro');
 
@@ -85,7 +86,21 @@ export default function NavigationHeader({ onOpenTerminal }: NavigationHeaderPro
         </nav>
 
         {/* Right Controls */}
-        <div className="flex items-center gap-2 shrink-0">
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+          {/* Quick Search / Command Palette (⌘K) */}
+          <button
+            onClick={() => {
+              playClick();
+              onOpenCommandPalette();
+            }}
+            className="flex items-center gap-1.5 px-2 sm:px-2.5 py-1.5 rounded-lg bg-white hover:bg-[#ECEEF2] dark:bg-[#121316] dark:hover:bg-[#1E1F24] border border-[#E2E4E8] dark:border-[#22242B] text-[#09090B] dark:text-[#EDEDED] font-mono text-xs transition-colors cursor-pointer shadow-2xs group"
+            title="Open Command Palette (⌘K / Ctrl+K)"
+          >
+            <Search size={12} className="text-[#71717A] dark:text-[#A1A1AA]" />
+            <span className="hidden sm:inline">Search</span>
+            <KeycapBadge size="xs" reactiveKey="k">⌘K</KeycapBadge>
+          </button>
+
           {/* Audio Waveform SFX Toggle */}
           <AudioWaveformToggle />
 
