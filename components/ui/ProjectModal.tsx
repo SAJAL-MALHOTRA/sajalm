@@ -6,6 +6,7 @@ import { Project } from '@/data/projects';
 import { X, ExternalLink, Code2, ShieldCheck, Cpu, GitBranch, CheckCircle2, ArrowUpRight } from 'lucide-react';
 import { useSound } from '@/hooks/useSound';
 import KeycapBadge from '@/components/ui/KeycapBadge';
+import ArchitectureDiffViewer from '@/components/ui/ArchitectureDiffViewer';
 
 interface ProjectModalProps {
   project: Project | null;
@@ -216,41 +217,14 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             </div>
           )}
 
-          {/* ── TAB 3: TRADEOFFS & ENGINEERING CHALLENGES ── */}
+          {/* ── TAB 3: TRADEOFFS & ENGINEERING CHALLENGES (KOKONUT UI ARCHITECTURE DIFF REVIEW) ── */}
           {activeTab === 'tradeoffs' && (
             <div className="space-y-3.5 text-left">
-              <div className="space-y-1">
-                <span className="font-mono text-[10px] text-[#71717A] dark:text-[#A1A1AA] uppercase tracking-wider font-bold">
-                  ARCHITECTURAL DECISIONS &amp; TRADEOFF ANALYSIS:
-                </span>
-                <p className="text-xs text-[#52525B] dark:text-[#A1A1AA] font-sans">
-                  Every engineering decision requires evaluating trade-offs between latency, consistency, and complexity.
-                </p>
-              </div>
-
               {project.tradeoffs && project.tradeoffs.length > 0 ? (
-                <div className="space-y-3 font-sans">
-                  {project.tradeoffs.map((t, idx) => (
-                    <div
-                      key={t.decision}
-                      className="p-3.5 rounded-xl bg-white dark:bg-[#121318] border border-[#E2E4E8] dark:border-[#22242B] space-y-2 shadow-2xs"
-                    >
-                      <div className="flex items-center gap-2 text-xs font-bold font-mono text-[#09090B] dark:text-white">
-                        <span className="w-4 h-4 rounded-full bg-black/10 dark:bg-white/10 flex items-center justify-center text-[10px]">
-                          {idx + 1}
-                        </span>
-                        <span>{t.decision}</span>
-                      </div>
-                      <div className="text-xs text-[#3F3F46] dark:text-[#D4D4D8] leading-relaxed">
-                        <strong className="text-[#09090B] dark:text-white font-semibold">Why chosen: </strong>
-                        {t.why}
-                      </div>
-                      <div className="text-[11px] text-[#71717A] dark:text-[#A1A1AA] pt-1 border-t border-[#ECEEF2] dark:border-white/5 font-mono">
-                        <span>Rejected alternative: {t.alternative}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <ArchitectureDiffViewer
+                  tradeoffs={project.tradeoffs}
+                  projectName={project.name}
+                />
               ) : (
                 <p className="text-xs text-[#71717A]">No tradeoffs logged.</p>
               )}
