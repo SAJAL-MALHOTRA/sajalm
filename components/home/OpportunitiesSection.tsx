@@ -24,7 +24,7 @@ export default function OpportunitiesSection() {
       <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-[#E2E4E8] dark:border-[#22242A] pb-3 gap-3">
         <div className="space-y-1">
           <div className="text-[10px] font-mono text-[#71717A] dark:text-[#A1A1AA] uppercase tracking-widest font-semibold">
-            04 // CONTACT &amp; OPPORTUNITIES
+            05 // CONTACT &amp; OPPORTUNITIES
           </div>
           <h2 className="text-xl sm:text-2xl font-bold font-sans text-[#09090B] dark:text-white tracking-tight">
             Have something interesting in mind?

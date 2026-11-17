@@ -6,11 +6,13 @@ import EditorialHero from '@/components/home/EditorialHero';
 import SocialsAndGithubCalendar from '@/components/home/SocialsAndGithubCalendar';
 import ProjectsSection from '@/components/home/ProjectsSection';
 import DualSpectrum from '@/components/home/DualSpectrum';
+import VisitorRegistry from '@/components/home/VisitorRegistry';
 import OpportunitiesSection from '@/components/home/OpportunitiesSection';
 import MinimalFooter from '@/components/home/MinimalFooter';
 import ProjectModal from '@/components/ui/ProjectModal';
 import DeveloperTerminal from '@/components/terminal/DeveloperTerminal';
 import PhotoLightboxModal from '@/components/ui/PhotoLightboxModal';
+import VisitorSignaturePill from '@/components/ui/VisitorSignaturePill';
 import PullCord from '@/components/kokonutui/pull-cord';
 import { useTheme } from '@/components/theme/ThemeProvider';
 import KonamiEasterEgg from '@/components/ui/KonamiEasterEgg';
@@ -126,16 +128,22 @@ export default function Home() {
           }}
         />
 
-        {/* 02 // THE DUAL SPECTRUM: Technical Arsenal + Creative Orbit */}
+        {/* 03 // THE DUAL SPECTRUM: Technical Arsenal + Creative Orbit */}
         <DualSpectrum />
 
-        {/* 03 // OPPORTUNITIES & DISPATCH: Direct Contact Hub */}
+        {/* 04 // VISITOR REGISTRY & GUESTBOOK (KOKONUT UI SIGNATURE PAD) */}
+        <VisitorRegistry />
+
+        {/* 05 // OPPORTUNITIES & DISPATCH: Direct Contact Hub */}
         <OpportunitiesSection />
 
       </main>
 
       {/* ── MINIMALIST EDITORIAL FOOTER (MATCHING DESIGN SPEC) ── */}
       <MinimalFooter />
+
+      {/* ── FLOATING VISITOR DOSSIER SIGNATURE PILL ── */}
+      <VisitorSignaturePill />
 
       {/* ── FLOATING BACK TO TOP BUTTON ── */}
       {showScrollTop && (

@@ -16,7 +16,7 @@ export default function NavigationHeader({ onOpenTerminal }: NavigationHeaderPro
   const [activeSection, setActiveSection] = useState('intro');
 
   useEffect(() => {
-    const sectionIds = ['intro', 'projects', 'skills', 'contact'];
+    const sectionIds = ['intro', 'projects', 'skills', 'guestbook', 'contact'];
 
     if (typeof window === 'undefined' || !('IntersectionObserver' in window)) {
       return;
@@ -66,6 +66,7 @@ export default function NavigationHeader({ onOpenTerminal }: NavigationHeaderPro
           {[
             { id: 'projects', label: 'Work' },
             { id: 'skills', label: 'About' },
+            { id: 'guestbook', label: 'Guestbook' },
             { id: 'contact', label: 'Contact' },
           ].map((item) => (
             <a
