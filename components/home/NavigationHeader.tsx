@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import ThemeToggle from '@/components/theme/ThemeToggle';
 import KeycapBadge from '@/components/ui/KeycapBadge';
+import AudioWaveformToggle from '@/components/ui/AudioWaveformToggle';
 import { useSound } from '@/hooks/useSound';
 import { Terminal } from 'lucide-react';
 
@@ -84,6 +85,9 @@ export default function NavigationHeader({ onOpenTerminal }: NavigationHeaderPro
 
         {/* Right Controls */}
         <div className="flex items-center gap-2 shrink-0">
+          {/* Audio Waveform SFX Toggle */}
+          <AudioWaveformToggle />
+
           {/* Quick Terminal Trigger */}
           <button
             onClick={() => {
@@ -95,7 +99,7 @@ export default function NavigationHeader({ onOpenTerminal }: NavigationHeaderPro
           >
             <Terminal size={12} className="text-[#71717A] dark:text-[#A1A1AA]" />
             <span>CLI</span>
-            <KeycapBadge size="xs">~</KeycapBadge>
+            <KeycapBadge size="xs" reactiveKey="~">~</KeycapBadge>
           </button>
 
           {/* Theme Mode Toggle */}

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useSound } from '@/hooks/useSound';
 import SpotlightCard from '@/components/ui/SpotlightCard';
+import DisciplineRingsCard from '@/components/ui/DisciplineRingsCard';
 import {
   Cpu,
   Palette,
@@ -148,41 +149,45 @@ export default function DualSpectrum() {
 
       {/* ── 01 ENGINEERING MATRIX (TECHNICAL INDEX) ── */}
       {activeTab === 'tech' && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 transition-opacity duration-300">
-          {technicalCategories.map((cat, idx) => {
-            const isFullWidth = idx === 4;
+        <div className="space-y-3.5 transition-opacity duration-300">
+          <DisciplineRingsCard />
 
-            return (
-              <SpotlightCard
-                key={cat.title}
-                className={`${isFullWidth ? 'sm:col-span-2' : ''} p-4 sm:p-4.5 rounded-xl bg-white dark:bg-[#111216] border border-[#E2E4E8] dark:border-[#22242B] space-y-3 shadow-2xs hover:border-black/30 dark:hover:border-white/30 transition-colors duration-200 flex flex-col justify-between`}
-              >
-                <div className="space-y-1.5">
-                  <div className="flex items-center justify-between text-[9px] font-mono text-[#71717A] uppercase font-bold">
-                    <div className="flex items-center gap-1.5">
-                      {cat.icon}
-                      <span>{cat.title}</span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            {technicalCategories.map((cat, idx) => {
+              const isFullWidth = idx === 4;
+
+              return (
+                <SpotlightCard
+                  key={cat.title}
+                  className={`${isFullWidth ? 'sm:col-span-2' : ''} p-4 sm:p-4.5 rounded-xl bg-white dark:bg-[#111216] border border-[#E2E4E8] dark:border-[#22242B] space-y-3 shadow-2xs hover:border-black/30 dark:hover:border-white/30 transition-colors duration-200 flex flex-col justify-between`}
+                >
+                  <div className="space-y-1.5">
+                    <div className="flex items-center justify-between text-[9px] font-mono text-[#71717A] uppercase font-bold">
+                      <div className="flex items-center gap-1.5">
+                        {cat.icon}
+                        <span>{cat.title}</span>
+                      </div>
+                      <span className="font-mono text-[#A1A1AA]">[{cat.index}]</span>
                     </div>
-                    <span className="font-mono text-[#A1A1AA]">[{cat.index}]</span>
+                    <p className="text-xs text-[#52525B] dark:text-[#A1A1AA] font-sans leading-relaxed">
+                      {cat.detail}
+                    </p>
                   </div>
-                  <p className="text-xs text-[#52525B] dark:text-[#A1A1AA] font-sans leading-relaxed">
-                    {cat.detail}
-                  </p>
-                </div>
 
-                <div className="flex flex-wrap gap-1.5 pt-2 border-t border-[#ECEEF2] dark:border-white/5">
-                  {cat.skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className="px-2 py-0.5 rounded-md bg-[#F4F4F6] dark:bg-[#18191E] border border-[#E2E4E8] dark:border-[#27272A] text-[#09090B] dark:text-[#EDEDED] font-mono text-[10.5px] font-medium"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </SpotlightCard>
-            );
-          })}
+                  <div className="flex flex-wrap gap-1.5 pt-2 border-t border-[#ECEEF2] dark:border-white/5">
+                    {cat.skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className="px-2 py-0.5 rounded-md bg-[#F4F4F6] dark:bg-[#18191E] border border-[#E2E4E8] dark:border-[#27272A] text-[#09090B] dark:text-[#EDEDED] font-mono text-[10.5px] font-medium"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </SpotlightCard>
+              );
+            })}
+          </div>
         </div>
       )}
 

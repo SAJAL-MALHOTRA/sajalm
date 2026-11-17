@@ -5,20 +5,24 @@ import { getAssetPath } from '@/utils/asset';
 import { useSound } from '@/hooks/useSound';
 import MagneticButton from '@/components/ui/MagneticButton';
 import SpotlightCard from '@/components/ui/SpotlightCard';
+import KeycapBadge from '@/components/ui/KeycapBadge';
 import {
   ArrowDown,
   ArrowUpRight,
   FileText,
   Maximize2,
+  IdCard,
 } from 'lucide-react';
 
 interface EditorialHeroProps {
   onOpenTerminal: () => void;
   onOpenPhotoZoom: () => void;
+  onOpenBadge?: () => void;
 }
 
 export default function EditorialHero({
   onOpenPhotoZoom,
+  onOpenBadge,
 }: EditorialHeroProps) {
   const { playClick, playHover } = useSound();
 
@@ -132,9 +136,19 @@ export default function EditorialHero({
               <span className="font-semibold font-sans text-[#09090B] dark:text-white">
                 Sajal Malhotra
               </span>
-              <span className="text-[11px]">
-                Jalandhar, India
-              </span>
+              {onOpenBadge && (
+                <button
+                  onClick={() => {
+                    playClick();
+                    onOpenBadge();
+                  }}
+                  className="text-[10.5px] hover:text-[#09090B] dark:hover:text-white transition-colors cursor-pointer flex items-center gap-1 font-mono"
+                  title="View 3D Physical ID Badge"
+                >
+                  <span>3D ID</span>
+                  <KeycapBadge size="xs">BADGE</KeycapBadge>
+                </button>
+              )}
             </div>
           </SpotlightCard>
         </div>

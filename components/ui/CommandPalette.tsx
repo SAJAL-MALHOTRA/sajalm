@@ -121,7 +121,7 @@ export default function CommandPalette({
           <div className="px-4 py-2 bg-[#08090B] border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-[#94A3B8]">
             <span className="flex items-center gap-1.5">
               <span>Press</span>
-              <KeycapBadge size="xs" className="text-white bg-[#14161C] border-white/20 shadow-none">ESC</KeycapBadge>
+              <KeycapBadge size="xs" reactiveKey="Escape" className="text-white bg-[#14161C] border-white/20 shadow-none">ESC</KeycapBadge>
               <span>to exit</span>
             </span>
             <span className="text-[#EF4444] font-bold">SAJDEX COMMAND PALETTE</span>

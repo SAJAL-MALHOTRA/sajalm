@@ -11,6 +11,7 @@ import MinimalFooter from '@/components/home/MinimalFooter';
 import ProjectModal from '@/components/ui/ProjectModal';
 import DeveloperTerminal from '@/components/terminal/DeveloperTerminal';
 import PhotoLightboxModal from '@/components/ui/PhotoLightboxModal';
+import InteractiveBadgeModal from '@/components/ui/InteractiveBadgeModal';
 import KonamiEasterEgg from '@/components/ui/KonamiEasterEgg';
 import { projects } from '@/data/projects';
 import { useSound } from '@/hooks/useSound';
@@ -22,6 +23,7 @@ export default function Home() {
   const [modalProjectId, setModalProjectId] = useState<string | null>(null);
   const [terminalOpen, setTerminalOpen] = useState(false);
   const [photoZoomOpen, setPhotoZoomOpen] = useState(false);
+  const [badgeOpen, setBadgeOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   const { playClick, playModalOpen } = useSound();
@@ -44,12 +46,13 @@ export default function Home() {
         if (terminalOpen) setTerminalOpen(false);
         else if (modalProjectId) setModalProjectId(null);
         else if (photoZoomOpen) setPhotoZoomOpen(false);
+        else if (badgeOpen) setBadgeOpen(false);
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [playClick, terminalOpen, modalProjectId, photoZoomOpen]);
+  }, [playClick, terminalOpen, modalProjectId, photoZoomOpen, badgeOpen]);
 
   // Scroll listener for Back to Top button (Throttled with state change guard)
   useEffect(() => {
@@ -88,6 +91,7 @@ export default function Home() {
         <EditorialHero
           onOpenTerminal={() => setTerminalOpen(true)}
           onOpenPhotoZoom={() => setPhotoZoomOpen(true)}
+          onOpenBadge={() => setBadgeOpen(true)}
         />
 
         {/* 01 // SOCIALS & GITHUB ACTIVITY CALENDAR (SEAMLESS IN LIGHT & DARK MODE) */}
@@ -161,6 +165,12 @@ export default function Home() {
       <PhotoLightboxModal
         isOpen={photoZoomOpen}
         onClose={() => setPhotoZoomOpen(false)}
+      />
+
+      {/* ── INTERACTIVE 3D BADGE DOSSIER MODAL ── */}
+      <InteractiveBadgeModal
+        isOpen={badgeOpen}
+        onClose={() => setBadgeOpen(false)}
       />
 
       {/* ── KONAMI EASTER EGG ── */}

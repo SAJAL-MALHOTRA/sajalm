@@ -75,7 +75,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             </div>
 
             <div className="flex items-center gap-2">
-              <KeycapBadge size="sm" className="hidden sm:inline-flex text-[#71717A] dark:text-[#A1A1AA]">
+              <KeycapBadge size="sm" reactiveKey="Escape" className="hidden sm:inline-flex text-[#71717A] dark:text-[#A1A1AA]">
                 ESC
               </KeycapBadge>
               <button

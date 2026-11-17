@@ -44,53 +44,81 @@ class WebAudioSynth {
           osc.disconnect();
           gain.disconnect();
         } catch {
-          // Ignore disconnection safety catch
+          // Disconnection safety
         }
       };
     } catch {
-      // Audio safety catch
+      // Audio safety
     }
   }
 
   public playHover() {
-    this.playTone(380, 'square', 0.05, 0.03);
+    this.playTone(380, 'square', 0.05, 0.025);
   }
 
   public playClick() {
-    this.playTone(520, 'square', 0.08, 0.04);
+    this.playTone(520, 'square', 0.08, 0.035);
   }
 
   public playModalOpen() {
-    this.playTone(440, 'triangle', 0.08, 0.05);
+    this.playTone(440, 'triangle', 0.08, 0.04);
   }
 }
 
 const audioSynth = new WebAudioSynth();
 
+let globalAudioEnabled = false;
+const listeners = new Set<(enabled: boolean) => void>();
+
+function setGlobalAudio(enabled: boolean) {
+  globalAudioEnabled = enabled;
+  if (typeof window !== 'undefined') {
+    try {
+      localStorage.setItem('sajdex_audio_enabled', enabled ? 'true' : 'false');
+    } catch {}
+  }
+  listeners.forEach((fn) => fn(enabled));
+}
+
 export function useSound() {
-  const [enabled, setEnabled] = useState(false);
+  const [enabled, setEnabled] = useState(globalAudioEnabled);
+
+  useEffect(() => {
+    const cached = typeof window !== 'undefined' ? localStorage.getItem('sajdex_audio_enabled') : null;
+    if (cached !== null) {
+      const val = cached === 'true';
+      if (val !== globalAudioEnabled) {
+        globalAudioEnabled = val;
+      }
+      setEnabled(val);
+    }
+
+    const listener = (val: boolean) => setEnabled(val);
+    listeners.add(listener);
+    return () => {
+      listeners.delete(listener);
+    };
+  }, []);
 
   const toggleSound = useCallback(() => {
-    setEnabled((prev) => {
-      const next = !prev;
-      if (next) {
-        audioSynth.playClick();
-      }
-      return next;
-    });
+    const next = !globalAudioEnabled;
+    setGlobalAudio(next);
+    if (next) {
+      audioSynth.playClick();
+    }
   }, []);
 
   const playHover = useCallback(() => {
-    if (enabled) audioSynth.playHover();
-  }, [enabled]);
+    if (globalAudioEnabled) audioSynth.playHover();
+  }, []);
 
   const playClick = useCallback(() => {
-    if (enabled) audioSynth.playClick();
-  }, [enabled]);
+    if (globalAudioEnabled) audioSynth.playClick();
+  }, []);
 
   const playModalOpen = useCallback(() => {
-    if (enabled) audioSynth.playModalOpen();
-  }, [enabled]);
+    if (globalAudioEnabled) audioSynth.playModalOpen();
+  }, []);
 
   return {
     enabled,
