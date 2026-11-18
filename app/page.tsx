@@ -5,8 +5,6 @@ import NavigationHeader from '@/components/home/NavigationHeader';
 import EditorialHero from '@/components/home/EditorialHero';
 import SocialsAndGithubCalendar from '@/components/home/SocialsAndGithubCalendar';
 import ProjectsSection from '@/components/home/ProjectsSection';
-import CompetitiveProgrammingSection from '@/components/home/CompetitiveProgrammingSection';
-import TechnicalDesignMap from '@/components/systems/TechnicalDesignMap';
 import DualSpectrum from '@/components/home/DualSpectrum';
 import VisitorRegistry from '@/components/home/VisitorRegistry';
 import OpportunitiesSection from '@/components/home/OpportunitiesSection';
@@ -145,7 +143,7 @@ export default function Home() {
         {/* 01 // SOCIALS & GITHUB ACTIVITY CALENDAR (SEAMLESS IN LIGHT & DARK MODE) */}
         <SocialsAndGithubCalendar />
 
-        {/* 02 // SHIPPED SYSTEMS: 4-Card Flagship Showcase */}
+        {/* 02 // SHIPPED SYSTEMS: Flagship Architectural Showcase */}
         <ProjectsSection
           onOpenProjectModal={(id) => {
             playModalOpen();
@@ -153,18 +151,7 @@ export default function Home() {
           }}
         />
 
-        {/* 03 // ALGORITHMIC RIGOR & COMPETITIVE PROGRAMMING (LEETCODE / CODECHEF / BENCHMARKS) */}
-        <CompetitiveProgrammingSection />
-
-        {/* 04 // TECHNICAL BLUEPRINT & RUNTIME MICRO-SIMULATIONS MATRIX */}
-        <TechnicalDesignMap
-          onOpenProjectModal={(id) => {
-            playModalOpen();
-            setModalProjectId(id);
-          }}
-        />
-
-        {/* 04 // THE DUAL SPECTRUM: Technical Arsenal + Creative Orbit */}
+        {/* 03 // THE DUAL SPECTRUM: Technical Arsenal + Creative Orbit */}
         <DualSpectrum />
 
         {/* 04 // VISITOR REGISTRY & GUESTBOOK (KOKONUT UI SIGNATURE PAD) */}

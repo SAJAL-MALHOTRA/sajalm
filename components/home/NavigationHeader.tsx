@@ -66,7 +66,6 @@ export default function NavigationHeader({ onOpenTerminal, onOpenCommandPalette 
         <nav className="hidden sm:flex items-center gap-1 text-xs font-sans text-[#71717A] dark:text-[#A1A1AA] font-medium">
           {[
             { id: 'projects', label: 'Work' },
-            { id: 'design-map', label: 'Simulations' },
             { id: 'skills', label: 'About' },
             { id: 'guestbook', label: 'Guestbook' },
             { id: 'contact', label: 'Contact' },

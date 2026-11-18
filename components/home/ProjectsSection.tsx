@@ -444,16 +444,27 @@ export default function ProjectsSection({ onOpenProjectModal }: ProjectsSectionP
                   ))}
                 </div>
 
-                {/* ── STATUS & VIEW DETAILS STRIP (MATCHING SUMITX TELEMETRY) ── */}
+                {/* ── GROUNDED STATUS & VIEW DETAILS STRIP ── */}
                 <div className="flex items-center justify-between pt-2 text-xs font-mono">
-                  <div className="flex items-center gap-2">
-                    <span className="relative flex h-2 w-2">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                    </span>
-                    <span className="text-[11px] text-emerald-400 font-medium">
-                      All Systems Operational
-                    </span>
+                  <div className="flex items-center gap-1.5">
+                    {liveUrl ? (
+                      <>
+                        <span className="relative flex h-2 w-2">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                        </span>
+                        <span className="text-[11px] text-emerald-400 font-medium">
+                          Live Production
+                        </span>
+                      </>
+                    ) : (
+                      <>
+                        <span className="w-1.5 h-1.5 rounded-full bg-cyan-400/80"></span>
+                        <span className="text-[11px] text-neutral-400 font-mono truncate max-w-[175px]">
+                          {project.metric}
+                        </span>
+                      </>
+                    )}
                   </div>
 
                   <span className="text-[11px] text-cyan-400 group-hover:text-cyan-300 font-medium flex items-center gap-1 transition-colors">

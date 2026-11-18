@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useSound } from '@/hooks/useSound';
 import SpotlightCard from '@/components/ui/SpotlightCard';
-import DisciplineRingsCard from '@/components/ui/DisciplineRingsCard';
 import EditorialLookbookStrip from '@/components/ui/EditorialLookbookStrip';
 import NeuralPlayground from '@/components/ml/NeuralPlayground';
 import {
@@ -152,8 +151,6 @@ export default function DualSpectrum() {
       {/* ── 01 ENGINEERING MATRIX (TECHNICAL INDEX) ── */}
       {activeTab === 'tech' && (
         <div className="space-y-3.5 transition-opacity duration-300">
-          <DisciplineRingsCard />
-
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
             {technicalCategories.map((cat, idx) => {
               const isFullWidth = idx === 4;

@@ -89,15 +89,6 @@ export default function CommandPalette({
         action: () => scrollToSection('projects'),
       },
       {
-        id: 'nav-design-map',
-        category: 'NAVIGATION',
-        title: 'Design Map // 10 Runtime Micro-Simulations',
-        subtitle: 'tinyGPT, Athena radar, Cortex attention mask, CUDA warp grid, and epoll',
-        icon: <Zap size={14} className="text-purple-500" />,
-        shortcut: 'G M',
-        action: () => scrollToSection('design-map'),
-      },
-      {
         id: 'nav-skills',
         category: 'NAVIGATION',
         title: '03 // Dual Spectrum & Perspective',
