@@ -5,6 +5,7 @@ import NavigationHeader from '@/components/home/NavigationHeader';
 import EditorialHero from '@/components/home/EditorialHero';
 import SocialsAndGithubCalendar from '@/components/home/SocialsAndGithubCalendar';
 import ProjectsSection from '@/components/home/ProjectsSection';
+import CompetitiveProgrammingSection from '@/components/home/CompetitiveProgrammingSection';
 import TechnicalDesignMap from '@/components/systems/TechnicalDesignMap';
 import DualSpectrum from '@/components/home/DualSpectrum';
 import VisitorRegistry from '@/components/home/VisitorRegistry';
@@ -152,7 +153,10 @@ export default function Home() {
           }}
         />
 
-        {/* 03 // TECHNICAL BLUEPRINT & RUNTIME MICRO-SIMULATIONS MATRIX */}
+        {/* 03 // ALGORITHMIC RIGOR & COMPETITIVE PROGRAMMING (LEETCODE / CODECHEF / BENCHMARKS) */}
+        <CompetitiveProgrammingSection />
+
+        {/* 04 // TECHNICAL BLUEPRINT & RUNTIME MICRO-SIMULATIONS MATRIX */}
         <TechnicalDesignMap
           onOpenProjectModal={(id) => {
             playModalOpen();
