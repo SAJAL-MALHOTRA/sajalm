@@ -14,6 +14,7 @@ interface ProjectsSectionProps {
 
 /* ─────────────────────────────────────────────────────────────
    CLEAN HERO PREVIEW BOX (MATCHING EXACT REFERENCE IMAGE)
+   NO FAKE AI GENERATED IMAGES — ONLY REAL SCREENSHOTS & VECTORS
    ───────────────────────────────────────────────────────────── */
 function ProjectCardVisual({
   project,
@@ -22,35 +23,83 @@ function ProjectCardVisual({
   project: Project;
   onOpenModal: () => void;
 }) {
-  // Dedicated preview image mapping
-  const imageMap: Record<string, string> = {
-    'PRJ-01': '/projects/pairfect-preview.jpg',
-    'PRJ-02': '/projects/dsa-rag-preview.jpg',
-    'PRJ-03': '/projects/cybernauts-preview.jpg',
-    'PRJ-05': '/projects/cv-challenge-preview.jpg',
+  // Real live web application screenshots only
+  const realScreenshots: Record<string, string> = {
+    'PRJ-01': '/projects/real_pairfect.png',
+    'PRJ-02': '/projects/real_dsa_rag.png',
   };
 
-  const imageSrc = imageMap[project.id];
+  const imageSrc = realScreenshots[project.id];
 
   return (
     <div
       onClick={onOpenModal}
       className="relative w-full h-48 sm:h-52 rounded-xl sm:rounded-2xl overflow-hidden bg-[#0C1017] border border-white/10 group-hover:border-white/25 transition-all duration-300 select-none cursor-pointer"
     >
-      {/* ── CASE 1: REAL HIGH-RESOLUTION SCREENSHOT PREVIEW ── */}
+      {/* ── CASE 1: REAL LIVE WEB APPLICATION SCREENSHOTS (PAIRFECT & DSA RAG) ── */}
       {imageSrc ? (
-        <div className="relative w-full h-full">
+        <div className="relative w-full h-full bg-[#0E121B]">
           <Image
             src={getAssetPath(imageSrc)}
-            alt={`${project.name} preview`}
+            alt={`${project.name} live application preview`}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+        </div>
+      ) : project.id === 'PRJ-03' ? (
+        /* ── CASE 2: CYBERNAUTS ARENA (CLEAN DARK MASTER-CLOCK BROADCAST ENGINE) ── */
+        <div className="relative w-full h-full flex flex-col justify-between p-4 bg-gradient-to-br from-[#120D1E] via-[#0C0914] to-[#06040A]">
+          <div className="flex items-center justify-between font-mono text-[10px] text-purple-400">
+            <span className="flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse" />
+              <span>16-Desk Broadcast Mesh</span>
+            </span>
+            <span>&lt;16ms Sync</span>
+          </div>
+
+          <div className="space-y-1 text-center my-auto">
+            <div className="text-3xl sm:text-4xl font-mono font-black text-white tracking-tight">
+              00:14.82
+            </div>
+            <div className="text-[11px] font-mono text-purple-300/80">
+              Authoritative Epoch Deadline · 2.5s Jitter Buffer
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between font-mono text-[9px] text-neutral-400 border-t border-white/5 pt-1">
+            <span>Web Audio Synthesizer</span>
+            <span className="text-purple-400">Zero Venue Drift</span>
+          </div>
+        </div>
+      ) : project.id === 'PRJ-05' ? (
+        /* ── CASE 3: NATIONAL CV CHALLENGE (CLEAN ILLUMINATION TENSOR ENGINE) ── */
+        <div className="relative w-full h-full flex flex-col justify-between p-4 bg-gradient-to-br from-[#0B1A14] via-[#07110D] to-[#030806]">
+          <div className="flex items-center justify-between font-mono text-[10px] text-emerald-400">
+            <span className="flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span>Illumination Classifier</span>
+            </span>
+            <span>Score: 0.211</span>
+          </div>
+
+          <div className="space-y-1 text-center my-auto">
+            <div className="text-2xl sm:text-3xl font-black font-sans text-white tracking-tight">
+              Rank #16 / 227
+            </div>
+            <div className="text-[11px] font-mono text-emerald-300/80">
+              National Top 7% · Best Solution Leaderboard
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between font-mono text-[9px] text-neutral-400 border-t border-white/5 pt-1">
+            <span>128-D Luminance Descriptors</span>
+            <span className="text-emerald-400">FastMLP on CPU</span>
+          </div>
         </div>
       ) : project.id === 'PRJ-04' ? (
-        /* ── CASE 2: THINKFOLIO (GOLDEN REASONING RADAR MATCHING CARD 3 IN REFERENCE) ── */
+        /* ── CASE 4: THINKFOLIO (GOLDEN REASONING RADAR - MATCHING CARD 3 IN REFERENCE) ── */
         <div className="relative w-full h-full flex flex-col items-center justify-center p-4 bg-gradient-to-br from-[#1C160C] via-[#120E07] to-[#0A0704] overflow-hidden">
           <svg viewBox="0 0 160 100" className="w-full h-28 overflow-visible opacity-90">
             <ellipse
@@ -82,7 +131,7 @@ function ProjectCardVisual({
           </div>
         </div>
       ) : project.id === 'PRJ-08' ? (
-        /* ── CASE 3: DEVDEX (INDIGO/VIOLET DATABASE IDENTITY) ── */
+        /* ── CASE 5: DEVDEX (INDIGO/VIOLET DATABASE IDENTITY) ── */
         <div className="relative w-full h-full flex flex-col justify-between p-4 bg-gradient-to-br from-[#101426] via-[#0B0D18] to-[#06080E]">
           <div className="flex items-center gap-1.5 font-mono text-[10px] text-indigo-400">
             <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
@@ -102,7 +151,7 @@ function ProjectCardVisual({
           </div>
         </div>
       ) : project.id === 'PRJ-06' ? (
-        /* ── CASE 4: POTHOLE DETECTION (EDGE CV HUD) ── */
+        /* ── CASE 6: POTHOLE DETECTION (EDGE CV HUD) ── */
         <div className="relative w-full h-full flex flex-col justify-between p-4 bg-gradient-to-br from-[#1C120A] via-[#130B05] to-[#080502]">
           <div className="flex items-center justify-between font-mono text-[10px] text-orange-400">
             <span className="flex items-center gap-1">
@@ -124,7 +173,7 @@ function ProjectCardVisual({
           </div>
         </div>
       ) : (
-        /* ── CASE 5: SALARY PREDICTOR (REGRESSION TREE) ── */
+        /* ── CASE 7: SALARY PREDICTOR (REGRESSION TREE) ── */
         <div className="relative w-full h-full flex flex-col justify-between p-4 bg-gradient-to-br from-[#121A0C] via-[#0B1006] to-[#060803]">
           <div className="flex items-center justify-between font-mono text-[10px] text-lime-400">
             <span className="flex items-center gap-1">
