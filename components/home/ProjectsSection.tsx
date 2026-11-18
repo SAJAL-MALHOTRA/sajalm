@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useSound } from '@/hooks/useSound';
-import { ArrowUpRight, ExternalLink, FileText, CheckCircle2 } from 'lucide-react';
+import { ExternalLink, FileText } from 'lucide-react';
 import { projects, Project } from '@/data/projects';
 import { getAssetPath } from '@/utils/asset';
 
@@ -13,63 +13,8 @@ interface ProjectsSectionProps {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   3D PERSPECTIVE DEVICE MOCKUP WITH RADIANT AMBIENT GLOW
-   (Matching sumitx.me 3D tilted screen archetype)
+   CLEAN HERO PREVIEW BOX (MATCHING EXACT REFERENCE IMAGE)
    ───────────────────────────────────────────────────────────── */
-interface VisualConfig {
-  imageSrc?: string;
-  auraGradient: string;
-  accentGlow: string;
-  domain: string;
-}
-
-const VISUAL_CONFIG: Record<string, VisualConfig> = {
-  'PRJ-01': {
-    imageSrc: '/projects/pairfect-preview.jpg',
-    auraGradient: 'from-fuchsia-600/30 via-purple-600/20 to-transparent',
-    accentGlow: '#D946EF',
-    domain: 'pairfect.site',
-  },
-  'PRJ-02': {
-    imageSrc: '/projects/dsa-rag-preview.jpg',
-    auraGradient: 'from-cyan-500/30 via-blue-600/20 to-transparent',
-    accentGlow: '#06B6D4',
-    domain: 'dsa-rag.internal',
-  },
-  'PRJ-03': {
-    imageSrc: '/projects/cybernauts-preview.jpg',
-    auraGradient: 'from-rose-600/30 via-orange-600/20 to-transparent',
-    accentGlow: '#F43F5E',
-    domain: 'arena.cybernauts.io',
-  },
-  'PRJ-05': {
-    imageSrc: '/projects/cv-challenge-preview.jpg',
-    auraGradient: 'from-emerald-500/30 via-teal-600/20 to-transparent',
-    accentGlow: '#10B981',
-    domain: 'cv-lighting.benchmark.org',
-  },
-  'PRJ-04': {
-    auraGradient: 'from-amber-500/30 via-yellow-600/20 to-transparent',
-    accentGlow: '#F59E0B',
-    domain: 'thinkfolio.alpha',
-  },
-  'PRJ-06': {
-    auraGradient: 'from-orange-500/30 via-amber-600/20 to-transparent',
-    accentGlow: '#F97316',
-    domain: 'pothole.edge-cv.live',
-  },
-  'PRJ-07': {
-    auraGradient: 'from-lime-500/30 via-emerald-600/20 to-transparent',
-    accentGlow: '#84CC16',
-    domain: 'salary-forecaster.streamlit.app',
-  },
-  'PRJ-08': {
-    auraGradient: 'from-indigo-600/30 via-purple-600/20 to-transparent',
-    accentGlow: '#6366F1',
-    domain: 'sajdex.terminal.sys',
-  },
-};
-
 function ProjectCardVisual({
   project,
   onOpenModal,
@@ -77,188 +22,137 @@ function ProjectCardVisual({
   project: Project;
   onOpenModal: () => void;
 }) {
-  const { playClick } = useSound();
-  const liveUrl = project.liveUrl || project.demo;
-  const config = VISUAL_CONFIG[project.id] || {
-    auraGradient: 'from-cyan-500/25 via-blue-600/15 to-transparent',
-    accentGlow: '#06B6D4',
-    domain: 'internal.system',
+  // Dedicated preview image mapping
+  const imageMap: Record<string, string> = {
+    'PRJ-01': '/projects/pairfect-preview.jpg',
+    'PRJ-02': '/projects/dsa-rag-preview.jpg',
+    'PRJ-03': '/projects/cybernauts-preview.jpg',
+    'PRJ-05': '/projects/cv-challenge-preview.jpg',
   };
+
+  const imageSrc = imageMap[project.id];
 
   return (
     <div
       onClick={onOpenModal}
-      className="relative w-full h-52 sm:h-56 rounded-xl sm:rounded-2xl overflow-hidden bg-[#0A0D14] border border-white/10 group-hover:border-white/25 transition-all duration-300 flex items-center justify-center p-3 select-none cursor-pointer"
+      className="relative w-full h-48 sm:h-52 rounded-xl sm:rounded-2xl overflow-hidden bg-[#0C1017] border border-white/10 group-hover:border-white/25 transition-all duration-300 select-none cursor-pointer"
     >
-      {/* ── AMBIENT NEON GLOW AURA (MATCHING SUMITX VIBRANT GRADIENTS) ── */}
-      <div
-        className={`absolute inset-0 bg-gradient-to-t ${config.auraGradient} opacity-60 group-hover:opacity-90 transition-opacity duration-500 pointer-events-none`}
-      />
-      <div
-        className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-48 h-20 rounded-full blur-2xl pointer-events-none transition-all duration-500 group-hover:scale-125"
-        style={{ backgroundColor: config.accentGlow, opacity: 0.3 }}
-      />
-
-      {/* ── 3D ISOMETRIC/TILTED BROWSER CHASSIS ── */}
-      <div className="relative w-full h-full flex items-center justify-center [perspective:1000px]">
-        <div
-          className="relative w-full h-[95%] rounded-lg sm:rounded-xl overflow-hidden bg-[#11141E] border border-white/20 shadow-[0_15px_35px_rgba(0,0,0,0.65)] [transform:rotateX(13deg)_rotateY(-6deg)_rotateZ(1deg)_scale(0.95)_translateY(4px)] group-hover:[transform:rotateX(0deg)_rotateY(0deg)_rotateZ(0deg)_scale(1)_translateY(0px)] transition-transform duration-500 ease-out flex flex-col"
-        >
-          {/* Chrome Titlebar */}
-          <div className="h-6 sm:h-7 px-2.5 bg-[#171B26] border-b border-white/10 flex items-center justify-between shrink-0 select-none">
-            {/* 3 Traffic Dots */}
-            <div className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-rose-500/80" />
-              <span className="w-2 h-2 rounded-full bg-amber-500/80" />
-              <span className="w-2 h-2 rounded-full bg-emerald-500/80" />
-            </div>
-
-            {/* Address Pill */}
-            <div className="px-2.5 py-0.5 rounded-full bg-black/50 border border-white/10 text-[9px] sm:text-[10px] font-mono text-neutral-300 max-w-[170px] truncate text-center flex items-center gap-1">
-              <span className="text-emerald-400">🔒</span>
-              <span>{config.domain}</span>
-            </div>
-
-            <div className="w-6" />
-          </div>
-
-          {/* Viewport Content */}
-          <div className="relative flex-1 w-full bg-[#07090E] overflow-hidden">
-            {config.imageSrc ? (
-              <div className="relative w-full h-full">
-                <Image
-                  src={getAssetPath(config.imageSrc)}
-                  alt={`${project.name} preview`}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
-              </div>
-            ) : project.id === 'PRJ-04' ? (
-              /* ThinkFolio Custom Visual */
-              <div className="relative w-full h-full flex flex-col items-center justify-center p-3 bg-gradient-to-br from-[#1C160C] via-[#120E07] to-[#0A0704]">
-                <svg viewBox="0 0 160 90" className="w-full h-24 overflow-visible opacity-90">
-                  <ellipse
-                    cx="80"
-                    cy="45"
-                    rx="46"
-                    ry="20"
-                    fill="none"
-                    stroke="url(#gold-torus-grad-3d)"
-                    strokeWidth="8"
-                    strokeLinecap="round"
-                    className="group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <defs>
-                    <linearGradient id="gold-torus-grad-3d" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#F59E0B" />
-                      <stop offset="50%" stopColor="#FEF08A" />
-                      <stop offset="100%" stopColor="#B45309" />
-                    </linearGradient>
-                  </defs>
-                </svg>
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-10">
-                  <span className="text-sm sm:text-base font-black font-sans text-amber-100 tracking-tight drop-shadow-md">
-                    Reasoning Evaluator
-                  </span>
-                  <span className="text-[10px] font-mono text-amber-300/80 mt-0.5">
-                    R² = 0.927 · FinBERT + SHAP
-                  </span>
-                </div>
-              </div>
-            ) : project.id === 'PRJ-08' ? (
-              /* DevDex Identity Visual */
-              <div className="relative w-full h-full flex flex-col justify-between p-3.5 bg-gradient-to-br from-[#101426] via-[#0B0D18] to-[#06080E]">
-                <div className="flex items-center gap-1.5 font-mono text-[9px] text-indigo-400">
-                  <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
-                  <span>PostgreSQL · RLS Tenant Engine</span>
-                </div>
-                <div className="space-y-0.5 text-center my-auto">
-                  <div className="text-sm sm:text-base font-black font-sans text-white tracking-tight">
-                    Developer Identity Engine
-                  </div>
-                  <div className="text-[10px] font-mono text-indigo-300/80">
-                    Next.js 15 App · 100% RLS Coverage
-                  </div>
-                </div>
-                <div className="flex items-center justify-between font-mono text-[9px] text-neutral-400 border-t border-white/5 pt-1">
-                  <span>Supabase Auth</span>
-                  <span className="text-indigo-400">98+ Lighthouse</span>
-                </div>
-              </div>
-            ) : project.id === 'PRJ-06' ? (
-              /* Pothole Detection Visual */
-              <div className="relative w-full h-full flex flex-col justify-between p-3.5 bg-gradient-to-br from-[#1C120A] via-[#130B05] to-[#080502]">
-                <div className="flex items-center justify-between font-mono text-[9px] text-orange-400">
-                  <span className="flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
-                    <span>YOLOv8 Edge CV</span>
-                  </span>
-                  <span>&gt;30 FPS</span>
-                </div>
-                <div className="relative my-auto flex items-center justify-center">
-                  <div className="w-20 h-14 border-2 border-orange-500/80 rounded-xs flex items-start justify-end p-1 shadow-[0_0_12px_rgba(249,115,22,0.4)]">
-                    <span className="text-[8px] font-mono bg-orange-500 text-black font-bold px-1 rounded-xs">
-                      0.93
-                    </span>
-                  </div>
-                </div>
-                <div className="flex items-center justify-between font-mono text-[9px] text-neutral-400 border-t border-white/5 pt-1">
-                  <span>Dashcam Stream</span>
-                  <span className="text-orange-400">Temporal Filter</span>
-                </div>
-              </div>
-            ) : (
-              /* Salary Predictor Visual */
-              <div className="relative w-full h-full flex flex-col justify-between p-3.5 bg-gradient-to-br from-[#121A0C] via-[#0B1006] to-[#060803]">
-                <div className="flex items-center justify-between font-mono text-[9px] text-lime-400">
-                  <span className="flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-lime-500 animate-pulse" />
-                    <span>Compensation Regression</span>
-                  </span>
-                  <span>6k+ Records</span>
-                </div>
-                <div className="space-y-0.5 text-center my-auto">
-                  <div className="text-sm sm:text-base font-black font-sans text-white tracking-tight">
-                    Tech Salary Forecaster
-                  </div>
-                  <div className="text-[10px] font-mono text-lime-300/80">
-                    AmbitionBox Dataset
-                  </div>
-                </div>
-                <div className="flex items-center justify-between font-mono text-[9px] text-neutral-400 border-t border-white/5 pt-1">
-                  <span>Random Forest</span>
-                  <span className="text-lime-400">Streamlit Cloud</span>
-                </div>
-              </div>
-            )}
+      {/* ── CASE 1: REAL HIGH-RESOLUTION SCREENSHOT PREVIEW ── */}
+      {imageSrc ? (
+        <div className="relative w-full h-full">
+          <Image
+            src={getAssetPath(imageSrc)}
+            alt={`${project.name} preview`}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
+        </div>
+      ) : project.id === 'PRJ-04' ? (
+        /* ── CASE 2: THINKFOLIO (GOLDEN REASONING RADAR MATCHING CARD 3 IN REFERENCE) ── */
+        <div className="relative w-full h-full flex flex-col items-center justify-center p-4 bg-gradient-to-br from-[#1C160C] via-[#120E07] to-[#0A0704] overflow-hidden">
+          <svg viewBox="0 0 160 100" className="w-full h-28 overflow-visible opacity-90">
+            <ellipse
+              cx="80"
+              cy="50"
+              rx="46"
+              ry="22"
+              fill="none"
+              stroke="url(#gold-torus-grad-clean)"
+              strokeWidth="9"
+              strokeLinecap="round"
+              className="group-hover:scale-105 transition-transform duration-500"
+            />
+            <defs>
+              <linearGradient id="gold-torus-grad-clean" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#F59E0B" />
+                <stop offset="50%" stopColor="#FEF08A" />
+                <stop offset="100%" stopColor="#B45309" />
+              </linearGradient>
+            </defs>
+          </svg>
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-10">
+            <span className="text-base sm:text-lg font-black font-sans text-amber-100 tracking-tight leading-tight drop-shadow-md">
+              Reasoning Evaluator
+            </span>
+            <span className="text-[11px] font-mono text-amber-300/80 mt-1">
+              R² = 0.927 · FinBERT + SHAP
+            </span>
           </div>
         </div>
-      </div>
-
-      {/* Floating Orange/Colored Circular ↗ Button */}
-      {liveUrl && (
-        <a
-          href={liveUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={(e) => {
-            e.stopPropagation();
-            playClick();
-          }}
-          className="absolute top-3 right-3 z-30 w-8 h-8 rounded-full bg-white/10 hover:bg-white/25 backdrop-blur-md border border-white/20 text-white flex items-center justify-center transition-all hover:scale-110 active:scale-95 shadow-lg cursor-pointer"
-          title={`Visit ${project.name} live`}
-        >
-          <ArrowUpRight size={15} strokeWidth={2.4} />
-        </a>
+      ) : project.id === 'PRJ-08' ? (
+        /* ── CASE 3: DEVDEX (INDIGO/VIOLET DATABASE IDENTITY) ── */
+        <div className="relative w-full h-full flex flex-col justify-between p-4 bg-gradient-to-br from-[#101426] via-[#0B0D18] to-[#06080E]">
+          <div className="flex items-center gap-1.5 font-mono text-[10px] text-indigo-400">
+            <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
+            <span>PostgreSQL · Row-Level Security</span>
+          </div>
+          <div className="space-y-1 text-center my-auto">
+            <div className="text-base sm:text-lg font-black font-sans text-white tracking-tight">
+              Developer Identity Engine
+            </div>
+            <div className="text-[11px] font-mono text-indigo-300/80">
+              Next.js 15 App · 100% RLS Coverage
+            </div>
+          </div>
+          <div className="flex items-center justify-between font-mono text-[9px] text-neutral-400 border-t border-white/5 pt-1">
+            <span>Supabase Auth</span>
+            <span className="text-indigo-400">98+ Lighthouse</span>
+          </div>
+        </div>
+      ) : project.id === 'PRJ-06' ? (
+        /* ── CASE 4: POTHOLE DETECTION (EDGE CV HUD) ── */
+        <div className="relative w-full h-full flex flex-col justify-between p-4 bg-gradient-to-br from-[#1C120A] via-[#130B05] to-[#080502]">
+          <div className="flex items-center justify-between font-mono text-[10px] text-orange-400">
+            <span className="flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
+              <span>YOLOv8 Edge CV</span>
+            </span>
+            <span>&gt;30 FPS</span>
+          </div>
+          <div className="relative my-auto flex items-center justify-center">
+            <div className="w-24 h-16 border-2 border-orange-500/80 rounded-xs flex items-start justify-end p-1 shadow-[0_0_12px_rgba(249,115,22,0.3)]">
+              <span className="text-[9px] font-mono bg-orange-500 text-black font-bold px-1 rounded-xs">
+                0.93
+              </span>
+            </div>
+          </div>
+          <div className="flex items-center justify-between font-mono text-[9px] text-neutral-400 border-t border-white/5 pt-1">
+            <span>Dashcam 1080p Stream</span>
+            <span className="text-orange-400">Temporal Filter</span>
+          </div>
+        </div>
+      ) : (
+        /* ── CASE 5: SALARY PREDICTOR (REGRESSION TREE) ── */
+        <div className="relative w-full h-full flex flex-col justify-between p-4 bg-gradient-to-br from-[#121A0C] via-[#0B1006] to-[#060803]">
+          <div className="flex items-center justify-between font-mono text-[10px] text-lime-400">
+            <span className="flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-lime-500 animate-pulse" />
+              <span>Compensation Regression</span>
+            </span>
+            <span>6k+ Records</span>
+          </div>
+          <div className="space-y-1 text-center my-auto">
+            <div className="text-base sm:text-lg font-black font-sans text-white tracking-tight">
+              Indian Tech Salary Forecaster
+            </div>
+            <div className="text-[11px] font-mono text-lime-300/80">
+              AmbitionBox Verified Dataset
+            </div>
+          </div>
+          <div className="flex items-center justify-between font-mono text-[9px] text-neutral-400 border-t border-white/5 pt-1">
+            <span>Random Forest Model</span>
+            <span className="text-lime-400">Streamlit Cloud</span>
+          </div>
+        </div>
       )}
     </div>
   );
 }
 
 /* ─────────────────────────────────────────────────────────────
-   MAIN PROJECTS SECTION (3-COLUMN ARCHITECTURAL GRID)
+   MAIN PROJECTS SECTION (MATCHING EXACT 3-COLUMN REFERENCE)
    ───────────────────────────────────────────────────────────── */
 export default function ProjectsSection({ onOpenProjectModal }: ProjectsSectionProps) {
   const { playClick, playHover } = useSound();
@@ -334,7 +228,7 @@ export default function ProjectsSection({ onOpenProjectModal }: ProjectsSectionP
         </p>
       </div>
 
-      {/* ── 3-COLUMN HIGH-IMPACT ARCHITECTURAL CARD GRID ── */}
+      {/* ── 3-COLUMN CLEAN REFERENCE CARD GRID ── */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
         {filteredProjects.map((project, index) => {
           const indexFormatted = String(index + 1).padStart(2, '0');
@@ -350,7 +244,7 @@ export default function ProjectsSection({ onOpenProjectModal }: ProjectsSectionP
               onMouseEnter={playHover}
               className="rounded-2xl sm:rounded-3xl bg-[#0B0E14] border border-[#1E232E] hover:border-neutral-500/50 transition-all duration-300 p-4 sm:p-5 flex flex-col justify-between group shadow-xl relative overflow-hidden cursor-pointer"
             >
-              {/* TOP: 3D PERSPECTIVE MOCKUP WINDOW WITH VIBRANT GLOW */}
+              {/* TOP: VISUAL HERO PREVIEW */}
               <ProjectCardVisual
                 project={project}
                 onOpenModal={() => onOpenProjectModal(project.id)}
@@ -432,7 +326,7 @@ export default function ProjectsSection({ onOpenProjectModal }: ProjectsSectionP
                   </div>
                 )}
 
-                {/* TECH STACK PILLS */}
+                {/* BOTTOM: TECH STACK PILLS IN HORIZONTAL ROW */}
                 <div className="flex flex-wrap gap-1.5 pt-3 border-t border-white/10 mt-auto">
                   {project.stack.slice(0, 4).map((tech) => (
                     <span
@@ -442,35 +336,6 @@ export default function ProjectsSection({ onOpenProjectModal }: ProjectsSectionP
                       {tech}
                     </span>
                   ))}
-                </div>
-
-                {/* ── GROUNDED STATUS & VIEW DETAILS STRIP ── */}
-                <div className="flex items-center justify-between pt-2 text-xs font-mono">
-                  <div className="flex items-center gap-1.5">
-                    {liveUrl ? (
-                      <>
-                        <span className="relative flex h-2 w-2">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                        </span>
-                        <span className="text-[11px] text-emerald-400 font-medium">
-                          Live Production
-                        </span>
-                      </>
-                    ) : (
-                      <>
-                        <span className="w-1.5 h-1.5 rounded-full bg-cyan-400/80"></span>
-                        <span className="text-[11px] text-neutral-400 font-mono truncate max-w-[175px]">
-                          {project.metric}
-                        </span>
-                      </>
-                    )}
-                  </div>
-
-                  <span className="text-[11px] text-cyan-400 group-hover:text-cyan-300 font-medium flex items-center gap-1 transition-colors">
-                    <span>View Details</span>
-                    <ArrowUpRight size={12} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                  </span>
                 </div>
 
               </div>

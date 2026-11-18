@@ -44,16 +44,11 @@ const MONTH_LABELS = [
 
 export default function SocialsAndGithubCalendar() {
   const [data, setData] = useState<{ total: number; contributions: DayContribution[] }>(sajalContributionsData);
-  const [tooltip, setTooltip] = useState<{
-    date: string;
-    count: number;
-    x: number;
-    y: number;
-  } | null>(null);
+  const [inspectedDay, setInspectedDay] = useState<{ date: string; count: number } | null>(null);
 
   const { playClick, playHover } = useSound();
 
-  // Background fetch for fresh live contributions (with resilient fallback to verified bundled data)
+  // Background fetch for fresh live contributions (with resilient fallback to bundled data)
   useEffect(() => {
     let active = true;
     const fetchFreshData = async () => {
@@ -67,7 +62,10 @@ export default function SocialsAndGithubCalendar() {
         if (!res.ok) return;
         const json = await res.json();
         if (active && json.contributions && Array.isArray(json.contributions)) {
-          const totalVal = json.total?.lastYear ?? json.total?.[Object.keys(json.total || {})[0]] ?? json.contributions.reduce((acc: number, c: { count: number }) => acc + (c.count || 0), 0);
+          const totalVal =
+            json.total?.lastYear ??
+            json.total?.[Object.keys(json.total || {})[0]] ??
+            json.contributions.reduce((acc: number, c: { count: number }) => acc + (c.count || 0), 0);
           setData({
             total: totalVal,
             contributions: json.contributions,
@@ -128,6 +126,7 @@ export default function SocialsAndGithubCalendar() {
             const x = col * 12.5;
             const y = 20 + row * 12.5;
             const fill = colors[item.level] ?? colors[0];
+            const isSelected = inspectedDay?.date === item.date;
 
             return (
               <rect
@@ -139,26 +138,21 @@ export default function SocialsAndGithubCalendar() {
                 rx="2"
                 ry="2"
                 fill={fill}
-                stroke={stroke}
+                stroke={isSelected ? '#38BDF8' : stroke}
+                strokeWidth={isSelected ? '1.5' : '1'}
                 data-date={item.date}
                 data-count={item.count}
                 data-level={item.level}
                 onClick={(e) => {
                   e.preventDefault();
-                  e.stopPropagation();
+                  playClick();
+                  setInspectedDay({ date: item.date, count: item.count });
                 }}
-                className="hover:opacity-75 transition-opacity duration-150 cursor-pointer outline-none"
-                onMouseEnter={(e) => {
+                onMouseEnter={() => {
                   playHover();
-                  const rect = e.currentTarget.getBoundingClientRect();
-                  setTooltip({
-                    date: item.date,
-                    count: item.count,
-                    x: rect.left + rect.width / 2,
-                    y: rect.top,
-                  });
+                  setInspectedDay({ date: item.date, count: item.count });
                 }}
-                onMouseLeave={() => setTooltip(null)}
+                className="hover:opacity-80 transition-opacity duration-150 cursor-pointer outline-none"
               />
             );
           })}
@@ -168,7 +162,7 @@ export default function SocialsAndGithubCalendar() {
   };
 
   return (
-    <section className="w-full max-w-[1020px] mx-auto py-6 select-none space-y-6">
+    <section className="w-full max-w-[1020px] mx-auto py-6 select-none space-y-5">
       
       {/* ── THIN ARCHITECTURAL DIVIDER ── */}
       <div className="w-full border-t border-[#E2E4E8] dark:border-[#22242B]" />
@@ -182,7 +176,7 @@ export default function SocialsAndGithubCalendar() {
           <LocalTimeStatus />
         </div>
 
-        {/* Social Links (GitHub, LinkedIn, X, Instagram) with Kokonut Magnetic Physics */}
+        {/* Social Links (GitHub, LinkedIn, X, Instagram) */}
         <div className="flex items-center gap-2 flex-wrap">
           <MagneticButton>
             <a
@@ -199,7 +193,6 @@ export default function SocialsAndGithubCalendar() {
             </a>
           </MagneticButton>
 
-          {/* LinkedIn */}
           <MagneticButton>
             <a
               href={profile.links.linkedin}
@@ -215,7 +208,6 @@ export default function SocialsAndGithubCalendar() {
             </a>
           </MagneticButton>
 
-          {/* X / Twitter */}
           <MagneticButton>
             <a
               href={profile.links.twitter}
@@ -231,7 +223,6 @@ export default function SocialsAndGithubCalendar() {
             </a>
           </MagneticButton>
 
-          {/* Instagram */}
           <MagneticButton>
             <a
               href={profile.links.instagram}
@@ -249,41 +240,57 @@ export default function SocialsAndGithubCalendar() {
         </div>
       </div>
 
-      {/* ── GITHUB ACTIVITY & CODE METRICS BENTO SPREAD ── */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-3.5 items-stretch">
-        
-        {/* Left: 52-Week Contributions Heatmap (lg:col-span-8) */}
-        <div className="lg:col-span-8 p-4 sm:p-5 rounded-xl bg-white dark:bg-[#121316] border border-[#E2E4E8] dark:border-[#22242B] flex flex-col justify-between gap-3 shadow-2xs">
-          <div className="flex items-center justify-between text-xs font-mono text-[#71717A] dark:text-[#A1A1AA]">
-            <span className="font-semibold text-[#09090B] dark:text-[#EDEDED]">
-              GitHub Annual Contributions
-            </span>
-            <span className="text-[11px] font-bold text-emerald-600 dark:text-emerald-400">
-              {data.total} contributions
-            </span>
+      {/* ── GITHUB ACTIVITY FULL-WIDTH CARD (ZERO LAYOUT SHIFT, ZERO FLICKER) ── */}
+      <div className="w-full p-4 sm:p-5 rounded-2xl bg-white dark:bg-[#121316] border border-[#E2E4E8] dark:border-[#22242B] flex flex-col justify-between gap-3.5 shadow-2xs">
+        <div className="flex items-center justify-between text-xs font-mono text-[#71717A] dark:text-[#A1A1AA]">
+          <span className="font-bold text-[#09090B] dark:text-[#EDEDED] text-sm font-sans">
+            GitHub Annual Contributions
+          </span>
+          <span className="text-[11px] font-bold text-emerald-600 dark:text-emerald-400 font-mono">
+            {data.total} contributions in the last year
+          </span>
+        </div>
+
+        <div className="w-full overflow-x-auto no-scrollbar pb-1 touch-pan-x overscroll-x-contain flex items-center justify-center">
+          {/* Light Mode SVG */}
+          <div className="block dark:hidden w-[665px] h-[116px] shrink-0 mx-auto">
+            {renderCalendarSvg(false)}
           </div>
 
-          <div className="w-full overflow-x-auto no-scrollbar pb-1 touch-pan-x overscroll-x-contain flex items-center justify-center">
-            {/* Light Mode SVG */}
-            <div className="block dark:hidden w-[665px] h-[116px] shrink-0 mx-auto">
-              {renderCalendarSvg(false)}
-            </div>
+          {/* Dark Mode SVG */}
+          <div className="hidden dark:block w-[665px] h-[116px] shrink-0 mx-auto">
+            {renderCalendarSvg(true)}
+          </div>
+        </div>
 
-            {/* Dark Mode SVG */}
-            <div className="hidden dark:block w-[665px] h-[116px] shrink-0 mx-auto">
-              {renderCalendarSvg(true)}
-            </div>
+        {/* Stable Telemetry Footer (Fixed-height status line that eliminates popups & flickering) */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between text-[11px] font-mono text-[#71717A] dark:text-[#A1A1AA] pt-2.5 border-t border-[#ECEEF2] dark:border-white/5 gap-2">
+          {/* Real-time Inspected Date Line */}
+          <div className="h-5 flex items-center text-xs">
+            {inspectedDay ? (
+              <span className="text-[#09090B] dark:text-white font-medium flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+                <span>
+                  {inspectedDay.count === 0
+                    ? `No contributions recorded on ${formatDate(inspectedDay.date)}`
+                    : `${inspectedDay.count} contribution${inspectedDay.count === 1 ? '' : 's'} on ${formatDate(inspectedDay.date)}`}
+                </span>
+              </span>
+            ) : (
+              <span className="text-[#71717A] dark:text-[#A1A1AA]">
+                Hover or tap any date block to inspect telemetry
+              </span>
+            )}
           </div>
 
-          {/* Clean Footer Strip */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between text-[11px] font-mono text-[#71717A] dark:text-[#A1A1AA] pt-2 border-t border-[#ECEEF2] dark:border-white/5 gap-1.5">
+          <div className="flex items-center gap-4">
             <a
               href={profile.links.github}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:underline flex items-center gap-1 hover:text-[#09090B] dark:hover:text-white transition-colors"
             >
-              <span>@SAJAL-MALHOTRA on GitHub</span>
+              <span>@SAJAL-MALHOTRA</span>
               <ArrowUpRight size={11} />
             </a>
 
@@ -317,73 +324,7 @@ export default function SocialsAndGithubCalendar() {
             </div>
           </div>
         </div>
-
-        {/* Right: Real Code Metrics & Velocity Card (lg:col-span-4) */}
-        <div className="lg:col-span-4 p-4 sm:p-5 rounded-xl bg-white dark:bg-[#121316] border border-[#E2E4E8] dark:border-[#22242B] flex flex-col justify-between gap-3 shadow-2xs font-mono text-xs">
-          <div className="space-y-1">
-            <div className="flex items-center justify-between text-[10px] text-[#71717A] dark:text-[#A1A1AA] uppercase tracking-wider font-bold">
-              <span>ENGINEERING VELOCITY</span>
-              <span className="text-emerald-600 dark:text-emerald-400">ACTIVE DEV</span>
-            </div>
-            <div className="text-sm font-bold text-[#09090B] dark:text-white font-sans">
-              Codebase Distribution
-            </div>
-          </div>
-
-          <div className="space-y-2 py-1">
-            <div>
-              <div className="flex justify-between text-[11px] mb-1">
-                <span className="text-[#52525B] dark:text-[#A1A1AA]">TypeScript / Next.js</span>
-                <span className="font-semibold text-[#09090B] dark:text-white">65%</span>
-              </div>
-              <div className="w-full h-1.5 rounded-full bg-black/5 dark:bg-white/5 overflow-hidden">
-                <div className="h-full bg-blue-500 rounded-full" style={{ width: '65%' }} />
-              </div>
-            </div>
-
-            <div>
-              <div className="flex justify-between text-[11px] mb-1">
-                <span className="text-[#52525B] dark:text-[#A1A1AA]">Python / PyTorch</span>
-                <span className="font-semibold text-[#09090B] dark:text-white">25%</span>
-              </div>
-              <div className="w-full h-1.5 rounded-full bg-black/5 dark:bg-white/5 overflow-hidden">
-                <div className="h-full bg-emerald-500 rounded-full" style={{ width: '25%' }} />
-              </div>
-            </div>
-
-            <div>
-              <div className="flex justify-between text-[11px] mb-1">
-                <span className="text-[#52525B] dark:text-[#A1A1AA]">Go / SQL Schemas</span>
-                <span className="font-semibold text-[#09090B] dark:text-white">10%</span>
-              </div>
-              <div className="w-full h-1.5 rounded-full bg-black/5 dark:bg-white/5 overflow-hidden">
-                <div className="h-full bg-amber-500 rounded-full" style={{ width: '10%' }} />
-              </div>
-            </div>
-          </div>
-
-          <div className="pt-2 border-t border-[#ECEEF2] dark:border-white/5 flex items-center justify-between text-[10.5px] text-[#71717A] dark:text-[#A1A1AA]">
-            <span>STRICT TYPE CHECKING</span>
-            <span className="font-bold text-emerald-600 dark:text-emerald-400">100% TYPE-SAFE</span>
-          </div>
-        </div>
-
       </div>
-
-      {/* ── FLOATING TOOLTIP (VIEWPORT BOUNDED TO PREVENT SCROLLBAR FLICKER) ── */}
-      {tooltip && (
-        <div
-          className="fixed pointer-events-none z-50 -translate-x-1/2 -translate-y-full px-2.5 py-1 rounded bg-[#09090B] text-white dark:bg-white dark:text-[#09090B] text-[11px] font-mono shadow-lg font-medium whitespace-nowrap"
-          style={{
-            left: `${Math.max(80, Math.min(typeof window !== 'undefined' ? window.innerWidth - 80 : 500, tooltip.x))}px`,
-            top: `${tooltip.y - 10}px`,
-          }}
-        >
-          <span>
-            {tooltip.count === 0 ? 'No activities' : `${tooltip.count} activit${tooltip.count === 1 ? 'y' : 'ies'}`} on {formatDate(tooltip.date)}
-          </span>
-        </div>
-      )}
 
     </section>
   );

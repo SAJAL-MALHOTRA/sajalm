@@ -50,32 +50,9 @@ export default function EditorialHero({
             </p>
           </div>
 
-          {/* Grounded Bio with Inline Styled Tech Capsules (Matching Sumitx Archetype) */}
+          {/* Grounded Bio */}
           <p className="text-sm sm:text-base text-[#52525B] dark:text-[#A1A1AA] leading-relaxed font-sans max-w-2xl">
-            Software engineer studying Information Technology at{' '}
-            <span className="font-semibold text-[#09090B] dark:text-white">NIT Jalandhar</span>. I engineer low-latency distributed systems and high-throughput web architectures using{' '}
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 mx-0.5 rounded-md bg-[#000000]/5 dark:bg-[#FFFFFF]/10 border border-neutral-300 dark:border-neutral-700 text-[#09090B] dark:text-white text-xs font-mono font-medium align-middle hover:border-cyan-400 transition-colors shadow-2xs">
-              <span className="font-black text-[11px]">▲</span>
-              <span>Next.js</span>
-            </span>
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 mx-0.5 rounded-md bg-emerald-500/10 border border-emerald-500/30 text-emerald-800 dark:text-emerald-300 text-xs font-mono font-medium align-middle hover:border-emerald-400 transition-colors shadow-2xs">
-              <span className="text-emerald-500 font-bold text-[11px]">⚡</span>
-              <span>FastAPI</span>
-            </span>
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 mx-0.5 rounded-md bg-orange-500/10 border border-orange-500/30 text-orange-800 dark:text-orange-300 text-xs font-mono font-medium align-middle hover:border-orange-400 transition-colors shadow-2xs">
-              <span className="text-orange-500 font-bold text-[11px]">🔥</span>
-              <span>PyTorch</span>
-            </span>
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 mx-0.5 rounded-md bg-blue-500/10 border border-blue-500/30 text-blue-800 dark:text-blue-300 text-xs font-mono font-medium align-middle hover:border-blue-400 transition-colors shadow-2xs">
-              <span className="text-blue-500 font-bold text-[11px]">🐘</span>
-              <span>PostgreSQL</span>
-            </span>
-            {' '}and{' '}
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 mx-0.5 rounded-md bg-rose-500/10 border border-rose-500/30 text-rose-800 dark:text-rose-300 text-xs font-mono font-medium align-middle hover:border-rose-400 transition-colors shadow-2xs">
-              <span className="text-rose-500 font-bold text-[11px]">📡</span>
-              <span>WebRTC</span>
-            </span>
-            . Core Member at <span className="font-semibold text-[#09090B] dark:text-white">Cybernauts NITJ</span>, building real-time synchronization primitives and sub-50ms inference pipelines.
+            Software engineer studying Information Technology at <span className="font-semibold text-[#09090B] dark:text-white">NIT Jalandhar</span>. Building low-latency backend architectures, synchronization primitives, and evaluated inference pipelines. Core Member at <span className="font-semibold text-[#09090B] dark:text-white">Cybernauts NITJ</span>.
           </p>
 
           {/* Disciplines Line */}
